@@ -1,0 +1,21 @@
+version: "2.1"
+
+services:
+  node1:
+    build:
+      dockerfile: Dockerfile.prod
+      context: .
+      args:
+        BUILD_NODE_DIR: /workspace/harmony/runtime/node1
+        BUILD_BLS_PASSPHRASE_FILENAME: passphrase1.txt
+    volumes:
+      - /workspace/harmony/runtime/node1/bin
+      - /workspace/harmony/runtime/node1/blskeys
+      - /workspace/harmony/runtime/node1/data
+      - ./runtime/node1:/workspace/harmony/runtime/node1
+    ports:
+      - "19500:9500"
+      - "19501:9501"
+      - "19800:9800"
+      - "19801:9801"
+      - "19700:9700"
