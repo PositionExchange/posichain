@@ -1,9 +1,18 @@
 version: "2.1"
 
 services:
+  bootnode1:
+    build:
+      dockerfile: Dockerfile.bootnode
+      context: .
+      args:
+        BUILD_NODE_DIR: /workspace/harmony/runtime/bootnode1
+        BUILD_NODE_IP: 127.0.0.1
+        BUILD_NODE_PORT: 19876
+    network_mode: host
   node1:
     build:
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.node
       context: .
       args:
         BUILD_NODE_DIR: /workspace/harmony/runtime/node1
@@ -13,9 +22,4 @@ services:
       - /workspace/harmony/runtime/node1/blskeys
       - /workspace/harmony/runtime/node1/data
       - ./runtime/node1:/workspace/harmony/runtime/node1
-    ports:
-      - "19500:9500"
-      - "19501:9501"
-      - "19800:9800"
-      - "19801:9801"
-      - "19700:9700"
+    network_mode: host

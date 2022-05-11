@@ -31,4 +31,5 @@ RUN mkdir -p data
 RUN mkdir -p logs
 RUN mkdir -p profiles
 RUN cd blskeys && ../bin/hmycli keys generate-bls-key --passphrase-file ../passphrases/$BUILD_BLS_PASSPHRASE_FILENAME
+RUN ln -sf /dev/stdout $BUILD_NODE_DIR/logs/zerolog-harmony.log
 CMD ["bash", "-c", "./bin/harmony --bls.pass.file passphrases/$BLS_PASSPHRASE_FILENAME -c ./harmony.conf"]
