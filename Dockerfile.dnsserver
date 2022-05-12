@@ -1,0 +1,19 @@
+FROM ubuntu:bionic
+
+RUN apt-get update \
+  && apt-get install -y \
+  bind9 \
+  bind9utils \
+  bind9-doc
+
+# Enable IPv4
+RUN sed -i 's/OPTIONS=.*/OPTIONS="-4 -u bind"/' /etc/default/bind9
+
+# Copy configuration files
+COPY dns/named.conf.options /etc/bind/
+COPY dns/named.conf.local /etc/bind/
+COPY dns/zones /etc/bind/zones
+RUN named-checkconf /etc/bind/named.conf.local
+USER root
+# Run eternal loop
+CMD ["/bin/bash", "-c", "/etc/init.d/bind9 start && tail --pid=$(pgrep named) -f /dev/null"]

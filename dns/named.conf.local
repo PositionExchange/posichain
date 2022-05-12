@@ -1,0 +1,4 @@
+zone "posichain.com" {
+    type master;
+    file "/etc/bind/zones/db.posichain.com";
+};

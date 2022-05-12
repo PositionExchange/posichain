@@ -3,7 +3,7 @@ FROM golang:1.16.3
 ARG BUILD_NODE_DIR
 
 RUN apt clean
-RUN apt update && apt install -y libgmp-dev libssl-dev make gcc g++
+RUN apt update && apt install -y libgmp-dev libssl-dev make gcc g++ dnsutils
 
 WORKDIR /workspace
 RUN mkdir harmony
@@ -22,6 +22,7 @@ RUN mv ./bin/libmcl.so /usr/local/lib
 RUN echo "/usr/local/lib" >> /etc/ld.so.conf
 RUN ldconfig
 RUN mv ./bin $BUILD_NODE_DIR
+RUN mv .bnkey $BUILD_NODE_DIR
 
 ARG BUILD_NODE_IP
 ARG BUILD_NODE_PORT

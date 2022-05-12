@@ -1,15 +1,30 @@
 version: "2.1"
 
 services:
+  dnsserver:
+    build:
+      dockerfile: Dockerfile.dnsserver
+      context: .
+    volumes:
+      - ./dns/zones:/etc/bind/zones
+    networks:
+      blockchain:
+        ipv4_address: 172.189.0.3
+
   bootnode1:
     build:
       dockerfile: Dockerfile.bootnode
       context: .
       args:
         BUILD_NODE_DIR: /workspace/harmony/runtime/bootnode1
-        BUILD_NODE_IP: 127.0.0.1
-        BUILD_NODE_PORT: 19876
-    network_mode: host
+        BUILD_NODE_IP: 172.189.0.8
+        BUILD_NODE_PORT: 9876
+    depends_on:
+      - dnsserver
+    dns: 172.189.0.3
+    networks:
+      blockchain:
+        ipv4_address: 172.189.0.8
   node1:
     build:
       dockerfile: Dockerfile.node
@@ -17,9 +32,39 @@ services:
       args:
         BUILD_NODE_DIR: /workspace/harmony/runtime/node1
         BUILD_BLS_PASSPHRASE_FILENAME: passphrase1.txt
+    depends_on:
+      - dnsserver
+      - bootnode1
     volumes:
       - /workspace/harmony/runtime/node1/bin
       - /workspace/harmony/runtime/node1/blskeys
       - /workspace/harmony/runtime/node1/data
       - ./runtime/node1:/workspace/harmony/runtime/node1
-    network_mode: host
+    dns: 172.189.0.3
+    networks:
+      blockchain:
+        ipv4_address: 172.189.0.9
+  node2:
+    build:
+      dockerfile: Dockerfile.node
+      context: .
+      args:
+        BUILD_NODE_DIR: /workspace/harmony/runtime/node2
+        BUILD_BLS_PASSPHRASE_FILENAME: passphrase1.txt
+    depends_on:
+      - dnsserver
+      - bootnode1
+    volumes:
+      - /workspace/harmony/runtime/node2/bin
+      - /workspace/harmony/runtime/node2/blskeys
+      - /workspace/harmony/runtime/node2/data
+      - ./runtime/node2:/workspace/harmony/runtime/node2
+    dns: 172.189.0.3
+    networks:
+      blockchain:
+        ipv4_address: 172.189.0.10
+networks:
+  blockchain:
+    ipam:
+      config:
+        - subnet: 172.189.0.0/24
