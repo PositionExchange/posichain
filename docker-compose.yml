@@ -2,6 +2,7 @@ version: "2.1"
 
 services:
   dnsserver:
+    container_name: posichain-dnsserver
     build:
       dockerfile: Dockerfile.dnsserver
       context: .
@@ -12,6 +13,7 @@ services:
         ipv4_address: 172.189.0.3
 
   bootnode1:
+    container_name: posichain-bootnode1
     build:
       dockerfile: Dockerfile.bootnode
       context: .
@@ -26,6 +28,7 @@ services:
       blockchain:
         ipv4_address: 172.189.0.8
   node1:
+    container_name: posichain-node1
     build:
       dockerfile: Dockerfile.node
       context: .
@@ -39,12 +42,14 @@ services:
       - /workspace/harmony/runtime/node1/bin
       - /workspace/harmony/runtime/node1/blskeys
       - /workspace/harmony/runtime/node1/data
+      - /workspace/harmony/runtime/node1/logs
       - ./runtime/node1:/workspace/harmony/runtime/node1
     dns: 172.189.0.3
     networks:
       blockchain:
         ipv4_address: 172.189.0.9
   node2:
+    container_name: posichain-node2
     build:
       dockerfile: Dockerfile.node
       context: .
@@ -58,11 +63,35 @@ services:
       - /workspace/harmony/runtime/node2/bin
       - /workspace/harmony/runtime/node2/blskeys
       - /workspace/harmony/runtime/node2/data
+      - /workspace/harmony/runtime/node2/logs
       - ./runtime/node2:/workspace/harmony/runtime/node2
     dns: 172.189.0.3
     networks:
       blockchain:
         ipv4_address: 172.189.0.10
+  node3:
+    container_name: posichain-node3
+    build:
+      dockerfile: Dockerfile.node
+      context: .
+      args:
+        BUILD_NODE_DIR: /workspace/harmony/runtime/node3
+        BUILD_BLS_PASSPHRASE_FILENAME: passphrase1.txt
+    depends_on:
+      - dnsserver
+      - bootnode1
+    volumes:
+      - /workspace/harmony/runtime/node3/bin
+      - /workspace/harmony/runtime/node3/blskeys
+      - /workspace/harmony/runtime/node3/data
+      - /workspace/harmony/runtime/node3/logs
+      - ./runtime/node3:/workspace/harmony/runtime/node3
+    ports:
+      - "35000:5000"# Explorer service
+    dns: 172.189.0.3
+    networks:
+      blockchain:
+        ipv4_address: 172.189.0.11
 networks:
   blockchain:
     ipam:
