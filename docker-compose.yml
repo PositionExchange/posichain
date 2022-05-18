@@ -42,6 +42,12 @@ services:
       - ./runtime/node1/blskeys:/app/blskeys
       - ./runtime/node1/passphrases:/app/passphrases
       - ./runtime/node1/harmony.conf:/app/harmony.conf
+    ports:
+      - "40000:40000"
+    security_opt:
+      - "apparmor=unconfined"
+    cap_add:
+      - SYS_PTRACE
     dns: 172.189.0.3
     networks:
       blockchain:

@@ -12,7 +12,7 @@ RUN cd bls && make -j8 BLS_SWAP_G=1
 
 WORKDIR /workspace/harmony
 COPY . .
-RUN bash ./scripts/go_executable_build.sh -S harmony
+RUN bash ./scripts/go_executable_build.sh -d -S harmony
 RUN curl -LO https://harmony.one/hmycli && chmod +x hmycli
 RUN mv ./hmycli ./bin/hmycli
 RUN mv ./bin/libbls384_256.so /usr/local/lib
@@ -28,4 +28,5 @@ RUN mkdir -p data
 RUN mkdir -p logs
 RUN mkdir -p profiles
 RUN ln -sf /dev/stdout /app/logs/zerolog-harmony.log
-CMD ["bash", "-c", "ls -lah blskeys && ./bin/harmony --bls.pass.file passphrases/passphrase.txt -c ./harmony.conf"]
+RUN go install github.com/go-delve/delve/cmd/dlv@latest
+CMD ["dlv", "--listen=:40000", "--headless=true", "--api-version=2", "--accept-multiclient", "exec", "./bin/harmony", "--", "--bls.pass.file=passphrases/passphrase.txt", "-c=./harmony.conf"]
