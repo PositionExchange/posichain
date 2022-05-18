@@ -14,13 +14,13 @@ services:
 
   bootnode1:
     container_name: posichain-bootnode1
+    image: posichain-bootnode
     build:
       dockerfile: Dockerfile.bootnode
       context: .
-      args:
-        BUILD_NODE_DIR: /workspace/harmony/runtime/bootnode1
-        BUILD_NODE_IP: 172.189.0.8
-        BUILD_NODE_PORT: 9876
+    environment:
+      NODE_IP: 172.189.0.8
+      NODE_PORT: 9876
     depends_on:
       - dnsserver
     dns: 172.189.0.3
@@ -30,20 +30,18 @@ services:
 
   node1:
     container_name: posichain-node1
+    image: posichain-peernode
     build:
       dockerfile: Dockerfile.node
       context: .
-      args:
-        BUILD_NODE_DIR: /workspace/harmony/runtime/node1
-        BUILD_BLS_PASSPHRASE_FILENAME: passphrase1.txt
     depends_on:
       - dnsserver
       - bootnode1
     volumes:
-      - node1-blskeys:/workspace/harmony/runtime/node1/blskeys
-      - node1-data:/workspace/harmony/runtime/node1/data
-      - ./runtime/node1/passphrases:/workspace/harmony/runtime/node1/passphrases
-      - ./runtime/node1/harmony.conf:/workspace/harmony/runtime/node1/harmony.conf
+      - node1-data:/app/data
+      - ./runtime/node1/blskeys:/app/blskeys
+      - ./runtime/node1/passphrases:/app/passphrases
+      - ./runtime/node1/harmony.conf:/app/harmony.conf
     dns: 172.189.0.3
     networks:
       blockchain:
@@ -51,20 +49,16 @@ services:
 
   node2:
     container_name: posichain-node2
-    build:
-      dockerfile: Dockerfile.node
-      context: .
-      args:
-        BUILD_NODE_DIR: /workspace/harmony/runtime/node2
-        BUILD_BLS_PASSPHRASE_FILENAME: passphrase1.txt
+    image: posichain-peernode
     depends_on:
       - dnsserver
       - bootnode1
+      - node1
     volumes:
-      - node2-blskeys:/workspace/harmony/runtime/node2/blskeys
-      - node2-data:/workspace/harmony/runtime/node2/data
-      - ./runtime/node2/passphrases:/workspace/harmony/runtime/node2/passphrases
-      - ./runtime/node2/harmony.conf:/workspace/harmony/runtime/node2/harmony.conf
+      - node2-data:/app/data
+      - ./runtime/node2/blskeys:/app/blskeys
+      - ./runtime/node2/passphrases:/app/passphrases
+      - ./runtime/node2/harmony.conf:/app/harmony.conf
     dns: 172.189.0.3
     networks:
       blockchain:
@@ -72,20 +66,16 @@ services:
 
   node3:
     container_name: posichain-node3
-    build:
-      dockerfile: Dockerfile.node
-      context: .
-      args:
-        BUILD_NODE_DIR: /workspace/harmony/runtime/node3
-        BUILD_BLS_PASSPHRASE_FILENAME: passphrase1.txt
+    image: posichain-peernode
     depends_on:
       - dnsserver
       - bootnode1
+      - node1
     volumes:
-      - node3-blskeys:/workspace/harmony/runtime/node3/blskeys
-      - node3-data:/workspace/harmony/runtime/node3/data
-      - ./runtime/node3/passphrases:/workspace/harmony/runtime/node3/passphrases
-      - ./runtime/node3/harmony.conf:/workspace/harmony/runtime/node3/harmony.conf
+      - node3-data:/app/data
+      - ./runtime/node3/blskeys:/app/blskeys
+      - ./runtime/node3/passphrases:/app/passphrases
+      - ./runtime/node3/harmony.conf:/app/harmony.conf
     ports:
       - "35000:5000"# Explorer service
       - "39700:9700"
@@ -97,15 +87,9 @@ services:
 volumes:
   node1-data:
     driver: local
-  node1-blskeys:
-    driver: local
   node2-data:
     driver: local
-  node2-blskeys:
-    driver: local
   node3-data:
-    driver: local
-  node3-blskeys:
     driver: local
 
 networks:

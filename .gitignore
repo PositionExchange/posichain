@@ -95,8 +95,6 @@ explorer_storage_*
 # pprof profiles
 profiles/*.pb.gz
 
-runtime/*/blskeys/*
-runtime/*/blskeys/.gitkeep
 runtime/*/data/*
 runtime/*/data/.gitkeep
 runtime/*/logs/*

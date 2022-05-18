@@ -1,9 +1,5 @@
 FROM golang:1.16.3
 
-ARG BUILD_NODE_DIR
-ARG BUILD_BLS_PASSPHRASE_FILENAME
-ENV BLS_PASSPHRASE_FILENAME=$BUILD_BLS_PASSPHRASE_FILENAME
-
 RUN apt clean
 RUN apt update && apt install -y libgmp-dev libssl-dev make gcc g++ dnsutils
 
@@ -16,20 +12,20 @@ RUN cd bls && make -j8 BLS_SWAP_G=1
 
 WORKDIR /workspace/harmony
 COPY . .
-RUN make
+RUN bash ./scripts/go_executable_build.sh -S harmony
 RUN curl -LO https://harmony.one/hmycli && chmod +x hmycli
 RUN mv ./hmycli ./bin/hmycli
 RUN mv ./bin/libbls384_256.so /usr/local/lib
 RUN mv ./bin/libmcl.so /usr/local/lib
 RUN echo "/usr/local/lib" >> /etc/ld.so.conf
 RUN ldconfig
-RUN mv ./bin $BUILD_NODE_DIR
+RUN mkdir /app
+RUN mv ./bin /app
 
-WORKDIR $BUILD_NODE_DIR
+WORKDIR /app
 RUN mkdir -p blskeys
 RUN mkdir -p data
 RUN mkdir -p logs
 RUN mkdir -p profiles
-RUN cd blskeys && ../bin/hmycli keys generate-bls-key --passphrase-file ../passphrases/$BUILD_BLS_PASSPHRASE_FILENAME
-RUN ln -sf /dev/stdout $BUILD_NODE_DIR/logs/zerolog-harmony.log
-CMD ["bash", "-c", "./bin/harmony --bls.pass.file passphrases/$BLS_PASSPHRASE_FILENAME -c ./harmony.conf"]
+RUN ln -sf /dev/stdout /app/logs/zerolog-harmony.log
+CMD ["bash", "-c", "ls -lah blskeys && ./bin/harmony --bls.pass.file passphrases/passphrase.txt -c ./harmony.conf"]

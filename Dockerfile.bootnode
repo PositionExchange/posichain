@@ -1,7 +1,5 @@
 FROM golang:1.16.3
 
-ARG BUILD_NODE_DIR
-
 RUN apt clean
 RUN apt update && apt install -y libgmp-dev libssl-dev make gcc g++ dnsutils
 
@@ -14,22 +12,17 @@ RUN cd bls && make -j8 BLS_SWAP_G=1
 
 WORKDIR /workspace/harmony
 COPY . .
-RUN make
+RUN bash ./scripts/go_executable_build.sh -S bootnode
 RUN curl -LO https://harmony.one/hmycli && chmod +x hmycli
 RUN mv ./hmycli ./bin/hmycli
 RUN mv ./bin/libbls384_256.so /usr/local/lib
 RUN mv ./bin/libmcl.so /usr/local/lib
 RUN echo "/usr/local/lib" >> /etc/ld.so.conf
 RUN ldconfig
-RUN mv ./bin $BUILD_NODE_DIR
-RUN mv .bnkey $BUILD_NODE_DIR
+RUN mkdir /app
+RUN mv ./bin /app
+RUN mv .bnkey /app
 
-ARG BUILD_NODE_IP
-ARG BUILD_NODE_PORT
-ENV NODE_IP=$BUILD_NODE_IP
-ENV NODE_PORT=$BUILD_NODE_PORT
-
-WORKDIR $BUILD_NODE_DIR
+WORKDIR /app
 RUN mkdir -p logs
-RUN ln -sf /dev/stdout $BUILD_NODE_DIR/logs/zerolog-bootnode-$BUILD_NODE_IP-$BUILD_NODE_PORT.log
-CMD ["bash", "-c", "./bin/bootnode -ip $NODE_IP -port $NODE_PORT -max_conn_per_ip 100 -log_folder logs"]
+CMD ["bash", "-c", "ln -sf /dev/stdout /app/logs/zerolog-bootnode-$NODE_IP-$NODE_PORT.log && ./bin/bootnode -ip $NODE_IP -port $NODE_PORT -max_conn_per_ip 100 -log_folder logs"]
