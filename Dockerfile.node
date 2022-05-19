@@ -29,4 +29,4 @@ RUN mkdir -p logs
 RUN mkdir -p profiles
 RUN ln -sf /dev/stdout /app/logs/zerolog-harmony.log
 RUN go install github.com/go-delve/delve/cmd/dlv@latest
-CMD ["dlv", "--listen=:40000", "--headless=true", "--api-version=2", "--accept-multiclient", "exec", "./bin/harmony", "--", "--bls.pass.file=passphrases/passphrase.txt", "-c=./harmony.conf"]
+CMD ["dlv", "--listen=:40000", "--headless=true", "--api-version=2", "--accept-multiclient", "--log=true", "--log-output=debugger,debuglineerr,gdbwire,lldbout,rpc", "exec", "./bin/harmony", "--", "--bls.pass.file=passphrases/passphrase.txt", "-c=./harmony.conf"]
