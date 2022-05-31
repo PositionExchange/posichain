@@ -4,8 +4,8 @@ services:
   dnsserver:
     container_name: posichain-dnsserver
     build:
-      dockerfile: Dockerfile.dnsserver
-      context: .
+      dockerfile: .local/Dockerfile.dnsserver
+      context: ..
     volumes:
       - ./dns/zones:/etc/bind/zones
     networks:
@@ -16,8 +16,8 @@ services:
     container_name: posichain-bootnode1
     image: posichain-bootnode
     build:
-      dockerfile: Dockerfile.bootnode
-      context: .
+      dockerfile: .local/Dockerfile.bootnode
+      context: ..
     environment:
       NODE_IP: 172.189.0.8
       NODE_PORT: 9876
@@ -34,16 +34,16 @@ services:
     container_name: posichain-node1
     image: posichain-peernode
     build:
-      dockerfile: Dockerfile.node
-      context: .
+      dockerfile: .local/Dockerfile.node
+      context: ..
     depends_on:
       - dnsserver
       - bootnode1
     volumes:
       - node1-data:/app/data
-      - ./runtime/node1/blskeys:/app/blskeys
-      - ./runtime/node1/passphrases:/app/passphrases
-      - ./runtime/node1/harmony.conf:/app/harmony.conf
+      - ./nodes/node1/blskeys:/app/blskeys
+      - ./nodes/node1/passphrases:/app/passphrases
+      - ./nodes/node1/harmony.conf:/app/harmony.conf
     ports:
       - "40011:40000"
     security_opt:
@@ -64,9 +64,9 @@ services:
       - node1
     volumes:
       - node2-data:/app/data
-      - ./runtime/node2/blskeys:/app/blskeys
-      - ./runtime/node2/passphrases:/app/passphrases
-      - ./runtime/node2/harmony.conf:/app/harmony.conf
+      - ./nodes/node2/blskeys:/app/blskeys
+      - ./nodes/node2/passphrases:/app/passphrases
+      - ./nodes/node2/harmony.conf:/app/harmony.conf
     ports:
       - "40012:40000"
     security_opt:
@@ -87,9 +87,9 @@ services:
       - node1
     volumes:
       - node3-data:/app/data
-      - ./runtime/node3/blskeys:/app/blskeys
-      - ./runtime/node3/passphrases:/app/passphrases
-      - ./runtime/node3/harmony.conf:/app/harmony.conf
+      - ./nodes/node3/blskeys:/app/blskeys
+      - ./nodes/node3/passphrases:/app/passphrases
+      - ./nodes/node3/harmony.conf:/app/harmony.conf
     ports:
       - "35000:5000"# Explorer service
       - "39700:9700"

@@ -1,2 +1,2 @@
 Dockerfile*
-docker-compose.yml
+.local/docker-compose.yml

@@ -10,9 +10,9 @@ RUN apt-get update \
 RUN sed -i 's/OPTIONS=.*/OPTIONS="-4 -u bind"/' /etc/default/bind9
 
 # Copy configuration files
-COPY dns/named.conf.options /etc/bind/
-COPY dns/named.conf.local /etc/bind/
-COPY dns/zones /etc/bind/zones
+COPY .local/dns/named.conf.options /etc/bind/
+COPY .local/dns/named.conf.local /etc/bind/
+COPY .local/dns/zones /etc/bind/zones
 RUN named-checkconf /etc/bind/named.conf.local
 USER root
 # Run eternal loop
