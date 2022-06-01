@@ -44,6 +44,8 @@ services:
       - ./nodes/node1/blskeys:/app/blskeys
       - ./nodes/node1/passphrases:/app/passphrases
       - ./nodes/node1/harmony.conf:/app/harmony.conf
+    environment:
+      ENABLE_REMOTE_DEBUG: "true"
     ports:
       - "40011:40000"
     security_opt:
@@ -91,8 +93,6 @@ services:
       - ./nodes/node3/passphrases:/app/passphrases
       - ./nodes/node3/harmony.conf:/app/harmony.conf
     ports:
-      - "35000:5000"# Explorer service
-      - "39700:9700"
       - "40013:40000"
     security_opt:
       - "apparmor=unconfined"
@@ -103,12 +103,64 @@ services:
       blockchain:
         ipv4_address: 172.189.0.11
 
+  node4:
+    container_name: posichain-node4
+    image: posichain-peernode
+    depends_on:
+      - dnsserver
+      - bootnode1
+      - node1
+    volumes:
+      - node4-data:/app/data
+      - ./nodes/node4/blskeys:/app/blskeys
+      - ./nodes/node4/passphrases:/app/passphrases
+      - ./nodes/node4/harmony.conf:/app/harmony.conf
+    ports:
+      - "40014:40000"
+    security_opt:
+      - "apparmor=unconfined"
+    cap_add:
+      - SYS_PTRACE
+    dns: 172.189.0.3
+    networks:
+      blockchain:
+        ipv4_address: 172.189.0.12
+
+  node5:
+    container_name: posichain-node5
+    image: posichain-peernode
+    depends_on:
+      - dnsserver
+      - bootnode1
+      - node1
+    volumes:
+      - node5-data:/app/data
+      - ./nodes/node5/blskeys:/app/blskeys
+      - ./nodes/node5/passphrases:/app/passphrases
+      - ./nodes/node5/harmony.conf:/app/harmony.conf
+    ports:
+      - "35000:5000"# Explorer service
+      - "39700:9700"
+      - "40015:40000"
+    security_opt:
+      - "apparmor=unconfined"
+    cap_add:
+      - SYS_PTRACE
+    dns: 172.189.0.3
+    networks:
+      blockchain:
+        ipv4_address: 172.189.0.13
+
 volumes:
   node1-data:
     driver: local
   node2-data:
     driver: local
   node3-data:
+    driver: local
+  node4-data:
+    driver: local
+  node5-data:
     driver: local
 
 networks:

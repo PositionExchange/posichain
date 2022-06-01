@@ -21,12 +21,14 @@ RUN echo "/usr/local/lib" >> /etc/ld.so.conf
 RUN ldconfig
 RUN mkdir /app
 RUN mv ./bin /app
+RUN mv ./.local/scripts /app
 
 WORKDIR /app
 RUN mkdir -p blskeys
 RUN mkdir -p data
 RUN mkdir -p logs
 RUN mkdir -p profiles
+RUN chmod +x ./scripts/node_run.sh
 RUN ln -sf /dev/stdout /app/logs/zerolog-harmony.log
 RUN go install github.com/go-delve/delve/cmd/dlv@latest
-CMD ["dlv", "--listen=:40000", "--headless=true", "--api-version=2", "--accept-multiclient", "--log=true", "--log-output=debugger,debuglineerr,gdbwire,lldbout,rpc", "exec", "./bin/harmony", "--", "--bls.pass.file=passphrases/passphrase.txt", "-c=./harmony.conf"]
+CMD ./scripts/node_run.sh
