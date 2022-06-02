@@ -32,9 +32,11 @@ const (
 	mainnetV2_2Epoch = 231 // open slots increase from 480 - 640
 
 	// MainNetHTTPPattern is the http pattern for mainnet.
-	MainNetHTTPPattern = "https://api.s%d.t.hmny.io"
+	//MainNetHTTPPattern = "https://api.s%d.t.hmny.io"
+	MainNetHTTPPattern = "http://s%d.z.d.posichain.com:9500"
 	// MainNetWSPattern is the websocket pattern for mainnet.
-	MainNetWSPattern = "wss://ws.s%d.t.hmny.io"
+	//MainNetWSPattern = "wss://ws.s%d.t.hmny.io"
+	MainNetWSPattern = "wss://ws.s%d.z.d.posichain.com:9800"
 )
 
 var (
