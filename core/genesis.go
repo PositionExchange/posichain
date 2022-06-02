@@ -23,6 +23,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	internalCommon "github.com/harmony-one/harmony/internal/common"
 	"math/big"
 	"os"
 	"strings"
@@ -56,7 +57,8 @@ const (
 	// GenesisEpoch is the number of the genesis epoch.
 	GenesisEpoch = 0
 	// GenesisONEToken is the initial total number of ONE in the genesis block for mainnet.
-	GenesisONEToken = 12600000000
+	GenesisONEToken       = 12600000000
+	GenesisValidatorToken = 100000
 	// ContractDeployerInitFund is the initial fund for the contract deployer account in testnet/devnet.
 	ContractDeployerInitFund = 10000000000
 	// InitFreeFund is the initial fund for permissioned accounts for testnet/devnet/
@@ -64,8 +66,9 @@ const (
 )
 
 var (
-	// GenesisFund is the initial total number of ONE (in atto) in the genesis block for mainnet.
-	GenesisFund = new(big.Int).Mul(big.NewInt(GenesisONEToken), big.NewInt(denominations.One))
+	// GenesisFoundationFund is the initial total number of ONE (in atto) in the genesis block for mainnet.
+	GenesisFoundationFund = new(big.Int).Mul(big.NewInt(GenesisONEToken), big.NewInt(denominations.One))
+	GenesisValidatorFund  = new(big.Int).Mul(big.NewInt(GenesisValidatorToken), big.NewInt(denominations.One))
 )
 
 // Genesis specifies the header fields, state of a genesis block. It also defines hard
@@ -102,8 +105,23 @@ func NewGenesisSpec(netType nodeconfig.NetworkType, shardID uint32) *Genesis {
 	case nodeconfig.Mainnet:
 		chainConfig = *params.MainnetChainConfig
 		if shardID == 0 {
-			foundationAddress := common.HexToAddress("0xE25ABC3f7C3d5fB7FB81EAFd421FF1621A61107c")
-			genesisAlloc[foundationAddress] = GenesisAccount{Balance: GenesisFund}
+			// Contact @danny for this account
+			foundationAddress := common.HexToAddress("0xdE8CEfB471f20292021399A4E56af4edEB926BB5") //accFoundation
+
+			//validatorAddress1 := common.HexToAddress("0x8A09D8A8d34a7460e5197AaB29c5e0dB5985EC72") //acc1
+			//validatorAddress2 := common.HexToAddress("0x48825d0a64F9DE0A47afe6357f67C7Fd5dEd799b") //acc2
+			//validatorAddress3 := common.HexToAddress("0xe9987f4919342db9dDe90051ce9b380d67c8Bf70") //acc3
+			//validatorAddress4 := common.HexToAddress("0x4b6e9Cd469e3613eF43AAe431eD80f754A5C53e3") //acc4
+
+			validatorAddress1, _ := internalCommon.Bech32ToAddress("one13gya32xnff6xpege024jn30qmdvctmrjjt2jjz") //acc1
+			validatorAddress2, _ := internalCommon.Bech32ToAddress("one1fzp96znyl80q53a0uc6h7e78l4w767vm97f8kz") //acc2
+			validatorAddress3, _ := internalCommon.Bech32ToAddress("one1axv87jgexskmnh0fqpguaxecp4nu30mscwrw42") //acc3
+			validatorAddress4, _ := internalCommon.Bech32ToAddress("one1fdhfe4rfudsnaap64ep3akq0w499c5lr5tffhr") //acc4
+			genesisAlloc[foundationAddress] = GenesisAccount{Balance: GenesisFoundationFund}
+			genesisAlloc[validatorAddress1] = GenesisAccount{Balance: GenesisValidatorFund}
+			genesisAlloc[validatorAddress2] = GenesisAccount{Balance: GenesisValidatorFund}
+			genesisAlloc[validatorAddress3] = GenesisAccount{Balance: GenesisValidatorFund}
+			genesisAlloc[validatorAddress4] = GenesisAccount{Balance: GenesisValidatorFund}
 		}
 	case nodeconfig.Pangaea:
 		chainConfig = *params.PangaeaChainConfig

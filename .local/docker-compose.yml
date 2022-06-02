@@ -24,12 +24,13 @@ services:
     depends_on:
       - dnsserver
     ports:
-      - "40001:40000"
+      - "24001:40000"
     dns: 172.189.0.3
     networks:
       blockchain:
         ipv4_address: 172.189.0.8
 
+  # Shard 2 (random)
   node1:
     container_name: posichain-node1
     image: posichain-peernode
@@ -41,13 +42,19 @@ services:
       - bootnode1
     volumes:
       - node1-data:/app/data
+      - node1-account:/root/.hmy_cli/account-keys
       - ./nodes/node1/blskeys:/app/blskeys
       - ./nodes/node1/passphrases:/app/passphrases
       - ./nodes/node1/harmony.conf:/app/harmony.conf
     environment:
-      ENABLE_REMOTE_DEBUG: "true"
+      ENABLE_REMOTE_DEBUG: "false"
     ports:
-      - "40011:40000"
+      - "14000:40000"
+      - "19500:9500" # Http RPC public
+      - "19501:9501" # Http RPC auth
+      - "19800:9800"# WS RPC public
+      - "19801:9801"# WS RPC auth
+      - "15000:5000"
     security_opt:
       - "apparmor=unconfined"
     cap_add:
@@ -57,6 +64,7 @@ services:
       blockchain:
         ipv4_address: 172.189.0.9
 
+  # Shard 3 (random)
   node2:
     container_name: posichain-node2
     image: posichain-peernode
@@ -66,11 +74,16 @@ services:
       - node1
     volumes:
       - node2-data:/app/data
+      - node2-account:/root/.hmy_cli/account-keys
       - ./nodes/node2/blskeys:/app/blskeys
       - ./nodes/node2/passphrases:/app/passphrases
       - ./nodes/node2/harmony.conf:/app/harmony.conf
     ports:
-      - "40012:40000"
+      - "24000:40000"
+      - "29500:9500"# Http RPC public
+      - "29501:9501"# Http RPC auth
+      - "29800:9800"# WS RPC public
+      - "29801:9801"# WS RPC auth
     security_opt:
       - "apparmor=unconfined"
     cap_add:
@@ -80,6 +93,7 @@ services:
       blockchain:
         ipv4_address: 172.189.0.10
 
+  # Shard 0 (random)
   node3:
     container_name: posichain-node3
     image: posichain-peernode
@@ -89,11 +103,18 @@ services:
       - node1
     volumes:
       - node3-data:/app/data
+      - node3-account:/root/.hmy_cli/account-keys
       - ./nodes/node3/blskeys:/app/blskeys
       - ./nodes/node3/passphrases:/app/passphrases
       - ./nodes/node3/harmony.conf:/app/harmony.conf
+    environment:
+      ENABLE_REMOTE_DEBUG: "true"
     ports:
-      - "40013:40000"
+      - "34000:40000"
+      - "39500:9500"# Http RPC public
+      - "39501:9501"# Http RPC auth
+      - "39800:9800"# WS RPC public
+      - "39801:9801"# WS RPC auth
     security_opt:
       - "apparmor=unconfined"
     cap_add:
@@ -103,6 +124,7 @@ services:
       blockchain:
         ipv4_address: 172.189.0.11
 
+  # Shard 1 (random)
   node4:
     container_name: posichain-node4
     image: posichain-peernode
@@ -112,11 +134,16 @@ services:
       - node1
     volumes:
       - node4-data:/app/data
+      - node4-account:/root/.hmy_cli/account-keys
       - ./nodes/node4/blskeys:/app/blskeys
       - ./nodes/node4/passphrases:/app/passphrases
       - ./nodes/node4/harmony.conf:/app/harmony.conf
     ports:
-      - "40014:40000"
+      - "44000:40000"
+      - "49500:9500"# Http RPC public
+      - "49501:9501"# Http RPC auth
+      - "49800:9800"# WS RPC public
+      - "49801:9801"# WS RPC auth
     security_opt:
       - "apparmor=unconfined"
     cap_add:
@@ -135,13 +162,17 @@ services:
       - node1
     volumes:
       - node5-data:/app/data
+      - node5-account:/root/.hmy_cli/account-keys
       - ./nodes/node5/blskeys:/app/blskeys
       - ./nodes/node5/passphrases:/app/passphrases
       - ./nodes/node5/harmony.conf:/app/harmony.conf
     ports:
       - "35000:5000"# Explorer service
-      - "39700:9700"
-      - "40015:40000"
+      - "59500:9500"# Http RPC public
+      - "59501:9501"# Http RPC auth
+      - "59800:9800"# WS RPC public
+      - "59801:9801"# WS RPC auth
+      - "54000:40000"
     security_opt:
       - "apparmor=unconfined"
     cap_add:
@@ -154,13 +185,23 @@ services:
 volumes:
   node1-data:
     driver: local
+  node1-account:
+    driver: local
   node2-data:
+    driver: local
+  node2-account:
     driver: local
   node3-data:
     driver: local
+  node3-account:
+    driver: local
   node4-data:
     driver: local
+  node4-account:
+    driver: local
   node5-data:
+    driver: local
+  node5-account:
     driver: local
 
 networks:

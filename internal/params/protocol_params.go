@@ -9,7 +9,9 @@ const (
 	// MinGasLimit ...
 	MinGasLimit uint64 = 5000 // Minimum the gas limit may ever be.
 	// GenesisGasLimit ...
-	GenesisGasLimit uint64 = 4712388 // Gas limit of the Genesis block.
+	GenesisGasLimit uint64 = 80000000 // Gas limit of the Genesis block.
+	// GenesisGasLimit uint64 = 4712388 // Gas limit of the Genesis block.
+
 	// TestGenesisGasLimit ..
 	TestGenesisGasLimit uint64 = 80000000 // A Gas limit in testing of the Genesis block (set same as current mainnet)
 	// MaximumExtraDataSize ...

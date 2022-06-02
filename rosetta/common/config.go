@@ -15,10 +15,10 @@ const (
 	RosettaVersion = "1.4.6" // TODO (dm): set variable via build flags
 
 	// Blockchain ..
-	Blockchain = "Harmony"
+	Blockchain = "Posichain"
 
 	// NativeSymbol ..
-	NativeSymbol = "ONE"
+	NativeSymbol = "POSI"
 
 	// NativePrecision in the number of decimal places
 	NativePrecision = 18
