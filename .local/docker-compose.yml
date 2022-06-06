@@ -127,6 +127,7 @@ services:
       - "40005:40000"
       - "15005:9500"# Http RPC public
       - "15105:9501"# Http RPC auth
+      - "17005:9700"# Roseta RPC public
       - "18005:9800"# WS RPC public
       - "18105:9801"# WS RPC auth
     networks:
@@ -207,6 +208,7 @@ services:
       - "40010:40000"
       - "15010:9500"# Http RPC public
       - "15110:9501"# Http RPC auth
+      - "17010:9700"# Roseta RPC public
       - "18010:9800"# WS RPC public
       - "18110:9801"# WS RPC auth
     networks:
@@ -287,6 +289,7 @@ services:
       - "40015:40000"
       - "15015:9500"# Http RPC public
       - "15115:9501"# Http RPC auth
+      - "17015:9700"# Roseta RPC public
       - "18015:9800"# WS RPC public
       - "18115:9801"# WS RPC auth
     networks:
@@ -367,6 +370,7 @@ services:
       - "40020:40000"
       - "15020:9500"# Http RPC public
       - "15120:9501"# Http RPC auth
+      - "17020:9700"# Roseta RPC public
       - "18020:9800"# WS RPC public
       - "18120:9801"# WS RPC auth
     networks:

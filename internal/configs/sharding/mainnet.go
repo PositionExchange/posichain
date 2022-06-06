@@ -11,9 +11,12 @@ import (
 )
 
 const (
-	mainnetEpochBlock1 = 344064 // 21 * 2^14
-	blocksPerEpoch     = 16384  // 2^14
-	blocksPerEpochV2   = 32768  // 2^15
+	mainnetEpochBlock1 = 10 // 21 * 2^14
+	//blocksPerEpoch     = 16384  // 2^14
+	//blocksPerEpochV2   = 32768  // 2^15
+	// TODO modify when go mainnet
+	blocksPerEpoch   = 5
+	blocksPerEpochV2 = 10
 
 	mainnetVdfDifficulty = 50000 // This takes about 100s to finish the vdf
 
@@ -55,58 +58,58 @@ type mainnetSchedule struct{}
 
 func (ms mainnetSchedule) InstanceForEpoch(epoch *big.Int) Instance {
 	switch {
-	case params.MainnetChainConfig.IsSlotsLimited(epoch):
-		return mainnetV3_3
-	case params.MainnetChainConfig.IsHIP6And8Epoch(epoch):
-		// Decrease internal voting power from 60% to 49%
-		// Increase external nodes from 800 to 900
-		// which happens around 10/11/2021 22:00 PDT
-		return mainnetV3_2
-	case params.MainnetChainConfig.IsSixtyPercent(epoch):
-		// Decrease internal voting power from 68% to 60%
-		// which happens around 1/27/2021 22:00 PDT
-		return mainnetV3_1
-	case params.MainnetChainConfig.IsTwoSeconds(epoch):
-		// Enable 2s block time and change blocks/epoch to 32768
-		// which happens around 12/08/2020 08:00 PDT
-		return mainnetV3
-	case epoch.Cmp(big.NewInt(mainnetV2_2Epoch)) >= 0:
-		return mainnetV2_2
-	case epoch.Cmp(big.NewInt(mainnetV2_1Epoch)) >= 0:
-		return mainnetV2_1
-	case epoch.Cmp(big.NewInt(mainnetV2_0Epoch)) >= 0:
-		// 185 resharding epoch (for shard 0) around 14/05/2020 ~15:00 PDT
-		return mainnetV2_0
-	case epoch.Cmp(big.NewInt(mainnetV1_5Epoch)) >= 0:
-		// 54 resharding epoch (for shard 0) around 23/10/2019 ~10:05 PDT
-		return mainnetV1_5
-	case epoch.Cmp(big.NewInt(mainnetV1_4Epoch)) >= 0:
-		// forty-sixth resharding epoch around 10/10/2019 8:06pm PDT
-		return mainnetV1_4
-	case epoch.Cmp(big.NewInt(mainnetV1_3Epoch)) >= 0:
-		// thirty-sixth resharding epoch around 9/25/2019 5:44am PDT
-		return mainnetV1_3
-	case epoch.Cmp(big.NewInt(mainnetV1_2Epoch)) >= 0:
-		// twenty-fifth resharding epoch around 09/06/2019 5:31am PDT
-		return mainnetV1_2
-	case epoch.Cmp(big.NewInt(mainnetV1_1Epoch)) >= 0:
-		// nineteenth resharding epoch around 08/27/2019 9:07pm PDT
-		return mainnetV1_1
-	case epoch.Cmp(big.NewInt(mainnetV1Epoch)) >= 0:
-		// twelfth resharding epoch around 08/16/2019 11:00pm PDT
-		return mainnetV1
-	case epoch.Cmp(big.NewInt(mainnetV0_4Epoch)) >= 0:
-		// tenth resharding epoch around 08/13/2019 9:00pm PDT
-		return mainnetV0_4
-	case epoch.Cmp(big.NewInt(mainnetV0_3Epoch)) >= 0:
-		// eighth resharding epoch around 08/10/2019 6:00pm PDT
-		return mainnetV0_3
-	case epoch.Cmp(big.NewInt(mainnetV0_2Epoch)) >= 0:
-		// fifth resharding epoch around 08/06/2019 2:30am PDT
-		return mainnetV0_2
-	case epoch.Cmp(big.NewInt(mainnetV0_1Epoch)) >= 0:
-		// first resharding epoch around 07/30/2019 10:30pm PDT
-		return mainnetV0_1
+	//case params.MainnetChainConfig.IsSlotsLimited(epoch):
+	//	return mainnetV3_3
+	//case params.MainnetChainConfig.IsHIP6And8Epoch(epoch):
+	//	// Decrease internal voting power from 60% to 49%
+	//	// Increase external nodes from 800 to 900
+	//	// which happens around 10/11/2021 22:00 PDT
+	//	return mainnetV3_2
+	//case params.MainnetChainConfig.IsSixtyPercent(epoch):
+	//	// Decrease internal voting power from 68% to 60%
+	//	// which happens around 1/27/2021 22:00 PDT
+	//	return mainnetV3_1
+	//case params.MainnetChainConfig.IsTwoSeconds(epoch):
+	//	// Enable 2s block time and change blocks/epoch to 32768
+	//	// which happens around 12/08/2020 08:00 PDT
+	//	return mainnetV3
+	//case epoch.Cmp(big.NewInt(mainnetV2_2Epoch)) >= 0:
+	//	return mainnetV2_2
+	//case epoch.Cmp(big.NewInt(mainnetV2_1Epoch)) >= 0:
+	//	return mainnetV2_1
+	//case epoch.Cmp(big.NewInt(mainnetV2_0Epoch)) >= 0:
+	//	// 185 resharding epoch (for shard 0) around 14/05/2020 ~15:00 PDT
+	//	return mainnetV2_0
+	//case epoch.Cmp(big.NewInt(mainnetV1_5Epoch)) >= 0:
+	//	// 54 resharding epoch (for shard 0) around 23/10/2019 ~10:05 PDT
+	//	return mainnetV1_5
+	//case epoch.Cmp(big.NewInt(mainnetV1_4Epoch)) >= 0:
+	//	// forty-sixth resharding epoch around 10/10/2019 8:06pm PDT
+	//	return mainnetV1_4
+	//case epoch.Cmp(big.NewInt(mainnetV1_3Epoch)) >= 0:
+	//	// thirty-sixth resharding epoch around 9/25/2019 5:44am PDT
+	//	return mainnetV1_3
+	//case epoch.Cmp(big.NewInt(mainnetV1_2Epoch)) >= 0:
+	//	// twenty-fifth resharding epoch around 09/06/2019 5:31am PDT
+	//	return mainnetV1_2
+	//case epoch.Cmp(big.NewInt(mainnetV1_1Epoch)) >= 0:
+	//	// nineteenth resharding epoch around 08/27/2019 9:07pm PDT
+	//	return mainnetV1_1
+	//case epoch.Cmp(big.NewInt(mainnetV1Epoch)) >= 0:
+	//	// twelfth resharding epoch around 08/16/2019 11:00pm PDT
+	//	return mainnetV1
+	//case epoch.Cmp(big.NewInt(mainnetV0_4Epoch)) >= 0:
+	//	// tenth resharding epoch around 08/13/2019 9:00pm PDT
+	//	return mainnetV0_4
+	//case epoch.Cmp(big.NewInt(mainnetV0_3Epoch)) >= 0:
+	//	// eighth resharding epoch around 08/10/2019 6:00pm PDT
+	//	return mainnetV0_3
+	//case epoch.Cmp(big.NewInt(mainnetV0_2Epoch)) >= 0:
+	//	// fifth resharding epoch around 08/06/2019 2:30am PDT
+	//	return mainnetV0_2
+	//case epoch.Cmp(big.NewInt(mainnetV0_1Epoch)) >= 0:
+	//	// first resharding epoch around 07/30/2019 10:30pm PDT
+	//	return mainnetV0_1
 	default: // genesis
 		return mainnetV0
 	}
@@ -206,7 +209,7 @@ func (ms mainnetSchedule) IsSkippedEpoch(shardID uint32, epoch *big.Int) bool {
 var mainnetReshardingEpoch = []*big.Int{big.NewInt(0), big.NewInt(mainnetV0_1Epoch), big.NewInt(mainnetV0_2Epoch), big.NewInt(mainnetV0_3Epoch), big.NewInt(mainnetV0_4Epoch), big.NewInt(mainnetV1Epoch), big.NewInt(mainnetV1_1Epoch), big.NewInt(mainnetV1_2Epoch), big.NewInt(mainnetV1_3Epoch), big.NewInt(mainnetV1_4Epoch), big.NewInt(mainnetV1_5Epoch), big.NewInt(mainnetV2_0Epoch), big.NewInt(mainnetV2_1Epoch), big.NewInt(mainnetV2_2Epoch), params.MainnetChainConfig.TwoSecondsEpoch, params.MainnetChainConfig.SixtyPercentEpoch, params.MainnetChainConfig.HIP6And8Epoch}
 
 var (
-	mainnetV0   = MustNewInstance(4, 150, 112, 0, numeric.OneDec(), genesis.HarmonyAccounts, genesis.FoundationalNodeAccounts, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpochOld())
+	mainnetV0   = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.HarmonyAccounts, genesis.FoundationalNodeAccounts, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpochOld())
 	mainnetV0_1 = MustNewInstance(4, 152, 112, 0, numeric.OneDec(), genesis.HarmonyAccounts, genesis.FoundationalNodeAccountsV0_1, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpochOld())
 	mainnetV0_2 = MustNewInstance(4, 200, 148, 0, numeric.OneDec(), genesis.HarmonyAccounts, genesis.FoundationalNodeAccountsV0_2, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpochOld())
 	mainnetV0_3 = MustNewInstance(4, 210, 148, 0, numeric.OneDec(), genesis.HarmonyAccounts, genesis.FoundationalNodeAccountsV0_3, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpochOld())
