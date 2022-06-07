@@ -87,9 +87,9 @@ func (ls localnetSchedule) IsLastBlock(blockNum uint64) bool {
 		firstBlock2s := ls.twoSecondsFirstBlock()
 		switch {
 		case blockNum >= firstBlock2s:
-			return ((blockNum-firstBlock2s)%ls.BlocksPerEpoch() == ls.BlocksPerEpoch()-1)
+			return (blockNum-firstBlock2s)%ls.BlocksPerEpoch() == ls.BlocksPerEpoch()-1
 		default: // genesis
-			return ((blockNum-localnetEpochBlock1)%blocks == blocks-1)
+			return (blockNum-localnetEpochBlock1)%blocks == blocks-1
 		}
 	}
 }

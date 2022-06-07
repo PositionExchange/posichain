@@ -17,7 +17,8 @@ mainnet-22816573)
   rclone -P -L sync $MAINNET_22816573_SNAPSHOT $DATA/$DATA_NAME --transfers=64
   ;;
 testnet)
-  CONFIG_PATH="-c /root/harmony-pstn.conf"
+  # TODO add testnet conf
+  CONFIG_PATH="-c /root/harmony-testnet.conf"
   ;;
 *)
   echo "unknown network"

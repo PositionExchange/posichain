@@ -117,10 +117,6 @@ func parseNetworkType(nt string) nodeconfig.NetworkType {
 		return nodeconfig.Mainnet
 	case "testnet":
 		return nodeconfig.Testnet
-	case "pangaea", "staking", "stk":
-		return nodeconfig.Pangaea
-	case "partner":
-		return nodeconfig.Partner
 	case "stressnet", "stress", "stn":
 		return nodeconfig.Stressnet
 	case "localnet":

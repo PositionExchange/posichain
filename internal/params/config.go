@@ -12,8 +12,6 @@ import (
 var (
 	MainnetChainID            = big.NewInt(1)
 	TestnetChainID            = big.NewInt(2)
-	PangaeaChainID            = big.NewInt(3)
-	PartnerChainID            = big.NewInt(4)
 	StressnetChainID          = big.NewInt(5)
 	TestChainID               = big.NewInt(99)  // not a real network
 	AllProtocolChangesChainID = big.NewInt(100) // not a real network
@@ -21,8 +19,6 @@ var (
 	// EthMainnetShard0ChainID to be reserved unique chain ID for eth compatible chains.
 	EthMainnetShard0ChainID            = big.NewInt(1666600000)
 	EthTestnetShard0ChainID            = big.NewInt(1666700000)
-	EthPangaeaShard0ChainID            = big.NewInt(1666800000)
-	EthPartnerShard0ChainID            = big.NewInt(1666900000)
 	EthStressnetShard0ChainID          = big.NewInt(1667000000)
 	EthTestShard0ChainID               = big.NewInt(1667100000) // not a real network
 	EthAllProtocolChangesShard0ChainID = big.NewInt(1667200000) // not a real network
@@ -100,76 +96,6 @@ var (
 		HIP6And8Epoch:              big.NewInt(74570),
 		StakingPrecompileEpoch:     big.NewInt(75175),
 		SlotsLimitedEpoch:          big.NewInt(75684), // epoch to enable HIP-16, around Mon, 02 May 2022 08:18:45 UTC with 2s block time
-	}
-
-	// PangaeaChainConfig contains the chain parameters for the Pangaea network.
-	// All features except for CrossLink are enabled at launch.
-	PangaeaChainConfig = &ChainConfig{
-		ChainID:                    PangaeaChainID,
-		EthCompatibleChainID:       EthPangaeaShard0ChainID,
-		EthCompatibleShard0ChainID: EthPangaeaShard0ChainID,
-		EthCompatibleEpoch:         big.NewInt(0),
-		CrossTxEpoch:               big.NewInt(0),
-		CrossLinkEpoch:             big.NewInt(2),
-		AggregatedRewardEpoch:      big.NewInt(3),
-		StakingEpoch:               big.NewInt(2),
-		PreStakingEpoch:            big.NewInt(1),
-		QuickUnlockEpoch:           big.NewInt(0),
-		FiveSecondsEpoch:           big.NewInt(0),
-		TwoSecondsEpoch:            big.NewInt(0),
-		SixtyPercentEpoch:          big.NewInt(0),
-		RedelegationEpoch:          big.NewInt(0),
-		NoEarlyUnlockEpoch:         big.NewInt(0),
-		VRFEpoch:                   big.NewInt(0),
-		PrevVRFEpoch:               big.NewInt(0),
-		MinDelegation100Epoch:      big.NewInt(0),
-		MinCommissionRateEpoch:     big.NewInt(0),
-		MinCommissionPromoPeriod:   big.NewInt(10),
-		EPoSBound35Epoch:           big.NewInt(0),
-		EIP155Epoch:                big.NewInt(0),
-		S3Epoch:                    big.NewInt(0),
-		DataCopyFixEpoch:           big.NewInt(0),
-		IstanbulEpoch:              big.NewInt(0),
-		ReceiptLogEpoch:            big.NewInt(0),
-		SHA3Epoch:                  big.NewInt(0),
-		HIP6And8Epoch:              big.NewInt(0),
-		StakingPrecompileEpoch:     big.NewInt(2), // same as staking
-		SlotsLimitedEpoch:          EpochTBD,      // epoch to enable HIP-16
-	}
-
-	// PartnerChainConfig contains the chain parameters for the Partner network.
-	// All features except for CrossLink are enabled at launch.
-	PartnerChainConfig = &ChainConfig{
-		ChainID:                    PartnerChainID,
-		EthCompatibleChainID:       EthPartnerShard0ChainID,
-		EthCompatibleShard0ChainID: EthPartnerShard0ChainID,
-		EthCompatibleEpoch:         big.NewInt(0),
-		CrossTxEpoch:               big.NewInt(0),
-		CrossLinkEpoch:             big.NewInt(2),
-		AggregatedRewardEpoch:      big.NewInt(3),
-		StakingEpoch:               big.NewInt(2),
-		PreStakingEpoch:            big.NewInt(1),
-		QuickUnlockEpoch:           big.NewInt(0),
-		FiveSecondsEpoch:           big.NewInt(0),
-		TwoSecondsEpoch:            big.NewInt(0),
-		SixtyPercentEpoch:          big.NewInt(4),
-		RedelegationEpoch:          big.NewInt(0),
-		NoEarlyUnlockEpoch:         big.NewInt(0),
-		VRFEpoch:                   big.NewInt(0),
-		PrevVRFEpoch:               big.NewInt(0),
-		MinDelegation100Epoch:      big.NewInt(0),
-		MinCommissionRateEpoch:     big.NewInt(0),
-		MinCommissionPromoPeriod:   big.NewInt(10),
-		EPoSBound35Epoch:           big.NewInt(0),
-		EIP155Epoch:                big.NewInt(0),
-		S3Epoch:                    big.NewInt(0),
-		DataCopyFixEpoch:           big.NewInt(0),
-		IstanbulEpoch:              big.NewInt(0),
-		ReceiptLogEpoch:            big.NewInt(0),
-		SHA3Epoch:                  big.NewInt(0),
-		HIP6And8Epoch:              big.NewInt(0),
-		StakingPrecompileEpoch:     big.NewInt(2),
-		SlotsLimitedEpoch:          EpochTBD, // epoch to enable HIP-16
 	}
 
 	// StressnetChainConfig contains the chain parameters for the Stress test network.
@@ -601,8 +527,6 @@ func UpdateEthChainIDByShard(shardID uint32) {
 	once.Do(func() {
 		MainnetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(MainnetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
 		TestnetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(TestnetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
-		PangaeaChainConfig.EthCompatibleChainID = big.NewInt(0).Add(PangaeaChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
-		PartnerChainConfig.EthCompatibleChainID = big.NewInt(0).Add(PartnerChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
 		StressnetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(StressnetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
 		LocalnetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(LocalnetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
 		AllProtocolChanges.EthCompatibleChainID = big.NewInt(0).Add(AllProtocolChanges.EthCompatibleChainID, big.NewInt(int64(shardID)))

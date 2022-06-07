@@ -134,10 +134,6 @@ func NewGenesisSpec(netType nodeconfig.NetworkType, shardID uint32) *Genesis {
 			genesisAlloc[validatorAddress8] = GenesisAccount{Balance: GenesisValidatorFund}
 			genesisAlloc[validatorAddress9] = GenesisAccount{Balance: GenesisValidatorFund}
 		}
-	case nodeconfig.Pangaea:
-		chainConfig = *params.PangaeaChainConfig
-	case nodeconfig.Partner:
-		chainConfig = *params.PartnerChainConfig
 	case nodeconfig.Stressnet:
 		chainConfig = *params.StressnetChainConfig
 	default: // all other types share testnet config

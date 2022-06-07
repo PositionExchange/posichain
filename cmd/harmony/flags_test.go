@@ -276,57 +276,6 @@ func TestNetworkFlags(t *testing.T) {
 				DNSSync: getDefaultDNSSyncConfig(nodeconfig.Stressnet),
 			},
 		},
-		{
-			args: []string{"--network", "stk", "--bootnodes", "1,2,3,4", "--dns.zone", "8.8.8.8",
-				"--dns.port", "9001", "--dns.server-port", "9002"},
-			expConfig: harmonyconfig.HarmonyConfig{
-				Network: harmonyconfig.NetworkConfig{
-					NetworkType: "pangaea",
-					BootNodes:   []string{"1", "2", "3", "4"},
-				},
-				DNSSync: harmonyconfig.DnsSync{
-					Port:          9001,
-					Zone:          "8.8.8.8",
-					LegacySyncing: false,
-					Server:        true,
-					ServerPort:    9002,
-				},
-			},
-		},
-		{
-			args: []string{"--network_type", "stk", "--bootnodes", "1,2,3,4", "--dns_zone", "8.8.8.8",
-				"--dns_port", "9001"},
-			expConfig: harmonyconfig.HarmonyConfig{
-				Network: harmonyconfig.NetworkConfig{
-					NetworkType: "pangaea",
-					BootNodes:   []string{"1", "2", "3", "4"},
-				},
-				DNSSync: harmonyconfig.DnsSync{
-					Port:          9001,
-					Zone:          "8.8.8.8",
-					LegacySyncing: false,
-					Server:        true,
-					ServerPort:    nodeconfig.GetDefaultDNSPort(nodeconfig.Pangaea),
-				},
-			},
-		},
-		{
-			args: []string{"--dns=false"},
-			expConfig: harmonyconfig.HarmonyConfig{
-				Network: harmonyconfig.NetworkConfig{
-					NetworkType: defNetworkType,
-					BootNodes:   nodeconfig.GetDefaultBootNodes(defNetworkType),
-				},
-				DNSSync: harmonyconfig.DnsSync{
-					Port:          nodeconfig.GetDefaultDNSPort(defNetworkType),
-					Zone:          nodeconfig.GetDefaultDNSZone(defNetworkType),
-					LegacySyncing: true,
-					Client:        true,
-					Server:        true,
-					ServerPort:    nodeconfig.GetDefaultDNSPort(nodeconfig.Pangaea),
-				},
-			},
-		},
 	}
 	for i, test := range tests {
 		neededFlags := make([]cli.Flag, 0)
