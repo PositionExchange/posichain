@@ -113,15 +113,26 @@ func NewGenesisSpec(netType nodeconfig.NetworkType, shardID uint32) *Genesis {
 			//validatorAddress3 := common.HexToAddress("0xe9987f4919342db9dDe90051ce9b380d67c8Bf70") //acc3
 			//validatorAddress4 := common.HexToAddress("0x4b6e9Cd469e3613eF43AAe431eD80f754A5C53e3") //acc4
 
-			validatorAddress1, _ := internalCommon.Bech32ToAddress("one13gya32xnff6xpege024jn30qmdvctmrjjt2jjz") //acc1
-			validatorAddress2, _ := internalCommon.Bech32ToAddress("one1fzp96znyl80q53a0uc6h7e78l4w767vm97f8kz") //acc2
-			validatorAddress3, _ := internalCommon.Bech32ToAddress("one1axv87jgexskmnh0fqpguaxecp4nu30mscwrw42") //acc3
-			validatorAddress4, _ := internalCommon.Bech32ToAddress("one1fdhfe4rfudsnaap64ep3akq0w499c5lr5tffhr") //acc4
+			// Shard 0's validators
+			validatorAddress1, _ := internalCommon.Bech32ToAddress("one107rghkwx0c7g83h74v3t5q5ld8knu9w5aznufq") //node1
+			validatorAddress2, _ := internalCommon.Bech32ToAddress("one15ct9yt03d0r6hvuvdjue7tdzjxwysejukpqv8a") //node2
+			validatorAddress3, _ := internalCommon.Bech32ToAddress("one1eyxpnwcynqrszd4tphncvevjehhrwh8t85fjld") //node2
+			validatorAddress4, _ := internalCommon.Bech32ToAddress("one1ge2mfnjcgtpqzf796r4rd7sa8jmhsmgn63ec2e") //node2
+
+			// Shard 1's validators
+			validatorAddress6, _ := internalCommon.Bech32ToAddress("one1mj0dfg8m4ujsuzq05q4c2rtxwcad7l3hzuqpe9") //node6
+			validatorAddress7, _ := internalCommon.Bech32ToAddress("one13h9dq04d7upe63973dnf6uxwdstw7mmxrhqjvh") //node7
+			validatorAddress8, _ := internalCommon.Bech32ToAddress("one1lnmxvngykvuk2z66e3lmzsr4s7ygn8m4hrdqgg") //node8
+			validatorAddress9, _ := internalCommon.Bech32ToAddress("one1kt4da6q38pc9ttlr3fsmalj6w6kkzfu9pdw4z5") //node9
 			genesisAlloc[foundationAddress] = GenesisAccount{Balance: GenesisFoundationFund}
 			genesisAlloc[validatorAddress1] = GenesisAccount{Balance: GenesisValidatorFund}
 			genesisAlloc[validatorAddress2] = GenesisAccount{Balance: GenesisValidatorFund}
 			genesisAlloc[validatorAddress3] = GenesisAccount{Balance: GenesisValidatorFund}
 			genesisAlloc[validatorAddress4] = GenesisAccount{Balance: GenesisValidatorFund}
+			genesisAlloc[validatorAddress6] = GenesisAccount{Balance: GenesisValidatorFund}
+			genesisAlloc[validatorAddress7] = GenesisAccount{Balance: GenesisValidatorFund}
+			genesisAlloc[validatorAddress8] = GenesisAccount{Balance: GenesisValidatorFund}
+			genesisAlloc[validatorAddress9] = GenesisAccount{Balance: GenesisValidatorFund}
 		}
 	case nodeconfig.Pangaea:
 		chainConfig = *params.PangaeaChainConfig

@@ -2,10 +2,14 @@ package genesis
 
 // FoundationalNodeAccounts are the accounts for the foundational nodes at genesis.
 var FoundationalNodeAccounts = []DeployAccount{
-	{Index: "0", Address: "one1m6xwldr37gpfyqsnnxjw26h5ah4ey6a4lk30xe", BLSPublicKey: "a704f2df481311521a453251f963c99018e51dc7c6db1477d4f595436aad2172874217602b3198c9b32f64ae90903184"},
-	{Index: "1", Address: "one19lch0e5peey7pmnuktetcxuq2xpsd05n4yrsng", BLSPublicKey: "fcb0aa0e6f47a695b147b1123e504c32bd5702989b39450a131a924bf463c77bd458141bf07065f615fb30288455f501"},
-	{Index: "2", Address: "one1ap2v278q48nl0cj5pxh4208jvdfqy3aavx6ss2", BLSPublicKey: "666683ffd13803c5f50187182fab54a9bc9953f71b652da29e61d1bfee1d0af2e1ed339a541a6553701a735b4af65a8d"},
-	{Index: "3", Address: "one1w0l5083qalazaevz5k8c4tw6ckzspw8yjphte9", BLSPublicKey: "46c067f67c515aa45441ba0629e58403cc892011005a530bde09a7675b1535f6572419217467238844b0459d24058e86"},
+	// Shard0
+	{Index: "0", Address: "0xC90c19Bb0498070136aB0dE7866592CDeE375Ceb", BLSPublicKey: "8274b0ad76ad77a1ebf19365cfe64564781ad988d276c1bd056f4b836e90dbd9bc30303432f2109721ede934ffbafb14"},
+	// Shard1
+	{Index: "1", Address: "0xFcF6664d04b339650B5acC7fb140758788899f75", BLSPublicKey: "8cb7325a2f2d9532a657a3404de9c5c5eaa2c45e1b1e4e72a2fe2051d48ec3525d7146cbf79b3f72f9faccffcc0da105"},
+	// Shard0
+	{Index: "2", Address: "0x4655b4ce5842c20127c5d0EA36FA1d3cb7786d13", BLSPublicKey: "683dee10231b0b40323373d903b799c2eaadd7b2bba5ce09b3bcddf8153bdd93edc40b8b75dbed762bfae4f16fdd4c8c"},
+	// Shard1
+	{Index: "3", Address: "0xb2eADEe811387055aFe38A61BeFe5a76ad612785", BLSPublicKey: "5f42f1ac23adf59dc6d535d0f422967cf79f5b95f2489de7a127c20e44b9d659e60eed2b19a7bf6fcb229b4f1018a60f"},
 }
 
 // FoundationalNodeAccountsV0_1 are the accounts for the foundational nodes from Epoch 1.

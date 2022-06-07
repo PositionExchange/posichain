@@ -1,0 +1,42 @@
+[
+  {
+    "one-address": "one1mj0dfg8m4ujsuzq05q4c2rtxwcad7l3hzuqpe9",
+    "hex-address": "0xDC9ed4a0FBaF250E080fa02B850D66763AdF7e37",
+    "public-key": "8fe989abe5334b53f85419d3e41225d615e60a5b536d280415e125df4f7f4136040d434c20b67a2848c2c24e5b06f38f",
+    "private-key": "7dbadc9f339c0a75607e2c4c68f9976a5b32cc126334db945407193dce3be01e",
+    "encrypted-private-key": "0281ffdb290b3323af2471d0e68c05b714c7e269fa22011fe4dacb0842f472ada65b72033352728e223e665679ce38560960a9e6412da7ade368f93967147e5db1e9e596dbdc811cfe8bfdd9da9948806911ba78dc6a538a0d8a523b",
+    "encrypted-private-key-path": "/root/go/src/github.com/harmony-one/go-sdk/8fe989abe5334b53f85419d3e41225d615e60a5b536d280415e125df4f7f4136040d434c20b67a2848c2c24e5b06f38f.key"
+  },
+  {
+    "one-address": "one13h9dq04d7upe63973dnf6uxwdstw7mmxrhqjvh",
+    "hex-address": "0x8DCAD03eadf7039d44BE8b669D70Ce6c16Ef6f66",
+    "public-key": "77c865f73d76fc4554b63f0a0d0e34a6a1272d02578044a6e14f2e55bbc6dde1ef7ac0046f81c21752f91bb823e8e819",
+    "private-key": "0d891da6e10d9459b4190c7644fbed56705b2bec34c77458dcbed00204794c71",
+    "encrypted-private-key": "045e04c516b761e9e80db4fd021bfbe982ac2e700aa1a6f70a358cc465d3f6fa2d96f9c206c8b0b20dbbcc1acd28ab23e586dd2f04e40d743e2dee546ef5c8f7511fb8b5ce2370af4be163cb6b6936e3f9ac9ec50d4a10b931e659fc",
+    "encrypted-private-key-path": "/root/go/src/github.com/harmony-one/go-sdk/77c865f73d76fc4554b63f0a0d0e34a6a1272d02578044a6e14f2e55bbc6dde1ef7ac0046f81c21752f91bb823e8e819.key"
+  },
+  {
+    "one-address": "one1lnmxvngykvuk2z66e3lmzsr4s7ygn8m4hrdqgg",
+    "hex-address": "0xFcF6664d04b339650B5acC7fb140758788899f75",
+    "public-key": "8cb7325a2f2d9532a657a3404de9c5c5eaa2c45e1b1e4e72a2fe2051d48ec3525d7146cbf79b3f72f9faccffcc0da105",
+    "private-key": "b9180faab213e05a7eabb7b3cf7aa85a89023940c09d9817e64d8bc63e97a044",
+    "encrypted-private-key": "048cf7b605ea37f30c42eb0134dbe1855d98af620974801098dd20b3ca92c4c4248e1307dd57719ed53be445ee3c1591732a040b98c48a9063890ab24765f67834fd136a682541d420f7970c43694cf33e9d51ae884e0da0d0b55d3d",
+    "encrypted-private-key-path": "/root/go/src/github.com/harmony-one/go-sdk/8cb7325a2f2d9532a657a3404de9c5c5eaa2c45e1b1e4e72a2fe2051d48ec3525d7146cbf79b3f72f9faccffcc0da105.key"
+  },
+  {
+    "one-address": "one1kt4da6q38pc9ttlr3fsmalj6w6kkzfu9pdw4z5",
+    "hex-address": "0xb2eADEe811387055aFe38A61BeFe5a76ad612785",
+    "public-key": "5f42f1ac23adf59dc6d535d0f422967cf79f5b95f2489de7a127c20e44b9d659e60eed2b19a7bf6fcb229b4f1018a60f",
+    "private-key": "958dddac73510e4614fc8c73d469022bd968abce711c71982b2d02bb57478d2d",
+    "encrypted-private-key": "82778be18e858e8aefd24676456ce9169f6da4d693f5fb9b38bc483e2410273efb51e8a6bdd7a518c80b0782d4d545e0b80ff62154110086d6784408108275e0a3c24ea75126d61fa620253a30fa1d0e9028d695711e4c8c4a0fe4a7",
+    "encrypted-private-key-path": "/root/go/src/github.com/harmony-one/go-sdk/5f42f1ac23adf59dc6d535d0f422967cf79f5b95f2489de7a127c20e44b9d659e60eed2b19a7bf6fcb229b4f1018a60f.key"
+  },
+  {
+    "one-address": "one1ycwdd0076whsd6a3j79vfm839yfmu9va2gszm4",
+    "hex-address": "0x261cD6BDfed3af06EbB1978aC4EcF12913bE159D",
+    "public-key": "de67439f63c75ad9dca3e0d0c4978d5c24e116056b106dfaef780741bd14463914470a1a5dc87c296b6866b86f52070f",
+    "private-key": "f036b9bb3c555366e3fa983957ca272c9047a9851f200c701696b762ddf2bf18",
+    "encrypted-private-key": "ed99463c678877e3a88c550731d94ba7efd6978aa5ef65efc2d00d1daef5515b8e8628ba9d4271ac5050682b21865bf1f03b866bea32d6f0f9d02efecb646c0f0344743301a3eabbce13ba8ba751c8e2a5d179d68e26ebc08224668e",
+    "encrypted-private-key-path": "/root/go/src/github.com/harmony-one/go-sdk/de67439f63c75ad9dca3e0d0c4978d5c24e116056b106dfaef780741bd14463914470a1a5dc87c296b6866b86f52070f.key"
+  }
+]

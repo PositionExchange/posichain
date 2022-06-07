@@ -9,8 +9,8 @@
     --max-total-delegation 100000000 --min-self-delegation 10000
 
 ./bin/hmycli --node="http://localhost:9500" --chain-id mainnet staking create-validator \
-    --validator-addr one1axv87jgexskmnh0fqpguaxecp4nu30mscwrw42 --amount 10000 --gas-limit 5400000 \
-    --bls-pubkeys 64d4359bd948fe8895d97997551894cb1217c84584f844003cf19e54057d95fe537f18acb88f3ca9e1023ce68261ef00 \
+    --validator-addr one107rghkwx0c7g83h74v3t5q5ld8knu9w5aznufq --amount 10000 --gas-limit 5400000 \
+    --bls-pubkeys f47b6d2b91eb37a5c0b35520803b86901a086367506e423f1651464191cc95b67b95470b8bc41ea4ad57ead0739fc180 \
     --name "Node3" --identity "node3" --details "Node3 validator" \
     --security-contact "node3@posichain.com" --website "position.exchange" \
     --max-change-rate 0.1 --max-rate 0.1 --rate 0.1 \
