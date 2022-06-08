@@ -1,42 +1,50 @@
 [
   {
+    "name": "node1",
     "one-address": "one107rghkwx0c7g83h74v3t5q5ld8knu9w5aznufq",
     "hex-address": "0x7F868BD9C67e3C83C6FEAB22ba029f69ed3E15d4",
     "public-key": "f47b6d2b91eb37a5c0b35520803b86901a086367506e423f1651464191cc95b67b95470b8bc41ea4ad57ead0739fc180",
     "private-key": "0bce8441748ee54a688724dcebd7f3474006abde95389f0977a4eee543e38c73",
     "encrypted-private-key": "6ffbb129010c623da4227610424cd0040f58c383056907ae472f9e00514a701f1c04232983aceafda45d669268e5d7c4c32cbe9a9d46936018771a57c84ee98e2a2205f1642b6b687f5d565e550c20a92d9db97ab901a4e9bc072037",
-    "encrypted-private-key-path": "/root/go/src/github.com/harmony-one/go-sdk/f47b6d2b91eb37a5c0b35520803b86901a086367506e423f1651464191cc95b67b95470b8bc41ea4ad57ead0739fc180.key"
   },
   {
+    "name": "node2",
     "one-address": "one15ct9yt03d0r6hvuvdjue7tdzjxwysejukpqv8a",
     "hex-address": "0xA616522dF16bc7aBb38C6CB99f2dA2919C48665C",
     "public-key": "25b597c52cfc071fd00b626844cb45c6e8a0252bd73841be21dbcb9623e136a3644d4a218dc5a6f76f7052e3569f0308",
     "private-key": "91e526ba8219fb2a000659a697ca5eebb851ee8fe3974ca76addbd5174952914",
     "encrypted-private-key": "9ed189af9bf8a341a37a9d0fda3b8365af6ab159be325f3347d69f39cd249dc9e505e6d01e2539fc6c33a801683e27f4695112838f5d7f6bcf7c21ffb6205adc59f1ba4a53c8aea7336f89d855ee1c91ce601cd7f8d33dce1e588941",
-    "encrypted-private-key-path": "/root/go/src/github.com/harmony-one/go-sdk/25b597c52cfc071fd00b626844cb45c6e8a0252bd73841be21dbcb9623e136a3644d4a218dc5a6f76f7052e3569f0308.key"
   },
   {
+    "name": "node3",
     "one-address": "one1eyxpnwcynqrszd4tphncvevjehhrwh8t85fjld",
     "hex-address": "0xC90c19Bb0498070136aB0dE7866592CDeE375Ceb",
     "public-key": "8274b0ad76ad77a1ebf19365cfe64564781ad988d276c1bd056f4b836e90dbd9bc30303432f2109721ede934ffbafb14",
     "private-key": "a2701b65b4428f50d3784bcafe73ea236b1a9a755740e09a2b56e9386ffdba4c",
     "encrypted-private-key": "e2d72f92b3c1394cf12720514fcf8cd6f65a0c647ec22872786de83412b1dd27a5c294cbf42e07356007c849dbdfb0a0ce9c412a93f863473d5ed25ffceb5ed7c3008bc6d3099115eda9be1f0d82c26623f9ead2206c7312cd929bde",
-    "encrypted-private-key-path": "/root/go/src/github.com/harmony-one/go-sdk/8274b0ad76ad77a1ebf19365cfe64564781ad988d276c1bd056f4b836e90dbd9bc30303432f2109721ede934ffbafb14.key"
   },
   {
+    "name": "node4",
     "one-address": "one1ge2mfnjcgtpqzf796r4rd7sa8jmhsmgn63ec2e",
     "hex-address": "0x4655b4ce5842c20127c5d0EA36FA1d3cb7786d13",
     "public-key": "683dee10231b0b40323373d903b799c2eaadd7b2bba5ce09b3bcddf8153bdd93edc40b8b75dbed762bfae4f16fdd4c8c",
     "private-key": "9910e0e1d101a5eb5731b2278de83486460216792275f3b669087e3514b07238",
     "encrypted-private-key": "f33f2c2582fdd52673384cf95f32615dbf5a971eaa8ef5f88a5da2e4030b114e758b8fadd0b91345bfc06a2aba6de4e2c1ecd360c819a27b0616cb70cb826dc0a8a68f6bcabee9cdba25fd743f735610b4f300df32461cf8800fe9c0",
-    "encrypted-private-key-path": "/root/go/src/github.com/harmony-one/go-sdk/683dee10231b0b40323373d903b799c2eaadd7b2bba5ce09b3bcddf8153bdd93edc40b8b75dbed762bfae4f16fdd4c8c.key"
   },
   {
+    "name": "node5",
     "one-address": "one16a47nekfr0xpqkyxmwtwr3wvyv3w26n759r6jy",
     "hex-address": "0xd76BE9e6c91BCc105886Db96e1c5cc2322e56a7e",
     "public-key": "6fcf95536e0351c2bd5b6f4b8eba047f88c03467b244842a5d94b28e37213d9436e86a8524deb42b023fb700cf67e916",
     "private-key": "a8eb0bed36843aa87f29263b0b1bcf979240c10be7f8c0cc43f2dd6243736169",
     "encrypted-private-key": "f264a529363163733ee8db9cb4ab4f4c1733989434f755548b90414737be8bbbfce26d77d2f4af8ddbe9de2053999bd25acd955ec78abc1e1e6ebc71170646852f14acbf622e41c1b6d287000a7114886a1121c194fb4056df56b688",
-    "encrypted-private-key-path": "/root/go/src/github.com/harmony-one/go-sdk/6fcf95536e0351c2bd5b6f4b8eba047f88c03467b244842a5d94b28e37213d9436e86a8524deb42b023fb700cf67e916.key"
+  },
+  {
+    "name": "node11 (external validator)",
+    "one-address": "one1v87jtng53yjwnppw6msk9valp7sr3v0l7fencu",
+    "hex-address": "0x61FD25cD148924e9842Ed6E162B3Bf0fA038B1fF",
+    "public-key": "0cc8db483787a944e2075702c860633b1ac856ff647dec570862e7eef7b670ff66158ede030599babde44c6b85c38804",
+    "private-key": "cfc43c2c3c273b9c2586a2296c7f442e4883a01be83fe8e3205f09fe51f3fb38",
+    "encrypted-private-key": "9c522253a652571650609595145c476c726a02482d23962ebb381ad9f3c1060070058bea7f938a7a654186a128771e26bfb6bc9691ed21919866e054d6e1e84e610ec789880cd247d9aa3d5d536ab3857d0b679dbaa887920eb4830b",
   }
 ]

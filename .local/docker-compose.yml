@@ -215,167 +215,21 @@ services:
       blockchain:
         ipv4_address: 172.189.0.18
 
-#  node11:
-#    <<: *default-node
-#    container_name: posichain-node11
-#    volumes:
-#      - node11-data:/app/data
-#      - node11-account:/root/.hmy_cli/account-keys
-#      - ./nodes/node11/blskeys:/app/blskeys
-#      - ./nodes/node11/passphrases:/app/passphrases
-#      - ./nodes/node11/harmony.conf:/app/harmony.conf
-#    ports:
-#      - "40011:40000"
-#    networks:
-#      blockchain:
-#        ipv4_address: 172.189.0.19
-#
-#  node12:
-#    <<: *default-node
-#    container_name: posichain-node12
-#    volumes:
-#      - node12-data:/app/data
-#      - node12-account:/root/.hmy_cli/account-keys
-#      - ./nodes/node12/blskeys:/app/blskeys
-#      - ./nodes/node12/passphrases:/app/passphrases
-#      - ./nodes/node12/harmony.conf:/app/harmony.conf
-#    ports:
-#      - "40012:40000"
-#    networks:
-#      blockchain:
-#        ipv4_address: 172.189.0.20
-#
-#  node13:
-#    <<: *default-node
-#    container_name: posichain-node13
-#    volumes:
-#      - node13-data:/app/data
-#      - node13-account:/root/.hmy_cli/account-keys
-#      - ./nodes/node13/blskeys:/app/blskeys
-#      - ./nodes/node13/passphrases:/app/passphrases
-#      - ./nodes/node13/harmony.conf:/app/harmony.conf
-#    ports:
-#      - "40013:40000"
-#    networks:
-#      blockchain:
-#        ipv4_address: 172.189.0.21
-#
-#  node14:
-#    <<: *default-node
-#    container_name: posichain-node14
-#    volumes:
-#      - node14-data:/app/data
-#      - node14-account:/root/.hmy_cli/account-keys
-#      - ./nodes/node14/blskeys:/app/blskeys
-#      - ./nodes/node14/passphrases:/app/passphrases
-#      - ./nodes/node14/harmony.conf:/app/harmony.conf
-#    ports:
-#      - "40014:40000"
-#    networks:
-#      blockchain:
-#        ipv4_address: 172.189.0.22
-#
-#  # Explorer Shard 2
-#  node15:
-#    <<: *default-node
-#    container_name: posichain-node15
-#    volumes:
-#      - node15-data:/app/data
-#      - node15-account:/root/.hmy_cli/account-keys
-#      - ./nodes/node15/blskeys:/app/blskeys
-#      - ./nodes/node15/passphrases:/app/passphrases
-#      - ./nodes/node15/harmony.conf:/app/harmony.conf
-#    ports:
-#      - "40015:40000"
-#      - "15015:9500"# Http RPC public
-#      - "15115:9501"# Http RPC auth
-#      - "17015:9700"# Roseta RPC public
-#      - "18015:9800"# WS RPC public
-#      - "18115:9801"# WS RPC auth
-#    networks:
-#      blockchain:
-#        ipv4_address: 172.189.0.23
-#
-#  node16:
-#    <<: *default-node
-#    container_name: posichain-node16
-#    volumes:
-#      - node16-data:/app/data
-#      - node16-account:/root/.hmy_cli/account-keys
-#      - ./nodes/node16/blskeys:/app/blskeys
-#      - ./nodes/node16/passphrases:/app/passphrases
-#      - ./nodes/node16/harmony.conf:/app/harmony.conf
-#    ports:
-#      - "40016:40000"
-#    networks:
-#      blockchain:
-#        ipv4_address: 172.189.0.24
-#
-#  node17:
-#    <<: *default-node
-#    container_name: posichain-node17
-#    volumes:
-#      - node17-data:/app/data
-#      - node17-account:/root/.hmy_cli/account-keys
-#      - ./nodes/node17/blskeys:/app/blskeys
-#      - ./nodes/node17/passphrases:/app/passphrases
-#      - ./nodes/node17/harmony.conf:/app/harmony.conf
-#    ports:
-#      - "40017:40000"
-#    networks:
-#      blockchain:
-#        ipv4_address: 172.189.0.25
-#
-#  node18:
-#    <<: *default-node
-#    container_name: posichain-node18
-#    volumes:
-#      - node18-data:/app/data
-#      - node18-account:/root/.hmy_cli/account-keys
-#      - ./nodes/node18/blskeys:/app/blskeys
-#      - ./nodes/node18/passphrases:/app/passphrases
-#      - ./nodes/node18/harmony.conf:/app/harmony.conf
-#    ports:
-#      - "40018:40000"
-#    networks:
-#      blockchain:
-#        ipv4_address: 172.189.0.26
-#
-#  node19:
-#    <<: *default-node
-#    container_name: posichain-node19
-#    volumes:
-#      - node19-data:/app/data
-#      - node19-account:/root/.hmy_cli/account-keys
-#      - ./nodes/node19/blskeys:/app/blskeys
-#      - ./nodes/node19/passphrases:/app/passphrases
-#      - ./nodes/node19/harmony.conf:/app/harmony.conf
-#    ports:
-#      - "40019:40000"
-#    networks:
-#      blockchain:
-#        ipv4_address: 172.189.0.27
-#
-#  # Explorer Shard 3
-#  node20:
-#    <<: *default-node
-#    container_name: posichain-node20
-#    volumes:
-#      - node20-data:/app/data
-#      - node20-account:/root/.hmy_cli/account-keys
-#      - ./nodes/node20/blskeys:/app/blskeys
-#      - ./nodes/node20/passphrases:/app/passphrases
-#      - ./nodes/node20/harmony.conf:/app/harmony.conf
-#    ports:
-#      - "40020:40000"
-#      - "15020:9500"# Http RPC public
-#      - "15120:9501"# Http RPC auth
-#      - "17020:9700"# Roseta RPC public
-#      - "18020:9800"# WS RPC public
-#      - "18120:9801"# WS RPC auth
-#    networks:
-#      blockchain:
-#        ipv4_address: 172.189.0.28
+  node11:
+    <<: *default-node
+    container_name: posichain-node11
+    profiles: ["external"]
+    volumes:
+      - node11-data:/app/data
+      - node11-account:/root/.hmy_cli/account-keys
+      - ./nodes/node11/blskeys:/app/blskeys
+      - ./nodes/node11/passphrases:/app/passphrases
+      - ./nodes/node11/harmony.conf:/app/harmony.conf
+    ports:
+      - "40011:40000"
+    networks:
+      blockchain:
+        ipv4_address: 172.189.0.19
 
 networks:
   blockchain:
