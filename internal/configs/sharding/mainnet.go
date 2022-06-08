@@ -44,11 +44,7 @@ const (
 
 var (
 	// map of epochs skipped due to staking launch on mainnet
-	skippedEpochs = map[uint32][]*big.Int{
-		1: []*big.Int{big.NewInt(181), big.NewInt(182), big.NewInt(183), big.NewInt(184), big.NewInt(185)},
-		2: []*big.Int{big.NewInt(184), big.NewInt(185)},
-		3: []*big.Int{big.NewInt(183), big.NewInt(184), big.NewInt(185)},
-	}
+	skippedEpochs = map[uint32][]*big.Int{}
 )
 
 // MainnetSchedule is the mainnet sharding configuration schedule.
