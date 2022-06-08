@@ -61,7 +61,7 @@ var (
 		SHA3Epoch:                  big.NewInt(0),
 		HIP6And8Epoch:              EpochTBD, // Never enable it for localnet as localnet has no external validator setup
 		StakingPrecompileEpoch:     big.NewInt(2),
-		ChainIdFixEpoch:            EpochTBD,
+		ChainIdFixEpoch:            big.NewInt(0),
 		SlotsLimitedEpoch:          EpochTBD, // epoch to enable HIP-16
 		AllowlistEpoch:             EpochTBD,
 	}
