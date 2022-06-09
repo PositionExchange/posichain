@@ -68,6 +68,10 @@ func getPreStakingRewardsFromBlockNumber(id shardingconfig.NetworkID, blockNum *
 		lastBlockInEpoch = new(big.Int).SetUint64(shardingconfig.TestnetSchedule.EpochLastBlock(
 			params.TestnetChainConfig.StakingEpoch.Uint64() - 1,
 		))
+	case shardingconfig.DevNet:
+		lastBlockInEpoch = new(big.Int).SetUint64(shardingconfig.DevnetSchedule.EpochLastBlock(
+			params.DevnetChainConfig.StakingEpoch.Uint64() - 1,
+		))
 	case shardingconfig.LocalNet:
 		lastBlockInEpoch = new(big.Int).SetUint64(shardingconfig.LocalnetSchedule.EpochLastBlock(
 			params.LocalnetChainConfig.StakingEpoch.Uint64() - 1,
