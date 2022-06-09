@@ -43,12 +43,7 @@ func (ts devnetSchedule) IsLastBlock(blockNum uint64) bool {
 }
 
 func (ts devnetSchedule) EpochLastBlock(epochNum uint64) uint64 {
-	switch {
-	case epochNum == 0:
-		return mainnetEpochBlock1 - 1
-	default:
-		return mainnetEpochBlock1 - 1 + ts.BlocksPerEpoch()*epochNum
-	}
+	return ts.BlocksPerEpoch()*(epochNum+1) - 1
 }
 
 func (ts devnetSchedule) VdfDifficulty() int {
