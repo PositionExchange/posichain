@@ -106,6 +106,12 @@ func NewGenesisSpec(netType nodeconfig.NetworkType, shardID uint32) *Genesis {
 			foundationAddress := common.HexToAddress("0xdE8CEfB471f20292021399A4E56af4edEB926BB5")
 			genesisAlloc[foundationAddress] = GenesisAccount{Balance: GenesisFoundationFund}
 		}
+	case nodeconfig.Testnet:
+		chainConfig = *params.TestnetChainConfig
+	case nodeconfig.Devnet:
+		chainConfig = *params.DevnetChainConfig
+	case nodeconfig.Localnet:
+		chainConfig = *params.LocalnetChainConfig
 	case nodeconfig.Stressnet:
 		chainConfig = *params.StressnetChainConfig
 	default: // all other types share testnet config
@@ -335,6 +341,9 @@ func GetGenesisSpec(shardID uint32) *Genesis {
 	}
 	if shard.Schedule.GetNetworkID() == shardingconfig.LocalNet {
 		return NewGenesisSpec(nodeconfig.Localnet, shardID)
+	}
+	if shard.Schedule.GetNetworkID() == shardingconfig.DevNet {
+		return NewGenesisSpec(nodeconfig.Devnet, shardID)
 	}
 	return NewGenesisSpec(nodeconfig.Testnet, shardID)
 }

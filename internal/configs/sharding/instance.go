@@ -16,9 +16,9 @@ type NetworkID byte
 const (
 	MainNet NetworkID = iota
 	TestNet
+	DevNet
 	LocalNet
 	StressNet
-	DevNet
 )
 
 type instance struct {
@@ -182,11 +182,6 @@ func (sc instance) FindAccount(blsPubKey string) (bool, *genesis.DeployAccount) 
 // ReshardingEpoch returns the list of epoch number
 func (sc instance) ReshardingEpoch() []*big.Int {
 	return sc.reshardingEpoch
-}
-
-// ReshardingEpoch returns the list of epoch number
-func (sc instance) GetNetworkID() NetworkID {
-	return DevNet
 }
 
 // ExternalAllowlist returns the list of external leader keys in allowlist(HIP18)

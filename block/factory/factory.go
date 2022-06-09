@@ -46,6 +46,7 @@ func (f *factory) NewHeader(epoch *big.Int) *block.Header {
 // Factories corresponding to well-known chain configurations.
 var (
 	ForTest      = NewFactory(params.TestChainConfig)
+	ForDevnet    = NewFactory(params.DevnetChainConfig)
 	ForTestnet   = NewFactory(params.TestnetChainConfig)
 	ForMainnet   = NewFactory(params.MainnetChainConfig)
 	ForStressnet = NewFactory(params.StressnetChainConfig)

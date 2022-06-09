@@ -12,6 +12,7 @@ import (
 var (
 	MainnetChainID            = big.NewInt(1)
 	TestnetChainID            = big.NewInt(2)
+	DevnetChainID             = big.NewInt(3)
 	StressnetChainID          = big.NewInt(5)
 	TestChainID               = big.NewInt(99)  // not a real network
 	AllProtocolChangesChainID = big.NewInt(100) // not a real network
@@ -19,7 +20,8 @@ var (
 	// EthMainnetShard0ChainID to be reserved unique chain ID for eth compatible chains.
 	EthMainnetShard0ChainID            = big.NewInt(900000)
 	EthTestnetShard0ChainID            = big.NewInt(910000)
-	EthStressnetShard0ChainID          = big.NewInt(920000)
+	EthDevnetShard0ChainID             = big.NewInt(920000)
+	EthStressnetShard0ChainID          = big.NewInt(930000)
 	EthTestShard0ChainID               = big.NewInt(980000) // not a real network
 	EthAllProtocolChangesShard0ChainID = big.NewInt(990000) // not a real network
 )
@@ -100,6 +102,42 @@ var (
 		ChainIdFixEpoch:            big.NewInt(75877), // around Fri, 10 Jun 2022 06:10:18 GMT with average block time 2.0065s
 		SlotsLimitedEpoch:          big.NewInt(75684), // epoch to enable HIP-16, around Mon, 02 May 2022 08:18:45 UTC with 2s block time
 		AllowlistEpoch:             big.NewInt(75877), // around Fri, 10 Jun 2022 06:10:18 GMT with average block time 2.0065s
+	}
+
+	// DevnetChainConfig is the chain parameters to run a node on the dev network.
+	DevnetChainConfig = &ChainConfig{
+		ChainID:                    DevnetChainID,
+		EthCompatibleChainID:       EthDevnetShard0ChainID,
+		EthCompatibleShard0ChainID: EthDevnetShard0ChainID,
+		EthCompatibleEpoch:         big.NewInt(0),
+		CrossTxEpoch:               big.NewInt(0),
+		CrossLinkEpoch:             big.NewInt(2),
+		AggregatedRewardEpoch:      big.NewInt(3),
+		StakingEpoch:               big.NewInt(2),
+		PreStakingEpoch:            big.NewInt(0),
+		QuickUnlockEpoch:           big.NewInt(0),
+		FiveSecondsEpoch:           big.NewInt(0),
+		TwoSecondsEpoch:            big.NewInt(3),
+		SixtyPercentEpoch:          EpochTBD, // Never enable it for localnet as localnet has no external validator setup
+		RedelegationEpoch:          big.NewInt(0),
+		NoEarlyUnlockEpoch:         big.NewInt(0),
+		VRFEpoch:                   big.NewInt(0),
+		PrevVRFEpoch:               big.NewInt(0),
+		MinDelegation100Epoch:      big.NewInt(0),
+		MinCommissionRateEpoch:     big.NewInt(0),
+		MinCommissionPromoPeriod:   big.NewInt(10),
+		EPoSBound35Epoch:           big.NewInt(0),
+		EIP155Epoch:                big.NewInt(0),
+		S3Epoch:                    big.NewInt(0),
+		DataCopyFixEpoch:           big.NewInt(0),
+		IstanbulEpoch:              big.NewInt(0),
+		ReceiptLogEpoch:            big.NewInt(0),
+		SHA3Epoch:                  big.NewInt(0),
+		HIP6And8Epoch:              EpochTBD, // Never enable it for localnet as localnet has no external validator setup
+		StakingPrecompileEpoch:     big.NewInt(2),
+		ChainIdFixEpoch:            big.NewInt(0),
+		SlotsLimitedEpoch:          EpochTBD, // epoch to enable HIP-16
+		AllowlistEpoch:             EpochTBD,
 	}
 
 	// StressnetChainConfig contains the chain parameters for the Stress test network.
@@ -554,6 +592,7 @@ func UpdateEthChainIDByShard(shardID uint32) {
 	once.Do(func() {
 		MainnetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(MainnetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
 		TestnetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(TestnetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
+		DevnetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(DevnetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
 		StressnetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(StressnetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
 		LocalnetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(LocalnetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
 		AllProtocolChanges.EthCompatibleChainID = big.NewInt(0).Add(AllProtocolChanges.EthCompatibleChainID, big.NewInt(int64(shardID)))

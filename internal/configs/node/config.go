@@ -50,8 +50,8 @@ type NetworkType string
 const (
 	Mainnet   = "mainnet"
 	Testnet   = "testnet"
-	Stressnet = "stressnet"
 	Devnet    = "devnet"
+	Stressnet = "stressnet"
 	Localnet  = "localnet"
 )
 
@@ -341,6 +341,8 @@ func (t NetworkType) ChainConfig() params.ChainConfig {
 		return *params.StressnetChainConfig
 	case Localnet:
 		return *params.LocalnetChainConfig
+	case Devnet:
+		return *params.DevnetChainConfig
 	default:
 		return *params.TestnetChainConfig
 	}
