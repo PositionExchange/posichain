@@ -95,22 +95,23 @@ var (
 	totalPreStakingNetworkRewardsInAtto = map[shardingconfig.NetworkID][]*big.Int{
 		shardingconfig.MainNet: {
 			// Below are all of the last blocks of pre-staking era for mainnet.
-			getPreStakingRewardsFromBlockNumber(shardingconfig.MainNet, big.NewInt(3375103)),
-			getPreStakingRewardsFromBlockNumber(shardingconfig.MainNet, big.NewInt(3286737)),
-			getPreStakingRewardsFromBlockNumber(shardingconfig.MainNet, big.NewInt(3326153)),
-			getPreStakingRewardsFromBlockNumber(shardingconfig.MainNet, big.NewInt(3313572)),
+			//getPreStakingRewardsFromBlockNumber(shardingconfig.MainNet, big.NewInt(999999)),
+			//getPreStakingRewardsFromBlockNumber(shardingconfig.MainNet, big.NewInt(999999)),
 		},
 		shardingconfig.TestNet: {
 			// Below are all of the placeholders 'last blocks' of pre-staking era for testnet.
-			getPreStakingRewardsFromBlockNumber(shardingconfig.TestNet, big.NewInt(999999)),
-			getPreStakingRewardsFromBlockNumber(shardingconfig.TestNet, big.NewInt(999999)),
-			getPreStakingRewardsFromBlockNumber(shardingconfig.TestNet, big.NewInt(999999)),
-			getPreStakingRewardsFromBlockNumber(shardingconfig.TestNet, big.NewInt(999999)),
+			//getPreStakingRewardsFromBlockNumber(shardingconfig.TestNet, big.NewInt(999999)),
+			//getPreStakingRewardsFromBlockNumber(shardingconfig.TestNet, big.NewInt(999999)),
+		},
+		shardingconfig.DevNet: {
+			// Below are all of the placeholders 'last blocks' of pre-staking era for testnet.
+			//getPreStakingRewardsFromBlockNumber(shardingconfig.DevNet, big.NewInt(999999)),
+			//getPreStakingRewardsFromBlockNumber(shardingconfig.DevNet, big.NewInt(999999)),
 		},
 		shardingconfig.LocalNet: {
 			// Below are all of the placeholders 'last blocks' of pre-staking era for localnet.
-			getPreStakingRewardsFromBlockNumber(shardingconfig.LocalNet, big.NewInt(999999)),
-			getPreStakingRewardsFromBlockNumber(shardingconfig.LocalNet, big.NewInt(999999)),
+			//getPreStakingRewardsFromBlockNumber(shardingconfig.LocalNet, big.NewInt(999999)),
+			//getPreStakingRewardsFromBlockNumber(shardingconfig.LocalNet, big.NewInt(999999)),
 		},
 	}
 )
