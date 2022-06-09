@@ -7,7 +7,6 @@ import (
 	"sort"
 	"time"
 
-	"github.com/harmony-one/harmony/internal/params"
 	lru "github.com/hashicorp/golang-lru"
 
 	"github.com/harmony-one/harmony/numeric"
@@ -205,32 +204,11 @@ func accumulateRewardsAndCountSigsBeforeStaking(
 // getDefaultStakingReward returns the static default reward based on the the block production interval and the chain.
 func getDefaultStakingReward(bc engine.ChainReader, epoch *big.Int, blockNum uint64) numeric.Dec {
 	defaultReward := stakingReward.StakedBlocks
-
-	// the block reward is adjusted accordingly based on 5s and 3s block time forks
-	if bc.Config().ChainID == params.TestnetChainID && bc.Config().FiveSecondsEpoch.Cmp(big.NewInt(16500)) == 0 {
-		// Testnet:
-		// This is testnet requiring the one-off forking logic
-		if blockNum > 634644 {
-			defaultReward = stakingReward.FiveSecStakedBlocks
-			if blockNum > 636507 {
-				defaultReward = stakingReward.StakedBlocks
-				if blockNum > 639341 {
-					defaultReward = stakingReward.FiveSecStakedBlocks
-				}
-			}
-		}
-		if bc.Config().IsTwoSeconds(epoch) {
-			defaultReward = stakingReward.TwoSecStakedBlocks
-		}
-	} else {
-		// Mainnet (other nets):
-		if bc.Config().IsTwoSeconds(epoch) {
-			defaultReward = stakingReward.TwoSecStakedBlocks
-		} else if bc.Config().IsFiveSeconds(epoch) {
-			defaultReward = stakingReward.FiveSecStakedBlocks
-		}
+	if bc.Config().IsTwoSeconds(epoch) {
+		defaultReward = stakingReward.TwoSecStakedBlocks
+	} else if bc.Config().IsFiveSeconds(epoch) {
+		defaultReward = stakingReward.FiveSecStakedBlocks
 	}
-
 	return defaultReward
 }
 
