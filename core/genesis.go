@@ -66,6 +66,9 @@ const (
 var (
 	// GenesisFoundationFund is the initial total number of ONE (in atto) in the genesis block for mainnet.
 	GenesisFoundationFund = new(big.Int).Mul(big.NewInt(GenesisONEToken), big.NewInt(denominations.One))
+
+	// GenesisFoundationAddress Contact @danny for this account
+	GenesisFoundationAddress = common.HexToAddress("0xdE8CEfB471f20292021399A4E56af4edEB926BB5")
 )
 
 // Genesis specifies the header fields, state of a genesis block. It also defines hard
@@ -102,10 +105,20 @@ func NewGenesisSpec(netType nodeconfig.NetworkType, shardID uint32) *Genesis {
 	case nodeconfig.Mainnet:
 		chainConfig = *params.MainnetChainConfig
 		if shardID == 0 {
-			// Contact @danny for this account
-			foundationAddress := common.HexToAddress("0xdE8CEfB471f20292021399A4E56af4edEB926BB5")
-			genesisAlloc[foundationAddress] = GenesisAccount{Balance: GenesisFoundationFund}
+			genesisAlloc[GenesisFoundationAddress] = GenesisAccount{Balance: GenesisFoundationFund}
 		}
+	case nodeconfig.Testnet:
+		chainConfig = *params.TestnetChainConfig
+		if shardID == 0 {
+			genesisAlloc[GenesisFoundationAddress] = GenesisAccount{Balance: GenesisFoundationFund}
+		}
+	case nodeconfig.Devnet:
+		chainConfig = *params.DevnetChainConfig
+		if shardID == 0 {
+			genesisAlloc[GenesisFoundationAddress] = GenesisAccount{Balance: GenesisFoundationFund}
+		}
+	case nodeconfig.Localnet:
+		chainConfig = *params.LocalnetChainConfig
 	case nodeconfig.Stressnet:
 		chainConfig = *params.StressnetChainConfig
 	default: // all other types share testnet config
@@ -335,6 +348,9 @@ func GetGenesisSpec(shardID uint32) *Genesis {
 	}
 	if shard.Schedule.GetNetworkID() == shardingconfig.LocalNet {
 		return NewGenesisSpec(nodeconfig.Localnet, shardID)
+	}
+	if shard.Schedule.GetNetworkID() == shardingconfig.DevNet {
+		return NewGenesisSpec(nodeconfig.Devnet, shardID)
 	}
 	return NewGenesisSpec(nodeconfig.Testnet, shardID)
 }

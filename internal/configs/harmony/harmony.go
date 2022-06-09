@@ -23,7 +23,7 @@ type HarmonyConfig struct {
 	Sync       SyncConfig
 	Sys        *SysConfig        `toml:",omitempty"`
 	Consensus  *ConsensusConfig  `toml:",omitempty"`
-	Devnet     *DevnetConfig     `toml:",omitempty"`
+	Devnet     *DevnetConfig     `toml:",omitempty"` // Deprecated
 	Revert     *RevertConfig     `toml:",omitempty"`
 	Legacy     *LegacyConfig     `toml:",omitempty"`
 	Prometheus *PrometheusConfig `toml:",omitempty"`

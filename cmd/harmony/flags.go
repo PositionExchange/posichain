@@ -1311,22 +1311,25 @@ func applySysFlags(cmd *cobra.Command, config *harmonyconfig.HarmonyConfig) {
 
 var (
 	devnetNumShardsFlag = cli.IntFlag{
-		Name:     "devnet.num-shard",
-		Usage:    "number of shards for devnet",
-		DefValue: defaultDevnetConfig.NumShards,
-		Hidden:   true,
+		Name:       "devnet.num-shard",
+		Usage:      "deprecated - number of shards for devnet",
+		DefValue:   defaultDevnetConfig.NumShards,
+		Deprecated: "use -network_type=devnet",
+		Hidden:     true,
 	}
 	devnetShardSizeFlag = cli.IntFlag{
-		Name:     "devnet.shard-size",
-		Usage:    "number of nodes per shard for devnet",
-		DefValue: defaultDevnetConfig.ShardSize,
-		Hidden:   true,
+		Name:       "devnet.shard-size",
+		Usage:      "deprecated - number of nodes per shard for devnet",
+		DefValue:   defaultDevnetConfig.ShardSize,
+		Deprecated: "use -network_type=devnet",
+		Hidden:     true,
 	}
 	devnetHmyNodeSizeFlag = cli.IntFlag{
-		Name:     "devnet.hmy-node-size",
-		Usage:    "number of Harmony-operated nodes per shard for devnet (negative means equal to --devnet.shard-size)",
-		DefValue: defaultDevnetConfig.HmyNodeSize,
-		Hidden:   true,
+		Name:       "devnet.hmy-node-size",
+		Usage:      "deprecated - number of Harmony-operated nodes per shard for devnet (negative means equal to --devnet.shard-size)",
+		DefValue:   defaultDevnetConfig.HmyNodeSize,
+		Deprecated: "use -network_type=devnet",
+		Hidden:     true,
 	}
 	legacyDevnetNumShardsFlag = cli.IntFlag{
 		Name:       "dn_num_shards",
@@ -1348,6 +1351,7 @@ var (
 	}
 )
 
+// Deprecated
 func applyDevnetFlags(cmd *cobra.Command, config *harmonyconfig.HarmonyConfig) {
 	if cli.HasFlagsChanged(cmd, devnetFlags) && config.Devnet == nil {
 		cfg := getDefaultDevnetConfigCopy()

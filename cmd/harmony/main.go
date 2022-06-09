@@ -48,7 +48,6 @@ import (
 	"github.com/harmony-one/harmony/internal/utils"
 	"github.com/harmony-one/harmony/multibls"
 	"github.com/harmony-one/harmony/node"
-	"github.com/harmony-one/harmony/numeric"
 	"github.com/harmony-one/harmony/p2p"
 	"github.com/harmony-one/harmony/shard"
 	"github.com/harmony-one/harmony/webhooks"
@@ -479,21 +478,7 @@ func nodeconfigSetShardSchedule(config harmonyconfig.HarmonyConfig) {
 	case nodeconfig.Stressnet:
 		shard.Schedule = shardingconfig.StressNetSchedule
 	case nodeconfig.Devnet:
-		var dnConfig harmonyconfig.DevnetConfig
-		if config.Devnet != nil {
-			dnConfig = *config.Devnet
-		} else {
-			dnConfig = getDefaultDevnetConfigCopy()
-		}
-
-		devnetConfig, err := shardingconfig.NewInstance(
-			uint32(dnConfig.NumShards), dnConfig.ShardSize, dnConfig.HmyNodeSize, dnConfig.SlotsLimit, numeric.OneDec(), genesis.HarmonyAccounts, genesis.FoundationalNodeAccounts, shardingconfig.Allowlist{}, nil, shardingconfig.VLBPE)
-		if err != nil {
-			_, _ = fmt.Fprintf(os.Stderr, "ERROR invalid devnet sharding config: %s",
-				err)
-			os.Exit(1)
-		}
-		shard.Schedule = shardingconfig.NewFixedSchedule(devnetConfig)
+		shard.Schedule = shardingconfig.DevnetSchedule
 	}
 }
 

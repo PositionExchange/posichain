@@ -19,6 +19,7 @@ var (
 const (
 	mainnetDNSZone   = "t.hmny.io"
 	testnetDNSZone   = "b.hmny.io"
+	devnetDNSZone    = "d.hmny.io"
 	stressnetDNSZone = "stn.hmny.io"
 )
 
@@ -83,10 +84,10 @@ func GetDefaultBootNodes(networkType NetworkType) []string {
 		return mainnetBootNodes
 	case Testnet:
 		return testnetBootNodes
-	case Stressnet:
-		return stressBootNodes
 	case Devnet:
 		return devnetBootNodes
+	case Stressnet:
+		return stressBootNodes
 	}
 	return nil
 }
@@ -98,6 +99,8 @@ func GetDefaultDNSZone(networkType NetworkType) string {
 		return mainnetDNSZone
 	case Testnet:
 		return testnetDNSZone
+	case Devnet:
+		return devnetDNSZone
 	case Stressnet:
 		return stressnetDNSZone
 	}

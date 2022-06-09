@@ -164,6 +164,18 @@ var (
 		DiscBatch:      3,
 	}
 
+	defaultDevNetSyncConfig = harmonyconfig.SyncConfig{
+		Enabled:        true,
+		Downloader:     false,
+		Concurrency:    2,
+		MinPeers:       2,
+		InitStreams:    2,
+		DiscSoftLowCap: 2,
+		DiscHardLowCap: 2,
+		DiscHighCap:    1024,
+		DiscBatch:      3,
+	}
+
 	defaultLocalNetSyncConfig = harmonyconfig.SyncConfig{
 		Enabled:        true,
 		Downloader:     true,
