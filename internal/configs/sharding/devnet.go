@@ -4,7 +4,6 @@ import (
 	"math/big"
 
 	"github.com/harmony-one/harmony/internal/genesis"
-	"github.com/harmony-one/harmony/internal/params"
 	"github.com/harmony-one/harmony/numeric"
 )
 
@@ -15,8 +14,7 @@ var DevnetSchedule devnetSchedule
 type devnetSchedule struct{}
 
 const (
-	devnetBlocksPerEpoch   = 5
-	devnetBlocksPerEpochV2 = 10
+	devnetBlocksPerEpoch = 5
 
 	// This takes about 20s to finish the vdf
 	devnetVdfDifficulty = 10000
@@ -31,48 +29,26 @@ func (ts devnetSchedule) InstanceForEpoch(epoch *big.Int) Instance {
 	return devnetV0
 }
 
-func (ts devnetSchedule) BlocksPerEpochOld() uint64 {
+func (ts devnetSchedule) BlocksPerEpoch() uint64 {
 	return devnetBlocksPerEpoch
 }
 
-func (ts devnetSchedule) BlocksPerEpoch() uint64 {
-	return devnetBlocksPerEpochV2
-}
-
 func (ts devnetSchedule) CalcEpochNumber(blockNum uint64) *big.Int {
-
-	firstBlock2s := params.DevnetChainConfig.TwoSecondsEpoch.Uint64() * ts.BlocksPerEpochOld()
-	switch {
-	case blockNum >= firstBlock2s:
-		return big.NewInt(int64((blockNum-firstBlock2s)/ts.BlocksPerEpoch() + params.DevnetChainConfig.TwoSecondsEpoch.Uint64()))
-	default: // genesis
-		oldEpoch := blockNum / ts.BlocksPerEpochOld()
-		return big.NewInt(int64(oldEpoch))
-	}
-
+	oldEpoch := blockNum / ts.BlocksPerEpoch()
+	return big.NewInt(int64(oldEpoch))
 }
 
 func (ts devnetSchedule) IsLastBlock(blockNum uint64) bool {
-	firstBlock2s := params.DevnetChainConfig.TwoSecondsEpoch.Uint64() * ts.BlocksPerEpochOld()
-
-	switch {
-	case blockNum >= firstBlock2s:
-		return (blockNum-firstBlock2s)%ts.BlocksPerEpoch() == ts.BlocksPerEpoch()-1
-	default: // genesis
-		return (blockNum+1)%ts.BlocksPerEpochOld() == 0
-	}
+	return (blockNum+1)%ts.BlocksPerEpoch() == 0
 }
 
 func (ts devnetSchedule) EpochLastBlock(epochNum uint64) uint64 {
-	firstBlock2s := params.DevnetChainConfig.TwoSecondsEpoch.Uint64() * ts.BlocksPerEpochOld()
-
 	switch {
-	case params.DevnetChainConfig.IsTwoSeconds(big.NewInt(int64(epochNum))):
-		return firstBlock2s - 1 + ts.BlocksPerEpoch()*(epochNum-params.DevnetChainConfig.TwoSecondsEpoch.Uint64()+1)
-	default: // genesis
-		return ts.BlocksPerEpochOld()*(epochNum+1) - 1
+	case epochNum == 0:
+		return mainnetEpochBlock1 - 1
+	default:
+		return mainnetEpochBlock1 - 1 + ts.BlocksPerEpoch()*epochNum
 	}
-
 }
 
 func (ts devnetSchedule) VdfDifficulty() int {
@@ -93,10 +69,5 @@ func (ts devnetSchedule) IsSkippedEpoch(shardID uint32, epoch *big.Int) bool {
 	return false
 }
 
-var devnetReshardingEpoch = []*big.Int{
-	big.NewInt(0),
-	params.DevnetChainConfig.StakingEpoch,
-	params.DevnetChainConfig.TwoSecondsEpoch,
-}
-
-var devnetV0 = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.TNHarmonyAccounts, genesis.TNFoundationalAccounts, emptyAllowlist, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpochOld())
+var devnetReshardingEpoch = []*big.Int{big.NewInt(0)}
+var devnetV0 = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.HarmonyAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
