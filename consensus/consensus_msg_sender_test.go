@@ -34,8 +34,8 @@ func TestMessageSenderReset(t *testing.T) {
 	assert.Equal(t, 0, numberOfMessagesToRetry(messageSender))
 
 	groups := []nodeconfig.GroupID{
-		"hmy/testnet/0.0.1/client/beacon",
-		"hmy/testnet/0.0.1/node/beacon",
+		"psc/testnet/0.0.1/client/beacon",
+		"psc/testnet/0.0.1/node/beacon",
 	}
 	p2pMsg := []byte{0}
 	msgType := msg_pb.MessageType_ANNOUNCE

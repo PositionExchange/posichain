@@ -31,11 +31,11 @@ func init() {
 	}
 
 	Topics = []string{
-		"hmy/testnet/0.0.1/client/beacon",
-		"hmy/testnet/0.0.1/node/beacon",
-		"hmy/testnet/0.0.1/node/shard/1",
-		"hmy/testnet/0.0.1/node/shard/2",
-		"hmy/testnet/0.0.1/node/shard/3",
+		"psc/testnet/0.0.1/client/beacon",
+		"psc/testnet/0.0.1/node/beacon",
+		"psc/testnet/0.0.1/node/shard/1",
+		"psc/testnet/0.0.1/node/shard/2",
+		"psc/testnet/0.0.1/node/shard/3",
 	}
 
 	Bootnodes = []string{
