@@ -23,6 +23,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/harmony-one/harmony/internal/genesis"
 	"math/big"
 	"os"
 	"strings"
@@ -55,17 +56,17 @@ var errGenesisNoConfig = errors.New("genesis has no chain configuration")
 const (
 	// GenesisEpoch is the number of the genesis epoch.
 	GenesisEpoch = 0
-	// GenesisONEToken is the initial total number of ONE in the genesis block for mainnet.
-	GenesisONEToken = 12600000000
-	// ContractDeployerInitFund is the initial fund for the contract deployer account in testnet/devnet.
-	ContractDeployerInitFund = 10000000000
+	// GenesisFoundationToken is the initial total number of token in the genesis block for mainnet.
+	GenesisFoundationToken = 12600000000
+	// ContractDeployerInitToken is the initial fund for the contract deployer account in testnet/devnet.
+	ContractDeployerInitToken = 10000000000
 	// InitFreeFund is the initial fund for permissioned accounts for testnet/devnet/
 	InitFreeFund = 100
 )
 
 var (
-	// GenesisFoundationFund is the initial total number of ONE (in atto) in the genesis block for mainnet.
-	GenesisFoundationFund = new(big.Int).Mul(big.NewInt(GenesisONEToken), big.NewInt(denominations.One))
+	// GenesisFoundationFund is the initial total number of token (in atto) in the genesis block.
+	GenesisFoundationFund = new(big.Int).Mul(big.NewInt(GenesisFoundationToken), big.NewInt(denominations.One))
 
 	// GenesisFoundationAddress Contact @danny for this account
 	GenesisFoundationAddress = common.HexToAddress("0xdE8CEfB471f20292021399A4E56af4edEB926BB5")
@@ -134,7 +135,7 @@ func NewGenesisSpec(netType nodeconfig.NetworkType, shardID uint32) *Genesis {
 			strings.NewReader("Test contract key string stream that is fixed so that generated test key are deterministic every time"),
 		)
 		contractDeployerAddress := crypto.PubkeyToAddress(contractDeployerKey.PublicKey)
-		contractDeployerFunds := big.NewInt(ContractDeployerInitFund)
+		contractDeployerFunds := big.NewInt(ContractDeployerInitToken)
 		contractDeployerFunds = contractDeployerFunds.Mul(
 			contractDeployerFunds, big.NewInt(denominations.One),
 		)
@@ -154,8 +155,8 @@ func NewGenesisSpec(netType nodeconfig.NetworkType, shardID uint32) *Genesis {
 		Alloc:     genesisAlloc,
 		ShardID:   shardID,
 		GasLimit:  gasLimit,
-		Timestamp: 1561734000, // GMT: Friday, June 28, 2019 3:00:00 PM. PST: Friday, June 28, 2019 8:00:00 AM
-		ExtraData: []byte("Harmony for One and All. Open Consensus for 10B."),
+		Timestamp: 1654480800, // GMT: Monday, June 6, 2022 2:00:00 AM
+		ExtraData: []byte(genesis.Signature),
 	}
 }
 

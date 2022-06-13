@@ -10,7 +10,7 @@ import (
 	"github.com/harmony-one/harmony/internal/utils"
 )
 
-const genesisString = "https://harmony.one 'Open Consensus for 10B' 2019.06.01 $ONE"
+const Signature = "https://posichain.org 'Open Consensus for 10B' 2022.06.06 $POSI"
 
 // DeployAccount is the account used in genesis
 type DeployAccount struct {
@@ -26,7 +26,7 @@ func (d DeployAccount) String() string {
 
 // BeaconAccountPriKey is the func which generates a constant private key.
 func BeaconAccountPriKey() *ecdsa.PrivateKey {
-	prikey, err := ecdsa.GenerateKey(crypto.S256(), strings.NewReader(genesisString))
+	prikey, err := ecdsa.GenerateKey(crypto.S256(), strings.NewReader(Signature))
 	if err != nil && prikey == nil {
 		utils.Logger().Error().Msg("Failed to generate beacon chain contract deployer account")
 		os.Exit(111)
