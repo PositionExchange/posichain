@@ -23,11 +23,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/harmony-one/harmony/internal/genesis"
-	"math/big"
-	"os"
-	"strings"
-
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/common/math"
@@ -35,8 +30,12 @@ import (
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/rlp"
 	blockfactory "github.com/harmony-one/harmony/block/factory"
+	"github.com/harmony-one/harmony/internal/genesis"
 	"github.com/harmony-one/harmony/internal/params"
 	"github.com/harmony-one/harmony/staking/slash"
+	"math/big"
+	"os"
+	"strings"
 
 	"github.com/harmony-one/harmony/common/denominations"
 	"github.com/harmony-one/harmony/core/rawdb"
@@ -68,8 +67,23 @@ var (
 	// GenesisFoundationFund is the initial total number of token (in atto) in the genesis block.
 	GenesisFoundationFund = new(big.Int).Mul(big.NewInt(GenesisFoundationToken), big.NewInt(denominations.One))
 
-	// GenesisFoundationAddress Contact @danny for this account
-	GenesisFoundationAddress = common.HexToAddress("0xdE8CEfB471f20292021399A4E56af4edEB926BB5")
+	// GenesisFoundations Contact @danny for these accounts
+	GenesisFoundations = map[nodeconfig.NetworkType]map[common.Address]*big.Int{
+		nodeconfig.Mainnet: {
+			common.HexToAddress("0xdE8CEfB471f20292021399A4E56af4edEB926BB5"): GenesisFoundationFund,
+		},
+		nodeconfig.Testnet: {
+			common.HexToAddress("0xf9778193a0085bE6FF60D4362887E8D9921e19cB"): GenesisFoundationFund,
+		},
+		nodeconfig.Devnet: {
+			common.HexToAddress("0x89Edf385780aAE08F8aa15bB52FB913EF8C43433"): GenesisFoundationFund,
+			common.HexToAddress("0x1E0414E161c892E2113ebA4aa5469d188F2A5ebc"): GenesisFoundationFund,
+		},
+		nodeconfig.Localnet: {
+			// PK: 1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc
+			common.HexToAddress("0xA5241513DA9F4463F1d4874b548dFBAC29D91f34"): GenesisFoundationFund,
+		},
+	}
 )
 
 // Genesis specifies the header fields, state of a genesis block. It also defines hard
@@ -105,19 +119,10 @@ func NewGenesisSpec(netType nodeconfig.NetworkType, shardID uint32) *Genesis {
 	switch netType {
 	case nodeconfig.Mainnet:
 		chainConfig = *params.MainnetChainConfig
-		if shardID == 0 {
-			genesisAlloc[GenesisFoundationAddress] = GenesisAccount{Balance: GenesisFoundationFund}
-		}
 	case nodeconfig.Testnet:
 		chainConfig = *params.TestnetChainConfig
-		if shardID == 0 {
-			genesisAlloc[GenesisFoundationAddress] = GenesisAccount{Balance: GenesisFoundationFund}
-		}
 	case nodeconfig.Devnet:
 		chainConfig = *params.DevnetChainConfig
-		if shardID == 0 {
-			genesisAlloc[GenesisFoundationAddress] = GenesisAccount{Balance: GenesisFoundationFund}
-		}
 	case nodeconfig.Localnet:
 		chainConfig = *params.LocalnetChainConfig
 	case nodeconfig.Stressnet:
@@ -126,26 +131,26 @@ func NewGenesisSpec(netType nodeconfig.NetworkType, shardID uint32) *Genesis {
 		chainConfig = *params.TestChainConfig
 	}
 
-	// All non-mainnet chains get test accounts
-	if netType != nodeconfig.Mainnet {
-		gasLimit = params.TestGenesisGasLimit
-		// Smart contract deployer account used to deploy initial smart contract
-		contractDeployerKey, _ := ecdsa.GenerateKey(
-			crypto.S256(),
-			strings.NewReader("Test contract key string stream that is fixed so that generated test key are deterministic every time"),
-		)
-		contractDeployerAddress := crypto.PubkeyToAddress(contractDeployerKey.PublicKey)
-		contractDeployerFunds := big.NewInt(ContractDeployerInitToken)
-		contractDeployerFunds = contractDeployerFunds.Mul(
-			contractDeployerFunds, big.NewInt(denominations.One),
-		)
-		genesisAlloc[contractDeployerAddress] = GenesisAccount{Balance: contractDeployerFunds}
-
-		// Localnet only testing account
-		if netType == nodeconfig.Localnet {
-			// PK: 1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc
-			testAddress := common.HexToAddress("0xA5241513DA9F4463F1d4874b548dFBAC29D91f34")
-			genesisAlloc[testAddress] = GenesisAccount{Balance: contractDeployerFunds}
+	if shardID == 0 {
+		if foundationAddresses, exists := GenesisFoundations[netType]; exists && len(GenesisFoundations[netType]) > 0 {
+			for addr, fund := range foundationAddresses {
+				genesisAlloc[addr] = GenesisAccount{Balance: fund}
+			}
+		} else if netType != nodeconfig.Mainnet { // All non-mainnet chains get test accounts
+			utils.Logger().Info().Msgf("No foundation accounts are provided, initialing test accounts for non-mainnet network")
+			gasLimit = params.TestGenesisGasLimit
+			foundationTestKey, _ := ecdsa.GenerateKey(
+				crypto.S256(),
+				strings.NewReader("Test contract key string stream that is fixed so that generated test key are deterministic every time"),
+			)
+			foundationTestPrivateKey := hex.EncodeToString(crypto.FromECDSA(foundationTestKey))
+			foundationTestAddress := crypto.PubkeyToAddress(foundationTestKey.PublicKey)
+			utils.Logger().Info().
+				Msgf("Foundation account initiated, balances: %d, address: %s, private key: %s",
+					new(big.Int).Quo(GenesisFoundationFund, big.NewInt(denominations.One)),
+					foundationTestAddress.Hex(),
+					foundationTestPrivateKey)
+			genesisAlloc[foundationTestAddress] = GenesisAccount{Balance: GenesisFoundationFund}
 		}
 	}
 
