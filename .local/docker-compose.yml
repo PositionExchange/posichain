@@ -218,7 +218,7 @@ services:
   node11:
     <<: *default-node
     container_name: posichain-node11
-    profiles: ["external"]
+    profiles: [ "external" ]
     volumes:
       - node11-data:/app/data
       - node11-account:/root/.hmy_cli/account-keys
@@ -260,21 +260,3 @@ volumes:
   node10-account: *default-volume
   node11-data: *default-volume
   node11-account: *default-volume
-  node12-data: *default-volume
-  node12-account: *default-volume
-  node13-data: *default-volume
-  node13-account: *default-volume
-  node14-data: *default-volume
-  node14-account: *default-volume
-  node15-data: *default-volume
-  node15-account: *default-volume
-  node16-data: *default-volume
-  node16-account: *default-volume
-  node17-data: *default-volume
-  node17-account: *default-volume
-  node18-data: *default-volume
-  node18-account: *default-volume
-  node19-data: *default-volume
-  node19-account: *default-volume
-  node20-data: *default-volume
-  node20-account: *default-volume
