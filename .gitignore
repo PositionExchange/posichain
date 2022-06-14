@@ -95,7 +95,7 @@ explorer_storage_*
 # pprof profiles
 profiles/*.pb.gz
 
-.local/nodes/*/data/*
-.local/nodes/*/data/.gitkeep
-.local/nodes/*/logs/*
-.local/nodes/*/logs/.gitkeep
+.deployment/devnet/nodes/*/data/*
+.deployment/devnet/nodes/*/data/.gitkeep
+.deployment/devnet/nodes/*/logs/*
+.deployment/devnet/nodes/*/logs/.gitkeep

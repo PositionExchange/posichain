@@ -21,7 +21,7 @@ RUN echo "/usr/local/lib" >> /etc/ld.so.conf
 RUN ldconfig
 RUN mkdir /app
 RUN mv ./bin /app
-RUN mv ./.local/scripts /app
+RUN mv ./.deployment/.docker/scripts /app
 
 WORKDIR /app
 RUN mkdir -p blskeys

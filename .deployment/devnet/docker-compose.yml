@@ -25,10 +25,10 @@ services:
   dnsserver:
     container_name: posichain-dnsserver
     build:
-      dockerfile: .local/Dockerfile.dnsserver
-      context: ..
+      dockerfile: .deployment/.docker/Dockerfile.dnsserver
+      context: ../..
     volumes:
-      - ./dns/zones:/etc/bind/zones
+      - ../.docker/dns/zones:/etc/bind/zones
     networks:
       blockchain:
         ipv4_address: 172.189.0.3
@@ -37,8 +37,8 @@ services:
     <<: *default-boot-node
     container_name: posichain-bootnode1
     build:
-      dockerfile: .local/Dockerfile.bootnode
-      context: ..
+      dockerfile: .deployment/.docker/Dockerfile.bootnode
+      context: ../..
     environment:
       NODE_IP: 172.189.0.8
       NODE_PORT: 9876
@@ -50,8 +50,8 @@ services:
     <<: *default-node
     container_name: posichain-node1
     build:
-      dockerfile: .local/Dockerfile.node
-      context: ..
+      dockerfile: .deployment/.docker/Dockerfile.node
+      context: ../..
     volumes:
       - node1-data:/app/data
       - node1-account:/root/.hmy_cli/account-keys

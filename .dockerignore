@@ -1,2 +1,2 @@
 Dockerfile*
-.local/docker-compose.yml
+.deployment/devnet/docker-compose.yml
