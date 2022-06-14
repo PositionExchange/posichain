@@ -55,10 +55,8 @@ var errGenesisNoConfig = errors.New("genesis has no chain configuration")
 const (
 	// GenesisEpoch is the number of the genesis epoch.
 	GenesisEpoch = 0
-	// GenesisFoundationToken is the initial total number of token in the genesis block for mainnet.
+	// GenesisFoundationToken is the initial total number of token in the genesis block.
 	GenesisFoundationToken = 12600000000
-	// ContractDeployerInitToken is the initial fund for the contract deployer account in testnet/devnet.
-	ContractDeployerInitToken = 10000000000
 	// InitFreeFund is the initial fund for permissioned accounts for testnet/devnet/
 	InitFreeFund = 100
 )
