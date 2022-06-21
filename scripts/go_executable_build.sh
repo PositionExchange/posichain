@@ -137,28 +137,27 @@ function build_only
                $BINDIR/$bin --version || $BINDIR/$bin version
             fi
          fi
+         pushd $BINDIR
+         if [ "$STATIC" == "true" ]; then
+            $MD5 "$bin" > md5sum.txt
+            cp -pf ../scripts/node.sh .
+            $MD5 node.sh >> md5sum.txt
+         else
+            for lib in "${!LIB[@]}"; do
+               if [ -e "${LIB[$lib]}" ]; then
+                  cp -pf "${LIB[$lib]}" .
+               fi
+            done
+
+            $MD5 "$bin" "${!LIB[@]}" > md5sum.txt
+            # hardcode the prebuilt libcrypto to md5sum.txt
+            if [ "$(uname -s)" == "Linux" ]; then
+               echo '771150db04267126823190c873a96e48  libcrypto.so.10' >> md5sum.txt
+            fi
+         fi
+         popd
       fi
    done
-
-   pushd $BINDIR
-   if [ "$STATIC" == "true" ]; then
-      $MD5 "${!SRC[@]}" > md5sum.txt
-      cp -pf ../scripts/node.sh .
-      $MD5 node.sh >> md5sum.txt
-   else
-      for lib in "${!LIB[@]}"; do
-         if [ -e ${LIB[$lib]} ]; then
-            cp -pf ${LIB[$lib]} .
-         fi
-      done
-
-      $MD5 "${!SRC[@]}" "${!LIB[@]}" > md5sum.txt
-      # hardcode the prebuilt libcrypto to md5sum.txt
-      if [ "$(uname -s)" == "Linux" ]; then
-         echo '771150db04267126823190c873a96e48  libcrypto.so.10' >> md5sum.txt
-      fi
-   fi
-   popd
 }
 
 function set_gcflags
