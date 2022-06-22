@@ -20,9 +20,9 @@ const (
 	devnetVdfDifficulty = 10000
 
 	// DevNetHTTPPattern is the http pattern for devnet.
-	DevNetHTTPPattern = "http://s%d.d.posichain.org:9500"
+	DevNetHTTPPattern = "http://s%d.d.posichain.org"
 	// DevNetWSPattern is the websocket pattern for devnet.
-	DevNetWSPattern = "wss://ws.s%d.d.posichain.org:9800"
+	DevNetWSPattern = "wss://ws.s%d.d.posichain.org"
 )
 
 func (ts devnetSchedule) InstanceForEpoch(epoch *big.Int) Instance {
