@@ -8,6 +8,10 @@ x-dns: &default-dns
 x-volume: &default-volume
   driver: local
 
+x-driver-opts: &default-driver-opts
+  type: 'none'
+  o: 'bind'
+
 x-boot-node: &default-boot-node
   <<: *default-dns
   image: posichain-bootnode
@@ -238,25 +242,113 @@ networks:
         - subnet: 172.189.0.0/24
 
 volumes:
-  node1-data: *default-volume
-  node1-account: *default-volume
-  node2-data: *default-volume
-  node2-account: *default-volume
-  node3-data: *default-volume
-  node3-account: *default-volume
-  node4-data: *default-volume
-  node4-account: *default-volume
-  node5-data: *default-volume
-  node5-account: *default-volume
-  node6-data: *default-volume
-  node6-account: *default-volume
-  node7-data: *default-volume
-  node7-account: *default-volume
-  node8-data: *default-volume
-  node8-account: *default-volume
-  node9-data: *default-volume
-  node9-account: *default-volume
-  node10-data: *default-volume
-  node10-account: *default-volume
-  node11-data: *default-volume
-  node11-account: *default-volume
+  node1-data:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node1/data'
+  node1-account:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node1/account'
+  node2-data:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node2/data'
+  node2-account:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node2/account'
+  node3-data:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node3/data'
+  node3-account:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node3/account'
+  node4-data:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node4/data'
+  node4-account:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node4/account'
+  node5-data:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node5/data'
+  node5-account:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node5/account'
+  node6-data:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node6/data'
+  node6-account:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node6/account'
+  node7-data:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node7/data'
+  node7-account:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node7/account'
+  node8-data:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node8/data'
+  node8-account:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node8/account'
+  node9-data:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node9/data'
+  node9-account:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node9/account'
+  node10-data:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node10/data'
+  node10-account:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node10/account'
+  node11-data:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node11/data'
+  node11-account:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node11/account'
