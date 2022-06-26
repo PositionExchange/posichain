@@ -15,5 +15,6 @@ COPY .deployment/.docker/dns/named.conf.local /etc/bind/
 COPY .deployment/.docker/dns/zones /etc/bind/zones
 RUN named-checkconf /etc/bind/named.conf.local
 USER root
+
 # Run eternal loop
 CMD ["/bin/bash", "-c", "/etc/init.d/bind9 start && tail --pid=$(pgrep named) -f /dev/null"]
