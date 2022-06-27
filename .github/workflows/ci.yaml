@@ -89,7 +89,7 @@ jobs:
           make deb
           echo %_signature gpg >> $HOME/.rpmmacros && echo "%_gpg_name Posichain (posichain.org)" >> $HOME/.rpmmacros
           make rpm
-          mv ./bin/posichain ./bin/posichain-amd64
+          mv ./bin/harmony ./bin/posichain-amd64
           mv $HOME/debbuild/posichain-$build_version-$build_release.deb ./bin/
           mv $HOME/rpmbuild/RPMS/x86_64/posichain-$build_version-$build_release.x86_64.rpm ./bin/
         working-directory: posichain
@@ -98,7 +98,7 @@ jobs:
         if: join(matrix.os, '-') == 'self-hosted-linux-ARM64'
         run: |
           make linux_static
-          mv ./bin/posichain ./bin/posichain-arm64
+          mv ./bin/harmony ./bin/posichain-arm64
         working-directory: posichain
 
       - name: Build posichain binary and packages for MacOS
@@ -120,57 +120,6 @@ jobs:
           name: posichain
           path: posichain/bin/*
           retention-days: 1
-
-#  docker-build:
-#    name: Build and push posichain docker image
-#    needs: [check, build]
-#    runs-on: ubuntu-18.04
-#    if: needs.check.outputs.tag_annotated == 'true'
-#
-#    steps:
-#      - name: Checkout posichain core code
-#        uses: actions/checkout@v2
-#        with:
-#          path: posichain
-#          ref: ${{ github.ref }}
-#          fetch-depth: 0
-#
-#      - name: Get latest version
-#        run: |
-#          VERSION=$(git tag -l --sort=-v:refname | head -n 1 | tr -d v)
-#          RELEASE=$(git describe --long | cut -f2 -d-)
-#          echo "build_version=$VERSION" >> $GITHUB_ENV
-#          echo "build_release=$RELEASE" >> $GITHUB_ENV
-#        working-directory: posichain
-#
-#      - name: Download artifact
-#        uses: actions/download-artifact@v2
-#        with:
-#          name: posichain
-#
-#      - name: Build preview works
-#        run: |
-#          mv $GITHUB_WORKSPACE/posichain-amd64 ./scripts/docker/posichain
-#        working-directory: posichain
-#
-#      - name: Set up Docker Buildx
-#        uses: docker/setup-buildx-action@v1
-#
-#      - name: Login to DockerHub
-#        uses: docker/login-action@v1
-#        with:
-#          username: ${{ secrets.DOCKER_USERNAME }}
-#          password: ${{ secrets.DOCKER_PASSWORD }}
-#
-#      - name: Build and push
-#        uses: docker/build-push-action@v2
-#        with:
-#          context: ./posichain/scripts/docker
-#          file: ./posichain/scripts/docker/Dockerfile
-#          push: true
-#          tags: |
-#            positionexchange/posichain:latest
-#            positionexchange/posichain:${{ env.build_version }}-${{ env.build_release }}
 
   release-page:
     name: Sign binary and create and publish release page
