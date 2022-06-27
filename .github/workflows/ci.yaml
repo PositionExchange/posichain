@@ -109,7 +109,7 @@ jobs:
           sudo ln -sf /usr/local/opt/openssl@1.1 /usr/local/opt/openssl
           make
           cd ./bin && mkdir ./lib && mv ./*.dylib ./lib && rm -f ./bootnode
-          gpg --detach-sign posichain
+          gpg --detach-sign harmony
           zip -qr ./posichain-macos.zip ./*
           rm -rf `ls * | egrep -v posichain-macos.zip`
         working-directory: posichain
