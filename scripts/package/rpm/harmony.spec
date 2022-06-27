@@ -5,22 +5,22 @@
 # Fedora packaging guidelines:
 # https://docs.fedoraproject.org/en-US/packaging-guidelines/
 
-Name:		harmony
+Name:		posichain
 Version:	{{ VER }}
 Release:	{{ REL }}
-Summary:	harmony blockchain validator node program
+Summary:	posichain blockchain validator node program
 
-License:	MIT
-URL:		https://harmony.one
-Source0:	%{name}-%{version}.tar
-BuildArch: x86_64
-Packager: Leo Chen <leo@hamrony.one>
-Requires(pre): shadow-utils
-Requires: systemd-rpm-macros jq
+License:		MIT
+URL:			https://posichain.org
+Source0:		%{name}-%{version}.tar
+BuildArch: 		x86_64
+Packager: 		Danny <danny@position.exchange>
+Requires(pre): 	shadow-utils
+Requires: 		systemd-rpm-macros jq
 
 %description
-Harmony is a sharded, fast finality, low fee, PoS public blockchain.
-This package contains the validator node program for harmony blockchain.
+Posichain is a sharded, fast finality, low fee, PoS public blockchain.
+This package contains the validator node program for posichain blockchain.
 
 %global debug_package %{nil}
 
@@ -38,7 +38,7 @@ exit 0
 getent group harmony >/dev/null || groupadd -r harmony
 getent passwd harmony >/dev/null || \
    useradd -r -g harmony -d /home/harmony -m -s /sbin/nologin \
-   -c "Harmony validator node account" harmony
+   -c "Posichain validator node account" harmony
 mkdir -p /home/harmony/.hmy/blskeys
 mkdir -p /home/harmony/.config/rclone
 chown -R harmony.harmony /home/harmony
@@ -82,7 +82,7 @@ exit 0
 
 %config(noreplace) /etc/harmony/harmony.conf
 %config /etc/harmony/rclone.conf
-%config /etc/sysctl.d/99-harmony.conf 
+%config /etc/sysctl.d/99-harmony.conf
 %config /etc/systemd/system/harmony.service
 
 %doc
@@ -91,10 +91,5 @@ exit 0
 
 
 %changelog
-* Wed Aug 26 2020 Leo Chen <leo at harmony dot one> 2.3.5
-   - get version from git tag
-   - add %config macro to keep edited config files
-
-* Tue Aug 18 2020 Leo Chen <leo at harmony dot one> 2.3.4
-   - init version of the harmony node program
-
+* Mon Jun 27 2022 Danny <danny@position.exchange> 1.0.0
+   - initial version of the posichain node program
