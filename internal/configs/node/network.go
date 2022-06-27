@@ -2,25 +2,27 @@ package nodeconfig
 
 var (
 	mainnetBootNodes = []string{
-		"/dnsaddr/bootstrap.t.hmny.io",
+		"/dnsaddr/bootstrap.posichain.org",
 	}
 
 	testnetBootNodes = []string{
-		"/dnsaddr/bootstrap.b.hmny.io",
+		"/dnsaddr/bootstrap.t.posichain.org",
+	}
+
+	devnetBootNodes = []string{
+		"/dnsaddr/bootstrap.d.posichain.org",
 	}
 
 	stressBootNodes = []string{
-		"/dnsaddr/bootstrap.stn.hmny.io",
+		"/dnsaddr/bootstrap.s.posichain.org",
 	}
-
-	devnetBootNodes = []string{}
 )
 
 const (
-	mainnetDNSZone   = "t.hmny.io"
-	testnetDNSZone   = "b.hmny.io"
-	devnetDNSZone    = "d.hmny.io"
-	stressnetDNSZone = "stn.hmny.io"
+	mainnetDNSZone   = "posichain.org"
+	testnetDNSZone   = "t.posichain.org"
+	devnetDNSZone    = "d.posichain.org"
+	stressnetDNSZone = "s.posichain.org"
 )
 
 const (

@@ -394,7 +394,7 @@ var (
 		Name:      "network",
 		Shorthand: "n",
 		DefValue:  "mainnet",
-		Usage:     "network to join (mainnet, testnet, localnet, stressnet, devnet)",
+		Usage:     "network to join (mainnet, testnet, devnet, localnet, stressnet)",
 	}
 	bootNodeFlag = cli.StringSliceFlag{
 		Name:  "bootnodes",
@@ -407,7 +407,7 @@ var (
 	}
 	legacyNetworkTypeFlag = cli.StringFlag{
 		Name:       "network_type",
-		Usage:      "network to join (mainnet, testnet, localnet, stressnet, devnet)",
+		Usage:      "network to join (mainnet, testnet, devnet, localnet, stressnet)",
 		Deprecated: "use --network",
 	}
 )
