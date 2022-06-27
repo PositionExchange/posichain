@@ -153,12 +153,7 @@ jobs:
           gpg --detach-sign posichain-amd64
           sha256sum posichain-amd64 >> posichain-amd64.sha256
 
-      - name: Signed arm64 posichain binary
-        run: |
-          gpg --detach-sign posichain-arm64
-          sha256sum posichain-arm64 >> posichain-arm64.sha256
-
-      - name: Signed amd64 posichain binary
+      - name: Signed macos posichain binary
         run: |
           shasum -a 256 posichain-macos.zip >> posichain-macos.zip.sha256
 
@@ -241,36 +236,6 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./posichain-amd64.sig
           asset_name: posichain-amd64.sig
-          asset_content_type: application/octet-stream
-
-      - name: Upload posichain arm64 binary for Linux
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./posichain-arm64
-          asset_name: posichain-arm64
-          asset_content_type: application/octet-stream
-
-      - name: Upload sha256 signature of posichain arm64 binary for Linux
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./posichain-arm64.sha256
-          asset_name: posichain-arm64.sha256
-          asset_content_type: text/plain
-
-      - name: Upload gpg signature of posichain arm64 binary for Linux
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./posichain-arm64.sig
-          asset_name: posichain-arm64.sig
           asset_content_type: application/octet-stream
 
       - name: Upload posichain binary for MacOS
