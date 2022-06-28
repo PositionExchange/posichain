@@ -5,7 +5,7 @@ import (
 	"crypto/sha256"
 	"errors"
 
-	"github.com/harmony-one/bls/ffi/go/bls"
+	"github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/harmony-one/harmony/crypto/vrf"
 )
 

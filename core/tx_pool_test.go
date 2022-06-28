@@ -30,10 +30,10 @@ import (
 
 	"github.com/harmony-one/harmony/crypto/bls"
 
+	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/event"
-	bls_core "github.com/harmony-one/bls/ffi/go/bls"
 	blockfactory "github.com/harmony-one/harmony/block/factory"
 	"github.com/harmony-one/harmony/common/denominations"
 	"github.com/harmony-one/harmony/core/state"

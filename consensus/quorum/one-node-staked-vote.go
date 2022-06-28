@@ -11,8 +11,8 @@ import (
 
 	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
 
+	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/ethereum/go-ethereum/common"
-	bls_core "github.com/harmony-one/bls/ffi/go/bls"
 	"github.com/pkg/errors"
 
 	"github.com/harmony-one/harmony/consensus/votepower"

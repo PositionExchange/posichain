@@ -11,8 +11,8 @@ import (
 	"os"
 	"strings"
 
+	ffi_bls "github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/aws/aws-sdk-go/service/kms"
-	ffi_bls "github.com/harmony-one/bls/ffi/go/bls"
 	"github.com/harmony-one/harmony/crypto/bls"
 	"github.com/pkg/errors"
 )

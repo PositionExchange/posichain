@@ -3,8 +3,8 @@ package verify
 import (
 	"math/big"
 
+	"github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/bls/ffi/go/bls"
 	"github.com/harmony-one/harmony/consensus/quorum"
 	"github.com/harmony-one/harmony/consensus/signature"
 	"github.com/harmony-one/harmony/core"

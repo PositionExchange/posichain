@@ -10,8 +10,8 @@ import (
 
 	shardingconfig "github.com/harmony-one/harmony/internal/configs/sharding"
 
+	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/ethereum/go-ethereum/common"
-	bls_core "github.com/harmony-one/bls/ffi/go/bls"
 	"github.com/harmony-one/harmony/numeric"
 	"github.com/harmony-one/harmony/shard"
 )

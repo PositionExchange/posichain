@@ -1,7 +1,7 @@
 package helpers
 
 import (
-	"github.com/harmony-one/bls/ffi/go/bls"
+	"github.com/PositionExchange/bls/ffi/go/bls"
 	harmony_bls "github.com/harmony-one/harmony/crypto/bls"
 	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
 	"github.com/harmony-one/harmony/p2p"

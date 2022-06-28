@@ -8,7 +8,7 @@ import (
 
 	"github.com/harmony-one/harmony/internal/params"
 
-	bls2 "github.com/harmony-one/bls/ffi/go/bls"
+	bls2 "github.com/PositionExchange/bls/ffi/go/bls"
 	blsvrf "github.com/harmony-one/harmony/crypto/vrf/bls"
 
 	"github.com/ethereum/go-ethereum/common"

@@ -31,9 +31,9 @@ RUN eval "$(~/bin/gimme ${GIMME_GO_VERSION})"
 
 RUN git clone https://github.com/harmony-one/harmony.git ${HMY_PATH}/harmony
 
-RUN git clone https://github.com/harmony-one/bls.git ${HMY_PATH}/bls
+RUN git clone https://github.com/PositionExchange/bls.git ${HMY_PATH}/bls
 
-RUN git clone https://github.com/harmony-one/mcl.git ${HMY_PATH}/mcl
+RUN git clone https://github.com/PositionExchange/mcl.git ${HMY_PATH}/mcl
 
 RUN git clone https://github.com/harmony-one/go-sdk.git ${HMY_PATH}/go-sdk
 
@@ -79,7 +79,7 @@ ARG KS3=f4267bb5a2f0e65b8f5792bb6992597fac2b35ebfac9885ce0f4152c451ca31a
 RUN hmy keys import-private-key ${KS1} && \
 	hmy keys import-private-key ${KS2} && \
 	hmy keys import-private-key ${KS3} && \
-	hmy keys generate-bls-key > keys.json 
+	hmy keys generate-bls-key > keys.json
 
 RUN jq  '.["encrypted-private-key-path"]' -r keys.json > /root/keypath && cp keys.json /root && \
 	echo "export BLS_KEY_PATH=$(cat /root/keypath)" >> /root/.bashrc && \

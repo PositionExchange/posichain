@@ -7,7 +7,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	bls2 "github.com/harmony-one/bls/ffi/go/bls"
+	bls2 "github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/harmony-one/harmony/consensus/signature"
 
 	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"

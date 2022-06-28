@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"sync"
 
+	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/ethereum/go-ethereum/common"
-	bls_core "github.com/harmony-one/bls/ffi/go/bls"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 

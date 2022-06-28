@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"testing"
 
+	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/ethereum/go-ethereum/common"
-	bls_core "github.com/harmony-one/bls/ffi/go/bls"
 )
 
 const (

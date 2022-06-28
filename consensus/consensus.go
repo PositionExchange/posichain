@@ -7,8 +7,8 @@ import (
 
 	"github.com/harmony-one/harmony/crypto/bls"
 
+	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/harmony-one/abool"
-	bls_core "github.com/harmony-one/bls/ffi/go/bls"
 	"github.com/harmony-one/harmony/consensus/quorum"
 	"github.com/harmony-one/harmony/core"
 	"github.com/harmony-one/harmony/core/types"

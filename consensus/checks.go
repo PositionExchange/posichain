@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"encoding/binary"
 
+	libbls "github.com/PositionExchange/bls/ffi/go/bls"
 	protobuf "github.com/golang/protobuf/proto"
-	libbls "github.com/harmony-one/bls/ffi/go/bls"
 	msg_pb "github.com/harmony-one/harmony/api/proto/message"
 	"github.com/harmony-one/harmony/core/types"
 	"github.com/harmony-one/harmony/crypto/bls"

@@ -35,6 +35,8 @@ github.com/OneOfOne/xxhash v1.2.5 h1:zl/OfRA6nftbBK9qTohYBJ5xvw6C/oNKizR7cZGl3cI
 github.com/OneOfOne/xxhash v1.2.5/go.mod h1:eZbhyaAYD41SGSSsnmcpxVoRiQ/MPUTjUdIIOT9Um7Q=
 github.com/OpenPeeDeeP/depguard v1.0.1 h1:VlW4R6jmBIv3/u1JNlawEvJMM4J+dPORPaZasQee8Us=
 github.com/OpenPeeDeeP/depguard v1.0.1/go.mod h1:xsIw86fROiiwelg+jB2uM9PiKihMMmUx/1V+TNhjQvM=
+github.com/PositionExchange/bls v0.0.0-20210728190118-2b7e49894c0f h1:x7b+LUleYRI9p6TZ47G7k6MCUyK14h52ZWwqRQWGiC8=
+github.com/PositionExchange/bls v0.0.0-20210728190118-2b7e49894c0f/go.mod h1:+xalRwLe84J9tZaZvVam7RQet9RAOXmcZ5ZgdxcE/pg=
 github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWXgklEdEo=
 github.com/Shopify/toxiproxy v2.1.4+incompatible/go.mod h1:OXgGpZ6Cli1/URJOF1DMxUHB2q5Ap20/P/eIdh4G0pI=
 github.com/StackExchange/wmi v0.0.0-20180116203802-5d049714c4a6 h1:fLjPD/aNc3UIOA6tDi6QXUemppXK3P9BI7mr2hd6gx8=
@@ -389,8 +391,6 @@ github.com/gxed/hashland/keccakpg v0.0.1/go.mod h1:kRzw3HkwxFU1mpmPP8v1WyQzwdGfm
 github.com/gxed/hashland/murmur3 v0.0.1/go.mod h1:KjXop02n4/ckmZSnY2+HKcLud/tcmvhST0bie/0lS48=
 github.com/harmony-one/abool v1.0.1 h1:SjXLmrr3W8h6lY37gRuWtLiRknUOchnUnsXJWK6Gbm4=
 github.com/harmony-one/abool v1.0.1/go.mod h1:9sq0PJzb1SqRpKrpEV4Ttvm9WV5uud8sfrsPw3AIBJA=
-github.com/harmony-one/bls v0.0.6 h1:KG4q4JwdkPf3DtFvJmAgMRWT6QdY1A/wqN/Qt+S4VaQ=
-github.com/harmony-one/bls v0.0.6/go.mod h1:ML9osB/z3hR9WAYZVj7qH+IP6oaPRPmshDbxrQyia7g=
 github.com/harmony-one/taggedrlp v0.1.4 h1:RZ+qy0VCzT+d/mTfq23gH3an5tSvxOhg6AddLDO6tKw=
 github.com/harmony-one/taggedrlp v0.1.4/go.mod h1:osO5TRXLKdgCP+oj2J9qfqhywMOOA+4nP5q+o8nDSYA=
 github.com/harmony-one/vdf v0.0.0-20190924175951-620379da8849 h1:rMY4jLAen3pMTq9KO7kSXzuMaicnOHP5n1MgpA1T6G4=

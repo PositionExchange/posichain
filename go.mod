@@ -3,6 +3,7 @@ module github.com/harmony-one/harmony
 go 1.16
 
 require (
+	github.com/PositionExchange/bls v0.0.0-20210728190118-2b7e49894c0f
 	github.com/VictoriaMetrics/fastcache v1.5.7 // indirect
 	github.com/Workiva/go-datastructures v1.0.50
 	github.com/allegro/bigcache v1.2.1
@@ -22,7 +23,6 @@ require (
 	github.com/gorilla/mux v1.8.0
 	github.com/gorilla/websocket v1.4.2
 	github.com/harmony-one/abool v1.0.1
-	github.com/harmony-one/bls v0.0.6
 	github.com/harmony-one/taggedrlp v0.1.4
 	github.com/harmony-one/vdf v0.0.0-20190924175951-620379da8849
 	github.com/hashicorp/go-version v1.2.0

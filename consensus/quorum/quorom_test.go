@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	bls_core "github.com/harmony-one/bls/ffi/go/bls"
+	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
 	harmony_bls "github.com/harmony-one/harmony/crypto/bls"
 	shardingconfig "github.com/harmony-one/harmony/internal/configs/sharding"
 	"github.com/harmony-one/harmony/numeric"

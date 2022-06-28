@@ -7,8 +7,8 @@ import (
 
 	"github.com/harmony-one/harmony/crypto/bls"
 
+	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/ethereum/go-ethereum/common"
-	bls_core "github.com/harmony-one/bls/ffi/go/bls"
 	"github.com/harmony-one/harmony/consensus/votepower"
 	bls_cosi "github.com/harmony-one/harmony/crypto/bls"
 	shardingconfig "github.com/harmony-one/harmony/internal/configs/sharding"
