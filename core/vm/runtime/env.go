@@ -17,9 +17,9 @@
 package runtime
 
 import (
+	"github.com/PositionExchange/posichain/core"
+	"github.com/PositionExchange/posichain/core/vm"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/core"
-	"github.com/harmony-one/harmony/core/vm"
 )
 
 // NewEnv ...

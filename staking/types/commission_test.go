@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/harmony-one/harmony/numeric"
+	"github.com/PositionExchange/posichain/numeric"
 )
 
 var (

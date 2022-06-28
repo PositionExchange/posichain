@@ -4,9 +4,9 @@ import (
 	"container/heap"
 	"sync"
 
+	"github.com/PositionExchange/posichain/core/types"
+	sttypes "github.com/PositionExchange/posichain/p2p/stream/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/core/types"
-	sttypes "github.com/harmony-one/harmony/p2p/stream/types"
 )
 
 var (

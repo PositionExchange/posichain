@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/harmony-one/harmony/core/types"
-	syncproto "github.com/harmony-one/harmony/p2p/stream/protocols/sync"
-	sttypes "github.com/harmony-one/harmony/p2p/stream/types"
+	"github.com/PositionExchange/posichain/core/types"
+	syncproto "github.com/PositionExchange/posichain/p2p/stream/protocols/sync"
+	sttypes "github.com/PositionExchange/posichain/p2p/stream/types"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 )

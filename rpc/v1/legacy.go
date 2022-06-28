@@ -3,10 +3,10 @@ package v1
 import (
 	"context"
 
+	"github.com/PositionExchange/posichain/eth/rpc"
+	"github.com/PositionExchange/posichain/hmy"
+	internal_common "github.com/PositionExchange/posichain/internal/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/harmony-one/harmony/eth/rpc"
-	"github.com/harmony-one/harmony/hmy"
-	internal_common "github.com/harmony-one/harmony/internal/common"
 )
 
 // PublicLegacyService provides an API to access the Harmony blockchain.

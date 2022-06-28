@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
+	"github.com/PositionExchange/posichain/shard"
 	"github.com/coinbase/rosetta-sdk-go/types"
-	shardingconfig "github.com/harmony-one/harmony/internal/configs/sharding"
-	"github.com/harmony-one/harmony/shard"
 )
 
 const (

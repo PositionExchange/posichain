@@ -8,13 +8,13 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
 
-	msg_pb "github.com/harmony-one/harmony/api/proto/message"
-	"github.com/harmony-one/harmony/consensus/signature"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/crypto/bls"
-	"github.com/harmony-one/harmony/internal/chain"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
-	"github.com/harmony-one/harmony/p2p"
+	msg_pb "github.com/PositionExchange/posichain/api/proto/message"
+	"github.com/PositionExchange/posichain/consensus/signature"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/internal/chain"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/PositionExchange/posichain/p2p"
 )
 
 func (consensus *Consensus) onAnnounce(msg *msg_pb.Message) {

@@ -3,9 +3,9 @@ package slash
 import (
 	"math/big"
 
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/internal/params"
-	"github.com/harmony-one/harmony/shard"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/internal/params"
+	"github.com/PositionExchange/posichain/shard"
 )
 
 // CommitteeReader ..

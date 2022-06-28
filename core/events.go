@@ -17,9 +17,9 @@
 package core
 
 import (
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/hmy/tracers"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/hmy/tracers"
 )
 
 // NewTxsEvent is posted when a batch of transactions enter the transaction pool.

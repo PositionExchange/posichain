@@ -9,15 +9,15 @@ import (
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 
-	"github.com/harmony-one/harmony/core"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/crypto/bls"
-	"github.com/harmony-one/harmony/internal/chain"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/p2p"
-	"github.com/harmony-one/harmony/p2p/stream/common/streammanager"
-	"github.com/harmony-one/harmony/p2p/stream/protocols/sync"
+	"github.com/PositionExchange/posichain/core"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/internal/chain"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/p2p"
+	"github.com/PositionExchange/posichain/p2p/stream/common/streammanager"
+	"github.com/PositionExchange/posichain/p2p/stream/protocols/sync"
 )
 
 type (

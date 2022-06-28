@@ -134,4 +134,4 @@ sudo vim /etc/harmony/harmony.conf
 ```
 
 # Support
-Please open new github issues in https://github.com/harmony-one/harmony/issues.
+Please open new github issues in https://github.com/PositionExchange/posichain/issues.

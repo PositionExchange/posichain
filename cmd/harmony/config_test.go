@@ -8,9 +8,9 @@ import (
 	"reflect"
 	"testing"
 
-	harmonyconfig "github.com/harmony-one/harmony/internal/configs/harmony"
+	harmonyconfig "github.com/PositionExchange/posichain/internal/configs/harmony"
 
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 )
 
 type testCfgOpt func(config *harmonyconfig.HarmonyConfig)

@@ -1,10 +1,10 @@
 package consensus
 
 import (
-	msg_pb "github.com/harmony-one/harmony/api/proto/message"
-	"github.com/harmony-one/harmony/consensus"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/internal/utils"
+	msg_pb "github.com/PositionExchange/posichain/api/proto/message"
+	"github.com/PositionExchange/posichain/consensus"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/internal/utils"
 )
 
 // Service is the consensus service.

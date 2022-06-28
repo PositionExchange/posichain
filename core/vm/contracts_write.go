@@ -5,13 +5,13 @@ import (
 	"math/big"
 	"strings"
 
+	"github.com/PositionExchange/posichain/accounts/abi"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/shard"
+	"github.com/PositionExchange/posichain/staking"
+	stakingTypes "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/harmony-one/harmony/accounts/abi"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/shard"
-	"github.com/harmony-one/harmony/staking"
-	stakingTypes "github.com/harmony-one/harmony/staking/types"
 )
 
 // WriteCapablePrecompiledContractsStaking lists out the write capable precompiled contracts

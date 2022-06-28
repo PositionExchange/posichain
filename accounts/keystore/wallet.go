@@ -19,10 +19,10 @@ package keystore
 import (
 	"math/big"
 
+	"github.com/PositionExchange/posichain/accounts"
+	"github.com/PositionExchange/posichain/core/types"
 	ethereum "github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/harmony-one/harmony/accounts"
-	"github.com/harmony-one/harmony/core/types"
 )
 
 // keystoreWallet implements the accounts.Wallet interface for the original

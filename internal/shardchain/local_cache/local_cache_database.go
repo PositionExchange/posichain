@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"time"
 
+	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/allegro/bigcache"
 	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/harmony-one/harmony/internal/utils"
 )
 
 type cacheWrapper struct {

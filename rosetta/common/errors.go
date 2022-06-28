@@ -5,8 +5,8 @@ import (
 
 	"github.com/coinbase/rosetta-sdk-go/types"
 
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
-	"github.com/harmony-one/harmony/internal/utils"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/PositionExchange/posichain/internal/utils"
 )
 
 var (

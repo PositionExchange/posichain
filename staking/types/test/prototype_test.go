@@ -3,7 +3,7 @@ package staketest
 import (
 	"testing"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
 	"github.com/ethereum/go-ethereum/common"
 )

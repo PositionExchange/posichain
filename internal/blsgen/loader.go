@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
-	"github.com/harmony-one/harmony/multibls"
+	"github.com/PositionExchange/posichain/multibls"
 )
 
 // LoadKeys load all BLS keys with the given config. If loading keys from files, the

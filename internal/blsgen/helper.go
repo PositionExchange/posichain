@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
-	"github.com/harmony-one/harmony/multibls"
+	"github.com/PositionExchange/posichain/multibls"
 )
 
 // loadHelper defines the helper interface to load bls keys. Implemented by

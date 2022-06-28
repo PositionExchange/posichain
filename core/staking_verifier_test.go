@@ -7,23 +7,23 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/harmony-one/harmony/internal/params"
+	"github.com/PositionExchange/posichain/internal/params"
 
 	"github.com/ethereum/go-ethereum/core/rawdb"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
+	"github.com/PositionExchange/posichain/block"
+	consensus_engine "github.com/PositionExchange/posichain/consensus/engine"
+	"github.com/PositionExchange/posichain/core/state"
+	"github.com/PositionExchange/posichain/core/vm"
+	"github.com/PositionExchange/posichain/crypto/hash"
+	"github.com/PositionExchange/posichain/numeric"
+	"github.com/PositionExchange/posichain/shard"
+	"github.com/PositionExchange/posichain/staking/effective"
+	staking "github.com/PositionExchange/posichain/staking/types"
+	staketest "github.com/PositionExchange/posichain/staking/types/test"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/block"
-	consensus_engine "github.com/harmony-one/harmony/consensus/engine"
-	"github.com/harmony-one/harmony/core/state"
-	"github.com/harmony-one/harmony/core/vm"
-	"github.com/harmony-one/harmony/crypto/hash"
-	"github.com/harmony-one/harmony/numeric"
-	"github.com/harmony-one/harmony/shard"
-	"github.com/harmony-one/harmony/staking/effective"
-	staking "github.com/harmony-one/harmony/staking/types"
-	staketest "github.com/harmony-one/harmony/staking/types/test"
 )
 
 const (

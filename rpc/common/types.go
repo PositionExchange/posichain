@@ -3,10 +3,10 @@ package common
 import (
 	"encoding/json"
 
-	harmonyconfig "github.com/harmony-one/harmony/internal/configs/harmony"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
+	harmonyconfig "github.com/PositionExchange/posichain/internal/configs/harmony"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 
-	"github.com/harmony-one/harmony/internal/params"
+	"github.com/PositionExchange/posichain/internal/params"
 	"github.com/libp2p/go-libp2p-core/peer"
 )
 

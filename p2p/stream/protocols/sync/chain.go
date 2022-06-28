@@ -1,11 +1,11 @@
 package sync
 
 import (
+	"github.com/PositionExchange/posichain/block"
+	"github.com/PositionExchange/posichain/consensus/engine"
+	"github.com/PositionExchange/posichain/core/types"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/block"
-	"github.com/harmony-one/harmony/consensus/engine"
-	"github.com/harmony-one/harmony/core/types"
-	shardingconfig "github.com/harmony-one/harmony/internal/configs/sharding"
 	"github.com/pkg/errors"
 )
 

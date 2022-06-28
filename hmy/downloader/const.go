@@ -3,8 +3,8 @@ package downloader
 import (
 	"time"
 
-	"github.com/harmony-one/harmony/core/types"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
+	"github.com/PositionExchange/posichain/core/types"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 )
 
 const (

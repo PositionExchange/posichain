@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/harmony-one/harmony/crypto/bls"
-	"github.com/harmony-one/harmony/numeric"
+	"github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/numeric"
 
-	"github.com/harmony-one/harmony/internal/genesis"
+	"github.com/PositionExchange/posichain/internal/genesis"
 )
 
 // Schedule returns the sharding configuration instance for the given

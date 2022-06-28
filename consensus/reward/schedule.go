@@ -4,10 +4,10 @@ import (
 	"sort"
 	"time"
 
-	shardingconfig "github.com/harmony-one/harmony/internal/configs/sharding"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/numeric"
-	"github.com/harmony-one/harmony/shard"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/numeric"
+	"github.com/PositionExchange/posichain/shard"
 )
 
 type pair struct {

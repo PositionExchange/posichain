@@ -29,9 +29,9 @@ import (
 	"github.com/ethereum/go-ethereum/event"
 	"github.com/rs/zerolog"
 
-	"github.com/harmony-one/harmony/block"
-	"github.com/harmony-one/harmony/core/rawdb"
-	"github.com/harmony-one/harmony/internal/utils"
+	"github.com/PositionExchange/posichain/block"
+	"github.com/PositionExchange/posichain/core/rawdb"
+	"github.com/PositionExchange/posichain/internal/utils"
 )
 
 // ChainIndexerBackend defines the methods needed to process chain segments in

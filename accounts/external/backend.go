@@ -21,15 +21,15 @@ import (
 	"math/big"
 	"sync"
 
+	"github.com/PositionExchange/posichain/accounts"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/eth/rpc"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/event"
 	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/signer/core"
-	"github.com/harmony-one/harmony/accounts"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/eth/rpc"
 )
 
 // ExternalBackend is a struct for external backend

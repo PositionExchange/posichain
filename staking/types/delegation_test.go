@@ -4,8 +4,8 @@ import (
 	"math/big"
 	"testing"
 
+	common2 "github.com/PositionExchange/posichain/internal/common"
 	common "github.com/ethereum/go-ethereum/common"
-	common2 "github.com/harmony-one/harmony/internal/common"
 )
 
 var (

@@ -4,17 +4,17 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/PositionExchange/posichain/consensus"
+	"github.com/PositionExchange/posichain/consensus/quorum"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/crypto/bls"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/multibls"
+	"github.com/PositionExchange/posichain/p2p"
+	"github.com/PositionExchange/posichain/shard"
+	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/consensus"
-	"github.com/harmony-one/harmony/consensus/quorum"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/crypto/bls"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/multibls"
-	"github.com/harmony-one/harmony/p2p"
-	"github.com/harmony-one/harmony/shard"
-	staking "github.com/harmony-one/harmony/staking/types"
 )
 
 func TestAddNewBlock(t *testing.T) {

@@ -1,8 +1,8 @@
 package types
 
 import (
-	"github.com/harmony-one/harmony/block"
-	"github.com/harmony-one/harmony/staking/types"
+	"github.com/PositionExchange/posichain/block"
+	"github.com/PositionExchange/posichain/staking/types"
 )
 
 // BodyFieldSetter is a body field setter.

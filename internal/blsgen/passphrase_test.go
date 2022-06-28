@@ -11,8 +11,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/PositionExchange/posichain/crypto/bls"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/crypto/bls"
 )
 
 func TestNewPassDecrypter(t *testing.T) {

@@ -7,13 +7,13 @@ import (
 
 	"github.com/pkg/errors"
 
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/crypto/bls"
+	internal_common "github.com/PositionExchange/posichain/internal/common"
+	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/crypto/bls"
-	internal_common "github.com/harmony-one/harmony/internal/common"
-	staking "github.com/harmony-one/harmony/staking/types"
 )
 
 // BlockWithTxHash represents a block that will serialize to the RPC representation of a block

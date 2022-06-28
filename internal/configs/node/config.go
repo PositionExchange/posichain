@@ -10,12 +10,12 @@ import (
 	"sync"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
-	"github.com/harmony-one/harmony/crypto/bls"
-	shardingconfig "github.com/harmony-one/harmony/internal/configs/sharding"
-	"github.com/harmony-one/harmony/internal/params"
-	"github.com/harmony-one/harmony/multibls"
-	"github.com/harmony-one/harmony/shard"
-	"github.com/harmony-one/harmony/webhooks"
+	"github.com/PositionExchange/posichain/crypto/bls"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
+	"github.com/PositionExchange/posichain/internal/params"
+	"github.com/PositionExchange/posichain/multibls"
+	"github.com/PositionExchange/posichain/shard"
+	"github.com/PositionExchange/posichain/webhooks"
 	p2p_crypto "github.com/libp2p/go-libp2p-core/crypto"
 	"github.com/libp2p/go-libp2p-core/peer"
 	"github.com/pkg/errors"
@@ -66,7 +66,7 @@ var peerID peer.ID // PeerID of the node
 
 // ConfigType is the structure of all node related configuration variables
 type ConfigType struct {
-	// The three groupID design, please refer to https://github.com/harmony-one/harmony/blob/master/node/node.md#libp2p-integration
+	// The three groupID design, please refer to https://github.com/PositionExchange/posichain/blob/master/node/node.md#libp2p-integration
 	beacon          GroupID             // the beacon group ID
 	group           GroupID             // the group ID of the shard (note: for beacon chain node, the beacon and shard group are the same)
 	client          GroupID             // the client group ID of the shard

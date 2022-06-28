@@ -6,7 +6,7 @@ import (
 	"errors"
 
 	"github.com/PositionExchange/bls/ffi/go/bls"
-	"github.com/harmony-one/harmony/crypto/vrf"
+	"github.com/PositionExchange/posichain/crypto/vrf"
 )
 
 var (

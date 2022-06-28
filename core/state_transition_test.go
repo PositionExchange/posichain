@@ -6,10 +6,10 @@ import (
 	"math"
 	"testing"
 
+	"github.com/PositionExchange/posichain/core/vm"
+	"github.com/PositionExchange/posichain/internal/params"
+	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/harmony-one/harmony/core/vm"
-	"github.com/harmony-one/harmony/internal/params"
-	staking "github.com/harmony-one/harmony/staking/types"
 	"github.com/pkg/errors"
 )
 

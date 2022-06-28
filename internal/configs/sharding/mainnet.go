@@ -3,11 +3,11 @@ package shardingconfig
 import (
 	"math/big"
 
-	"github.com/harmony-one/harmony/internal/params"
+	"github.com/PositionExchange/posichain/internal/params"
 
-	"github.com/harmony-one/harmony/numeric"
+	"github.com/PositionExchange/posichain/numeric"
 
-	"github.com/harmony-one/harmony/internal/genesis"
+	"github.com/PositionExchange/posichain/internal/genesis"
 )
 
 const (

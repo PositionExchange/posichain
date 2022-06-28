@@ -30,8 +30,8 @@ import (
 	"text/template"
 	"unicode"
 
+	"github.com/PositionExchange/posichain/accounts/abi"
 	"github.com/ethereum/go-ethereum/log"
-	"github.com/harmony-one/harmony/accounts/abi"
 )
 
 // Lang is a target programming language selector to generate bindings for.

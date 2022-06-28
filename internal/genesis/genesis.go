@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
+	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/harmony-one/harmony/internal/utils"
 )
 
 const Signature = "https://posichain.org 'Open Consensus for 10B' 2022.06.06 $POSI"

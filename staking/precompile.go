@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"strings"
 
+	"github.com/PositionExchange/posichain/accounts/abi"
+	stakingTypes "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/accounts/abi"
-	stakingTypes "github.com/harmony-one/harmony/staking/types"
 	"github.com/pkg/errors"
 )
 

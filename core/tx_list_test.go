@@ -20,8 +20,8 @@ import (
 	"math/rand"
 	"testing"
 
+	"github.com/PositionExchange/posichain/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/harmony-one/harmony/core/types"
 )
 
 // Tests that transactions can be added to strict lists and list contents and

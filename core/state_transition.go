@@ -20,12 +20,12 @@ import (
 	"fmt"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/core/vm"
+	"github.com/PositionExchange/posichain/internal/utils"
+	stakingTypes "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/core/vm"
-	"github.com/harmony-one/harmony/internal/utils"
-	stakingTypes "github.com/harmony-one/harmony/staking/types"
 	"github.com/pkg/errors"
 )
 

@@ -1,9 +1,9 @@
 package hmy
 
 import (
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
-	commonRPC "github.com/harmony-one/harmony/rpc/common"
-	"github.com/harmony-one/harmony/staking/network"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	commonRPC "github.com/PositionExchange/posichain/rpc/common"
+	"github.com/PositionExchange/posichain/staking/network"
 	"github.com/libp2p/go-libp2p-core/peer"
 )
 

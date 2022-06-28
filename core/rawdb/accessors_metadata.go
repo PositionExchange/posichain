@@ -20,10 +20,10 @@ import (
 	"encoding/json"
 	"errors"
 
+	"github.com/PositionExchange/posichain/internal/params"
+	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/harmony-one/harmony/internal/params"
-	"github.com/harmony-one/harmony/internal/utils"
 )
 
 // ReadDatabaseVersion retrieves the version number of the database.

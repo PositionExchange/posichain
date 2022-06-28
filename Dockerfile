@@ -29,7 +29,7 @@ RUN mkdir ~/bin && \
 
 RUN eval "$(~/bin/gimme ${GIMME_GO_VERSION})"
 
-RUN git clone https://github.com/harmony-one/harmony.git ${HMY_PATH}/harmony
+RUN git clone https://github.com/PositionExchange/posichain.git ${HMY_PATH}/harmony
 
 RUN git clone https://github.com/PositionExchange/bls.git ${HMY_PATH}/bls
 

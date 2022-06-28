@@ -1,4 +1,4 @@
-module github.com/harmony-one/harmony
+module github.com/PositionExchange/posichain
 
 go 1.16
 

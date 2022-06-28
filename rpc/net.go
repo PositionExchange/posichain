@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/PositionExchange/posichain/eth/rpc"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/p2p"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/harmony-one/harmony/eth/rpc"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/p2p"
 )
 
 // PublicNetService offers network related RPC methods

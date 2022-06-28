@@ -6,9 +6,9 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/PositionExchange/posichain/common/denominations"
+	stakingTypes "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/common/denominations"
-	stakingTypes "github.com/harmony-one/harmony/staking/types"
 )
 
 func TestValidateContractAddress(t *testing.T) {

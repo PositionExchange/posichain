@@ -20,9 +20,9 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/PositionExchange/posichain/core/state"
+	"github.com/PositionExchange/posichain/internal/params"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/core/state"
-	"github.com/harmony-one/harmony/internal/params"
 )
 
 type dummyContractRef struct {

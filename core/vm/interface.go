@@ -19,11 +19,11 @@ package vm
 import (
 	"math/big"
 
-	"github.com/harmony-one/harmony/numeric"
+	"github.com/PositionExchange/posichain/numeric"
 
+	"github.com/PositionExchange/posichain/core/types"
+	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/core/types"
-	staking "github.com/harmony-one/harmony/staking/types"
 )
 
 // StateDB is an EVM database for full state querying.

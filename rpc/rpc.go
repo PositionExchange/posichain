@@ -6,14 +6,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/harmony-one/harmony/eth/rpc"
-	"github.com/harmony-one/harmony/hmy"
-	"github.com/harmony-one/harmony/internal/configs/harmony"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
-	"github.com/harmony-one/harmony/internal/utils"
-	eth "github.com/harmony-one/harmony/rpc/eth"
-	v1 "github.com/harmony-one/harmony/rpc/v1"
-	v2 "github.com/harmony-one/harmony/rpc/v2"
+	"github.com/PositionExchange/posichain/eth/rpc"
+	"github.com/PositionExchange/posichain/hmy"
+	"github.com/PositionExchange/posichain/internal/configs/harmony"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/PositionExchange/posichain/internal/utils"
+	eth "github.com/PositionExchange/posichain/rpc/eth"
+	v1 "github.com/PositionExchange/posichain/rpc/v1"
+	v2 "github.com/PositionExchange/posichain/rpc/v2"
 )
 
 // Version enum

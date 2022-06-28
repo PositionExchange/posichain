@@ -7,12 +7,12 @@ import (
 	"fmt"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/block"
+	"github.com/PositionExchange/posichain/core/types"
+	syncpb "github.com/PositionExchange/posichain/p2p/stream/protocols/sync/message"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
 	protobuf "github.com/golang/protobuf/proto"
-	"github.com/harmony-one/harmony/block"
-	"github.com/harmony-one/harmony/core/types"
-	syncpb "github.com/harmony-one/harmony/p2p/stream/protocols/sync/message"
 )
 
 type testChainHelper struct{}

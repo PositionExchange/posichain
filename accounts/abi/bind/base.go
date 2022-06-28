@@ -22,12 +22,12 @@ import (
 	"fmt"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/accounts/abi"
+	"github.com/PositionExchange/posichain/core/types"
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/event"
-	"github.com/harmony-one/harmony/accounts/abi"
-	"github.com/harmony-one/harmony/core/types"
 )
 
 // SignerFn is a signer function callback when a contract requires a method to

@@ -4,10 +4,10 @@ import (
 	"reflect"
 	"testing"
 
+	blockfactory "github.com/PositionExchange/posichain/block/factory"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	ethRawDB "github.com/ethereum/go-ethereum/core/rawdb"
-	blockfactory "github.com/harmony-one/harmony/block/factory"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
 )
 
 func TestSnapdbInfo(t *testing.T) {

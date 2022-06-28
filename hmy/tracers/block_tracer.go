@@ -24,9 +24,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/PositionExchange/posichain/core/vm"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/harmony-one/harmony/core/vm"
 )
 
 type action struct {

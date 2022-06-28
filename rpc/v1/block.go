@@ -1,8 +1,8 @@
 package v1
 
 import (
-	"github.com/harmony-one/harmony/core/types"
-	rpc_common "github.com/harmony-one/harmony/rpc/common"
+	"github.com/PositionExchange/posichain/core/types"
+	rpc_common "github.com/PositionExchange/posichain/rpc/common"
 	"github.com/pkg/errors"
 )
 

@@ -6,14 +6,14 @@ import (
 	"testing"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
-	harmony_bls "github.com/harmony-one/harmony/crypto/bls"
-	shardingconfig "github.com/harmony-one/harmony/internal/configs/sharding"
-	"github.com/harmony-one/harmony/numeric"
-	"github.com/harmony-one/harmony/shard"
+	harmony_bls "github.com/PositionExchange/posichain/crypto/bls"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
+	"github.com/PositionExchange/posichain/numeric"
+	"github.com/PositionExchange/posichain/shard"
 	"github.com/stretchr/testify/assert"
 
+	"github.com/PositionExchange/posichain/crypto/bls"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/crypto/bls"
 )
 
 func TestPhaseStrings(t *testing.T) {

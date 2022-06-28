@@ -1,9 +1,9 @@
 package downloader
 
 import (
+	"github.com/PositionExchange/posichain/core"
+	"github.com/PositionExchange/posichain/p2p"
 	"github.com/harmony-one/abool"
-	"github.com/harmony-one/harmony/core"
-	"github.com/harmony-one/harmony/p2p"
 )
 
 // Downloaders is the set of downloaders

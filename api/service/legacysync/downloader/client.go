@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	pb "github.com/harmony-one/harmony/api/service/legacysync/downloader/proto"
-	"github.com/harmony-one/harmony/internal/utils"
+	pb "github.com/PositionExchange/posichain/api/service/legacysync/downloader/proto"
+	"github.com/PositionExchange/posichain/internal/utils"
 	"google.golang.org/grpc"
 )
 

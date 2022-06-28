@@ -15,8 +15,8 @@ import (
 	"sync"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/crypto/bls"
 	p2p_crypto "github.com/libp2p/go-libp2p-core/crypto"
 	"github.com/pkg/errors"
 )

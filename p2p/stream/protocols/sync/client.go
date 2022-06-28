@@ -6,12 +6,12 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/PositionExchange/posichain/core/types"
+	syncpb "github.com/PositionExchange/posichain/p2p/stream/protocols/sync/message"
+	sttypes "github.com/PositionExchange/posichain/p2p/stream/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
 	protobuf "github.com/golang/protobuf/proto"
-	"github.com/harmony-one/harmony/core/types"
-	syncpb "github.com/harmony-one/harmony/p2p/stream/protocols/sync/message"
-	sttypes "github.com/harmony-one/harmony/p2p/stream/types"
 	"github.com/pkg/errors"
 )
 

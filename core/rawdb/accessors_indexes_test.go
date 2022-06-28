@@ -22,17 +22,17 @@ import (
 
 	"github.com/ethereum/go-ethereum/core/rawdb"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
-	blockfactory "github.com/harmony-one/harmony/block/factory"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/crypto/hash"
-	"github.com/harmony-one/harmony/numeric"
-	staking "github.com/harmony-one/harmony/staking/types"
+	blockfactory "github.com/PositionExchange/posichain/block/factory"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/crypto/hash"
+	"github.com/PositionExchange/posichain/numeric"
+	staking "github.com/PositionExchange/posichain/staking/types"
 )
 
 var (

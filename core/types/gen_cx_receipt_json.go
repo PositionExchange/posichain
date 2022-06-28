@@ -5,9 +5,9 @@ import (
 	"errors"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/block"
+	internal_common "github.com/PositionExchange/posichain/internal/common"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/block"
-	internal_common "github.com/harmony-one/harmony/internal/common"
 )
 
 // MarshalJSON marshals as JSON.

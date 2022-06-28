@@ -3,13 +3,13 @@ package downloader
 import (
 	"context"
 
+	"github.com/PositionExchange/posichain/consensus/engine"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/p2p/stream/common/streammanager"
+	syncproto "github.com/PositionExchange/posichain/p2p/stream/protocols/sync"
+	sttypes "github.com/PositionExchange/posichain/p2p/stream/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/event"
-	"github.com/harmony-one/harmony/consensus/engine"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/p2p/stream/common/streammanager"
-	syncproto "github.com/harmony-one/harmony/p2p/stream/protocols/sync"
-	sttypes "github.com/harmony-one/harmony/p2p/stream/types"
 )
 
 type syncProtocol interface {

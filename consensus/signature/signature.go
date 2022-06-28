@@ -4,8 +4,8 @@ import (
 	"encoding/binary"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/internal/params"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/internal/params"
 )
 
 type signatureChainReader interface {

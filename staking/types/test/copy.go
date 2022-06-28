@@ -3,9 +3,9 @@ package staketest
 import (
 	"math/big"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
-	staking "github.com/harmony-one/harmony/staking/types"
+	staking "github.com/PositionExchange/posichain/staking/types"
 )
 
 // CopyValidatorWrapper deep copies staking.ValidatorWrapper

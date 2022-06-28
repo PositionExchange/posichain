@@ -4,9 +4,9 @@ import (
 	"sync/atomic"
 	"testing"
 
-	msg_pb "github.com/harmony-one/harmony/api/proto/message"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
-	"github.com/harmony-one/harmony/test/helpers"
+	msg_pb "github.com/PositionExchange/posichain/api/proto/message"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/PositionExchange/posichain/test/helpers"
 	"github.com/stretchr/testify/assert"
 )
 

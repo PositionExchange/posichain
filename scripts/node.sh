@@ -9,7 +9,7 @@ set -eu
 # Example: HARMONY_RELEASE=v3.0.0 ./node.sh harmony
 
 HARMONY_SIGNING_KEY=539910B02B5BAC637F6615C9799ACE3A9B83DF60
-DOWNLOAD_URL=https://github.com/harmony-one/harmony/releases/download
+DOWNLOAD_URL=https://github.com/PositionExchange/posichain/releases/download
 HARMONY_PUB_KEY=https://harmony.one/releases/pgp_keys.asc
 version="v3 20201206.0"
 
@@ -33,7 +33,7 @@ get_version() {
     else
         # Find the latest Harmony release available for download.
         readonly reason="automatically selected latest available release"
-        harmony_rel=$(curl -f -s https://harmony.one/releases/latest) || (color "31" "Get latest version failed. You may manually download the binaries from Github release page. https://github.com/harmony-one/harmony/releases/" && exit 1)
+        harmony_rel=$(curl -f -s https://harmony.one/releases/latest) || (color "31" "Get latest version failed. You may manually download the binaries from Github release page. https://github.com/PositionExchange/posichain/releases/" && exit 1)
         readonly harmony_rel
     fi
 }
@@ -73,7 +73,7 @@ failed_verification() {
         cat <<-END
 Failed to verify Harmony binary. Please erase downloads in the
 staging directory and run this script again. Alternatively, you can use a
-A prior version by specifying environment variable HARMONY_RELEASE 
+A prior version by specifying environment variable HARMONY_RELEASE
 with the specific version, as desired. Example: HARMONY_RELEASE=v2.4.0
 If you must wish to continue running an unverified binary, specific the
 environment variable HARMONY_UNVERIFIED=1

@@ -7,10 +7,10 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
+	"github.com/PositionExchange/posichain/staking/effective"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/staking/effective"
 )
 
 var (

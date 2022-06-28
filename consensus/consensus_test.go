@@ -4,15 +4,15 @@ import (
 	"testing"
 	"time"
 
+	"github.com/PositionExchange/posichain/consensus/quorum"
+	"github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/multibls"
+	"github.com/PositionExchange/posichain/p2p"
+	"github.com/PositionExchange/posichain/shard"
+	"github.com/PositionExchange/posichain/staking/slash"
+	"github.com/PositionExchange/posichain/test/helpers"
 	"github.com/harmony-one/abool"
-	"github.com/harmony-one/harmony/consensus/quorum"
-	"github.com/harmony-one/harmony/crypto/bls"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/multibls"
-	"github.com/harmony-one/harmony/p2p"
-	"github.com/harmony-one/harmony/shard"
-	"github.com/harmony-one/harmony/staking/slash"
-	"github.com/harmony-one/harmony/test/helpers"
 	"github.com/stretchr/testify/assert"
 )
 

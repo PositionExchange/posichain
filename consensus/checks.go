@@ -5,11 +5,11 @@ import (
 	"encoding/binary"
 
 	libbls "github.com/PositionExchange/bls/ffi/go/bls"
+	msg_pb "github.com/PositionExchange/posichain/api/proto/message"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/hash"
 	protobuf "github.com/golang/protobuf/proto"
-	msg_pb "github.com/harmony-one/harmony/api/proto/message"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/crypto/bls"
-	"github.com/harmony-one/harmony/crypto/hash"
 	"github.com/pkg/errors"
 )
 

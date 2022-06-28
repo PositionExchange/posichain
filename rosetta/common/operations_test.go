@@ -6,8 +6,8 @@ import (
 	"sort"
 	"testing"
 
+	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/coinbase/rosetta-sdk-go/types"
-	staking "github.com/harmony-one/harmony/staking/types"
 )
 
 // WARNING: Careful for client side dependencies when changing operation status!

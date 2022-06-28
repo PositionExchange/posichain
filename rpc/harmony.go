@@ -4,9 +4,9 @@ import (
 	"context"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/eth/rpc"
+	"github.com/PositionExchange/posichain/hmy"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/harmony-one/harmony/eth/rpc"
-	"github.com/harmony-one/harmony/hmy"
 )
 
 // PublicHarmonyService provides an API to access Harmony related information.

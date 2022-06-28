@@ -7,8 +7,8 @@ import (
 	"sync"
 	"testing"
 
+	sttypes "github.com/PositionExchange/posichain/p2p/stream/types"
 	"github.com/ethereum/go-ethereum/common"
-	sttypes "github.com/harmony-one/harmony/p2p/stream/types"
 	"github.com/rs/zerolog"
 )
 

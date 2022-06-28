@@ -6,9 +6,9 @@ import (
 	"sort"
 	"testing"
 
+	"github.com/PositionExchange/posichain/rosetta/common"
+	commonRPC "github.com/PositionExchange/posichain/rpc/common"
 	"github.com/coinbase/rosetta-sdk-go/types"
-	"github.com/harmony-one/harmony/rosetta/common"
-	commonRPC "github.com/harmony-one/harmony/rpc/common"
 	"github.com/libp2p/go-libp2p-core/peer"
 )
 

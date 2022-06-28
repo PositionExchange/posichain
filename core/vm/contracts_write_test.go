@@ -6,13 +6,13 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/PositionExchange/posichain/core/state"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/internal/params"
+	stakingTypes "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/rawdb"
 	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/harmony-one/harmony/core/state"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/internal/params"
-	stakingTypes "github.com/harmony-one/harmony/staking/types"
 )
 
 type writeCapablePrecompileTest struct {

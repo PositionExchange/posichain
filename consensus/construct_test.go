@@ -5,14 +5,14 @@ import (
 	"testing"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
+	msg_pb "github.com/PositionExchange/posichain/api/proto/message"
+	"github.com/PositionExchange/posichain/consensus/quorum"
+	"github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/multibls"
+	"github.com/PositionExchange/posichain/p2p"
+	"github.com/PositionExchange/posichain/shard"
 	"github.com/ethereum/go-ethereum/common"
-	msg_pb "github.com/harmony-one/harmony/api/proto/message"
-	"github.com/harmony-one/harmony/consensus/quorum"
-	"github.com/harmony-one/harmony/crypto/bls"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/multibls"
-	"github.com/harmony-one/harmony/p2p"
-	"github.com/harmony-one/harmony/shard"
 	"github.com/pkg/errors"
 )
 

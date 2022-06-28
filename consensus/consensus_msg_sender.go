@@ -5,10 +5,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	msg_pb "github.com/harmony-one/harmony/api/proto/message"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/p2p"
+	msg_pb "github.com/PositionExchange/posichain/api/proto/message"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/p2p"
 )
 
 const (

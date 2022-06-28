@@ -10,20 +10,20 @@ import (
 
 	"github.com/ethereum/go-ethereum/core/rawdb"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
+	blockfactory "github.com/PositionExchange/posichain/block/factory"
+	consensus_sig "github.com/PositionExchange/posichain/consensus/signature"
+	"github.com/PositionExchange/posichain/consensus/votepower"
+	"github.com/PositionExchange/posichain/core/state"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/internal/params"
+	"github.com/PositionExchange/posichain/numeric"
+	"github.com/PositionExchange/posichain/shard"
+	"github.com/PositionExchange/posichain/staking/effective"
+	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
-	blockfactory "github.com/harmony-one/harmony/block/factory"
-	consensus_sig "github.com/harmony-one/harmony/consensus/signature"
-	"github.com/harmony-one/harmony/consensus/votepower"
-	"github.com/harmony-one/harmony/core/state"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/internal/params"
-	"github.com/harmony-one/harmony/numeric"
-	"github.com/harmony-one/harmony/shard"
-	"github.com/harmony-one/harmony/staking/effective"
-	staking "github.com/harmony-one/harmony/staking/types"
 )
 
 var (

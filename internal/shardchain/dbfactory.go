@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/harmony-one/harmony/internal/shardchain/leveldb_shard"
-	"github.com/harmony-one/harmony/internal/shardchain/local_cache"
+	"github.com/PositionExchange/posichain/internal/shardchain/leveldb_shard"
+	"github.com/PositionExchange/posichain/internal/shardchain/local_cache"
 
 	"github.com/ethereum/go-ethereum/core/rawdb"
 

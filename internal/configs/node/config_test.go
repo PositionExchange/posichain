@@ -3,11 +3,11 @@ package nodeconfig
 import (
 	"testing"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
-	"github.com/harmony-one/harmony/internal/blsgen"
-	shardingconfig "github.com/harmony-one/harmony/internal/configs/sharding"
-	"github.com/harmony-one/harmony/multibls"
+	"github.com/PositionExchange/posichain/internal/blsgen"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
+	"github.com/PositionExchange/posichain/multibls"
 	"github.com/pkg/errors"
 )
 

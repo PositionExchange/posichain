@@ -3,10 +3,10 @@ package quorum
 import (
 	"math/big"
 
-	"github.com/harmony-one/harmony/consensus/votepower"
-	bls_cosi "github.com/harmony-one/harmony/crypto/bls"
-	"github.com/harmony-one/harmony/numeric"
-	"github.com/harmony-one/harmony/shard"
+	"github.com/PositionExchange/posichain/consensus/votepower"
+	bls_cosi "github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/numeric"
+	"github.com/PositionExchange/posichain/shard"
 	"github.com/pkg/errors"
 )
 

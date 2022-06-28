@@ -6,9 +6,9 @@ import (
 	"math/big"
 	"sort"
 
+	"github.com/PositionExchange/posichain/crypto/hash"
+	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/crypto/hash"
-	common2 "github.com/harmony-one/harmony/internal/common"
 )
 
 var (

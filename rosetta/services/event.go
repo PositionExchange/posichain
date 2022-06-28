@@ -3,9 +3,9 @@ package services
 import (
 	"context"
 
+	hmyTypes "github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/hmy"
 	"github.com/coinbase/rosetta-sdk-go/types"
-	hmyTypes "github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/hmy"
 )
 
 // EventAPI implements the server.EventsAPIServicer interface.

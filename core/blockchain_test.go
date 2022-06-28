@@ -5,10 +5,10 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/PositionExchange/posichain/core/types"
+	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/harmony-one/harmony/core/types"
-	staking "github.com/harmony-one/harmony/staking/types"
 )
 
 func TestPrepareStakingMetadata(t *testing.T) {

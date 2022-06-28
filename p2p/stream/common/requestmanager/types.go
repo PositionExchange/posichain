@@ -5,7 +5,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	sttypes "github.com/harmony-one/harmony/p2p/stream/types"
+	sttypes "github.com/PositionExchange/posichain/p2p/stream/types"
 	"github.com/pkg/errors"
 )
 

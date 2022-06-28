@@ -21,13 +21,13 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/internal/params"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/internal/params"
 
+	"github.com/PositionExchange/posichain/core/state"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/rawdb"
-	"github.com/harmony-one/harmony/core/state"
 )
 
 func TestMemoryGasCost(t *testing.T) {

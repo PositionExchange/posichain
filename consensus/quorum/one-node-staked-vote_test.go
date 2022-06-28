@@ -6,14 +6,14 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
-	shardingconfig "github.com/harmony-one/harmony/internal/configs/sharding"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
+	"github.com/PositionExchange/posichain/numeric"
+	"github.com/PositionExchange/posichain/shard"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/numeric"
-	"github.com/harmony-one/harmony/shard"
 )
 
 var (

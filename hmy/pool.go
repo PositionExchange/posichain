@@ -4,8 +4,8 @@ import (
 	"context"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/core/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/core/types"
 )
 
 // GetPoolStats returns the number of pending and queued transactions

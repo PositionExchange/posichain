@@ -23,15 +23,15 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethdb"
 
-	"github.com/harmony-one/harmony/block"
-	blockfactory "github.com/harmony-one/harmony/block/factory"
-	consensus_engine "github.com/harmony-one/harmony/consensus/engine"
-	"github.com/harmony-one/harmony/core/state"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/core/vm"
-	"github.com/harmony-one/harmony/internal/params"
-	"github.com/harmony-one/harmony/shard"
-	staking "github.com/harmony-one/harmony/staking/types"
+	"github.com/PositionExchange/posichain/block"
+	blockfactory "github.com/PositionExchange/posichain/block/factory"
+	consensus_engine "github.com/PositionExchange/posichain/consensus/engine"
+	"github.com/PositionExchange/posichain/core/state"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/core/vm"
+	"github.com/PositionExchange/posichain/internal/params"
+	"github.com/PositionExchange/posichain/shard"
+	staking "github.com/PositionExchange/posichain/staking/types"
 )
 
 // BlockGen creates blocks for testing.

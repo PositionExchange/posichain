@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"math/big"
 
-	common2 "github.com/harmony-one/harmony/internal/common"
+	common2 "github.com/PositionExchange/posichain/internal/common"
 
 	"github.com/coinbase/rosetta-sdk-go/types"
 
-	"github.com/harmony-one/harmony/rosetta/common"
+	"github.com/PositionExchange/posichain/rosetta/common"
 	"github.com/pkg/errors"
 )
 
@@ -287,8 +287,8 @@ func getCreateValidatorOperationComponents(
 	}
 
 	// slot public key would be add into
-	// https://github.com/harmony-one/harmony/blob/3a8125666817149eaf9cea7870735e26cfe49c87/rosetta/services/tx_construction.go#L16
-	// see https://github.com/harmony-one/harmony/issues/3431
+	// https://github.com/PositionExchange/posichain/blob/3a8125666817149eaf9cea7870735e26cfe49c87/rosetta/services/tx_construction.go#L16
+	// see https://github.com/PositionExchange/posichain/issues/3431
 
 	components := &OperationComponents{
 		Type:           operation.Type,

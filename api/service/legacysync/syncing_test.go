@@ -11,14 +11,14 @@ import (
 	"testing"
 	"time"
 
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 
+	"github.com/PositionExchange/posichain/api/service/legacysync/downloader"
+	"github.com/PositionExchange/posichain/block"
+	headerV3 "github.com/PositionExchange/posichain/block/v3"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/p2p"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/api/service/legacysync/downloader"
-	"github.com/harmony-one/harmony/block"
-	headerV3 "github.com/harmony-one/harmony/block/v3"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/p2p"
 	"github.com/stretchr/testify/assert"
 )
 

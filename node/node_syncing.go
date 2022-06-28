@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	prom "github.com/harmony-one/harmony/api/service/prometheus"
+	prom "github.com/PositionExchange/posichain/api/service/prometheus"
 	"github.com/prometheus/client_golang/prometheus"
 
 	"github.com/ethereum/go-ethereum/common"
@@ -16,19 +16,19 @@ import (
 	lru "github.com/hashicorp/golang-lru"
 	"github.com/pkg/errors"
 
-	"github.com/harmony-one/harmony/api/service"
-	"github.com/harmony-one/harmony/api/service/legacysync"
-	legdownloader "github.com/harmony-one/harmony/api/service/legacysync/downloader"
-	downloader_pb "github.com/harmony-one/harmony/api/service/legacysync/downloader/proto"
-	"github.com/harmony-one/harmony/api/service/synchronize"
-	"github.com/harmony-one/harmony/core"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/hmy/downloader"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/node/worker"
-	"github.com/harmony-one/harmony/p2p"
-	"github.com/harmony-one/harmony/shard"
+	"github.com/PositionExchange/posichain/api/service"
+	"github.com/PositionExchange/posichain/api/service/legacysync"
+	legdownloader "github.com/PositionExchange/posichain/api/service/legacysync/downloader"
+	downloader_pb "github.com/PositionExchange/posichain/api/service/legacysync/downloader/proto"
+	"github.com/PositionExchange/posichain/api/service/synchronize"
+	"github.com/PositionExchange/posichain/core"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/hmy/downloader"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/node/worker"
+	"github.com/PositionExchange/posichain/p2p"
+	"github.com/PositionExchange/posichain/shard"
 )
 
 // Constants related to doing syncing.

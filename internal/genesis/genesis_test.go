@@ -6,9 +6,9 @@ import (
 	"testing"
 
 	"github.com/PositionExchange/bls/ffi/go/bls"
+	"github.com/PositionExchange/posichain/internal/common"
 	"github.com/btcsuite/btcutil/bech32"
 	ethCommon "github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/internal/common"
 )
 
 func TestString(t *testing.T) {

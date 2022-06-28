@@ -3,8 +3,8 @@ package shard
 import (
 	"math/big"
 
-	shardingconfig "github.com/harmony-one/harmony/internal/configs/sharding"
-	"github.com/harmony-one/harmony/internal/utils"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
+	"github.com/PositionExchange/posichain/internal/utils"
 )
 
 const (

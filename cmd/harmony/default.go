@@ -1,8 +1,8 @@
 package main
 
 import (
-	harmonyconfig "github.com/harmony-one/harmony/internal/configs/harmony"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
+	harmonyconfig "github.com/PositionExchange/posichain/internal/configs/harmony"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 )
 
 const tomlConfigVersion = "2.5.3" // bump from 2.5.2 for rpc filters

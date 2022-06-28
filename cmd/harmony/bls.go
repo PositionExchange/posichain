@@ -5,11 +5,11 @@ import (
 	"os"
 	"sync"
 
-	harmonyconfig "github.com/harmony-one/harmony/internal/configs/harmony"
+	harmonyconfig "github.com/PositionExchange/posichain/internal/configs/harmony"
 
-	"github.com/harmony-one/harmony/internal/blsgen"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
-	"github.com/harmony-one/harmony/multibls"
+	"github.com/PositionExchange/posichain/internal/blsgen"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/PositionExchange/posichain/multibls"
 )
 
 var (

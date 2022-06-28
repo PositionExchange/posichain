@@ -6,18 +6,18 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/harmony-one/harmony/crypto/bls"
-	common2 "github.com/harmony-one/harmony/internal/common"
-	"github.com/harmony-one/harmony/numeric"
+	"github.com/PositionExchange/posichain/crypto/bls"
+	common2 "github.com/PositionExchange/posichain/internal/common"
+	"github.com/PositionExchange/posichain/numeric"
 
 	"github.com/coinbase/rosetta-sdk-go/types"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/pkg/errors"
 
-	hmyTypes "github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/rosetta/common"
-	stakingTypes "github.com/harmony-one/harmony/staking/types"
+	hmyTypes "github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/rosetta/common"
+	stakingTypes "github.com/PositionExchange/posichain/staking/types"
 )
 
 const (

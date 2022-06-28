@@ -4,11 +4,11 @@ import (
 	"errors"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/core"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/shard"
+	"github.com/PositionExchange/posichain/shard/committee"
 	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/harmony-one/harmony/core"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/shard"
-	"github.com/harmony-one/harmony/shard/committee"
 )
 
 // genesisInitializer is a shardchain.DBInitializer adapter.

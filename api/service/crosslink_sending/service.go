@@ -1,8 +1,8 @@
 package crosslink_sending
 
 import (
-	"github.com/harmony-one/harmony/core"
-	"github.com/harmony-one/harmony/shard"
+	"github.com/PositionExchange/posichain/core"
+	"github.com/PositionExchange/posichain/shard"
 )
 
 type broadcast interface {

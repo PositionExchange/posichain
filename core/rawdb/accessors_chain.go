@@ -21,11 +21,11 @@ import (
 	"encoding/binary"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/block"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/harmony-one/harmony/block"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/internal/utils"
 )
 
 // MsgNoShardStateFromDB error message for shard state reading failure

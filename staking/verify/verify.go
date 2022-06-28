@@ -4,12 +4,12 @@ import (
 	"math/big"
 
 	"github.com/PositionExchange/bls/ffi/go/bls"
+	"github.com/PositionExchange/posichain/consensus/quorum"
+	"github.com/PositionExchange/posichain/consensus/signature"
+	"github.com/PositionExchange/posichain/core"
+	bls_cosi "github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/shard"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/consensus/quorum"
-	"github.com/harmony-one/harmony/consensus/signature"
-	"github.com/harmony-one/harmony/core"
-	bls_cosi "github.com/harmony-one/harmony/crypto/bls"
-	"github.com/harmony-one/harmony/shard"
 	"github.com/pkg/errors"
 )
 

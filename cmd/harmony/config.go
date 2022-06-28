@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/harmony-one/harmony/internal/cli"
-	harmonyconfig "github.com/harmony-one/harmony/internal/configs/harmony"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
+	"github.com/PositionExchange/posichain/internal/cli"
+	harmonyconfig "github.com/PositionExchange/posichain/internal/configs/harmony"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 	"github.com/pelletier/go-toml"
 	"github.com/spf13/cobra"
 )

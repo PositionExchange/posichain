@@ -24,11 +24,11 @@ import (
 	"github.com/rs/zerolog"
 
 	"github.com/PositionExchange/bls/ffi/go/bls"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/p2p/discovery"
-	"github.com/harmony-one/harmony/p2p/security"
-	sttypes "github.com/harmony-one/harmony/p2p/stream/types"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/p2p/discovery"
+	"github.com/PositionExchange/posichain/p2p/security"
+	sttypes "github.com/PositionExchange/posichain/p2p/stream/types"
 )
 
 type ConnectCallback func(net libp2p_network.Network, conn libp2p_network.Conn) error

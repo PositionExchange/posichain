@@ -21,10 +21,10 @@ import (
 	"fmt"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/core/types"
 	ethereum "github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/event"
-	"github.com/harmony-one/harmony/core/types"
 	"golang.org/x/crypto/sha3"
 )
 

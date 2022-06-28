@@ -5,9 +5,9 @@ import (
 
 	"github.com/ethereum/go-ethereum/rlp"
 
-	"github.com/harmony-one/harmony/block"
-	"github.com/harmony-one/harmony/internal/utils"
-	staking "github.com/harmony-one/harmony/staking/types"
+	"github.com/PositionExchange/posichain/block"
+	"github.com/PositionExchange/posichain/internal/utils"
+	staking "github.com/PositionExchange/posichain/staking/types"
 )
 
 // BodyV0 is the V0 block body

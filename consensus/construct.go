@@ -6,13 +6,13 @@ import (
 
 	protobuf "github.com/golang/protobuf/proto"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
-	"github.com/harmony-one/harmony/api/proto"
-	msg_pb "github.com/harmony-one/harmony/api/proto/message"
-	"github.com/harmony-one/harmony/consensus/quorum"
-	"github.com/harmony-one/harmony/internal/utils"
+	"github.com/PositionExchange/posichain/api/proto"
+	msg_pb "github.com/PositionExchange/posichain/api/proto/message"
+	"github.com/PositionExchange/posichain/consensus/quorum"
+	"github.com/PositionExchange/posichain/internal/utils"
 )
 
 // NetworkMessage is a message intended to be

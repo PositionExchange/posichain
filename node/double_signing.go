@@ -1,9 +1,9 @@
 package node
 
 import (
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/staking/slash"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/staking/slash"
 )
 
 // ProcessSlashCandidateMessage ..

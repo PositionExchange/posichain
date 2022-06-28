@@ -7,9 +7,9 @@ import (
 	goversion "github.com/hashicorp/go-version"
 	"github.com/pelletier/go-toml"
 
-	"github.com/harmony-one/harmony/api/service/legacysync"
-	harmonyconfig "github.com/harmony-one/harmony/internal/configs/harmony"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
+	"github.com/PositionExchange/posichain/api/service/legacysync"
+	harmonyconfig "github.com/PositionExchange/posichain/internal/configs/harmony"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 )
 
 const legacyConfigVersion = "1.0.4"

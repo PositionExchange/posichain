@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
+	hmyTypes "github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/rosetta/common"
+	stakingTypes "github.com/PositionExchange/posichain/staking/types"
 	"github.com/coinbase/rosetta-sdk-go/types"
-	hmyTypes "github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/rosetta/common"
-	stakingTypes "github.com/harmony-one/harmony/staking/types"
 	"github.com/pkg/errors"
 )
 

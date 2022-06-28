@@ -5,8 +5,8 @@ import (
 	"encoding/binary"
 	"testing"
 
-	msg_pb "github.com/harmony-one/harmony/api/proto/message"
-	"github.com/harmony-one/harmony/crypto/bls"
+	msg_pb "github.com/PositionExchange/posichain/api/proto/message"
+	"github.com/PositionExchange/posichain/crypto/bls"
 )
 
 func TestFBFTLog_id(t *testing.T) {

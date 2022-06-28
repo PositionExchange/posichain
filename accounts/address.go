@@ -1,8 +1,8 @@
 package accounts
 
 import (
-	"github.com/harmony-one/harmony/internal/bech32"
-	"github.com/harmony-one/harmony/internal/common"
+	"github.com/PositionExchange/posichain/internal/bech32"
+	"github.com/PositionExchange/posichain/internal/common"
 	"github.com/pkg/errors"
 )
 

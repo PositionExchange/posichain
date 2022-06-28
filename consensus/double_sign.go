@@ -5,10 +5,10 @@ import (
 	"sort"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
+	"github.com/PositionExchange/posichain/consensus/quorum"
+	"github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/staking/slash"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/consensus/quorum"
-	"github.com/harmony-one/harmony/crypto/bls"
-	"github.com/harmony-one/harmony/staking/slash"
 )
 
 // Check for double sign and if any, send it out to beacon chain for slashing.

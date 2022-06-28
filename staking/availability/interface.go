@@ -3,8 +3,8 @@ package availability
 import (
 	"math/big"
 
+	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
-	staking "github.com/harmony-one/harmony/staking/types"
 )
 
 // Reader ..

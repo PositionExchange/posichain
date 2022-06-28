@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 # About The Bounty
-https://github.com/harmony-one/harmony-open/blob/master/README.md
+https://github.com/PositionExchange/posichain-open/blob/master/README.md
 
 # Category
 - [ ] bug

@@ -3,12 +3,12 @@ package staketest
 import (
 	"math/big"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
+	"github.com/PositionExchange/posichain/numeric"
+	"github.com/PositionExchange/posichain/staking/effective"
+	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/numeric"
-	"github.com/harmony-one/harmony/staking/effective"
-	staking "github.com/harmony-one/harmony/staking/types"
 )
 
 var (

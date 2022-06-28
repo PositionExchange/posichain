@@ -19,8 +19,8 @@ package state
 import (
 	"math/big"
 
+	stk "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
-	stk "github.com/harmony-one/harmony/staking/types"
 )
 
 // journalEntry is a modification entry in the state change journal that can be

@@ -9,18 +9,18 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/internal/common"
+	"github.com/PositionExchange/posichain/numeric"
 	common2 "github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/harmony-one/harmony/crypto/bls"
-	"github.com/harmony-one/harmony/internal/common"
-	"github.com/harmony-one/harmony/numeric"
 
 	"github.com/coinbase/rosetta-sdk-go/types"
 	"github.com/ethereum/go-ethereum/crypto"
 
-	hmytypes "github.com/harmony-one/harmony/core/types"
-	stakingTypes "github.com/harmony-one/harmony/staking/types"
-	"github.com/harmony-one/harmony/test/helpers"
+	hmytypes "github.com/PositionExchange/posichain/core/types"
+	stakingTypes "github.com/PositionExchange/posichain/staking/types"
+	"github.com/PositionExchange/posichain/test/helpers"
 )
 
 func TestUnpackWrappedTransactionFromString(t *testing.T) {

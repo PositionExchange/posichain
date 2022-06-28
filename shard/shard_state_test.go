@@ -5,9 +5,9 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/PositionExchange/posichain/numeric"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/harmony-one/harmony/numeric"
 )
 
 var (

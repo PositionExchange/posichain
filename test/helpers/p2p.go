@@ -2,9 +2,9 @@ package helpers
 
 import (
 	"github.com/PositionExchange/bls/ffi/go/bls"
-	harmony_bls "github.com/harmony-one/harmony/crypto/bls"
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
-	"github.com/harmony-one/harmony/p2p"
+	harmony_bls "github.com/PositionExchange/posichain/crypto/bls"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/PositionExchange/posichain/p2p"
 	libp2p_crypto "github.com/libp2p/go-libp2p-crypto"
 	"github.com/pkg/errors"
 )

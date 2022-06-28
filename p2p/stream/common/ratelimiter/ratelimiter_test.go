@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/PositionExchange/posichain/p2p/stream/common/streammanager"
+	sttypes "github.com/PositionExchange/posichain/p2p/stream/types"
 	"github.com/ethereum/go-ethereum/event"
-	"github.com/harmony-one/harmony/p2p/stream/common/streammanager"
-	sttypes "github.com/harmony-one/harmony/p2p/stream/types"
 )
 
 func TestRateLimiter(t *testing.T) {

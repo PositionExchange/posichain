@@ -8,8 +8,8 @@ import (
 	"math/rand"
 	"reflect"
 
+	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/harmony-one/harmony/internal/utils"
 )
 
 // Lengths of hashes in bytes.

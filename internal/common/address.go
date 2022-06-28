@@ -8,11 +8,11 @@ import (
 	"fmt"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/internal/bech32"
+	"github.com/PositionExchange/posichain/internal/utils"
 	ethCommon "github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/harmony-one/harmony/internal/bech32"
-	"github.com/harmony-one/harmony/internal/utils"
 	"github.com/pkg/errors"
 	"golang.org/x/crypto/sha3"
 )

@@ -5,16 +5,16 @@ import (
 	"math/big"
 	"sort"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
+	"github.com/PositionExchange/posichain/consensus/votepower"
+	bls_cosi "github.com/PositionExchange/posichain/crypto/bls"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
+	"github.com/PositionExchange/posichain/multibls"
+	"github.com/PositionExchange/posichain/numeric"
+	"github.com/PositionExchange/posichain/shard"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/consensus/votepower"
-	bls_cosi "github.com/harmony-one/harmony/crypto/bls"
-	shardingconfig "github.com/harmony-one/harmony/internal/configs/sharding"
-	"github.com/harmony-one/harmony/multibls"
-	"github.com/harmony-one/harmony/numeric"
-	"github.com/harmony-one/harmony/shard"
 	"github.com/pkg/errors"
 )
 

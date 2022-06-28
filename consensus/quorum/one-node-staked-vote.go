@@ -5,21 +5,21 @@ import (
 	"encoding/json"
 	"math/big"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
-	"github.com/harmony-one/harmony/internal/utils"
+	"github.com/PositionExchange/posichain/internal/utils"
 
-	nodeconfig "github.com/harmony-one/harmony/internal/configs/node"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
 
-	"github.com/harmony-one/harmony/consensus/votepower"
-	bls_cosi "github.com/harmony-one/harmony/crypto/bls"
-	common2 "github.com/harmony-one/harmony/internal/common"
-	"github.com/harmony-one/harmony/numeric"
-	"github.com/harmony-one/harmony/shard"
+	"github.com/PositionExchange/posichain/consensus/votepower"
+	bls_cosi "github.com/PositionExchange/posichain/crypto/bls"
+	common2 "github.com/PositionExchange/posichain/internal/common"
+	"github.com/PositionExchange/posichain/numeric"
+	"github.com/PositionExchange/posichain/shard"
 )
 
 var (

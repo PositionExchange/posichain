@@ -6,14 +6,14 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
+	"github.com/PositionExchange/posichain/crypto/hash"
+	common2 "github.com/PositionExchange/posichain/internal/common"
+	"github.com/PositionExchange/posichain/internal/genesis"
+	"github.com/PositionExchange/posichain/numeric"
+	"github.com/PositionExchange/posichain/staking/effective"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/crypto/hash"
-	common2 "github.com/harmony-one/harmony/internal/common"
-	"github.com/harmony-one/harmony/internal/genesis"
-	"github.com/harmony-one/harmony/numeric"
-	"github.com/harmony-one/harmony/staking/effective"
 	"github.com/pkg/errors"
 )
 

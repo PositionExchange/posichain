@@ -22,8 +22,8 @@ import (
 	"math/big"
 	"reflect"
 
+	"github.com/PositionExchange/posichain/common/math"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/common/math"
 )
 
 // packBytesSlice packs the given bytes as [L, V] as the canonical representation

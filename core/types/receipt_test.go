@@ -6,8 +6,8 @@ import (
 
 	ethcommon "github.com/ethereum/go-ethereum/common"
 
+	"github.com/PositionExchange/posichain/staking"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/harmony-one/harmony/staking"
 )
 
 func TestFindLogsWithTopic(t *testing.T) {

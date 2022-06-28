@@ -3,15 +3,15 @@ package availability
 import (
 	"math/big"
 
-	"github.com/harmony-one/harmony/core/state"
+	"github.com/PositionExchange/posichain/core/state"
 
+	"github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/numeric"
+	"github.com/PositionExchange/posichain/shard"
+	"github.com/PositionExchange/posichain/staking/effective"
+	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/crypto/bls"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/numeric"
-	"github.com/harmony-one/harmony/shard"
-	"github.com/harmony-one/harmony/staking/effective"
-	staking "github.com/harmony-one/harmony/staking/types"
 	"github.com/pkg/errors"
 )
 

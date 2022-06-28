@@ -6,17 +6,17 @@ import (
 	"strings"
 	"time"
 
-	"github.com/harmony-one/harmony/consensus"
+	"github.com/PositionExchange/posichain/consensus"
 
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
-	staking "github.com/harmony-one/harmony/staking/types"
+	staking "github.com/PositionExchange/posichain/staking/types"
 
+	"github.com/PositionExchange/posichain/core/rawdb"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/shard"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/core/rawdb"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/shard"
 )
 
 // Constants of proposing a new block

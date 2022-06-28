@@ -1,8 +1,8 @@
 package consensus
 
 import (
+	"github.com/PositionExchange/posichain/core/types"
 	"github.com/ethereum/go-ethereum/event"
-	"github.com/harmony-one/harmony/core/types"
 	"github.com/pkg/errors"
 )
 

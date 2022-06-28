@@ -7,15 +7,15 @@ import (
 	"github.com/pkg/errors"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
-	"github.com/harmony-one/harmony/crypto/bls"
+	"github.com/PositionExchange/posichain/crypto/bls"
 
+	"github.com/PositionExchange/posichain/consensus/votepower"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/consensus/votepower"
 
-	bls_cosi "github.com/harmony-one/harmony/crypto/bls"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/numeric"
-	"github.com/harmony-one/harmony/shard"
+	bls_cosi "github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/numeric"
+	"github.com/PositionExchange/posichain/shard"
 )
 
 type uniformVoteWeight struct {

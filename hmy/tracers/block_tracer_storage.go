@@ -22,9 +22,9 @@ import (
 	"fmt"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/crypto/hash"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/harmony-one/harmony/crypto/hash"
 )
 
 type ActionStorage struct {

@@ -3,7 +3,7 @@ dist: bionic
 language: go
 go:
   - 1.16
-go_import_path: github.com/harmony-one/harmony
+go_import_path: github.com/PositionExchange/posichain
 cache:
   directories:
     - docker_images
@@ -14,7 +14,7 @@ env:
   - TEST="bash ./scripts/travis_rosetta_checker.sh"
 install:
   # default working directory with source code is automatically set to
-  #   /home/travis/gopath/src/github.com/harmony-one/harmony
+  #   /home/travis/gopath/src/github.com/PositionExchange/posichain
   # https://docs.travis-ci.com/user/languages/go/#go-import-path
   - git clone https://github.com/PositionExchange/mcl.git $HOME/gopath/src/github.com/PositionExchange/mcl
   - git clone https://github.com/PositionExchange/bls.git $HOME/gopath/src/github.com/PositionExchange/bls

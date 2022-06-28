@@ -20,10 +20,10 @@ import (
 	"errors"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/internal/params"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/math"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/internal/params"
 	"golang.org/x/crypto/sha3"
 )
 

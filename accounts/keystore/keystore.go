@@ -33,12 +33,12 @@ import (
 	"sync"
 	"time"
 
+	"github.com/PositionExchange/posichain/accounts"
+	"github.com/PositionExchange/posichain/core/types"
+	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/event"
-	"github.com/harmony-one/harmony/accounts"
-	"github.com/harmony-one/harmony/core/types"
-	staking "github.com/harmony-one/harmony/staking/types"
 )
 
 // ErrLocked ...
