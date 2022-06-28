@@ -89,6 +89,7 @@ jobs:
           echo %_signature gpg >> $HOME/.rpmmacros && echo "%_gpg_name Posichain (posichain.org)" >> $HOME/.rpmmacros
           make rpm
           mv ./bin/harmony ./bin/posichain-amd64
+          mv ./bin/bootnode ./bin/bootnode-amd64
           mv $HOME/debbuild/posichain-$build_version-$build_release.deb ./bin/
           mv $HOME/rpmbuild/RPMS/x86_64/posichain-$build_version-$build_release.x86_64.rpm ./bin/
         working-directory: posichain
@@ -178,36 +179,6 @@ jobs:
           prerelease: false
           body_path: ./posichain/tag_message.md
 
-      - name: Upload posichain binary for Linux
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./posichain-amd64
-          asset_name: posichain
-          asset_content_type: application/octet-stream
-
-      - name: Upload posichain deb package for Linux
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./posichain-${{ env.build_version }}-${{ env.build_release }}.deb
-          asset_name: posichain-${{ env.build_version }}.deb
-          asset_content_type: application/x-deb
-
-      - name: Upload posichain rpm package for Linux
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./posichain-${{ env.build_version }}-${{ env.build_release }}.x86_64.rpm
-          asset_name: posichain-${{ env.build_version }}.x86_64.rpm
-          asset_content_type: application/x-rpm
-
       - name: Upload posichain amd64 binary for Linux
         uses: actions/upload-release-asset@v1
         env:
@@ -238,6 +209,26 @@ jobs:
           asset_name: posichain-amd64.sig
           asset_content_type: application/octet-stream
 
+      - name: Upload posichain deb package for Linux
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./posichain-${{ env.build_version }}-${{ env.build_release }}.deb
+          asset_name: posichain-${{ env.build_version }}.deb
+          asset_content_type: application/x-deb
+
+      - name: Upload posichain rpm package for Linux
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./posichain-${{ env.build_version }}-${{ env.build_release }}.x86_64.rpm
+          asset_name: posichain-${{ env.build_version }}.x86_64.rpm
+          asset_content_type: application/x-rpm
+
       - name: Upload posichain binary for MacOS
         uses: actions/upload-release-asset@v1
         env:
@@ -257,3 +248,13 @@ jobs:
           asset_path: ./posichain-macos.zip.sha256
           asset_name: posichain-macos.zip.sha256
           asset_content_type: text/plain
+
+      - name: Upload bootnode amd64 binary for Linux
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bootnode-amd64
+          asset_name: bootnode-amd64
+          asset_content_type: application/octet-stream
