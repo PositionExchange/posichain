@@ -6,22 +6,22 @@ case "${0}" in
 *) progdir=.;;
 esac
 
-case "${HMY_PATH+set}" in
+case "${BASE_PATH+set}" in
 "")
    unset -v gopath
    gopath=$(go env GOPATH)
-   # HMY_PATH is the common root directory of all harmony repos
-   HMY_PATH="${gopath%%:*}/src/github.com/harmony-one"
-   if [ ! -d $HMY_PATH ]; then
+   # BASE_PATH is the common root directory of all harmony repos
+   BASE_PATH="${gopath%%:*}/src/github.com/PositionExchange"
+   if [ ! -d $BASE_PATH ]; then
       # "env pwd" uses external pwd(1) implementation and not the Bash built-in,
       # which does not fully dereference symlinks.
-      HMY_PATH=$(cd $progdir/../.. && env pwd)
+      BASE_PATH=$(cd $progdir/../.. && env pwd)
    fi
    ;;
 esac
 : ${OPENSSL_DIR="/usr/local/opt/openssl"}
-: ${MCL_DIR="${HMY_PATH}/mcl"}
-: ${BLS_DIR="${HMY_PATH}/bls"}
+: ${MCL_DIR="${BASE_PATH}/mcl"}
+: ${BLS_DIR="${BASE_PATH}/bls"}
 export CGO_CFLAGS="-I${BLS_DIR}/include -I${MCL_DIR}/include"
 export CGO_LDFLAGS="-L${BLS_DIR}/lib"
 export LD_LIBRARY_PATH=${BLS_DIR}/lib:${MCL_DIR}/lib
