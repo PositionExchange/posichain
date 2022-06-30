@@ -92,9 +92,9 @@ jobs:
           mv ./bin/bootnode ./bin/bootnode-amd64
           mv $HOME/debbuild/posichain-$build_version-$build_release.deb ./bin/
           mv $HOME/rpmbuild/RPMS/x86_64/posichain-$build_version-$build_release.x86_64.rpm ./bin/
-          ./bin/posichain-amd64 dumpconfig ./bin/posichain-mainnet.conf --network=mainnet
-          ./bin/posichain-amd64 dumpconfig ./bin/posichain-testnet.conf --network=testnet
-          ./bin/posichain-amd64 dumpconfig ./bin/posichain-devnet.conf --network=devnet
+          ./bin/posichain-amd64 dumpconfig ./bin/posichain-mainnet.conf -n=mainnet
+          ./bin/posichain-amd64 dumpconfig ./bin/posichain-testnet.conf -n=testnet
+          ./bin/posichain-amd64 dumpconfig ./bin/posichain-devnet.conf -n=devnet
         working-directory: posichain
 
       - name: Build posichain binary and packages for MacOS
