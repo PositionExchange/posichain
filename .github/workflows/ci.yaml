@@ -88,13 +88,13 @@ jobs:
           make deb
           echo %_signature gpg >> $HOME/.rpmmacros && echo "%_gpg_name Posichain (posichain.org)" >> $HOME/.rpmmacros
           make rpm
-          ./bin/harmony dump ./bin/posichain-mainnet.conf --network=mainnet
-          ./bin/harmony dump ./bin/posichain-testnet.conf --network=testnet
-          ./bin/harmony dump ./bin/posichain-devnet.conf --network=devnet
           mv ./bin/harmony ./bin/posichain-amd64
           mv ./bin/bootnode ./bin/bootnode-amd64
           mv $HOME/debbuild/posichain-$build_version-$build_release.deb ./bin/
           mv $HOME/rpmbuild/RPMS/x86_64/posichain-$build_version-$build_release.x86_64.rpm ./bin/
+          ./bin/posichain-amd64 dumpconfig ./bin/posichain-mainnet.conf --network=mainnet
+          ./bin/posichain-amd64 dumpconfig ./bin/posichain-testnet.conf --network=testnet
+          ./bin/posichain-amd64 dumpconfig ./bin/posichain-devnet.conf --network=devnet
         working-directory: posichain
 
       - name: Build posichain binary and packages for MacOS
