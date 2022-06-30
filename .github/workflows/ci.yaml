@@ -88,6 +88,9 @@ jobs:
           make deb
           echo %_signature gpg >> $HOME/.rpmmacros && echo "%_gpg_name Posichain (posichain.org)" >> $HOME/.rpmmacros
           make rpm
+          ./bin/harmony dump ./bin/posichain-mainnet.conf --network=mainnet
+          ./bin/harmony dump ./bin/posichain-testnet.conf --network=testnet
+          ./bin/harmony dump ./bin/posichain-devnet.conf --network=devnet
           mv ./bin/harmony ./bin/posichain-amd64
           mv ./bin/bootnode ./bin/bootnode-amd64
           mv $HOME/debbuild/posichain-$build_version-$build_release.deb ./bin/
@@ -258,3 +261,33 @@ jobs:
           asset_path: ./bootnode-amd64
           asset_name: bootnode-amd64
           asset_content_type: application/octet-stream
+
+      - name: Upload mainnet config
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./posichain-mainnet.conf
+          asset_name: posichain-mainnet.conf
+          asset_content_type: text/plain
+
+      - name: Upload testnet config
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./posichain-testnet.conf
+          asset_name: posichain-testnet.conf
+          asset_content_type: text/plain
+
+      - name: Upload devnet config
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./posichain-devnet.conf
+          asset_name: posichain-devnet.conf
+          asset_content_type: text/plain
