@@ -1,6 +1,6 @@
 package genesis
 
-// TNHarmonyAccounts are the accounts for the initial genesis nodes hosted by Harmony for testnet.
+// TNHarmonyAccounts are the accounts for the initial genesis nodes hosted by Posichain for testnet.
 var TNHarmonyAccounts = []DeployAccount{
 	{Index: "0", ShardID: 0, Address: "0x014223E0Cff9E54D21bDC9F1c9A9B04748b22763", BLSPublicKey: "22dc9781ccc8eb929a50d2a297be74e52b8431ece50fa5769c7a2966db94908253c2b4068659b884e645296074e9a780"},
 	{Index: "1", ShardID: 1, Address: "0x63E833Fe0447E588598628C3ab1df5c1Fce1F716", BLSPublicKey: "d396cda915413c55760da222afe46478a184acf6d261bcdfd6332ac69939129f38f4e854814097fed8c6f670297d590d"},

@@ -65,4 +65,4 @@ func (ts devnetSchedule) IsSkippedEpoch(shardID uint32, epoch *big.Int) bool {
 }
 
 var devnetReshardingEpoch = []*big.Int{big.NewInt(0)}
-var devnetV0 = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.HarmonyAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
+var devnetV0 = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.DevnetOperatedAccounts, genesis.DevnetFoundationalAccounts, emptyAllowlist, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
