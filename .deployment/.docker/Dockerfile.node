@@ -7,14 +7,13 @@ WORKDIR /workspace
 RUN mkdir posichain
 RUN git clone https://github.com/PositionExchange/bls.git
 RUN git clone https://github.com/PositionExchange/mcl.git
-RUN git clone https://github.com/harmony-one/go-sdk.git
 RUN cd bls && make -j8 BLS_SWAP_G=1
 
 WORKDIR /workspace/posichain
 COPY . .
 RUN bash ./scripts/go_executable_build.sh -d -S harmony
-RUN curl -LO https://harmony.one/hmycli && chmod +x hmycli
-RUN mv ./hmycli ./bin/hmycli
+RUN curl -LO https://download.posichain.org/psc && chmod +x psc
+RUN mv ./psc ./bin/psc
 RUN mv ./bin/libbls384_256.so /usr/local/lib
 RUN mv ./bin/libmcl.so /usr/local/lib
 RUN echo "/usr/local/lib" >> /etc/ld.so.conf

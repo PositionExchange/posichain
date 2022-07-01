@@ -84,8 +84,8 @@ var defaultConfig = harmonyconfig.HarmonyConfig{
 		ProfileDebugValues: []int{0},
 	},
 	Log: harmonyconfig.LogConfig{
-		Folder:       "./latest",
-		FileName:     "harmony.log",
+		Folder:       "./logs",
+		FileName:     "posichain.log",
 		RotateSize:   100,
 		RotateCount:  0,
 		RotateMaxAge: 0,
