@@ -9,6 +9,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"golang.org/x/time/rate"
 
+	"github.com/PositionExchange/posichain/core/state"
 	"github.com/PositionExchange/posichain/eth/rpc"
 	"github.com/PositionExchange/posichain/hmy"
 	internal_common "github.com/PositionExchange/posichain/internal/common"
@@ -366,7 +367,14 @@ func (s *PublicStakingService) getAllValidatorInformation(
 	for i := start; i < start+validatorsNum; i++ {
 		validatorInfo, err := s.hmy.GetValidatorInformation(addresses[i], blk)
 		if err != nil {
-			return nil, err
+			if errors.Cause(err) != state.ErrAddressNotPresent {
+				return nil, err
+			} else {
+				// GetAllValidatorAddresses is as of current block
+				// but we are querying state as of prior block
+				// which means we can ignore ErrAddressNotPresent
+				continue
+			}
 		}
 		// Response output is the same for all versions
 		validators = append(validators, validatorInfo)

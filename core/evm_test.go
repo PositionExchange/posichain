@@ -27,7 +27,7 @@ import (
 	"github.com/ethereum/go-ethereum/ethdb"
 )
 
-func getTestEnvironment(testBankKey ecdsa.PrivateKey) (*BlockChain, *state.DB, *block.Header, ethdb.Database) {
+func getTestEnvironment(testBankKey ecdsa.PrivateKey) (*BlockChainImpl, *state.DB, *block.Header, ethdb.Database) {
 	// initialize
 	var (
 		testBankAddress = crypto.PubkeyToAddress(testBankKey.PublicKey)
