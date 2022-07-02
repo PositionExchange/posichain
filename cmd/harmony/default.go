@@ -27,7 +27,7 @@ var defaultConfig = harmonyconfig.HarmonyConfig{
 	P2P: harmonyconfig.P2pConfig{
 		Port:                 nodeconfig.DefaultP2PPort,
 		IP:                   nodeconfig.DefaultPublicListenIP,
-		KeyFile:              "./.hmykey",
+		KeyFile:              "./.psckey",
 		DiscConcurrency:      nodeconfig.DefaultP2PConcurrency,
 		MaxConnsPerIP:        nodeconfig.DefaultMaxConnPerIP,
 		DisablePrivateIPScan: false,
@@ -51,12 +51,12 @@ var defaultConfig = harmonyconfig.HarmonyConfig{
 		EthRPCsEnabled:     true,
 		StakingRPCsEnabled: true,
 		LegacyRPCsEnabled:  true,
-		RpcFilterFile:      "./.hmy/rpc_filter.txt",
+		RpcFilterFile:      "./.psc/rpc_filter.txt",
 		RateLimterEnabled:  true,
 		RequestsPerSecond:  nodeconfig.DefaultRPCRateLimit,
 	},
 	BLSKeys: harmonyconfig.BlsConfig{
-		KeyDir:   "./.hmy/blskeys",
+		KeyDir:   "./.psc/blskeys",
 		KeyFiles: []string{},
 		MaxKeys:  10,
 
@@ -69,10 +69,10 @@ var defaultConfig = harmonyconfig.HarmonyConfig{
 		KMSConfigFile:    "",
 	},
 	TxPool: harmonyconfig.TxPoolConfig{
-		BlacklistFile:     "./.hmy/blacklist.txt",
+		BlacklistFile:     "./.psc/blacklist.txt",
 		RosettaFixFile:    "",
 		AccountSlots:      16,
-		LocalAccountsFile: "./.hmy/locals.txt",
+		LocalAccountsFile: "./.psc/locals.txt",
 	},
 	Sync: getDefaultSyncConfig(defNetworkType),
 	Pprof: harmonyconfig.PprofConfig{
