@@ -36,7 +36,7 @@ const (
 
 	// MainNetHTTPPattern is the http pattern for mainnet.
 	//MainNetHTTPPattern = "https://api.s%d.t.hmny.io"
-	MainNetHTTPPattern = "http://s%d.posichain.org" //TODO make more simpler
+	MainNetHTTPPattern = "https://api.s%d.posichain.org" //TODO make more simpler
 	// MainNetWSPattern is the websocket pattern for mainnet.
 	//MainNetWSPattern = "wss://ws.s%d.t.hmny.io"
 	MainNetWSPattern = "wss://ws.s%d.posichain.org" //TODO make more simpler

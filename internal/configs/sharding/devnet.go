@@ -20,7 +20,7 @@ const (
 	devnetVdfDifficulty = 10000
 
 	// DevNetHTTPPattern is the http pattern for devnet.
-	DevNetHTTPPattern = "https://s%d.d.posichain.org"
+	DevNetHTTPPattern = "https://api.s%d.d.posichain.org"
 	// DevNetWSPattern is the websocket pattern for devnet.
 	DevNetWSPattern = "wss://ws.s%d.d.posichain.org"
 )

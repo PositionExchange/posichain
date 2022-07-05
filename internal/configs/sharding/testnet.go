@@ -20,7 +20,7 @@ const (
 	testnetVdfDifficulty = 10000 // This takes about 20s to finish the vdf
 
 	// TestNetHTTPPattern is the http pattern for testnet.
-	TestNetHTTPPattern = "https://s%d.t.posichain.org"
+	TestNetHTTPPattern = "https://api.s%d.t.posichain.org"
 	// TestNetWSPattern is the websocket pattern for testnet.
 	TestNetWSPattern = "wss://ws.s%d.t.posichain.org"
 )
