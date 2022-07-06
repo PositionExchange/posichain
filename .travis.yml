@@ -2,7 +2,7 @@ os: linux
 dist: bionic
 language: go
 go:
-  - 1.16
+  - "1.16"
 go_import_path: github.com/PositionExchange/posichain
 cache:
   directories:
@@ -10,8 +10,8 @@ cache:
 env:
   - TEST="make"
   - TEST="bash ./scripts/travis_go_checker.sh"
-  - TEST="bash ./scripts/travis_rpc_checker.sh"
-  - TEST="bash ./scripts/travis_rosetta_checker.sh"
+#  - TEST="bash ./scripts/travis_rpc_checker.sh"
+#  - TEST="bash ./scripts/travis_rosetta_checker.sh"
 install:
   # default working directory with source code is automatically set to
   #   /home/travis/gopath/src/github.com/PositionExchange/posichain
@@ -29,11 +29,11 @@ install:
   - scripts/install_build_tools.sh
 script:
   - ${TEST}
-after_success:
-  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
-  - chmod +x send.sh
-  - ./send.sh success $WEBHOOK_URL
-after_failure:
-  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
-  - chmod +x send.sh
-  - ./send.sh failure $WEBHOOK_URL
+#after_success:
+#  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
+#  - chmod +x send.sh
+#  - ./send.sh success $WEBHOOK_URL
+#after_failure:
+#  - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
+#  - chmod +x send.sh
+#  - ./send.sh failure $WEBHOOK_URL
