@@ -1,6 +1,6 @@
 # Posichain
 
-[![Build Status](https://travis-ci.com/harmony-one/harmony.svg?branch=main)](https://travis-ci.com/harmony-one/harmony)
+[![Build Status](https://circleci.com/gh/PositionExchange/posichain.svg?style=svg)](https://app.circleci.com/pipelines/github/PositionExchange/posichain)
 ![gopherbadger-tag-do-not-edit](https://img.shields.io/badge/Go%20Coverage-45%25-brightgreen.svg?longCache=true&style=flat)
 ![Discord](https://img.shields.io/discord/532383335348043777.svg)
 [![Github Action](https://github.com/PositionExchange/posichain/actions/workflows/ci.yaml/badge.svg?event=push)](https://github.com/PositionExchange/posichain/actions/workflows/ci.yaml)
