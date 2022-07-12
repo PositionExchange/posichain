@@ -7,18 +7,22 @@ jobs:
       - image: circleci/golang:1.16
     steps:
       - checkout
+      - run:
+          name: Install Linux Dependencies
+          command: |
+            apt update && apt install -y libgmp-dev libssl-dev jq make gcc g++
       - restore_cache:
           keys:
             - go-mod-v4-{{ checksum "go.sum" }}
       - run:
-          name: Install Dependencies
+          name: Install Go Dependencies
           command: go mod download
       - save_cache:
           key: go-mod-v4-{{ checksum "go.sum" }}
           paths:
             - "/go/pkg/mod"
       - run:
-          name: Install Tools
+          name: Install Building Tools
           command: |
             git clone https://github.com/PositionExchange/mcl.git ~/mcl
             git clone https://github.com/PositionExchange/bls.git ~/bls
