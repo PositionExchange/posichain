@@ -1,6 +1,6 @@
 # Posichain
 
-[![Build Status](https://circleci.com/gh/PositionExchange/posichain.svg?style=svg)](https://app.circleci.com/pipelines/github/PositionExchange/posichain)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/PositionExchange/posichain/tree/develop.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/PositionExchange/posichain/tree/develop)
 ![gopherbadger-tag-do-not-edit](https://img.shields.io/badge/Go%20Coverage-45%25-brightgreen.svg?longCache=true&style=flat)
 ![Discord](https://img.shields.io/discord/532383335348043777.svg)
 [![Github Action](https://github.com/PositionExchange/posichain/actions/workflows/ci.yaml/badge.svg?event=push)](https://github.com/PositionExchange/posichain/actions/workflows/ci.yaml)
