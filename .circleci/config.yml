@@ -1,0 +1,43 @@
+version: 2.1
+
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/golang:1.17
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - go-mod-v4-{{ checksum "go.sum" }}
+      - run:
+          name: Install Dependencies
+          command: go mod download
+      - save_cache:
+          key: go-mod-v4-{{ checksum "go.sum" }}
+          paths:
+            - "/go/pkg/mod"
+      - run:
+          name: Install Tools
+          command: |
+            git clone https://github.com/PositionExchange/mcl.git ~/mcl
+            git clone https://github.com/PositionExchange/bls.git ~/bls
+            (cd ~/mcl; make -j4)
+            (cd ~/bls; make BLS_SWAP_G=1 -j4)
+            go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26
+            go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
+            curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.41.1
+            make go-get
+            go install golang.org/x/tools/cmd/goimports@latest
+            go install github.com/harmony-ek/gencodec@latest
+            ./scripts/install_build_tools.sh
+      - run:
+          name: Run tests
+          command: |
+            make
+            bash ./scripts/travis_go_checker.sh
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
