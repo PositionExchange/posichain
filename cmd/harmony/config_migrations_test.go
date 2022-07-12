@@ -17,7 +17,7 @@ Version = "1.0.2"
   KMSConfigFile = ""
   KMSConfigSrcType = "shared"
   KMSEnabled = false
-  KeyDir = "./.hmy/blskeys"
+  KeyDir = "./.psc/blskeys"
   KeyFiles = []
   MaxKeys = 10
   PassEnabled = true
@@ -41,21 +41,21 @@ Version = "1.0.2"
   RosettaPort = 9700
 
 [Log]
-  FileName = "harmony.log"
-  Folder = "./latest"
+  FileName = "posichain.log"
+  Folder = "./logs"
   RotateSize = 100
   Verbosity = 3
 
 [Network]
   BootNodes = ["/ip4/100.26.90.187/tcp/9874/p2p/Qmdfjtk6hPoyrH1zVD9PEH4zfWLo38dP2mDvvKXfh3tnEv","/ip4/54.213.43.194/tcp/9874/p2p/QmZJJx6AdaoEkGLrYG4JeLCKeCKDjnFz2wfHNHxAqFSGA9","/ip4/13.113.101.219/tcp/12019/p2p/QmQayinFSgMMw5cSpDUiD9pQ2WeP6WNmGxpZ6ou3mdVFJX","/ip4/99.81.170.167/tcp/12019/p2p/QmRVbTpEYup8dSaURZfF6ByrMTSKa4UyUzJhSjahFzRqNj"]
   DNSPort = 9000
-  DNSZone = "t.hmny.io"
+  DNSZone = "posichain.org"
   LegacySyncing = false
   NetworkType = "mainnet"
 
 [P2P]
   IP = "0.0.0.0"
-  KeyFile = "./.hmykey"
+  KeyFile = "./.psckey"
   Port = 9000
 
 [Pprof]
@@ -67,11 +67,11 @@ Version = "1.0.2"
   EthRPCsEnabled = true
   StakingRPCsEnabled = true
   LegacyRPCsEnabled = true
-  RpcFilterFile = "./.hmy/rpc_filter.txt"
+  RpcFilterFile = "./.psc/rpc_filter.txt"
 
 [TxPool]
-  BlacklistFile = "./.hmy/blacklist.txt"
-  LocalAccountsFile = "./.hmy/locals.txt"
+  BlacklistFile = "./.psc/blacklist.txt"
+  LocalAccountsFile = "./.psc/locals.txt"
 
 [WS]
   Enabled = true
@@ -86,7 +86,7 @@ Version = "1.0.3"
   KMSConfigFile = ""
   KMSConfigSrcType = "shared"
   KMSEnabled = false
-  KeyDir = "./.hmy/blskeys"
+  KeyDir = "./.psc/blskeys"
   KeyFiles = []
   MaxKeys = 10
   PassEnabled = true
@@ -111,21 +111,21 @@ Version = "1.0.3"
   RosettaPort = 9700
 
 [Log]
-  FileName = "harmony.log"
-  Folder = "./latest"
+  FileName = "posichain.log"
+  Folder = "./logs"
   RotateSize = 100
   Verbosity = 3
 
 [Network]
   BootNodes = ["/ip4/100.26.90.187/tcp/9874/p2p/Qmdfjtk6hPoyrH1zVD9PEH4zfWLo38dP2mDvvKXfh3tnEv","/ip4/54.213.43.194/tcp/9874/p2p/QmZJJx6AdaoEkGLrYG4JeLCKeCKDjnFz2wfHNHxAqFSGA9","/ip4/13.113.101.219/tcp/12019/p2p/QmQayinFSgMMw5cSpDUiD9pQ2WeP6WNmGxpZ6ou3mdVFJX","/ip4/99.81.170.167/tcp/12019/p2p/QmRVbTpEYup8dSaURZfF6ByrMTSKa4UyUzJhSjahFzRqNj"]
   DNSPort = 9000
-  DNSZone = "t.hmny.io"
+  DNSZone = "posichain.org"
   LegacySyncing = false
   NetworkType = "mainnet"
 
 [P2P]
   IP = "0.0.0.0"
-  KeyFile = "./.hmykey"
+  KeyFile = "./.psckey"
   Port = 9000
 
 [Pprof]
@@ -137,11 +137,11 @@ Version = "1.0.3"
   EthRPCsEnabled = true
   StakingRPCsEnabled = true
   LegacyRPCsEnabled = true
-  RpcFilterFile = "./.hmy/rpc_filter.txt"
+  RpcFilterFile = "./.psc/rpc_filter.txt"
 
 [TxPool]
-  BlacklistFile = "./.hmy/blacklist.txt"
-  LocalAccountsFile = "./.hmy/locals.txt"
+  BlacklistFile = "./.psc/blacklist.txt"
+  LocalAccountsFile = "./.psc/locals.txt"
 
 [WS]
   Enabled = true
@@ -156,7 +156,7 @@ Version = "1.0.4"
   KMSConfigFile = ""
   KMSConfigSrcType = "shared"
   KMSEnabled = false
-  KeyDir = "./.hmy/blskeys"
+  KeyDir = "./.psc/blskeys"
   KeyFiles = []
   MaxKeys = 10
   PassEnabled = true
@@ -181,21 +181,21 @@ Version = "1.0.4"
   RosettaPort = 9700
 
 [Log]
-  FileName = "harmony.log"
-  Folder = "./latest"
+  FileName = "posichain.log"
+  Folder = "./logs"
   RotateSize = 100
   Verbosity = 3
 
 [Network]
-  BootNodes = ["/dnsaddr/bootstrap.t.hmny.io"]
+  BootNodes = ["/dnsaddr/bootstrap.posichain.org"]
   DNSPort = 9000
-  DNSZone = "t.hmny.io"
+  DNSZone = "posichain.org"
   LegacySyncing = false
   NetworkType = "mainnet"
 
 [P2P]
   IP = "0.0.0.0"
-  KeyFile = "./.hmykey"
+  KeyFile = "./.psckey"
   Port = 9000
 
 [Pprof]
@@ -207,7 +207,7 @@ Version = "1.0.4"
   EthRPCsEnabled = true
   StakingRPCsEnabled = true
   LegacyRPCsEnabled = true
-  RpcFilterFile = "./.hmy/rpc_filter.txt"
+  RpcFilterFile = "./.psc/rpc_filter.txt"
 
 [Sync]
   Concurrency = 6
@@ -222,8 +222,8 @@ Version = "1.0.4"
   MinPeers = 6
 
 [TxPool]
-  BlacklistFile = "./.hmy/blacklist.txt"
-  LocalAccountsFile = "./.hmy/locals.txt"
+  BlacklistFile = "./.psc/blacklist.txt"
+  LocalAccountsFile = "./.psc/locals.txt"
 
 [WS]
   Enabled = true
@@ -238,7 +238,7 @@ Version = "1.0.4"
   KMSConfigFile = ""
   KMSConfigSrcType = "shared"
   KMSEnabled = false
-  KeyDir = "./.hmy/blskeys"
+  KeyDir = "./.psc/blskeys"
   KeyFiles = []
   MaxKeys = 10
   PassEnabled = true
@@ -263,21 +263,21 @@ Version = "1.0.4"
   RosettaPort = 9700
 
 [Log]
-  FileName = "harmony.log"
-  Folder = "./latest"
+  FileName = "posichain.log"
+  Folder = "./logs"
   RotateSize = 100
   Verbosity = 3
 
 [Network]
-  BootNodes = ["/dnsaddr/bootstrap.t.hmny.io"]
+  BootNodes = ["/dnsaddr/bootstrap.posichain.org"]
   DNSPort = 9000
-  DNSZone = "t.hmny.io"
+  DNSZone = "posichain.org"
   LegacySyncing = false
   NetworkType = "mainnet"
 
 [P2P]
   IP = "0.0.0.0"
-  KeyFile = "./.hmykey"
+  KeyFile = "./.psckey"
   Port = 9000
 
 [Pprof]
@@ -289,7 +289,7 @@ Version = "1.0.4"
   EthRPCsEnabled = true
   StakingRPCsEnabled = true
   LegacyRPCsEnabled = true
-  RpcFilterFile = "./.hmy/rpc_filter.txt"
+  RpcFilterFile = "./.psc/rpc_filter.txt"
 
 [Sync]
   Concurrency = 6
@@ -311,8 +311,8 @@ Version = "1.0.4"
   CacheSize = 512
 
 [TxPool]
-  BlacklistFile = "./.hmy/blacklist.txt"
-  LocalAccountsFile = "./.hmy/locals.txt"
+  BlacklistFile = "./.psc/blacklist.txt"
+  LocalAccountsFile = "./.psc/locals.txt"
 
 [WS]
   Enabled = true
