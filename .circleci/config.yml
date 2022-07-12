@@ -5,6 +5,7 @@ jobs:
     working_directory: ~/repo
     docker:
       - image: circleci/golang:1.16
+        user: root
     steps:
       - checkout
       - run:
