@@ -97,7 +97,7 @@ docker build -t posichain .
 
 Then you can start your docker container with the following command:
 ```bash
-docker run --rm --name posichain -it -v "$(go env GOPATH)/src/github.com/PositionExchange/posichain:/root/go/src/github.com/PositionExchange/posichain" harmony /bin/bash
+docker run --rm --name posichain -it -v "$(go env GOPATH)/src/github.com/PositionExchange/posichain:/root/go/src/github.com/PositionExchange/posichain" posichain /bin/bash
 ```
 > Note that the posichain repo will be shared between your docker container and your host machine. However, everything else in the docker container will be ephemeral.
 
@@ -183,9 +183,9 @@ make test-rpc-attach
 ```
 > This will open a shell in the docker container that is running the Node API tests.
 >
-> Note that the docker container has the [Harmony CLI](https://docs.harmony.one/home/wallets/harmony-cli) on path,
+> Note that the docker container has the [PSC CLI](https://github.com/PositionExchange/posichain-gosdk) on path,
 > therefore you can use that to debug if needed. For example, one could do `hmy blockchain latest-headers` to check
-> the current block height of localnet. Reference the documentation for the CLI [here](https://docs.harmony.one/home/wallets/harmony-cli)
+> the current block height of localnet. Reference the documentation for the CLI [here](https://github.com/PositionExchange/posichain-gosdk)
 > for more details & commands.
 
 ### Rosetta tests
