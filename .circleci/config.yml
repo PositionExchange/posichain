@@ -10,7 +10,7 @@ jobs:
       - run:
           name: Install Linux Dependencies
           command: |
-            apt update && apt install -y libgmp-dev libssl-dev jq make gcc g++
+            sudo apt update && sudo apt install -y libgmp-dev libssl-dev jq make gcc g++
       - restore_cache:
           keys:
             - go-mod-v4-{{ checksum "go.sum" }}
