@@ -95,9 +95,9 @@ docker build -t posichain .
 
 
 
-Then you can start your docker container with the following command:
+Then you can start your docker container inside the posichain directory with the following command:
 ```bash
-docker run --rm --name posichain -it -v "$(go env GOPATH)/src/github.com/PositionExchange/posichain:/root/go/src/github.com/PositionExchange/posichain" posichain /bin/bash
+docker run --rm --name posichain -it -v "$(pwd):/root/go/src/github.com/PositionExchange/posichain" posichain /bin/bash
 ```
 > Note that the posichain repo will be shared between your docker container and your host machine. However, everything else in the docker container will be ephemeral.
 
