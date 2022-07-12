@@ -1,13 +1,13 @@
 package genesis
 
 import (
+	"bytes"
 	"strconv"
 	"strings"
 	"testing"
 
 	"github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/PositionExchange/posichain/internal/common"
-	"github.com/btcsuite/btcutil/bech32"
 	ethCommon "github.com/ethereum/go-ethereum/common"
 )
 
@@ -31,13 +31,14 @@ func testAccounts(test *testing.T, accounts []DeployAccount) {
 		}
 		index++
 
-		_, _, err := bech32.Decode(account.Address)
-		if err != nil {
-			test.Error("Account address", account.Address, "is not valid:", err)
+		hex := ethCommon.HexToAddress(account.Address)
+		emptyAddr := ethCommon.Address{}
+		if bytes.Compare(hex[:], emptyAddr[:]) == 0 {
+			test.Error("Account address", account.Address, "is not valid, expects a hex address")
 		}
 
 		pubKey := bls.PublicKey{}
-		err = pubKey.DeserializeHexStr(account.BLSPublicKey)
+		err := pubKey.DeserializeHexStr(account.BLSPublicKey)
 		if err != nil {
 			test.Error("Account bls public key", account.BLSPublicKey, "is not valid:", err)
 		}
@@ -52,11 +53,12 @@ func testDeployAccounts(t *testing.T, accounts []DeployAccount) {
 			t.Errorf("account %+v at index %v has wrong index string",
 				account, index)
 		}
-		if address, err := common.Bech32ToAddress(account.Address); err != nil {
-			t.Errorf("account %+v at index %v has invalid address (%s)",
-				account, index, err)
+		hex := ethCommon.HexToAddress(account.Address)
+		emptyAddr := ethCommon.Address{}
+		if bytes.Compare(hex[:], emptyAddr[:]) == 0 {
+			t.Errorf("account %+v at index %v has invalid address, expects a hex address", account, index)
 		} else {
-			indicesByAddress[address] = append(indicesByAddress[address], index)
+			indicesByAddress[hex] = append(indicesByAddress[hex], index)
 		}
 		pubKey := bls.PublicKey{}
 		if err := pubKey.DeserializeHexStr(account.BLSPublicKey); err != nil {

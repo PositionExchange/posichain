@@ -38,7 +38,7 @@ Version = "1.0.4"
   KMSConfigFile = ""
   KMSConfigSrcType = "shared"
   KMSEnabled = false
-  KeyDir = "./.hmy/blskeys"
+  KeyDir = "./.psc/blskeys"
   KeyFiles = []
   MaxKeys = 10
   PassEnabled = true
@@ -59,22 +59,22 @@ Version = "1.0.4"
   Port = 9500
 
 [Log]
-  FileName = "harmony.log"
-  Folder = "./latest"
+  FileName = "posichain.log"
+  Folder = "./logs"
   RotateSize = 100
   RotateCount = 0
   RotateMaxAge = 0
   Verbosity = 3
 
 [Network]
-  BootNodes = ["/dnsaddr/bootstrap.t.hmny.io"]
+  BootNodes = ["/dnsaddr/bootstrap.posichain.org"]
   DNSPort = 9000
-  DNSZone = "t.hmny.io"
+  DNSZone = "posichain.org"
   LegacySyncing = false
   NetworkType = "mainnet"
 
 [P2P]
-  KeyFile = "./.hmykey"
+  KeyFile = "./.psckey"
   Port = 9000
 
 [Pprof]
@@ -82,8 +82,8 @@ Version = "1.0.4"
   ListenAddr = "127.0.0.1:6060"
 
 [TxPool]
-  BlacklistFile = "./.hmy/blacklist.txt"
-  LocalAccountsFile = "./.hmy/locals.txt"
+  BlacklistFile = "./.psc/blacklist.txt"
+  LocalAccountsFile = "./.psc/locals.txt"
 
 [Sync]
   Downloader = false

@@ -29,7 +29,7 @@ func TestHarmonyFlags(t *testing.T) {
 				"/ip4/54.213.43.194/tcp/9874/p2p/QmZJJx6AdaoEkGLrYG4JeLCKeCKDjnFz2wfHNHxAqFSGA9,/ip4/13.113.101." +
 				"219/tcp/12019/p2p/QmQayinFSgMMw5cSpDUiD9pQ2WeP6WNmGxpZ6ou3mdVFJX,/ip4/99.81.170.167/tcp/12019/p" +
 				"2p/QmRVbTpEYup8dSaURZfF6ByrMTSKa4UyUzJhSjahFzRqNj --ip 8.8.8.8 --port 9000 --network_type=mainn" +
-				"et --dns_zone=t.hmny.io --blacklist=./.hmy/blacklist.txt --min_peers=6 --max_bls_keys_per_node=" +
+				"et --dns_zone=posichain.org --blacklist=./.psc/blacklist.txt --min_peers=6 --max_bls_keys_per_node=" +
 				"10 --broadcast_invalid_tx=true --verbosity=3 --is_archival=false --shard_id=-1 --staking=true -" +
 				"-aws-config-source file:config.json --p2p.disc.concurrency 5 --p2p.security.max-conn-per-ip 5",
 			expConfig: harmonyconfig.HarmonyConfig{
@@ -52,7 +52,7 @@ func TestHarmonyFlags(t *testing.T) {
 				},
 				DNSSync: harmonyconfig.DnsSync{
 					Port:       6000,
-					Zone:       "t.hmny.io",
+					Zone:       "posichain.org",
 					Server:     true,
 					Client:     true,
 					ServerPort: nodeconfig.DefaultDNSPort,
@@ -78,7 +78,7 @@ func TestHarmonyFlags(t *testing.T) {
 					EthRPCsEnabled:     true,
 					StakingRPCsEnabled: true,
 					LegacyRPCsEnabled:  true,
-					RpcFilterFile:      "./.hmy/rpc_filter.txt",
+					RpcFilterFile:      "./.psc/rpc_filter.txt",
 					RateLimterEnabled:  true,
 					RequestsPerSecond:  1000,
 				},
@@ -93,7 +93,7 @@ func TestHarmonyFlags(t *testing.T) {
 					AggregateSig: true,
 				},
 				BLSKeys: harmonyconfig.BlsConfig{
-					KeyDir:           "./.hmy/blskeys",
+					KeyDir:           "./.psc/blskeys",
 					KeyFiles:         []string{},
 					MaxKeys:          10,
 					PassEnabled:      true,
@@ -105,10 +105,10 @@ func TestHarmonyFlags(t *testing.T) {
 					KMSConfigFile:    "config.json",
 				},
 				TxPool: harmonyconfig.TxPoolConfig{
-					BlacklistFile:     "./.hmy/blacklist.txt",
+					BlacklistFile:     "./.psc/blacklist.txt",
 					RosettaFixFile:    "",
 					AccountSlots:      16,
-					LocalAccountsFile: "./.hmy/locals.txt",
+					LocalAccountsFile: "./.psc/locals.txt",
 				},
 				Pprof: harmonyconfig.PprofConfig{
 					Enabled:            false,
@@ -119,7 +119,7 @@ func TestHarmonyFlags(t *testing.T) {
 					ProfileDebugValues: []int{0},
 				},
 				Log: harmonyconfig.LogConfig{
-					Folder:       "./latest",
+					Folder:       "./logs",
 					FileName:     "validator-8.8.8.8-9000.log",
 					RotateSize:   100,
 					RotateCount:  0,
@@ -188,13 +188,13 @@ func TestGeneralFlags(t *testing.T) {
 		},
 		{
 			args: []string{"--run", "explorer", "--run.legacy", "--run.shard=0",
-				"--run.archive=true", "--datadir=./.hmy"},
+				"--run.archive=true", "--datadir=./.psc"},
 			expConfig: harmonyconfig.GeneralConfig{
 				NodeType:   "explorer",
 				NoStaking:  true,
 				ShardID:    0,
 				IsArchival: true,
-				DataDir:    "./.hmy",
+				DataDir:    "./.psc",
 			},
 		},
 		{
@@ -353,7 +353,7 @@ func TestP2PFlags(t *testing.T) {
 			expConfig: harmonyconfig.P2pConfig{
 				Port:                 9001,
 				IP:                   nodeconfig.DefaultPublicListenIP,
-				KeyFile:              "./.hmykey",
+				KeyFile:              "./.psckey",
 				DiscConcurrency:      5,
 				MaxConnsPerIP:        5,
 				DisablePrivateIPScan: false,
@@ -364,7 +364,7 @@ func TestP2PFlags(t *testing.T) {
 			expConfig: harmonyconfig.P2pConfig{
 				Port:                 nodeconfig.DefaultP2PPort,
 				IP:                   nodeconfig.DefaultPublicListenIP,
-				KeyFile:              "./.hmykey",
+				KeyFile:              "./.psckey",
 				DiscConcurrency:      nodeconfig.DefaultP2PConcurrency,
 				MaxConnsPerIP:        nodeconfig.DefaultMaxConnPerIP,
 				DisablePrivateIPScan: true,
@@ -578,7 +578,7 @@ func TestRPCOptFlags(t *testing.T) {
 				EthRPCsEnabled:     true,
 				StakingRPCsEnabled: true,
 				LegacyRPCsEnabled:  true,
-				RpcFilterFile:      "./.hmy/rpc_filter.txt",
+				RpcFilterFile:      "./.psc/rpc_filter.txt",
 				RateLimterEnabled:  true,
 				RequestsPerSecond:  1000,
 			},
@@ -591,7 +591,7 @@ func TestRPCOptFlags(t *testing.T) {
 				EthRPCsEnabled:     false,
 				StakingRPCsEnabled: true,
 				LegacyRPCsEnabled:  true,
-				RpcFilterFile:      "./.hmy/rpc_filter.txt",
+				RpcFilterFile:      "./.psc/rpc_filter.txt",
 				RateLimterEnabled:  true,
 				RequestsPerSecond:  1000,
 			},
@@ -604,7 +604,7 @@ func TestRPCOptFlags(t *testing.T) {
 				EthRPCsEnabled:     true,
 				StakingRPCsEnabled: false,
 				LegacyRPCsEnabled:  true,
-				RpcFilterFile:      "./.hmy/rpc_filter.txt",
+				RpcFilterFile:      "./.psc/rpc_filter.txt",
 				RateLimterEnabled:  true,
 				RequestsPerSecond:  1000,
 			},
@@ -617,7 +617,7 @@ func TestRPCOptFlags(t *testing.T) {
 				EthRPCsEnabled:     true,
 				StakingRPCsEnabled: true,
 				LegacyRPCsEnabled:  false,
-				RpcFilterFile:      "./.hmy/rpc_filter.txt",
+				RpcFilterFile:      "./.psc/rpc_filter.txt",
 				RateLimterEnabled:  true,
 				RequestsPerSecond:  1000,
 			},
@@ -643,7 +643,7 @@ func TestRPCOptFlags(t *testing.T) {
 				EthRPCsEnabled:     true,
 				StakingRPCsEnabled: true,
 				LegacyRPCsEnabled:  true,
-				RpcFilterFile:      "./.hmy/rpc_filter.txt",
+				RpcFilterFile:      "./.psc/rpc_filter.txt",
 				RateLimterEnabled:  true,
 				RequestsPerSecond:  1000,
 			},
@@ -656,7 +656,7 @@ func TestRPCOptFlags(t *testing.T) {
 				EthRPCsEnabled:     true,
 				StakingRPCsEnabled: true,
 				LegacyRPCsEnabled:  true,
-				RpcFilterFile:      "./.hmy/rpc_filter.txt",
+				RpcFilterFile:      "./.psc/rpc_filter.txt",
 				RateLimterEnabled:  true,
 				RequestsPerSecond:  2000,
 			},
@@ -669,7 +669,7 @@ func TestRPCOptFlags(t *testing.T) {
 				EthRPCsEnabled:     true,
 				StakingRPCsEnabled: true,
 				LegacyRPCsEnabled:  true,
-				RpcFilterFile:      "./.hmy/rpc_filter.txt",
+				RpcFilterFile:      "./.psc/rpc_filter.txt",
 				RateLimterEnabled:  false,
 				RequestsPerSecond:  2000,
 			},
@@ -732,12 +732,12 @@ func TestBLSFlags(t *testing.T) {
 			},
 		},
 		{
-			args: []string{"--blskey_file", "key1,key2", "--blsfolder", "./hmykeys",
+			args: []string{"--blskey_file", "key1,key2", "--blsfolder", "./psckeys",
 				"--max_bls_keys_per_node", "5", "--blspass", "file:xxx.pass", "--save-passphrase",
 				"--aws-config-source", "file:config.json",
 			},
 			expConfig: harmonyconfig.BlsConfig{
-				KeyDir:           "./hmykeys",
+				KeyDir:           "./psckeys",
 				KeyFiles:         []string{"key1", "key2"},
 				MaxKeys:          5,
 				PassEnabled:      true,
