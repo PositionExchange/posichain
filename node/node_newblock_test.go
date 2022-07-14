@@ -1,6 +1,9 @@
 package node
 
 import (
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
+	"math/big"
 	"strings"
 	"testing"
 
@@ -39,6 +42,9 @@ func TestFinalizeNewBlockAsync(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Cannot craeate consensus: %v", err)
 	}
+
+	shard.Schedule = shardingconfig.DevnetSchedule
+	nodeconfig.SetNetworkType(nodeconfig.Devnet)
 	var testDBFactory = &shardchain.MemDBFactory{}
 	node := New(host, consensus, testDBFactory, nil, nil, nil, nil)
 
@@ -58,6 +64,8 @@ func TestFinalizeNewBlockAsync(t *testing.T) {
 		commitSigs, func() uint64 { return 0 }, common.Address{}, nil, nil,
 	)
 
+	// work around vrf verification as it's tested in another test.
+	node.Blockchain().Config().VRFEpoch = big.NewInt(2)
 	if err := node.VerifyNewBlock(block); err != nil {
 		t.Error("New block is not verified successfully:", err)
 	}

@@ -1,6 +1,7 @@
 package node
 
 import (
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
 	"math/big"
 	"testing"
 
@@ -38,6 +39,7 @@ func TestAddNewBlock(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Cannot craeate consensus: %v", err)
 	}
+	shard.Schedule = shardingconfig.DevnetSchedule
 	nodeconfig.SetNetworkType(nodeconfig.Devnet)
 	node := New(host, consensus, testDBFactory, nil, nil, nil, nil)
 
