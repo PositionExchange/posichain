@@ -24,7 +24,7 @@ func TestIsEpochBlock(t *testing.T) {
 	}{
 		{
 			shardingconfig.MainnetSchedule,
-			blockNumbered(10),
+			blockNumbered(1002),
 			false,
 		},
 		{
@@ -34,17 +34,7 @@ func TestIsEpochBlock(t *testing.T) {
 		},
 		{
 			shardingconfig.MainnetSchedule,
-			blockNumbered(344064),
-			true,
-		},
-		{
-			shardingconfig.TestnetSchedule,
-			blockNumbered(37),
-			false,
-		},
-		{
-			shardingconfig.TestnetSchedule,
-			blockNumbered(38),
+			blockNumbered(10),
 			true,
 		},
 		{
@@ -54,7 +44,32 @@ func TestIsEpochBlock(t *testing.T) {
 		},
 		{
 			shardingconfig.TestnetSchedule,
-			blockNumbered(76),
+			blockNumbered(8192),
+			true,
+		},
+		{
+			shardingconfig.TestnetSchedule,
+			blockNumbered(16384),
+			true,
+		},
+		{
+			shardingconfig.DevnetSchedule,
+			blockNumbered(0),
+			true,
+		},
+		{
+			shardingconfig.DevnetSchedule,
+			blockNumbered(2),
+			false,
+		},
+		{
+			shardingconfig.DevnetSchedule,
+			blockNumbered(5),
+			true,
+		},
+		{
+			shardingconfig.DevnetSchedule,
+			blockNumbered(10),
 			true,
 		},
 	}
