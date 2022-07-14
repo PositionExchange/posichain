@@ -2,6 +2,8 @@ package types
 
 import (
 	"fmt"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
+	"github.com/PositionExchange/posichain/shard"
 	"math/big"
 	"strings"
 	"testing"
@@ -21,7 +23,7 @@ var (
 	blsPubSigPairs = makeBLSPubSigPairs(5)
 	hmyBLSPub      bls.SerializedPublicKey
 
-	hmyBLSPubStr     = "c2962419d9999a87daa134f6d177f9ccabfe168a470587b13dd02ce91d1690a92170e5949d3dbdfc1b13fd7327dbef8c"
+	hmyBLSPubStr     = "f47b6d2b91eb37a5c0b35520803b86901a086367506e423f1651464191cc95b67b95470b8bc41ea4ad57ead0739fc180"
 	validatorAddr, _ = common2.Bech32ToAddress("one1pdv9lrdwl0rg5vglh4xtyrv3wjk3wsqket7zxy")
 )
 
@@ -71,6 +73,7 @@ var (
 func init() {
 	// set bls pub keys for hmy
 	copy(hmyBLSPub[:], common.Hex2Bytes(hmyBLSPubStr))
+	shard.Schedule = shardingconfig.DevnetSchedule
 }
 
 func TestNewEmptyStats(t *testing.T) {
