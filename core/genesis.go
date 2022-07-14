@@ -111,23 +111,8 @@ type Genesis struct {
 // Note that the shard state is NOT initialized.
 func NewGenesisSpec(netType nodeconfig.NetworkType, shardID uint32) *Genesis {
 	genesisAlloc := make(GenesisAlloc)
-	chainConfig := params.ChainConfig{}
+	chainConfig := netType.ChainConfig()
 	gasLimit := params.GenesisGasLimit
-
-	switch netType {
-	case nodeconfig.Mainnet:
-		chainConfig = *params.MainnetChainConfig
-	case nodeconfig.Testnet:
-		chainConfig = *params.TestnetChainConfig
-	case nodeconfig.Devnet:
-		chainConfig = *params.DevnetChainConfig
-	case nodeconfig.Localnet:
-		chainConfig = *params.LocalnetChainConfig
-	case nodeconfig.Stressnet:
-		chainConfig = *params.StressnetChainConfig
-	default: // all other types share testnet config
-		chainConfig = *params.TestChainConfig
-	}
 
 	if shardID == 0 {
 		if foundationAddresses, exists := GenesisFoundations[netType]; exists && len(GenesisFoundations[netType]) > 0 {

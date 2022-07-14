@@ -337,13 +337,15 @@ func (t NetworkType) ChainConfig() params.ChainConfig {
 	switch t {
 	case Mainnet:
 		return *params.MainnetChainConfig
-	case Stressnet:
-		return *params.StressnetChainConfig
-	case Localnet:
-		return *params.LocalnetChainConfig
+	case Testnet:
+		return *params.TestnetChainConfig
 	case Devnet:
 		return *params.DevnetChainConfig
-	default:
-		return *params.TestnetChainConfig
+	case Localnet:
+		return *params.LocalnetChainConfig
+	case Stressnet:
+		return *params.StressnetChainConfig
+	default: // all other types share testnet config
+		return *params.TestChainConfig
 	}
 }
