@@ -41,7 +41,7 @@ func TestAddNewBlock(t *testing.T) {
 	}
 	shard.Schedule = shardingconfig.DevnetSchedule
 	nodeconfig.SetNetworkType(nodeconfig.Devnet)
-	node := New(host, consensus, testDBFactory, nil, nil, nil, nil)
+	node := New(host, consensus, testDBFactory, nil, nil, nil, nil, nil)
 
 	txs := make(map[common.Address]types.Transactions)
 	stks := staking.StakingTransactions{}
@@ -90,7 +90,7 @@ func TestVerifyNewBlock(t *testing.T) {
 	archiveMode := make(map[uint32]bool)
 	archiveMode[0] = true
 	archiveMode[1] = false
-	node := New(host, consensus, testDBFactory, nil, nil, archiveMode, nil)
+	node := New(host, consensus, testDBFactory, nil, nil, nil, archiveMode, nil)
 
 	txs := make(map[common.Address]types.Transactions)
 	stks := staking.StakingTransactions{}
@@ -136,7 +136,7 @@ func TestVerifyVRF(t *testing.T) {
 	archiveMode := make(map[uint32]bool)
 	archiveMode[0] = true
 	archiveMode[1] = false
-	node := New(host, consensus, testDBFactory, nil, nil, archiveMode, nil)
+	node := New(host, consensus, testDBFactory, nil, nil, nil, archiveMode, nil)
 
 	consensus.Blockchain = node.Blockchain()
 	txs := make(map[common.Address]types.Transactions)

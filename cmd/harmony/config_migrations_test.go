@@ -313,6 +313,7 @@ Version = "1.0.4"
 [TxPool]
   BlacklistFile = "./.psc/blacklist.txt"
   LocalAccountsFile = "./.psc/locals.txt"
+  AllowedTxsFile = "./.psc/allowedtxs.txt"
 
 [WS]
   Enabled = true
