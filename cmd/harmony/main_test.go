@@ -2,11 +2,11 @@ package main
 
 import (
 	"bytes"
+	"github.com/PositionExchange/posichain/core"
 	"testing"
 
 	"github.com/ethereum/go-ethereum/common"
 	ethCommon "github.com/ethereum/go-ethereum/common"
-	"github.com/harmony-one/harmony/core"
 )
 
 func TestAllowedTxsParse(t *testing.T) {

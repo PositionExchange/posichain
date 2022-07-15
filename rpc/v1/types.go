@@ -283,19 +283,14 @@ func NewTransaction(
 		result.TransactionIndex = hexutil.Uint(index)
 	}
 
-	fromAddr, err := internal_common.AddressToBech32(from)
-	if err != nil {
-		return nil, err
-	}
+	fromAddr := strings.ToLower(from.String())
 	toAddr := ""
 
 	if tx.To() != nil {
-		if toAddr, err = internal_common.AddressToBech32(*tx.To()); err != nil {
-			return nil, err
-		}
+		toAddr = strings.ToLower(tx.To().String())
 		result.From = fromAddr
 	} else {
-		result.From = strings.ToLower(from.Hex())
+		result.From = strings.ToLower(from.String())
 	}
 	result.To = toAddr
 
@@ -334,14 +329,8 @@ func NewTxReceipt(
 		receiver = ""
 	} else {
 		// Handle response type for regular transaction
-		sender, err = internal_common.AddressToBech32(senderAddr)
-		if err != nil {
-			return nil, err
-		}
-		receiver, err = internal_common.AddressToBech32(*tx.To())
-		if err != nil {
-			return nil, err
-		}
+		sender = strings.ToLower(senderAddr.String())
+		receiver = strings.ToLower(tx.To().String())
 	}
 
 	// Declare receipt

@@ -313,19 +313,14 @@ func NewTransaction(
 		result.TransactionIndex = index
 	}
 
-	fromAddr, err := internal_common.AddressToBech32(from)
-	if err != nil {
-		return nil, err
-	}
+	fromAddr := strings.ToLower(from.String())
 	toAddr := ""
 
 	if tx.To() != nil {
-		if toAddr, err = internal_common.AddressToBech32(*tx.To()); err != nil {
-			return nil, err
-		}
+		toAddr = strings.ToLower(tx.To().String())
 		result.From = fromAddr
 	} else {
-		result.From = strings.ToLower(from.Hex())
+		result.From = strings.ToLower(from.String())
 	}
 	result.To = toAddr
 
