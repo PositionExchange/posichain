@@ -12,7 +12,7 @@ https://docs.posichain.org
 
 ## API Guide
 
-http://api.hmny.io/
+https://docs.posichain.org
 
 ## Requirements
 

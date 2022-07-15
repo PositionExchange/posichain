@@ -37,7 +37,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/PositionExchange/posichain/common/denominations"
 	"github.com/PositionExchange/posichain/core/rawdb"
 	"github.com/PositionExchange/posichain/core/state"
 	"github.com/PositionExchange/posichain/core/types"
@@ -55,33 +54,6 @@ var errGenesisNoConfig = errors.New("genesis has no chain configuration")
 const (
 	// GenesisEpoch is the number of the genesis epoch.
 	GenesisEpoch = 0
-	// GenesisFoundationToken is the initial total number of token in the genesis block.
-	GenesisFoundationToken = 12600000000
-	// InitFreeFund is the initial fund for permissioned accounts for testnet/devnet/
-	InitFreeFund = 100
-)
-
-var (
-	// GenesisFoundationFund is the initial total number of token (in atto) in the genesis block.
-	GenesisFoundationFund = new(big.Int).Mul(big.NewInt(GenesisFoundationToken), big.NewInt(denominations.One))
-
-	// GenesisFoundations Contact @danny for these accounts
-	GenesisFoundations = map[nodeconfig.NetworkType]map[common.Address]*big.Int{
-		nodeconfig.Mainnet: {
-			common.HexToAddress("0xdE8CEfB471f20292021399A4E56af4edEB926BB5"): GenesisFoundationFund,
-		},
-		nodeconfig.Testnet: {
-			common.HexToAddress("0xf9778193a0085bE6FF60D4362887E8D9921e19cB"): GenesisFoundationFund,
-		},
-		nodeconfig.Devnet: {
-			common.HexToAddress("0x89Edf385780aAE08F8aa15bB52FB913EF8C43433"): GenesisFoundationFund,
-			common.HexToAddress("0x1E0414E161c892E2113ebA4aa5469d188F2A5ebc"): GenesisFoundationFund,
-		},
-		nodeconfig.Localnet: {
-			// PK: 1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc
-			common.HexToAddress("0xA5241513DA9F4463F1d4874b548dFBAC29D91f34"): GenesisFoundationFund,
-		},
-	}
 )
 
 // Genesis specifies the header fields, state of a genesis block. It also defines hard
@@ -115,9 +87,9 @@ func NewGenesisSpec(netType nodeconfig.NetworkType, shardID uint32) *Genesis {
 	gasLimit := params.GenesisGasLimit
 
 	if shardID == 0 {
-		if foundationAddresses, exists := GenesisFoundations[netType]; exists && len(GenesisFoundations[netType]) > 0 {
-			for addr, fund := range foundationAddresses {
-				genesisAlloc[addr] = GenesisAccount{Balance: fund}
+		if genesisAllocList := ResolveGenesisAlloc(netType); genesisAllocList != nil {
+			for addr, account := range genesisAllocList {
+				genesisAlloc[common.HexToAddress(addr)] = account
 			}
 		} else if netType != nodeconfig.Mainnet { // All non-mainnet chains get test accounts
 			utils.Logger().Info().Msgf("No foundation accounts are provided, initialing test accounts for non-mainnet network")
@@ -128,12 +100,13 @@ func NewGenesisSpec(netType nodeconfig.NetworkType, shardID uint32) *Genesis {
 			)
 			foundationTestPrivateKey := hex.EncodeToString(crypto.FromECDSA(foundationTestKey))
 			foundationTestAddress := crypto.PubkeyToAddress(foundationTestKey.PublicKey)
-			utils.Logger().Info().
-				Msgf("Foundation account initiated, balances: %d, address: %s, private key: %s",
-					new(big.Int).Quo(GenesisFoundationFund, big.NewInt(denominations.One)),
-					foundationTestAddress.Hex(),
-					foundationTestPrivateKey)
-			genesisAlloc[foundationTestAddress] = GenesisAccount{Balance: GenesisFoundationFund}
+			utils.Logger().Info().Msgf("Foundation account initiated, balances: %d, address: %s, private key: %s",
+				GenesisTestFoundationBalance,
+				foundationTestAddress.Hex(),
+				foundationTestPrivateKey)
+			genesisAlloc[foundationTestAddress] = GenesisAccount{
+				Balance: toStorableBalance(GenesisTestFoundationBalance),
+			}
 		}
 	}
 
