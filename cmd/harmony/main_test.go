@@ -2,9 +2,9 @@ package main
 
 import (
 	"bytes"
-	"github.com/PositionExchange/posichain/core"
 	"testing"
 
+	"github.com/PositionExchange/posichain/core"
 	"github.com/ethereum/go-ethereum/common"
 	ethCommon "github.com/ethereum/go-ethereum/common"
 )

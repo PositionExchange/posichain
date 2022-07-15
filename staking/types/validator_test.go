@@ -2,18 +2,17 @@ package types
 
 import (
 	"fmt"
-	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
-	"github.com/PositionExchange/posichain/shard"
 	"math/big"
 	"strings"
 	"testing"
 
 	"github.com/PositionExchange/posichain/crypto/bls"
-
 	"github.com/PositionExchange/posichain/crypto/hash"
 	common2 "github.com/PositionExchange/posichain/internal/common"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
 	"github.com/PositionExchange/posichain/internal/genesis"
 	"github.com/PositionExchange/posichain/numeric"
+	"github.com/PositionExchange/posichain/shard"
 	"github.com/PositionExchange/posichain/staking/effective"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"

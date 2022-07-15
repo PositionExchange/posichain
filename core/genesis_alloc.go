@@ -1,10 +1,11 @@
 package core
 
 import (
-	"github.com/PositionExchange/posichain/common/denominations"
-	"github.com/PositionExchange/posichain/internal/configs/node"
-	"github.com/ethereum/go-ethereum/common"
 	"math/big"
+
+	"github.com/PositionExchange/posichain/common/denominations"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/ethereum/go-ethereum/common"
 )
 
 var GenesisAllocMainNet = map[string]GenesisAccount{

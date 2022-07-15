@@ -1,7 +1,6 @@
 package node
 
 import (
-	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
 	"math/big"
 	"testing"
 
@@ -10,6 +9,7 @@ import (
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/crypto/bls"
 	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/multibls"
 	"github.com/PositionExchange/posichain/p2p"

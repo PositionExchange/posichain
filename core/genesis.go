@@ -23,6 +23,10 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"math/big"
+	"os"
+	"strings"
+
 	blockfactory "github.com/PositionExchange/posichain/block/factory"
 	"github.com/PositionExchange/posichain/internal/genesis"
 	"github.com/PositionExchange/posichain/internal/params"
@@ -33,9 +37,6 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethdb"
 	"github.com/ethereum/go-ethereum/rlp"
-	"math/big"
-	"os"
-	"strings"
 
 	"github.com/PositionExchange/posichain/core/rawdb"
 	"github.com/PositionExchange/posichain/core/state"
