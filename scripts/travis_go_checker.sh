@@ -71,6 +71,8 @@ then
 		echo "go generate FAILED!"
 		echo "go generate changed working tree contents!"
 		"${progdir}/print_file.sh" "${gogenerate_status_diff}" "git status diff"
+		# Debug
+		cat api/proto/message/message.pb.go
 		ok=false
 	fi
 else
