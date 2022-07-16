@@ -159,12 +159,16 @@ Note that all testing docker container binds a couple of ports to the host machi
 * `9798` - Shard 1 Rosetta (for an explorer)
 * `9899` - Shard 0 WS for an explorer
 * `9898` - Shard 1 WS for an explorer
-> This allows you to use curl, hmy CLI, postman, rosetta-cli, etc... on your host machine to play with or probe the localnet that was used for the test.
+> This allows you to use curl, PSC CLI, postman, rosetta-cli, etc... on your host machine to play with or probe the localnet that was used for the test.
 
 ### Go tests
 To run this test, do:
 ```bash
+# Using your local environment
 make test-go
+
+# Or using Docker Compose
+docker-compose up test
 ```
 This test runs the go tests along with go lint, go fmt, go imports, go mod, and go generate checks.
 
@@ -184,7 +188,7 @@ make test-rpc-attach
 > This will open a shell in the docker container that is running the Node API tests.
 >
 > Note that the docker container has the [PSC CLI](https://github.com/PositionExchange/posichain-gosdk) on path,
-> therefore you can use that to debug if needed. For example, one could do `hmy blockchain latest-headers` to check
+> therefore you can use that to debug if needed. For example, one could do `psc blockchain latest-headers` to check
 > the current block height of localnet. Reference the documentation for the CLI [here](https://github.com/PositionExchange/posichain-gosdk)
 > for more details & commands.
 

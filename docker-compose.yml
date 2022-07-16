@@ -1,10 +1,19 @@
+version: "2.2"
+
 services:
-  test_all:
+  test:
     container_name: posichain-test
     build:
       dockerfile: Dockerfile.test
       context: .
-    command:
-      - bash
-      - -c
-      - "make go-get && make && ./scripts/travis_go_checker.sh"
+    volumes:
+      - .:/root/go/src/github.com/PositionExchange/posichain
+
+  workspace:
+    container_name: posichain-workspace
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - .:/root/go/src/github.com/PositionExchange/posichain
+    tty: true

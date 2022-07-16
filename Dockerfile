@@ -40,6 +40,13 @@ ENV PATH="/root/.gimme/versions/go${GIMME_GO_VERSION}.linux.${TARGETARCH:-amd64}
 RUN cat /root/.bash_profile
 RUN ls -lah /root/.gimme/versions/go${GIMME_GO_VERSION}.linux.${TARGETARCH:-amd64}/bin
 
+RUN git clone https://github.com/PositionExchange/bls.git ${BASE_PATH}/bls
+RUN git clone https://github.com/PositionExchange/mcl.git ${BASE_PATH}/mcl
+RUN cd ${BASE_PATH}/bls && make -j8 BLS_SWAP_G=1
+
+RUN curl -LO https://download.posichain.org/psc && chmod +x psc
+RUN mv ./psc /root/bin/psc
+
 RUN . ~/.bash_profile;
 RUN go install golang.org/x/tools/cmd/goimports@latest
 RUN go install golang.org/x/lint/golint@latest
@@ -48,13 +55,10 @@ RUN go install github.com/go-delve/delve/cmd/dlv@latest
 RUN go install github.com/golang/mock/mockgen@latest
 RUN go install github.com/stamblerre/gocode@latest
 RUN go install honnef.co/go/tools/cmd/staticcheck@latest
-
-RUN git clone https://github.com/PositionExchange/bls.git ${BASE_PATH}/bls
-RUN git clone https://github.com/PositionExchange/mcl.git ${BASE_PATH}/mcl
-RUN cd ${BASE_PATH}/bls && make -j8 BLS_SWAP_G=1
-
-RUN git clone https://github.com/PositionExchange/posichain-gosdk.git ${BASE_PATH}/posichain-gosdk
-RUN cd ${BASE_PATH}/posichain-gosdk && make -j8 && cp psc /root/bin
+RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26
+RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
+RUN go install github.com/fjl/gencodec@latest
+RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.41.1
 
 WORKDIR ${BASE_PATH}/posichain
 COPY . .
