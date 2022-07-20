@@ -95,6 +95,7 @@ explorer_storage_*
 # pprof profiles
 profiles/*.pb.gz
 
+.deployment/testnet
 .deployment/devnet/nodes/*/data/*
 !.deployment/devnet/nodes/*/data/.gitkeep
 .deployment/devnet/nodes/*/account/*

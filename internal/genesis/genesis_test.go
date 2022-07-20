@@ -18,8 +18,8 @@ func TestString(t *testing.T) {
 func TestCommitteeAccounts(test *testing.T) {
 	testAccounts(test, FoundationalNodeAccounts)
 	testAccounts(test, HarmonyAccounts)
-	testAccounts(test, TNHarmonyAccounts)
-	testAccounts(test, TNFoundationalAccounts)
+	testAccounts(test, TestnetOperatedAccounts)
+	testAccounts(test, TestnetFoundationalAccounts)
 }
 
 func testAccounts(test *testing.T, accounts []DeployAccount) {
