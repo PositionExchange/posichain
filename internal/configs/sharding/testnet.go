@@ -14,10 +14,11 @@ var TestnetSchedule testnetSchedule
 type testnetSchedule struct{}
 
 const (
-	// 4.5 hours per epoch (given 2s block time)
-	testnetBlocksPerEpoch = 8192
+	// ~4.5 hours per epoch (given 2s block time)
+	testnetBlocksPerEpoch = 8192 // 2^13
 
-	testnetVdfDifficulty = 10000 // This takes about 20s to finish the vdf
+	// This takes about 20s to finish the vdf
+	testnetVdfDifficulty = 10000
 
 	// TestNetHTTPPattern is the http pattern for testnet.
 	TestNetHTTPPattern = "https://api.s%d.t.posichain.org"
@@ -38,8 +39,8 @@ func (ts testnetSchedule) BlocksPerEpoch() uint64 {
 }
 
 func (ts testnetSchedule) CalcEpochNumber(blockNum uint64) *big.Int {
-	oldEpoch := blockNum / ts.BlocksPerEpoch()
-	return big.NewInt(int64(oldEpoch))
+	epoch := blockNum / ts.BlocksPerEpoch()
+	return big.NewInt(int64(epoch))
 }
 
 func (ts testnetSchedule) IsLastBlock(blockNum uint64) bool {
@@ -70,4 +71,4 @@ func (ts testnetSchedule) IsSkippedEpoch(shardID uint32, epoch *big.Int) bool {
 
 var testnetReshardingEpoch = []*big.Int{big.NewInt(0)}
 
-var testnetV0 = MustNewInstance(2, 5, 4, 0, numeric.OneDec(), genesis.TNHarmonyAccounts, genesis.TNFoundationalAccounts, emptyAllowlist, testnetReshardingEpoch, TestnetSchedule.BlocksPerEpoch())
+var testnetV0 = MustNewInstance(1, 5, 4, 0, numeric.OneDec(), genesis.TNHarmonyAccounts, genesis.TNFoundationalAccounts, emptyAllowlist, testnetReshardingEpoch, TestnetSchedule.BlocksPerEpoch())

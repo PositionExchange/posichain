@@ -5,25 +5,7 @@ import (
 	"testing"
 
 	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
-	"github.com/PositionExchange/posichain/numeric"
 )
-
-func TestFiveSecondsBaseStakedReward(t *testing.T) {
-	expectedNewReward := StakedBlocks.Mul(numeric.MustNewDecFromStr("5")).Quo(numeric.MustNewDecFromStr("8"))
-
-	if !expectedNewReward.Equal(FiveSecStakedBlocks) {
-		t.Errorf(
-			"Expected: %s, Got: %s", FiveSecStakedBlocks.String(), expectedNewReward.String(),
-		)
-	}
-
-	expectedNewReward = StakedBlocks.Mul(numeric.MustNewDecFromStr("2")).Quo(numeric.MustNewDecFromStr("8"))
-	if !expectedNewReward.Equal(TwoSecStakedBlocks) {
-		t.Errorf(
-			"Expected: %s, Got: %s", TwoSecStakedBlocks.String(), expectedNewReward.String(),
-		)
-	}
-}
 
 func TestGetPreStakingRewardsFromBlockNumber(t *testing.T) {
 	refMainnetRewards, _ := new(big.Int).SetString("0", 10)

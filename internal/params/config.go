@@ -39,21 +39,21 @@ var (
 		EthCompatibleShard0ChainID:    EthMainnetShard0ChainID,
 		EthCompatibleEpoch:            big.NewInt(0),
 		CrossTxEpoch:                  big.NewInt(0),
-		CrossLinkEpoch:                big.NewInt(2),
-		AggregatedRewardEpoch:         big.NewInt(3),
-		StakingEpoch:                  big.NewInt(2),
+		CrossLinkEpoch:                big.NewInt(0),
+		AggregatedRewardEpoch:         big.NewInt(0),
+		StakingEpoch:                  big.NewInt(0),
 		PreStakingEpoch:               big.NewInt(0),
 		QuickUnlockEpoch:              big.NewInt(0),
-		FiveSecondsEpoch:              big.NewInt(0),
-		TwoSecondsEpoch:               big.NewInt(3),
-		SixtyPercentEpoch:             EpochTBD, // Never enable it for localnet as localnet has no external validator setup
+		FiveSecondsEpoch:              EpochTBD,
+		TwoSecondsEpoch:               big.NewInt(0),
+		SixtyPercentEpoch:             EpochTBD,
 		RedelegationEpoch:             big.NewInt(0),
 		NoEarlyUnlockEpoch:            big.NewInt(0),
 		VRFEpoch:                      big.NewInt(0),
 		PrevVRFEpoch:                  big.NewInt(0),
 		MinDelegation100Epoch:         big.NewInt(0),
 		MinCommissionRateEpoch:        big.NewInt(0),
-		MinCommissionPromoPeriod:      big.NewInt(10),
+		MinCommissionPromoPeriod:      big.NewInt(0),
 		EPoSBound35Epoch:              big.NewInt(0),
 		EIP155Epoch:                   big.NewInt(0),
 		S3Epoch:                       big.NewInt(0),
@@ -61,12 +61,19 @@ var (
 		IstanbulEpoch:                 big.NewInt(0),
 		ReceiptLogEpoch:               big.NewInt(0),
 		SHA3Epoch:                     big.NewInt(0),
-		HIP6And8Epoch:                 EpochTBD, // Never enable it for localnet as localnet has no external validator setup
-		StakingPrecompileEpoch:        big.NewInt(2),
-		ChainIdFixEpoch:               big.NewInt(0),
+		HIP6And8Epoch:                 big.NewInt(0),
+		StakingPrecompileEpoch:        big.NewInt(0),
 		SlotsLimitedEpoch:             EpochTBD, // epoch to enable HIP-16
+		ChainIdFixEpoch:               EpochTBD,
 		CrossShardXferPrecompileEpoch: EpochTBD,
 		AllowlistEpoch:                EpochTBD,
+		First2022PeriodEpoch:          big.NewInt(0),
+		First2024PeriodEpoch:          big.NewInt(1397),
+		First2026PeriodEpoch:          big.NewInt(3324),
+		First2028PeriodEpoch:          big.NewInt(5249),
+		First2030PeriodEpoch:          big.NewInt(7176),
+		First2032PeriodEpoch:          big.NewInt(9101),
+		First2034PeriodEpoch:          big.NewInt(11028),
 	}
 
 	// TestnetChainConfig contains the chain parameters to run a node on the harmony test network.
@@ -74,36 +81,43 @@ var (
 		ChainID:                       TestnetChainID,
 		EthCompatibleChainID:          EthTestnetShard0ChainID,
 		EthCompatibleShard0ChainID:    EthTestnetShard0ChainID,
-		EthCompatibleEpoch:            big.NewInt(73290),
+		EthCompatibleEpoch:            big.NewInt(0),
 		CrossTxEpoch:                  big.NewInt(0),
-		CrossLinkEpoch:                big.NewInt(2),
-		AggregatedRewardEpoch:         big.NewInt(74275),
-		StakingEpoch:                  big.NewInt(2),
-		PreStakingEpoch:               big.NewInt(1),
+		CrossLinkEpoch:                big.NewInt(0),
+		AggregatedRewardEpoch:         big.NewInt(0),
+		StakingEpoch:                  big.NewInt(0),
+		PreStakingEpoch:               big.NewInt(0),
 		QuickUnlockEpoch:              big.NewInt(0),
-		FiveSecondsEpoch:              big.NewInt(16500),
-		TwoSecondsEpoch:               big.NewInt(73000),
-		SixtyPercentEpoch:             big.NewInt(73282),
-		RedelegationEpoch:             big.NewInt(36500),
-		NoEarlyUnlockEpoch:            big.NewInt(73580),
-		VRFEpoch:                      big.NewInt(73880),
-		PrevVRFEpoch:                  big.NewInt(74384),
-		MinDelegation100Epoch:         big.NewInt(73880),
-		MinCommissionRateEpoch:        big.NewInt(73880),
-		MinCommissionPromoPeriod:      big.NewInt(10),
-		EPoSBound35Epoch:              big.NewInt(73880),
+		FiveSecondsEpoch:              EpochTBD,
+		TwoSecondsEpoch:               big.NewInt(0),
+		SixtyPercentEpoch:             EpochTBD,
+		RedelegationEpoch:             big.NewInt(0),
+		NoEarlyUnlockEpoch:            big.NewInt(0),
+		VRFEpoch:                      big.NewInt(0),
+		PrevVRFEpoch:                  big.NewInt(0),
+		MinDelegation100Epoch:         big.NewInt(0),
+		MinCommissionRateEpoch:        big.NewInt(0),
+		MinCommissionPromoPeriod:      big.NewInt(0),
+		EPoSBound35Epoch:              big.NewInt(0),
 		EIP155Epoch:                   big.NewInt(0),
 		S3Epoch:                       big.NewInt(0),
-		DataCopyFixEpoch:              big.NewInt(74412),
-		IstanbulEpoch:                 big.NewInt(43800),
+		DataCopyFixEpoch:              big.NewInt(0),
+		IstanbulEpoch:                 big.NewInt(0),
 		ReceiptLogEpoch:               big.NewInt(0),
-		SHA3Epoch:                     big.NewInt(74570),
-		HIP6And8Epoch:                 big.NewInt(74570),
-		StakingPrecompileEpoch:        big.NewInt(75175),
-		SlotsLimitedEpoch:             big.NewInt(75684), // epoch to enable HIP-16, around Mon, 02 May 2022 08:18:45 UTC with 2s block time
-		ChainIdFixEpoch:               big.NewInt(75907), // around Wed, 15 Jun 2022 22:58:03 GMT with average block time 2.0065s
-		CrossShardXferPrecompileEpoch: big.NewInt(75907), // around Wed, 15 Jun 2022 22:58:03 GMT with average block time 2.0065s
-		AllowlistEpoch:                big.NewInt(75907), // around Wed, 15 Jun 2022 22:58:03 GMT with average block time 2.0065s
+		SHA3Epoch:                     big.NewInt(0),
+		HIP6And8Epoch:                 big.NewInt(0),
+		StakingPrecompileEpoch:        big.NewInt(0),
+		SlotsLimitedEpoch:             EpochTBD, // epoch to enable HIP-16
+		ChainIdFixEpoch:               EpochTBD,
+		CrossShardXferPrecompileEpoch: EpochTBD,
+		AllowlistEpoch:                EpochTBD,
+		First2022PeriodEpoch:          big.NewInt(0),
+		First2024PeriodEpoch:          big.NewInt(2793),
+		First2026PeriodEpoch:          big.NewInt(6647),
+		First2028PeriodEpoch:          big.NewInt(10497),
+		First2030PeriodEpoch:          big.NewInt(14352),
+		First2032PeriodEpoch:          big.NewInt(18201),
+		First2034PeriodEpoch:          big.NewInt(22056),
 	}
 
 	// DevnetChainConfig is the chain parameters to run a node on the dev network.
@@ -254,6 +268,13 @@ var (
 		big.NewInt(0),                      // SlotsLimitedEpoch
 		big.NewInt(1),                      // CrossShardXferPrecompileEpoch
 		big.NewInt(0),                      // AllowlistEpoch
+		big.NewInt(0),
+		big.NewInt(0),
+		big.NewInt(0),
+		big.NewInt(0),
+		big.NewInt(0),
+		big.NewInt(0),
+		big.NewInt(0),
 	}
 
 	// TestChainConfig ...
@@ -293,6 +314,13 @@ var (
 		big.NewInt(0),        // SlotsLimitedEpoch
 		big.NewInt(1),        // CrossShardXferPrecompileEpoch
 		big.NewInt(0),        // AllowlistEpoch
+		big.NewInt(0),
+		big.NewInt(0),
+		big.NewInt(0),
+		big.NewInt(0),
+		big.NewInt(0),
+		big.NewInt(0),
+		big.NewInt(0),
 	}
 
 	// TestRules ...
@@ -422,6 +450,27 @@ type ChainConfig struct {
 
 	// AllowlistEpoch is the first epoch to support allowlist of HIP18
 	AllowlistEpoch *big.Int
+
+	// First2022PeriodEpoch is the first epoch of 2022
+	First2022PeriodEpoch *big.Int `json:"first-2022-epoch,omitempty"`
+
+	// First2024PeriodEpoch is the first epoch of 2024
+	First2024PeriodEpoch *big.Int `json:"first-2024-epoch,omitempty"`
+
+	// First2026PeriodEpoch is the first epoch of 2026
+	First2026PeriodEpoch *big.Int `json:"first-2026-epoch,omitempty"`
+
+	// First2028PeriodEpoch is the first epoch of 2028
+	First2028PeriodEpoch *big.Int `json:"first-2028-epoch,omitempty"`
+
+	// First2030PeriodEpoch is the first epoch of 2030
+	First2030PeriodEpoch *big.Int `json:"first-2030-epoch,omitempty"`
+
+	// First2032PeriodEpoch is the first epoch of 2032
+	First2032PeriodEpoch *big.Int `json:"first-2032-epoch,omitempty"`
+
+	// First2034PeriodEpoch is the first epoch of 2034
+	First2034PeriodEpoch *big.Int `json:"first-2034-epoch,omitempty"`
 }
 
 // String implements the fmt.Stringer interface.
@@ -603,6 +652,34 @@ func (c *ChainConfig) IsChainIdFix(epoch *big.Int) bool {
 // IsAllowlistEpoch determines whether IsAllowlist of HIP18 is enabled
 func (c *ChainConfig) IsAllowlistEpoch(epoch *big.Int) bool {
 	return isForked(c.AllowlistEpoch, epoch)
+}
+
+func (c *ChainConfig) Is2022PeriodEpoch(epoch *big.Int) bool {
+	return isForked(c.First2022PeriodEpoch, epoch)
+}
+
+func (c *ChainConfig) Is2024PeriodEpoch(epoch *big.Int) bool {
+	return isForked(c.First2024PeriodEpoch, epoch)
+}
+
+func (c *ChainConfig) Is2026PeriodEpoch(epoch *big.Int) bool {
+	return isForked(c.First2026PeriodEpoch, epoch)
+}
+
+func (c *ChainConfig) Is2028PeriodEpoch(epoch *big.Int) bool {
+	return isForked(c.First2028PeriodEpoch, epoch)
+}
+
+func (c *ChainConfig) Is2030PeriodEpoch(epoch *big.Int) bool {
+	return isForked(c.First2030PeriodEpoch, epoch)
+}
+
+func (c *ChainConfig) Is2032PeriodEpoch(epoch *big.Int) bool {
+	return isForked(c.First2032PeriodEpoch, epoch)
+}
+
+func (c *ChainConfig) IsPeriod2034Epoch(epoch *big.Int) bool {
+	return isForked(c.First2034PeriodEpoch, epoch)
 }
 
 // UpdateEthChainIDByShard update the ethChainID based on shard ID.

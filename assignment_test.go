@@ -6,9 +6,9 @@ import (
 )
 
 func TestPreStakingEnabledCommittee(T *testing.T) {
-	shardNum := 2
-	shardSize := 4
-	shardHarmonyNodes := 2
+	shardNum := 1
+	shardSize := 5
+	shardHarmonyNodes := 4
 	for i := 0; i < shardNum; i++ {
 		fmt.Printf("Shard %d\n", i)
 		for j := 0; j < shardHarmonyNodes; j++ {

@@ -14,25 +14,27 @@ import (
 
 var (
 	// PreStakedBlocks is the block reward, to be split evenly among block signers in pre-staking era.
-	// 24 ONE per block
-	PreStakedBlocks = new(big.Int).Mul(big.NewInt(24), big.NewInt(denominations.One))
-	// StakedBlocks is the flat-rate block reward for epos staking launch.
-	// 28 ONE per block.
+	// 0.001 POSI per block.
+	PreStakedBlocks = new(big.Int).Mul(big.NewInt(0.001*denominations.Nano), big.NewInt(denominations.Nano))
+
+	// StakedBlocks is the DEFAULT flat-rate block reward for epos staking launch.
+	// 0.001 POSI per block.
 	StakedBlocks = numeric.NewDecFromBigInt(new(big.Int).Mul(
-		big.NewInt(28), big.NewInt(denominations.One),
-	))
-	// FiveSecStakedBlocks is the flat-rate block reward after epoch 230.
-	// 17.5 ONE per block
-	FiveSecStakedBlocks = numeric.NewDecFromBigInt(new(big.Int).Mul(
-		big.NewInt(17.5*denominations.Nano), big.NewInt(denominations.Nano),
-	))
-	// TwoSecStakedBlocks is the flat-rate block reward after epoch 360.
-	// 7 ONE per block
-	TwoSecStakedBlocks = numeric.NewDecFromBigInt(new(big.Int).Mul(
-		big.NewInt(7*denominations.Nano), big.NewInt(denominations.Nano),
+		big.NewInt(0.001*denominations.Nano), big.NewInt(denominations.Nano),
 	))
 
-	// TotalInitialTokens is the total amount of tokens (in ONE) at block 0 of the network.
+	// Posichain tokenomics model
+	// https://docs.google.com/spreadsheets/d/1aWqPpw2XO2guSJeXVC5n3p71Ug1yKMmpnwFOWYwq5e4/edit#gid=1008442802
+
+	TwoSecStakedBlocks20222023 = numeric.NewDecFromBigInt(big.NewInt(0.1167975157 * denominations.One))
+	TwoSecStakedBlocks20242025 = numeric.NewDecFromBigInt(big.NewInt(0.1016296444 * denominations.One))
+	TwoSecStakedBlocks20262027 = numeric.NewDecFromBigInt(big.NewInt(0.0508148222 * denominations.One))
+	TwoSecStakedBlocks20282029 = numeric.NewDecFromBigInt(big.NewInt(0.0254074111 * denominations.One))
+	TwoSecStakedBlocks20302031 = numeric.NewDecFromBigInt(big.NewInt(0.0127037055 * denominations.One))
+	TwoSecStakedBlocks20322033 = numeric.NewDecFromBigInt(big.NewInt(0.0063518528 * denominations.One))
+	TwoSecStakedBlocks20342035 = numeric.NewDecFromBigInt(big.NewInt(0.0031759264 * denominations.One))
+
+	// TotalInitialTokens is the total amount of tokens (in POSI) at block 0 of the network.
 	// This should be set/change on the node's init according to the core.GenesisSpec.
 	TotalInitialTokens = numeric.Dec{Int: big.NewInt(0)}
 
@@ -127,7 +129,7 @@ func getTotalPreStakingNetworkRewards(id shardingconfig.NetworkID) *big.Int {
 	return totalRewards
 }
 
-// GetTotalTokens in the network for all shards in ONE.
+// GetTotalTokens in the network for all shards in POSI.
 // This can only be computed with beaconchain if in staking era.
 // If not in staking era, returns the rewards given out by the start of staking era.
 func GetTotalTokens(chain engine.ChainReader) (numeric.Dec, error) {
@@ -146,7 +148,7 @@ func GetTotalTokens(chain engine.ChainReader) (numeric.Dec, error) {
 	return GetTotalPreStakingTokens().Add(numeric.NewDecFromBigIntWithPrec(stakingRewards, 18)), nil
 }
 
-// GetTotalPreStakingTokens returns the total amount of tokens (in ONE) in the
+// GetTotalPreStakingTokens returns the total amount of tokens (in POSI) in the
 // network at the the last block of the pre-staking era (epoch < staking epoch).
 func GetTotalPreStakingTokens() numeric.Dec {
 	preStakingRewards := numeric.NewDecFromBigIntWithPrec(

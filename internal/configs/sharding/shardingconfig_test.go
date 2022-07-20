@@ -26,8 +26,6 @@ func TestMainnetInstanceForEpoch(t *testing.T) {
 }
 
 func TestCalcEpochNumber(t *testing.T) {
-	//TODO Must update after mainnet configured
-	t.Skip("Must update after mainnet configured")
 	tests := []struct {
 		block uint64
 		epoch *big.Int
@@ -41,48 +39,32 @@ func TestCalcEpochNumber(t *testing.T) {
 			big.NewInt(0),
 		},
 		{
-			327679,
+			16383,
 			big.NewInt(0),
 		},
 		{
-			327680,
-			big.NewInt(0),
-		},
-		{
-			344064,
+			16384,
 			big.NewInt(1),
 		},
 		{
-			344063,
-			big.NewInt(0),
-		},
-		{
-			344065,
+			16385,
 			big.NewInt(1),
 		},
 		{
-			360448,
-			big.NewInt(2),
+			81919,
+			big.NewInt(4),
 		},
 		{
-			6207973,
-			big.NewInt(358),
+			81700,
+			big.NewInt(4),
 		},
 		{
-			6324223, // last block before 2s
-			big.NewInt(365),
+			5849087,
+			big.NewInt(356),
 		},
 		{
-			6324224,
-			big.NewInt(366),
-		},
-		{
-			6389759,
-			big.NewInt(367),
-		},
-		{
-			6389777,
-			big.NewInt(368),
+			5849088,
+			big.NewInt(357),
 		},
 	}
 
@@ -95,9 +77,6 @@ func TestCalcEpochNumber(t *testing.T) {
 }
 
 func TestIsLastBlock(t *testing.T) {
-	//TODO Must update after mainnet configured
-	t.Skip("Must update after mainnet configured")
-
 	tests := []struct {
 		block  uint64
 		result bool
@@ -111,47 +90,23 @@ func TestIsLastBlock(t *testing.T) {
 			false,
 		},
 		{
-			327679,
+			16384,
 			false,
 		},
 		{
-			344063,
+			16383,
 			true,
 		},
 		{
-			344064,
+			32768,
 			false,
 		},
 		{
-			360447,
+			32767,
 			true,
 		},
 		{
-			360448,
-			false,
-		},
-		{
-			6207973,
-			false,
-		},
-		{
-			6324223, // last block of first 2s epoch
-			true,
-		},
-		{
-			6324224,
-			false,
-		},
-		{
-			6356991,
-			true,
-		},
-		{
-			6356992,
-			false,
-		},
-		{
-			6389759,
+			49151,
 			true,
 		},
 	}
@@ -163,45 +118,31 @@ func TestIsLastBlock(t *testing.T) {
 		}
 	}
 }
-func TestEpochLastBlock(t *testing.T) {
-	//TODO Must update after mainnet configured
-	t.Skip("Must update after mainnet configured")
 
+func TestEpochLastBlock(t *testing.T) {
 	tests := []struct {
 		epoch     uint64
 		lastBlock uint64
 	}{
 		{
 			0,
-			344063,
+			16383,
 		},
 		{
 			1,
-			360447,
+			32767,
 		},
 		{
 			2,
-			376831,
+			49151,
 		},
 		{
 			3,
-			393215,
+			65535,
 		},
 		{
 			358,
-			6209535,
-		},
-		{
-			365,
-			6324223, // last block before 2s
-		},
-		{
-			366,
-			6356991, // last block of first 2s epoch
-		},
-		{
-			367,
-			6389759, // last block of second 2s epoch
+			5881855,
 		},
 	}
 
@@ -210,15 +151,6 @@ func TestEpochLastBlock(t *testing.T) {
 		if test.lastBlock != ep {
 			t.Errorf("EpochLastBlock error: index %v, got %v, expect %v\n", i, ep, test.lastBlock)
 		}
-	}
-}
-
-func TestTwoSecondsFirstBlock(t *testing.T) {
-	//TODO Must update after mainnet configured
-	t.Skip("Must update after mainnet configured")
-
-	if MainnetSchedule.twoSecondsFirstBlock() != 6324224 {
-		t.Errorf("twoSecondsFirstBlock error: got %v, expect %v\n", MainnetSchedule.twoSecondsFirstBlock(), 6324224)
 	}
 }
 

@@ -34,7 +34,7 @@ func TestIsEpochBlock(t *testing.T) {
 		},
 		{
 			shardingconfig.MainnetSchedule,
-			blockNumbered(10),
+			blockNumbered(16384),
 			true,
 		},
 		{

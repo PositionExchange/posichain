@@ -201,13 +201,23 @@ func accumulateRewardsAndCountSigsBeforeStaking(
 	return network.NewPreStakingEraRewarded(totalAmount), nil
 }
 
-// getDefaultStakingReward returns the static default reward based on the the block production interval and the chain.
+// getDefaultStakingReward returns the static default reward based on the block production interval and the chain.
 func getDefaultStakingReward(bc engine.ChainReader, epoch *big.Int, blockNum uint64) numeric.Dec {
 	defaultReward := stakingReward.StakedBlocks
-	if bc.Config().IsTwoSeconds(epoch) {
-		defaultReward = stakingReward.TwoSecStakedBlocks
-	} else if bc.Config().IsFiveSeconds(epoch) {
-		defaultReward = stakingReward.FiveSecStakedBlocks
+	if bc.Config().Is2022PeriodEpoch(epoch) {
+		defaultReward = stakingReward.TwoSecStakedBlocks20222023
+	} else if bc.Config().Is2024PeriodEpoch(epoch) {
+		defaultReward = stakingReward.TwoSecStakedBlocks20242025
+	} else if bc.Config().Is2026PeriodEpoch(epoch) {
+		defaultReward = stakingReward.TwoSecStakedBlocks20262027
+	} else if bc.Config().Is2028PeriodEpoch(epoch) {
+		defaultReward = stakingReward.TwoSecStakedBlocks20282029
+	} else if bc.Config().Is2030PeriodEpoch(epoch) {
+		defaultReward = stakingReward.TwoSecStakedBlocks20302031
+	} else if bc.Config().Is2032PeriodEpoch(epoch) {
+		defaultReward = stakingReward.TwoSecStakedBlocks20322033
+	} else if bc.Config().IsPeriod2034Epoch(epoch) {
+		defaultReward = stakingReward.TwoSecStakedBlocks20342035
 	}
 	return defaultReward
 }
