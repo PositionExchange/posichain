@@ -12,7 +12,6 @@ import (
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/eth/rpc"
 	"github.com/PositionExchange/posichain/internal/chain"
-	internalCommon "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/numeric"
 	commonRPC "github.com/PositionExchange/posichain/rpc/common"
 	"github.com/PositionExchange/posichain/shard"
@@ -282,8 +281,7 @@ func (hmy *Harmony) GetValidatorInformation(
 	bc := hmy.BlockChain
 	wrapper, err := bc.ReadValidatorInformationAtRoot(addr, block.Root())
 	if err != nil {
-		s, _ := internalCommon.AddressToBech32(addr)
-		return nil, errors.Wrapf(err, "not found address in current state %s", s)
+		return nil, errors.Wrapf(err, "not found address in current state %s", addr)
 	}
 
 	now := block.Epoch()

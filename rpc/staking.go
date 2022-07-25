@@ -141,9 +141,8 @@ func (s *PublicStakingService) GetElectedValidatorAddresses(
 	electedAddresses := s.hmy.GetElectedValidatorAddresses()
 	addresses := make([]string, len(electedAddresses))
 	for i, addr := range electedAddresses {
-		oneAddr, _ := internal_common.AddressToBech32(addr)
 		// Response output is the same for all versions
-		addresses[i] = oneAddr
+		addresses[i] = addr.String()
 	}
 	return addresses, nil
 }
@@ -168,11 +167,8 @@ func (s *PublicStakingService) GetValidators(
 	validators := []StructuredResponse{}
 	for _, validator := range cmt.Slots {
 		// Fetch the balance of the validator
-		oneAddress, err := internal_common.AddressToBech32(validator.EcdsaAddress)
-		if err != nil {
-			return nil, err
-		}
-		validatorBalance, err := s.getBalanceByBlockNumber(ctx, oneAddress, rpc.BlockNumber(balanceQueryBlock))
+		hexAddress := validator.EcdsaAddress.String()
+		validatorBalance, err := s.getBalanceByBlockNumber(ctx, hexAddress, rpc.BlockNumber(balanceQueryBlock))
 		if err != nil {
 			return nil, err
 		}
@@ -182,12 +178,12 @@ func (s *PublicStakingService) GetValidators(
 		switch s.version {
 		case V1:
 			validatorsFields = StructuredResponse{
-				"address": oneAddress,
+				"address": hexAddress,
 				"balance": (*hexutil.Big)(validatorBalance),
 			}
 		case V2:
 			validatorsFields = StructuredResponse{
-				"address": oneAddress,
+				"address": hexAddress,
 				"balance": validatorBalance,
 			}
 		default:
@@ -217,9 +213,8 @@ func (s *PublicStakingService) GetAllValidatorAddresses(
 	validatorAddresses := s.hmy.GetAllValidatorAddresses()
 	addresses := make([]string, len(validatorAddresses))
 	for i, addr := range validatorAddresses {
-		oneAddr, _ := internal_common.AddressToBech32(addr)
 		// Response output is the same for all versions
-		addresses[i] = oneAddr
+		addresses[i] = addr.String()
 	}
 	return addresses, nil
 }
@@ -607,8 +602,8 @@ func (s *PublicStakingService) GetDelegationsByDelegator(
 				Epoch:  delegation.Undelegations[j].Epoch,
 			}
 		}
-		valAddr, _ := internal_common.AddressToBech32(validators[i])
-		delAddr, _ := internal_common.AddressToBech32(delegatorAddress)
+		valAddr := validators[i].String()
+		delAddr := delegatorAddress.String()
 
 		// Response output is the same for all versions
 		del, err := NewStructuredResponse(Delegation{
@@ -681,8 +676,8 @@ func (s *PublicStakingService) parseGetDelegationsByDelegatorResp(
 				Epoch:  delegation.Undelegations[j].Epoch,
 			}
 		}
-		valAddr, _ := internal_common.AddressToBech32(validators[i])
-		delAddr, _ := internal_common.AddressToBech32(delegator)
+		valAddr := validators[i].String()
+		delAddr := delegator.String()
 
 		// Response output is the same for all versions
 		del, err := NewStructuredResponse(Delegation{
@@ -739,8 +734,8 @@ func (s *PublicStakingService) getDelegationByValidatorHelper(address string) ([
 				Epoch:  undelegation.Epoch,
 			})
 		}
-		valAddr, _ := internal_common.AddressToBech32(validatorAddress)
-		delAddr, _ := internal_common.AddressToBech32(delegation.DelegatorAddress)
+		valAddr := validatorAddress.String()
+		delAddr := delegation.DelegatorAddress.String()
 
 		// Skip delegations with zero amount and empty undelegation
 		if delegation.Amount.Cmp(common.Big0) == 0 && len(undelegations) == 0 {
@@ -799,8 +794,8 @@ func (s *PublicStakingService) GetDelegationByDelegatorAndValidator(
 				Epoch:  delegation.Undelegations[j].Epoch,
 			}
 		}
-		valAddr, _ := internal_common.AddressToBech32(validatorAddress)
-		delAddr, _ := internal_common.AddressToBech32(delegatorAddress)
+		valAddr := validatorAddress.String()
+		delAddr := delegatorAddress.String()
 
 		// Response output is the same for all versions
 		return NewStructuredResponse(Delegation{
