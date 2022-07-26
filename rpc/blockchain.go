@@ -541,10 +541,7 @@ func (s *PublicBlockchainService) GetSignedBlocks(
 			}
 		}
 	} else {
-		ethAddr, err := internal_common.Bech32ToAddress(address)
-		if err != nil {
-			return nil, err
-		}
+		ethAddr := common.HexToAddress(address)
 		curVal, err := s.hmy.BlockChain.ReadValidatorInformation(ethAddr)
 		if err != nil {
 			return nil, err
@@ -1303,13 +1300,10 @@ func getSignerData(hmy *hmy.Harmony, number uint64) (*signerData, error) {
 	signers := make([]string, 0, len(slots))
 	blsSigners := make([]string, 0, len(slots))
 	for _, validator := range slots {
-		oneAddress, err := internal_common.AddressToBech32(validator.EcdsaAddress)
-		if err != nil {
-			return nil, err
-		}
+		hexAddress := validator.EcdsaAddress.Hex()
 		if ok, err := mask.KeyEnabled(validator.BLSPublicKey); err == nil && ok {
 			blsSigners = append(blsSigners, validator.BLSPublicKey.Hex())
-			signers = append(signers, oneAddress)
+			signers = append(signers, hexAddress)
 		}
 	}
 	return &signerData{

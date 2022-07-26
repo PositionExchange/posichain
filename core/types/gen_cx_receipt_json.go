@@ -6,7 +6,6 @@ import (
 	"math/big"
 
 	"github.com/PositionExchange/posichain/block"
-	internal_common "github.com/PositionExchange/posichain/internal/common"
 	"github.com/ethereum/go-ethereum/common"
 )
 
@@ -26,20 +25,11 @@ func (r CXReceipt) MarshalJSON() ([]byte, error) {
 	enc.ShardID = r.ShardID
 	enc.ToShardID = r.ToShardID
 	enc.TxHash = r.TxHash
-	address, err := internal_common.AddressToBech32(r.From)
-	if err != nil {
-		return nil, err
+	enc.From = r.From.Hex()
+	enc.To = ""
+	if r.To != nil {
+		enc.To = r.To.Hex()
 	}
-	enc.From = address
-	if r.To == nil {
-		address = ""
-	} else {
-		address, err = internal_common.AddressToBech32(*r.To)
-	}
-	if err != nil {
-		return nil, err
-	}
-	enc.To = address
 	return json.Marshal(&enc)
 }
 
@@ -65,16 +55,9 @@ func (r *CXReceipt) UnmarshalJSON(input []byte) error {
 	if dec.From == "" {
 		return errors.New("missing required field 'from' for CXReceipt")
 	}
-	r.From, err = internal_common.Bech32ToAddress(dec.From)
-	if err != nil {
-		return err
-	}
+	r.From = common.HexToAddress(dec.From)
 	r.ShardID = dec.ShardID
-	to, err := internal_common.Bech32ToAddress(dec.To)
-	if err != nil {
-		return err
-	}
-	*r.To = to
+	*r.To = common.HexToAddress(dec.To)
 	r.ToShardID = dec.ToShardID
 	if dec.Amount != nil {
 		r.Amount = dec.Amount

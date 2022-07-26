@@ -2,6 +2,7 @@ package services
 
 import (
 	"reflect"
+	"strings"
 	"testing"
 
 	"github.com/coinbase/rosetta-sdk-go/types"
@@ -55,8 +56,8 @@ func TestGetAddressFromKnownPublicKey(t *testing.T) {
 	if rosettaError != nil {
 		t.Fatal(rosettaError)
 	}
-	refB32Addr := "one1aaw9mcd8hcwela748rl3mn9c7phe7ujzdls5rg"
-	if addrID.Address != refB32Addr {
+	refHexAddr := "0xef5c5de1a7be1d9ff7d538ff1dccb8f06f9f7242"
+	if strings.ToLower(addrID.Address) != strings.ToLower(refHexAddr) {
 		t.Error("account ID from key is incorrect")
 	}
 }

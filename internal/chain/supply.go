@@ -6,7 +6,6 @@ import (
 
 	"github.com/PositionExchange/posichain/consensus/engine"
 	"github.com/PositionExchange/posichain/consensus/reward"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/numeric"
 	"github.com/PositionExchange/posichain/shard"
 	stakingReward "github.com/PositionExchange/posichain/staking/reward"
@@ -112,11 +111,10 @@ func getAllInaccessibleAddresses(chain engine.ChainReader) ([]*InaccessibleAddre
 	accs := make([]*InaccessibleAddressInfo, 0, len(InaccessibleAddresses))
 	for _, addr := range InaccessibleAddresses {
 		nonce := state.GetNonce(addr)
-		oneAddr, _ := common2.AddressToBech32(addr)
 		balance := state.GetBalance(addr)
 		accs = append(accs, &InaccessibleAddressInfo{
 			EthAddress: addr,
-			Address:    oneAddr,
+			Address:    addr.Hex(),
 			Balance:    numeric.NewDecFromBigIntWithPrec(balance, numeric.Precision),
 			Nonce:      nonce,
 		})

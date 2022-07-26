@@ -7,11 +7,13 @@ import (
 )
 
 // MustBech32ToAddressH is a wrapper for casting ethCommon.Address to harmony's common.Address
+// Deprecated: Don't use bech32 anymore
 func MustBech32ToAddressH(b32 string) common.Address {
 	return common.Address(common.MustBech32ToAddress(b32))
 }
 
 // Bech32ToAddressH decodes the given bech32 address.
+// Deprecated: Don't use bech32 anymore
 func Bech32ToAddressH(b32 string) (addr common.Address, err error) {
 	var hrp string
 	err = ParseBech32AddrH(b32, &hrp, &addr)
@@ -22,6 +24,7 @@ func Bech32ToAddressH(b32 string) (addr common.Address, err error) {
 }
 
 // ParseBech32AddrH is another wrapper
+// Deprecated: Don't use bech32 anymore
 func ParseBech32AddrH(b32 string, hrp *string, addr *common.Address) error {
 	h, b, err := bech32.DecodeAndConvert(b32)
 	if err != nil {

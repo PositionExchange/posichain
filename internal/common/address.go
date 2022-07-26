@@ -44,6 +44,7 @@ func HexToAddress(s string) Address { return BytesToAddress(utils.FromHex(s)) }
 
 // IsBech32Address verifies whether a string can represent a valid bech32-encoded
 // Harmony address or not.
+// Deprecated: Don't use bech32 anymore
 func IsBech32Address(s string) bool {
 	hrp, bytes, err := bech32.DecodeAndConvert(s)
 	if err != nil || (hrp != "one" && hrp != "tone") || len(bytes) != AddressLength {
@@ -154,6 +155,7 @@ func (a UnprefixedAddress) MarshalText() ([]byte, error) {
 
 // ParseBech32Addr decodes the given bech32 address and populates the given
 // human-readable-part string and address with the decoded result.
+// Deprecated: Don't use bech32 anymore
 func ParseBech32Addr(b32 string, hrp *string, addr *ethCommon.Address) error {
 	h, b, err := bech32.DecodeAndConvert(b32)
 	if err != nil {
@@ -170,6 +172,7 @@ func ParseBech32Addr(b32 string, hrp *string, addr *ethCommon.Address) error {
 
 // BuildBech32Addr encodes the given human-readable-part string and address
 // into a bech32 address.
+// Deprecated: Don't use bech32 anymore
 func BuildBech32Addr(hrp string, addr ethCommon.Address) (string, error) {
 	return bech32.ConvertAndEncode(hrp, addr.Bytes())
 }
@@ -189,6 +192,7 @@ func MustBuildBech32Addr(hrp string, addr ethCommon.Address) string {
 var Bech32AddressHRP = "one"
 
 // Bech32ToAddress decodes the given bech32 address.
+// Deprecated
 func Bech32ToAddress(b32 string) (addr ethCommon.Address, err error) {
 	var hrp string
 	err = ParseBech32Addr(b32, &hrp, &addr)
@@ -199,6 +203,7 @@ func Bech32ToAddress(b32 string) (addr ethCommon.Address, err error) {
 }
 
 // MustBech32ToAddress decodes the given bech32 address.  It panics on error.
+// Deprecated: Don't use bech32 anymore
 func MustBech32ToAddress(b32 string) ethCommon.Address {
 	addr, err := Bech32ToAddress(b32)
 	if err != nil {
@@ -208,12 +213,14 @@ func MustBech32ToAddress(b32 string) ethCommon.Address {
 }
 
 // AddressToBech32 encodes the given address into bech32 format.
+// Deprecated: Don't use bech32 anymore
 func AddressToBech32(addr ethCommon.Address) (string, error) {
 	return BuildBech32Addr(Bech32AddressHRP, addr)
 }
 
 // MustAddressToBech32 encodes the given address into bech32 format.
 // It panics on error.
+// Deprecated: Don't use bech32 anymore
 func MustAddressToBech32(addr ethCommon.Address) string {
 	b32, err := BuildBech32Addr(Bech32AddressHRP, addr)
 	if err != nil {

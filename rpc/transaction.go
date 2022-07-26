@@ -3,12 +3,10 @@ package rpc
 import (
 	"context"
 	"fmt"
-	"math/big"
-	"strings"
-
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/pkg/errors"
+	"math/big"
 
 	"github.com/PositionExchange/posichain/accounts/abi"
 	"github.com/PositionExchange/posichain/core"
@@ -121,20 +119,14 @@ func (s *PublicTransactionService) GetTransactionsCount(
 	timer := DoMetricRPCRequest(GetTransactionsCount)
 	defer DoRPCRequestDuration(GetTransactionsCount, timer)
 
-	if !strings.HasPrefix(address, "one1") {
-		// Handle hex address
-		addr, err := internal_common.ParseAddr(address)
-		if err != nil {
-			return 0, err
-		}
-		address, err = internal_common.AddressToBech32(addr)
-		if err != nil {
-			return 0, err
-		}
+	// Handle hex address
+	addr, err := internal_common.ParseAddr(address)
+	if err != nil {
+		return 0, err
 	}
 
 	// Response output is the same for all versions
-	return s.hmy.GetTransactionsCount(address, txType)
+	return s.hmy.GetTransactionsCount(addr.Hex(), txType)
 }
 
 // GetStakingTransactionsCount returns the number of staking transactions from genesis of input type ("SENT", "RECEIVED", "ALL")
@@ -144,20 +136,14 @@ func (s *PublicTransactionService) GetStakingTransactionsCount(
 	timer := DoMetricRPCRequest(GetStakingTransactionsCount)
 	defer DoRPCRequestDuration(GetStakingTransactionsCount, timer)
 
-	if !strings.HasPrefix(address, "one1") {
-		// Handle hex address
-		addr, err := internal_common.ParseAddr(address)
-		if err != nil {
-			return 0, err
-		}
-		address, err = internal_common.AddressToBech32(addr)
-		if err != nil {
-			return 0, err
-		}
+	// Handle hex address
+	addr, err := internal_common.ParseAddr(address)
+	if err != nil {
+		return 0, err
 	}
 
 	// Response output is the same for all versions
-	return s.hmy.GetStakingTransactionsCount(address, txType)
+	return s.hmy.GetStakingTransactionsCount(addr.Hex(), txType)
 }
 
 // EstimateGas returns an estimate of the amount of gas needed to execute the
@@ -314,24 +300,14 @@ func (s *PublicTransactionService) GetTransactionsHistory(
 	timer := DoMetricRPCRequest(GetTransactionsHistory)
 	defer DoRPCRequestDuration(GetTransactionsHistory, timer)
 	// Fetch transaction history
-	var address string
 	var result []common.Hash
 	var err error
-	if strings.HasPrefix(args.Address, "one1") {
-		address = args.Address
-	} else {
-		addr, err := internal_common.ParseAddr(args.Address)
-		if err != nil {
-			DoMetricRPCQueryInfo(GetTransactionsHistory, FailedNumber)
-			return nil, err
-		}
-		address, err = internal_common.AddressToBech32(addr)
-		if err != nil {
-			DoMetricRPCQueryInfo(GetTransactionsHistory, FailedNumber)
-			return nil, err
-		}
+	addr, err := internal_common.ParseAddr(args.Address)
+	if err != nil {
+		DoMetricRPCQueryInfo(GetTransactionsHistory, FailedNumber)
+		return nil, err
 	}
-	hashes, err := s.hmy.GetTransactionsHistory(address, args.TxType, args.Order)
+	hashes, err := s.hmy.GetTransactionsHistory(addr.Hex(), args.TxType, args.Order)
 	if err != nil {
 		DoMetricRPCQueryInfo(GetTransactionsHistory, FailedNumber)
 		return nil, err
@@ -368,28 +344,14 @@ func (s *PublicTransactionService) GetStakingTransactionsHistory(
 	defer DoRPCRequestDuration(GetStakingTransactionsHistory, timer)
 
 	// Fetch transaction history
-	var address string
 	var result []common.Hash
 	var err error
-	if strings.HasPrefix(args.Address, "one1") {
-		address = args.Address
-	} else {
-		addr, err := internal_common.ParseAddr(args.Address)
-		if err != nil {
-			DoMetricRPCQueryInfo(GetStakingTransactionsHistory, FailedNumber)
-			return nil, err
-		}
-		address, err = internal_common.AddressToBech32(addr)
-		if err != nil {
-			utils.Logger().Debug().
-				Err(err).
-				Msgf("%v error at %v", LogTag, "GetStakingTransactionsHistory")
-			// Legacy behavior is to not return RPC errors
-			DoMetricRPCQueryInfo(GetStakingTransactionsHistory, FailedNumber)
-			return nil, nil
-		}
+	addr, err := internal_common.ParseAddr(args.Address)
+	if err != nil {
+		DoMetricRPCQueryInfo(GetStakingTransactionsHistory, FailedNumber)
+		return nil, err
 	}
-	hashes, err := s.hmy.GetStakingTransactionsHistory(address, args.TxType, args.Order)
+	hashes, err := s.hmy.GetStakingTransactionsHistory(addr.Hex(), args.TxType, args.Order)
 	if err != nil {
 		utils.Logger().Debug().
 			Err(err).

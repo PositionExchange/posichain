@@ -36,7 +36,6 @@ import (
 	"github.com/PositionExchange/posichain/core/state"
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/core/vm"
-	hmyCommon "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/shard"
 	staking "github.com/PositionExchange/posichain/staking/types"
@@ -395,13 +394,9 @@ func (pool *TxPool) loop() {
 				}
 				// Any non-locals old enough should be removed
 				if time.Since(pool.beats[addr]) > pool.config.Lifetime {
-					b32addr, err := hmyCommon.AddressToBech32(addr)
-					if err != nil {
-						b32addr = "unknown"
-					}
 					for _, tx := range pool.queue[addr].Flatten() {
 						pool.removeTx(tx.Hash(), true)
-						pool.txErrorSink.Add(tx, fmt.Errorf("removed transaction for inactive account %v", b32addr))
+						pool.txErrorSink.Add(tx, fmt.Errorf("removed transaction for inactive account %v", addr.Hex()))
 					}
 				}
 			}
@@ -717,9 +712,6 @@ func (pool *TxPool) validateTx(tx types.PoolTransaction, local bool) error {
 	// Make sure the transaction is signed properly
 	from, err := tx.SenderAddress()
 	if err != nil {
-		if b32, err := hmyCommon.AddressToBech32(from); err == nil {
-			return errors.WithMessagef(ErrInvalidSender, "transaction sender is %s", b32)
-		}
 		return ErrInvalidSender
 	}
 
@@ -736,18 +728,13 @@ func (pool *TxPool) validateTx(tx types.PoolTransaction, local bool) error {
 		// do blacklist check
 		// Make sure transaction does not have blacklisted addresses
 		if _, exists := (pool.config.Blacklist)[from]; exists {
-			if b32, err := hmyCommon.AddressToBech32(from); err == nil {
-				return errors.WithMessagef(ErrBlacklistFrom, "transaction sender is %s", b32)
-			}
-			return ErrBlacklistFrom
+			return errors.WithMessagef(ErrBlacklistFrom, "transaction sender is %s", from.Hex())
 		}
 		// Make sure transaction does not burn funds by sending funds to blacklisted address
 		if tx.To() != nil {
 			if _, exists := (pool.config.Blacklist)[*tx.To()]; exists {
-				if b32, err := hmyCommon.AddressToBech32(*tx.To()); err == nil {
-					return errors.WithMessagef(ErrBlacklistTo, "transaction receiver is %s with data: %x", b32, tx.Data())
-				}
-				return ErrBlacklistTo
+				return errors.WithMessagef(ErrBlacklistTo, "transaction receiver is %s with data: %x",
+					tx.To().Hex(), tx.Data())
 			}
 		}
 	}
@@ -804,7 +791,7 @@ func (pool *TxPool) validateTx(tx types.PoolTransaction, local bool) error {
 func (pool *TxPool) validateStakingTx(tx *staking.StakingTransaction) error {
 	// from address already validated
 	from, _ := tx.SenderAddress()
-	b32, _ := hmyCommon.AddressToBech32(from)
+	fromHex := from.Hex()
 
 	switch tx.StakingType() {
 	case staking.DirectiveCreateValidator:
@@ -817,7 +804,7 @@ func (pool *TxPool) validateStakingTx(tx *staking.StakingTransaction) error {
 			return ErrInvalidMsgForStakingDirective
 		}
 		if from != stkMsg.ValidatorAddress {
-			return errors.WithMessagef(ErrInvalidSender, "staking transaction sender is %s", b32)
+			return errors.WithMessagef(ErrInvalidSender, "staking transaction sender is %s", fromHex)
 		}
 		currentBlockNumber := pool.chain.CurrentBlock().Number()
 		pendingBlockNumber := new(big.Int).Add(currentBlockNumber, big.NewInt(1))
@@ -841,7 +828,7 @@ func (pool *TxPool) validateStakingTx(tx *staking.StakingTransaction) error {
 			return ErrInvalidMsgForStakingDirective
 		}
 		if from != stkMsg.ValidatorAddress {
-			return errors.WithMessagef(ErrInvalidSender, "staking transaction sender is %s", b32)
+			return errors.WithMessagef(ErrInvalidSender, "staking transaction sender is %s", fromHex)
 		}
 		chainContext, ok := pool.chain.(ChainContext)
 		if !ok {
@@ -865,7 +852,7 @@ func (pool *TxPool) validateStakingTx(tx *staking.StakingTransaction) error {
 			return ErrInvalidMsgForStakingDirective
 		}
 		if from != stkMsg.DelegatorAddress {
-			return errors.WithMessagef(ErrInvalidSender, "staking transaction sender is %s", b32)
+			return errors.WithMessagef(ErrInvalidSender, "staking transaction sender is %s", fromHex)
 		}
 
 		chain, ok := pool.chain.(ChainContext)
@@ -901,7 +888,7 @@ func (pool *TxPool) validateStakingTx(tx *staking.StakingTransaction) error {
 			return ErrInvalidMsgForStakingDirective
 		}
 		if from != stkMsg.DelegatorAddress {
-			return errors.WithMessagef(ErrInvalidSender, "staking transaction sender is %s", b32)
+			return errors.WithMessagef(ErrInvalidSender, "staking transaction sender is %s", fromHex)
 		}
 
 		_, err = VerifyAndUndelegateFromMsg(pool.currentState, pool.pendingEpoch(), stkMsg)
@@ -916,7 +903,7 @@ func (pool *TxPool) validateStakingTx(tx *staking.StakingTransaction) error {
 			return ErrInvalidMsgForStakingDirective
 		}
 		if from != stkMsg.DelegatorAddress {
-			return errors.WithMessagef(ErrInvalidSender, "staking transaction sender is %s", b32)
+			return errors.WithMessagef(ErrInvalidSender, "staking transaction sender is %s", fromHex)
 		}
 		chain, ok := pool.chain.(ChainContext)
 		if !ok {

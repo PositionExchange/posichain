@@ -22,7 +22,6 @@ import (
 	"github.com/PositionExchange/posichain/core/state"
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/core/vm"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/internal/params"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/shard"
@@ -110,7 +109,7 @@ func (w *Worker) CommitSortedTransactions(
 		w.current.state.Prepare(tx.Hash(), common.Hash{}, len(w.current.txs))
 		err := w.commitTransaction(tx, coinbase)
 
-		sender, _ := common2.AddressToBech32(from)
+		sender := from.Hex()
 		switch err {
 		case core.ErrGasLimitReached:
 			// Pop the current out-of-gas transaction without shifting in the next from the account

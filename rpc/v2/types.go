@@ -10,7 +10,6 @@ import (
 	"github.com/PositionExchange/posichain/block"
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/crypto/bls"
-	internal_common "github.com/PositionExchange/posichain/internal/common"
 	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
@@ -263,15 +262,10 @@ func NewCxReceipt(cx *types.CXReceipt, blockHash common.Hash, blockNumber uint64
 		result.BlockNumber = (*big.Int)(new(big.Int).SetUint64(blockNumber))
 	}
 
-	fromAddr, err := internal_common.AddressToBech32(cx.From)
-	if err != nil {
-		return nil, err
-	}
+	fromAddr := cx.From.Hex()
 	toAddr := ""
 	if cx.To != nil {
-		if toAddr, err = internal_common.AddressToBech32(*cx.To); err != nil {
-			return nil, err
-		}
+		toAddr = cx.To.Hex()
 	}
 	result.From = fromAddr
 	result.To = toAddr
@@ -354,18 +348,12 @@ func NewTxReceipt(
 	var sender, receiver string
 	if tx.To() == nil {
 		// Handle response type for contract receipts
-		sender = senderAddr.String()
+		sender = senderAddr.Hex()
 		receiver = ""
 	} else {
 		// Handle response type for regular transaction
-		sender, err = internal_common.AddressToBech32(senderAddr)
-		if err != nil {
-			return nil, err
-		}
-		receiver, err = internal_common.AddressToBech32(*tx.To())
-		if err != nil {
-			return nil, err
-		}
+		sender = senderAddr.Hex()
+		receiver = tx.To().Hex()
 	}
 
 	// Declare receipt
@@ -413,10 +401,7 @@ func NewStakingTxReceipt(
 	if err != nil {
 		return nil, err
 	}
-	sender, err := internal_common.AddressToBech32(senderAddr)
-	if err != nil {
-		return nil, err
-	}
+	sender := senderAddr.Hex()
 
 	// Declare receipt
 	txReceipt := &StakingTxReceipt{
@@ -466,10 +451,7 @@ func NewStakingTransaction(
 		if !ok {
 			return nil, fmt.Errorf("could not decode staking message")
 		}
-		validatorAddress, err := internal_common.AddressToBech32(msg.ValidatorAddress)
-		if err != nil {
-			return nil, errors.New(fmt.Sprintf("convert validator address error: %s", err.Error()))
-		}
+		validatorAddress := msg.ValidatorAddress.Hex()
 		rpcMsg = &CreateValidatorMsg{
 			ValidatorAddress:   validatorAddress,
 			CommissionRate:     msg.CommissionRates.Rate.Int,
@@ -495,10 +477,7 @@ func NewStakingTransaction(
 		if !ok {
 			return nil, fmt.Errorf("could not decode staking message")
 		}
-		validatorAddress, err := internal_common.AddressToBech32(msg.ValidatorAddress)
-		if err != nil {
-			return nil, errors.New(fmt.Sprintf("convert validator address error: %s", err.Error()))
-		}
+		validatorAddress := msg.ValidatorAddress.Hex()
 		// Edit validators txs need not have commission rates to edit
 		commissionRate := &big.Int{}
 		if msg.CommissionRate != nil {
@@ -527,10 +506,7 @@ func NewStakingTransaction(
 		if !ok {
 			return nil, fmt.Errorf("could not decode staking message")
 		}
-		delegatorAddress, err := internal_common.AddressToBech32(msg.DelegatorAddress)
-		if err != nil {
-			return nil, errors.New(fmt.Sprintf("convert delegator address error: %s", err.Error()))
-		}
+		delegatorAddress := msg.DelegatorAddress.Hex()
 		rpcMsg = &CollectRewardsMsg{DelegatorAddress: delegatorAddress}
 	case staking.DirectiveDelegate:
 		rawMsg, err := staking.RLPDecodeStakeMsg(tx.Data(), staking.DirectiveDelegate)
@@ -541,14 +517,8 @@ func NewStakingTransaction(
 		if !ok {
 			return nil, fmt.Errorf("could not decode staking message")
 		}
-		delegatorAddress, err := internal_common.AddressToBech32(msg.DelegatorAddress)
-		if err != nil {
-			return nil, errors.New(fmt.Sprintf("convert delegator address error: %s", err.Error()))
-		}
-		validatorAddress, err := internal_common.AddressToBech32(msg.ValidatorAddress)
-		if err != nil {
-			return nil, errors.New(fmt.Sprintf("convert validator address error: %s", err.Error()))
-		}
+		delegatorAddress := msg.DelegatorAddress.Hex()
+		validatorAddress := msg.ValidatorAddress.Hex()
 		rpcMsg = &DelegateMsg{
 			DelegatorAddress: delegatorAddress,
 			ValidatorAddress: validatorAddress,
@@ -563,14 +533,8 @@ func NewStakingTransaction(
 		if !ok {
 			return nil, fmt.Errorf("could not decode staking message")
 		}
-		delegatorAddress, err := internal_common.AddressToBech32(msg.DelegatorAddress)
-		if err != nil {
-			return nil, errors.New(fmt.Sprintf("convert delegator address error: %s", err.Error()))
-		}
-		validatorAddress, err := internal_common.AddressToBech32(msg.ValidatorAddress)
-		if err != nil {
-			return nil, err
-		}
+		delegatorAddress := msg.DelegatorAddress.Hex()
+		validatorAddress := msg.ValidatorAddress.Hex()
 		rpcMsg = &UndelegateMsg{
 			DelegatorAddress: delegatorAddress,
 			ValidatorAddress: validatorAddress,
@@ -602,11 +566,7 @@ func NewStakingTransaction(
 			return nil, errors.New(fmt.Sprintf("get sender address error: %s", err.Error()))
 		}
 
-		fromAddr, err := internal_common.AddressToBech32(from)
-		if err != nil {
-			return nil, err
-		}
-		result.From = fromAddr
+		result.From = from.Hex()
 	}
 
 	return result, nil

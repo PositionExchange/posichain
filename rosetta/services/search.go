@@ -54,11 +54,7 @@ func (s *SearchAPI) SearchTransactions(ctx context.Context, request *types.Searc
 			return nil, &rosetta_common.ErrCallParametersInvalid
 		}
 
-		address, err := internal_common.AddressToBech32(ddr)
-		if err != nil {
-			return nil, &rosetta_common.ErrCallParametersInvalid
-		}
-
+		address := ddr.Hex()
 		histories, err := s.hmy.GetTransactionsHistory(address, "", "")
 		if err != nil {
 			return nil, rosetta_common.NewError(rosetta_common.CatchAllError, map[string]interface{}{

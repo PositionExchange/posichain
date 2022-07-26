@@ -142,7 +142,7 @@ func (s *PublicStakingService) GetElectedValidatorAddresses(
 	addresses := make([]string, len(electedAddresses))
 	for i, addr := range electedAddresses {
 		// Response output is the same for all versions
-		addresses[i] = addr.String()
+		addresses[i] = addr.Hex()
 	}
 	return addresses, nil
 }
@@ -167,7 +167,7 @@ func (s *PublicStakingService) GetValidators(
 	validators := []StructuredResponse{}
 	for _, validator := range cmt.Slots {
 		// Fetch the balance of the validator
-		hexAddress := validator.EcdsaAddress.String()
+		hexAddress := validator.EcdsaAddress.Hex()
 		validatorBalance, err := s.getBalanceByBlockNumber(ctx, hexAddress, rpc.BlockNumber(balanceQueryBlock))
 		if err != nil {
 			return nil, err
@@ -214,7 +214,7 @@ func (s *PublicStakingService) GetAllValidatorAddresses(
 	addresses := make([]string, len(validatorAddresses))
 	for i, addr := range validatorAddresses {
 		// Response output is the same for all versions
-		addresses[i] = addr.String()
+		addresses[i] = addr.Hex()
 	}
 	return addresses, nil
 }
@@ -602,8 +602,8 @@ func (s *PublicStakingService) GetDelegationsByDelegator(
 				Epoch:  delegation.Undelegations[j].Epoch,
 			}
 		}
-		valAddr := validators[i].String()
-		delAddr := delegatorAddress.String()
+		valAddr := validators[i].Hex()
+		delAddr := delegatorAddress.Hex()
 
 		// Response output is the same for all versions
 		del, err := NewStructuredResponse(Delegation{
@@ -676,8 +676,8 @@ func (s *PublicStakingService) parseGetDelegationsByDelegatorResp(
 				Epoch:  delegation.Undelegations[j].Epoch,
 			}
 		}
-		valAddr := validators[i].String()
-		delAddr := delegator.String()
+		valAddr := validators[i].Hex()
+		delAddr := delegator.Hex()
 
 		// Response output is the same for all versions
 		del, err := NewStructuredResponse(Delegation{
@@ -734,8 +734,8 @@ func (s *PublicStakingService) getDelegationByValidatorHelper(address string) ([
 				Epoch:  undelegation.Epoch,
 			})
 		}
-		valAddr := validatorAddress.String()
-		delAddr := delegation.DelegatorAddress.String()
+		valAddr := validatorAddress.Hex()
+		delAddr := delegation.DelegatorAddress.Hex()
 
 		// Skip delegations with zero amount and empty undelegation
 		if delegation.Amount.Cmp(common.Big0) == 0 && len(undelegations) == 0 {
@@ -794,8 +794,8 @@ func (s *PublicStakingService) GetDelegationByDelegatorAndValidator(
 				Epoch:  delegation.Undelegations[j].Epoch,
 			}
 		}
-		valAddr := validatorAddress.String()
-		delAddr := delegatorAddress.String()
+		valAddr := validatorAddress.Hex()
+		delAddr := delegatorAddress.Hex()
 
 		// Response output is the same for all versions
 		return NewStructuredResponse(Delegation{

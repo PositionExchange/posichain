@@ -2,9 +2,8 @@ package services
 
 import (
 	"fmt"
+	ethCommon "github.com/ethereum/go-ethereum/common"
 	"math/big"
-
-	common2 "github.com/PositionExchange/posichain/internal/common"
 
 	"github.com/coinbase/rosetta-sdk-go/types"
 
@@ -259,9 +258,9 @@ func getCreateValidatorOperationComponents(
 			"message": errors.WithMessage(err, "invalid metadata").Error(),
 		})
 	}
-	if metadata.ValidatorAddress == "" || !common2.IsBech32Address(metadata.ValidatorAddress) {
+	if metadata.ValidatorAddress == "" || !ethCommon.IsHexAddress(metadata.ValidatorAddress) {
 		return nil, common.NewError(common.InvalidStakingConstructionError, map[string]interface{}{
-			"message": "validator address must not be empty or wrong format",
+			"message": "validator address must not be empty or wrong (hex) format",
 		})
 	}
 	if metadata.CommissionRate == nil || metadata.MaxCommissionRate == nil || metadata.MaxChangeRate == nil {
@@ -320,9 +319,9 @@ func getEditValidatorOperationComponents(
 			"message": errors.WithMessage(err, "invalid metadata").Error(),
 		})
 	}
-	if metadata.ValidatorAddress == "" || !common2.IsBech32Address(metadata.ValidatorAddress) {
+	if metadata.ValidatorAddress == "" || !ethCommon.IsHexAddress(metadata.ValidatorAddress) {
 		return nil, common.NewError(common.InvalidStakingConstructionError, map[string]interface{}{
-			"message": "validator address must not be empty or wrong format",
+			"message": "validator address must not be empty or wrong (hex) format",
 		})
 	}
 	if metadata.CommissionRate == nil || metadata.MinSelfDelegation == nil || metadata.MaxTotalDelegation == nil {

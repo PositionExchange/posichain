@@ -13,7 +13,6 @@ import (
 	"github.com/PositionExchange/posichain/crypto/bls"
 	internal_bls "github.com/PositionExchange/posichain/crypto/bls"
 	"github.com/PositionExchange/posichain/eth/rpc"
-	internal_common "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/internal/params"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/shard"
@@ -315,8 +314,8 @@ func (hmy *Harmony) StateAndHeaderByNumberOrHash(ctx context.Context, blockNrOrH
 func (hmy *Harmony) GetLeaderAddress(coinbaseAddr common.Address, epoch *big.Int) string {
 	if hmy.IsStakingEpoch(epoch) {
 		if leader, exists := hmy.leaderCache.Get(coinbaseAddr); exists {
-			bech32, _ := internal_common.AddressToBech32(leader.(common.Address))
-			return bech32
+			leaderAddr := leader.(common.Address)
+			return leaderAddr.Hex()
 		}
 		committee, err := hmy.GetValidators(epoch)
 		if err != nil {
@@ -326,14 +325,12 @@ func (hmy *Harmony) GetLeaderAddress(coinbaseAddr common.Address, epoch *big.Int
 			addr := utils.GetAddressFromBLSPubKeyBytes(val.BLSPublicKey[:])
 			hmy.leaderCache.Add(addr, val.EcdsaAddress)
 			if addr == coinbaseAddr {
-				bech32, _ := internal_common.AddressToBech32(val.EcdsaAddress)
-				return bech32
+				return val.EcdsaAddress.Hex()
 			}
 		}
 		return "" // Did not find matching address
 	}
-	bech32, _ := internal_common.AddressToBech32(coinbaseAddr)
-	return bech32
+	return coinbaseAddr.Hex()
 }
 
 // Filter related APIs

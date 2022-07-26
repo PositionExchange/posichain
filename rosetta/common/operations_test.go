@@ -1,6 +1,7 @@
 package common
 
 import (
+	"github.com/stretchr/testify/assert"
 	"math/big"
 	"reflect"
 	"sort"
@@ -143,7 +144,7 @@ func TestCreateValidatorOperationMetadata_UnmarshalFromInterface(t *testing.T) {
 
 func TestEditValidatorOperationMetadata_UnmarshalFromInterface(t *testing.T) {
 	data := map[string]interface{}{
-		"validatorAddress":   "one1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9",
+		"validatorAddress":   "0xebcd16e8c1d8f493ba04e99a56474122d81a9c58",
 		"commissionRate":     100000000000000000,
 		"minSelfDelegation":  10,
 		"maxTotalDelegation": 3000,
@@ -158,7 +159,7 @@ func TestEditValidatorOperationMetadata_UnmarshalFromInterface(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if s.ValidatorAddress != "one1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9" {
+	if s.ValidatorAddress != "0xebcd16e8c1d8f493ba04e99a56474122d81a9c58" {
 		t.Fatal("wrong validator address")
 	}
 	if s.CommissionRate.Cmp(new(big.Int).SetInt64(100000000000000000)) != 0 {
@@ -189,8 +190,8 @@ func TestEditValidatorOperationMetadata_UnmarshalFromInterface(t *testing.T) {
 
 func TestDelegateOperationMetadata_UnmarshalFromInterface(t *testing.T) {
 	data := map[string]interface{}{
-		"validatorAddress": "one1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9",
-		"delegatorAddress": "one1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9",
+		"validatorAddress": "0xebcd16e8c1d8f493ba04e99a56474122d81a9c58",
+		"delegatorAddress": "0xebcd16e8c1d8f493ba04e99a56474122d81a9c58",
 		"amount":           20000,
 	}
 	s := DelegateOperationMetadata{}
@@ -198,10 +199,10 @@ func TestDelegateOperationMetadata_UnmarshalFromInterface(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if s.ValidatorAddress != "one1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9" {
+	if s.ValidatorAddress != "0xebcd16e8c1d8f493ba04e99a56474122d81a9c58" {
 		t.Fatal("wrong validator address")
 	}
-	if s.DelegatorAddress != "one1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9" {
+	if s.DelegatorAddress != "0xebcd16e8c1d8f493ba04e99a56474122d81a9c58" {
 		t.Fatal("wrong delegator address")
 	}
 	if s.Amount.Cmp(new(big.Int).SetInt64(20000)) != 0 {
@@ -211,8 +212,8 @@ func TestDelegateOperationMetadata_UnmarshalFromInterface(t *testing.T) {
 
 func TestUndelegateOperationMetadata_UnmarshalFromInterface(t *testing.T) {
 	data := map[string]interface{}{
-		"validatorAddress": "one1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9",
-		"delegatorAddress": "one1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9",
+		"validatorAddress": "0xebcd16e8c1d8f493ba04e99a56474122d81a9c58",
+		"delegatorAddress": "0xebcd16e8c1d8f493ba04e99a56474122d81a9c58",
 		"amount":           20000,
 	}
 	s := UndelegateOperationMetadata{}
@@ -220,12 +221,9 @@ func TestUndelegateOperationMetadata_UnmarshalFromInterface(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if s.ValidatorAddress != "one1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9" {
-		t.Fatal("wrong validator address")
-	}
-	if s.DelegatorAddress != "one1a0x3d6xpmr6f8wsyaxd9v36pytvp48zckswvv9" {
-		t.Fatal("wrong delegator address")
-	}
+	expectedAddr := "0xebcd16e8c1d8f493ba04e99a56474122d81a9c58"
+	assert.Equal(t, expectedAddr, s.ValidatorAddress)
+	assert.Equal(t, expectedAddr, s.DelegatorAddress)
 	if s.Amount.Cmp(new(big.Int).SetInt64(20000)) != 0 {
 		t.Fatal("wrong amount")
 	}

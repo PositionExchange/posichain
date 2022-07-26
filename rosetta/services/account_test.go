@@ -7,8 +7,6 @@ import (
 	"github.com/coinbase/rosetta-sdk-go/types"
 	ethcommon "github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
-
-	internalCommon "github.com/PositionExchange/posichain/internal/common"
 )
 
 func TestNewAccountIdentifier(t *testing.T) {
@@ -17,17 +15,14 @@ func TestNewAccountIdentifier(t *testing.T) {
 		t.Fatalf(err.Error())
 	}
 	addr := crypto.PubkeyToAddress(key.PublicKey)
-	b32Addr, err := internalCommon.AddressToBech32(addr)
-	if err != nil {
-		t.Fatalf(err.Error())
-	}
+	hexAddr := addr.Hex()
 	metadata, err := types.MarshalMap(AccountMetadata{Address: addr.String()})
 	if err != nil {
 		t.Fatalf(err.Error())
 	}
 
 	referenceAccID := &types.AccountIdentifier{
-		Address:  b32Addr,
+		Address:  hexAddr,
 		Metadata: metadata,
 	}
 	testAccID, rosettaError := newAccountIdentifier(addr)
@@ -45,12 +40,9 @@ func TestGetAddress(t *testing.T) {
 		t.Fatalf(err.Error())
 	}
 	addr := crypto.PubkeyToAddress(key.PublicKey)
-	b32Addr, err := internalCommon.AddressToBech32(addr)
-	if err != nil {
-		t.Fatalf(err.Error())
-	}
+	hexAddr := addr.Hex()
 	testAccID := &types.AccountIdentifier{
-		Address: b32Addr,
+		Address: hexAddr,
 	}
 
 	testAddr, err := getAddress(testAccID)

@@ -904,10 +904,7 @@ func setupLocalAccounts(hc harmonyconfig.HarmonyConfig, blacklist map[ethCommon.
 			if strings.HasPrefix(trimmedLine, "#") { //check the line is not commented
 				continue
 			}
-			addr, err := common.Bech32ToAddress(trimmedLine)
-			if err != nil {
-				return nil, err
-			}
+			addr := ethCommon.HexToAddress(trimmedLine)
 			// skip the blacklisted addresses
 			if _, exists := blacklist[addr]; exists {
 				utils.Logger().Warn().Msgf("local account with address %s is blacklisted", addr.String())

@@ -232,10 +232,10 @@ func NewCxReceipt(cx *types.CXReceipt, blockHash common.Hash, blockNumber uint64
 		result.BlockNumber = (*hexutil.Big)(new(big.Int).SetUint64(blockNumber))
 	}
 
-	fromAddr := cx.From.String()
+	fromAddr := cx.From.Hex()
 	toAddr := ""
 	if cx.To != nil {
-		toAddr = cx.To.String()
+		toAddr = cx.To.Hex()
 	}
 	result.From = fromAddr
 	result.To = toAddr
@@ -365,7 +365,7 @@ func NewStakingTxReceipt(
 	if err != nil {
 		return nil, err
 	}
-	sender := senderAddr.String()
+	sender := senderAddr.Hex()
 
 	// Declare receipt
 	txReceipt := &StakingTxReceipt{
@@ -417,7 +417,7 @@ func NewStakingTransaction(tx *staking.StakingTransaction, blockHash common.Hash
 		if !ok {
 			return nil, fmt.Errorf("could not decode staking message")
 		}
-		validatorAddress := msg.ValidatorAddress.String()
+		validatorAddress := msg.ValidatorAddress.Hex()
 		rpcMsg = &CreateValidatorMsg{
 			ValidatorAddress:   validatorAddress,
 			CommissionRate:     (*hexutil.Big)(msg.CommissionRates.Rate.Int),
@@ -442,7 +442,7 @@ func NewStakingTransaction(tx *staking.StakingTransaction, blockHash common.Hash
 		if !ok {
 			return nil, fmt.Errorf("could not decode staking message")
 		}
-		validatorAddress := msg.ValidatorAddress.String()
+		validatorAddress := msg.ValidatorAddress.Hex()
 		// Edit validators txs need not have commission rates to edit
 		commissionRate := &hexutil.Big{}
 		if msg.CommissionRate != nil {
@@ -481,8 +481,8 @@ func NewStakingTransaction(tx *staking.StakingTransaction, blockHash common.Hash
 		if !ok {
 			return nil, fmt.Errorf("could not decode staking message")
 		}
-		delegatorAddress := msg.DelegatorAddress.String()
-		validatorAddress := msg.ValidatorAddress.String()
+		delegatorAddress := msg.DelegatorAddress.Hex()
+		validatorAddress := msg.ValidatorAddress.Hex()
 		rpcMsg = &DelegateMsg{
 			DelegatorAddress: delegatorAddress,
 			ValidatorAddress: validatorAddress,
@@ -497,8 +497,8 @@ func NewStakingTransaction(tx *staking.StakingTransaction, blockHash common.Hash
 		if !ok {
 			return nil, fmt.Errorf("could not decode staking message")
 		}
-		delegatorAddress := msg.DelegatorAddress.String()
-		validatorAddress := msg.ValidatorAddress.String()
+		delegatorAddress := msg.DelegatorAddress.Hex()
+		validatorAddress := msg.ValidatorAddress.Hex()
 		rpcMsg = &UndelegateMsg{
 			DelegatorAddress: delegatorAddress,
 			ValidatorAddress: validatorAddress,
@@ -524,7 +524,7 @@ func NewStakingTransaction(tx *staking.StakingTransaction, blockHash common.Hash
 		result.TransactionIndex = hexutil.Uint(index)
 	}
 
-	result.From = from.String()
+	result.From = from.Hex()
 
 	return result, nil
 }

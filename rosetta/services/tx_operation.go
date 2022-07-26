@@ -5,7 +5,6 @@ import (
 
 	"github.com/PositionExchange/posichain/hmy/tracers"
 
-	"github.com/PositionExchange/posichain/internal/bech32"
 	internalCommon "github.com/PositionExchange/posichain/internal/common"
 
 	"github.com/coinbase/rosetta-sdk-go/types"
@@ -240,10 +239,6 @@ func getDelegateOperationForSubAccount(tx *stakingTypes.StakingTransaction, rece
 			// add undelegated transaction
 			subAccount := log.Data[:ethcommon.AddressLength]
 			address := internalCommon.BytesToAddress(subAccount)
-			b32Address, err := bech32.ConvertAndEncode(internalCommon.Bech32AddressHRP, address.Bytes())
-			if err != nil {
-				return nil
-			}
 
 			deductedAmt := new(big.Int).SetBytes(log.Data[ethcommon.AddressLength:])
 			delegateAmt = stkMsg.Amount
@@ -262,7 +257,7 @@ func getDelegateOperationForSubAccount(tx *stakingTypes.StakingTransaction, rece
 				Account: &types.AccountIdentifier{
 					Address: delegateOperation.Account.Address,
 					SubAccount: &types.SubAccountIdentifier{
-						Address: b32Address,
+						Address: address.Hex(),
 						Metadata: map[string]interface{}{
 							SubAccountMetadataKey: UnDelegation,
 						},

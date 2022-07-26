@@ -13,7 +13,6 @@ import (
 	core2 "github.com/PositionExchange/posichain/core"
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/hmy/tracers"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/internal/utils"
 	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
@@ -401,8 +400,8 @@ func (bc *blockComputer) computeStakingTx(btc batch, b *types.Block, tx *staking
 }
 
 func ethToOneAddress(ethAddr common.Address) oneAddress {
-	raw, _ := common2.AddressToBech32(ethAddr)
-	return oneAddress(raw)
+	// TODO check it works?
+	return oneAddress(ethAddr.Hex())
 }
 
 func toFromStakingTx(tx *staking.StakingTransaction, addressBlock *types.Block) (common.Address, error) {

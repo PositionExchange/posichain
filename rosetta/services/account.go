@@ -142,13 +142,8 @@ type AccountMetadata struct {
 func newAccountIdentifier(
 	address ethCommon.Address,
 ) (*types.AccountIdentifier, *types.Error) {
-	b32Address, err := internalCommon.AddressToBech32(address)
-	if err != nil {
-		return nil, common.NewError(common.SanityCheckError, map[string]interface{}{
-			"message": err.Error(),
-		})
-	}
-	metadata, err := types.MarshalMap(AccountMetadata{Address: address.String()})
+	hexAddress := address.Hex()
+	metadata, err := types.MarshalMap(AccountMetadata{Address: hexAddress})
 	if err != nil {
 		return nil, common.NewError(common.CatchAllError, map[string]interface{}{
 			"message": err.Error(),
@@ -156,7 +151,7 @@ func newAccountIdentifier(
 	}
 
 	return &types.AccountIdentifier{
-		Address:  b32Address,
+		Address:  hexAddress,
 		Metadata: metadata,
 	}, nil
 }
@@ -167,13 +162,8 @@ func newRosettaAccountIdentifier(address *vm.RosettaLogAddressItem) (*types.Acco
 		return nil, nil
 	}
 
-	b32Address, err := internalCommon.AddressToBech32(*address.Account)
-	if err != nil {
-		return nil, common.NewError(common.SanityCheckError, map[string]interface{}{
-			"message": err.Error(),
-		})
-	}
-	metadata, err := types.MarshalMap(AccountMetadata{Address: address.Account.String()})
+	hexAddress := address.Account.Hex()
+	metadata, err := types.MarshalMap(AccountMetadata{Address: hexAddress})
 	if err != nil {
 		return nil, common.NewError(common.CatchAllError, map[string]interface{}{
 			"message": err.Error(),
@@ -181,20 +171,13 @@ func newRosettaAccountIdentifier(address *vm.RosettaLogAddressItem) (*types.Acco
 	}
 
 	ai := &types.AccountIdentifier{
-		Address:  b32Address,
+		Address:  hexAddress,
 		Metadata: metadata,
 	}
 
 	if address.SubAccount != nil {
-		b32Address, err := internalCommon.AddressToBech32(*address.SubAccount)
-		if err != nil {
-			return nil, common.NewError(common.SanityCheckError, map[string]interface{}{
-				"message": err.Error(),
-			})
-		}
-
 		ai.SubAccount = &types.SubAccountIdentifier{
-			Address:  b32Address,
+			Address:  address.SubAccount.Hex(),
 			Metadata: address.Metadata,
 		}
 	}
@@ -205,14 +188,8 @@ func newRosettaAccountIdentifier(address *vm.RosettaLogAddressItem) (*types.Acco
 func newSubAccountIdentifier(
 	address ethCommon.Address, metadata map[string]interface{},
 ) (*types.SubAccountIdentifier, *types.Error) {
-	b32Address, err := internalCommon.AddressToBech32(address)
-	if err != nil {
-		return nil, common.NewError(common.SanityCheckError, map[string]interface{}{
-			"message": err.Error(),
-		})
-	}
 	return &types.SubAccountIdentifier{
-		Address:  b32Address,
+		Address:  address.Hex(),
 		Metadata: metadata,
 	}, nil
 }
@@ -241,5 +218,8 @@ func getAddress(
 	if identifier == nil {
 		return ethCommon.Address{}, fmt.Errorf("identifier cannot be nil")
 	}
-	return internalCommon.Bech32ToAddress(identifier.Address)
+	if !ethCommon.IsHexAddress(identifier.Address) {
+		return ethCommon.Address{}, fmt.Errorf("identifier address is not hex format")
+	}
+	return ethCommon.HexToAddress(identifier.Address), nil
 }

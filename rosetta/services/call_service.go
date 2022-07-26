@@ -3,10 +3,10 @@ package services
 import (
 	"context"
 	"encoding/json"
+	ethCommon "github.com/ethereum/go-ethereum/common"
 
 	"github.com/PositionExchange/posichain/eth/rpc"
 	"github.com/PositionExchange/posichain/hmy"
-	internal_common "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/rosetta/common"
 	rpc2 "github.com/PositionExchange/posichain/rpc"
 	"github.com/coinbase/rosetta-sdk-go/server"
@@ -288,13 +288,12 @@ func (c *CallAPIService) getDelegationsByDelegatorByBlockNumber(
 		})
 	}
 
-	addr, err := internal_common.Bech32ToAddress(args.DelegatorAddr)
-	if err != nil {
+	if !ethCommon.IsHexAddress(args.DelegatorAddr) {
 		return nil, common.NewError(common.ErrCallParametersInvalid, map[string]interface{}{
-			"message": errors.WithMessage(err, "delegator address error").Error(),
+			"message": errors.New("delegator address is not hex").Error(),
 		})
 	}
-
+	addr := ethCommon.HexToAddress(args.DelegatorAddr)
 	addOrList := rpc2.AddressOrList{Address: &addr}
 	resp, err := stakingAPI.GetDelegationsByDelegatorByBlockNumber(ctx, addOrList, rpc2.BlockNumber(args.BlockNum))
 	if err != nil {

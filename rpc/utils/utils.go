@@ -8,6 +8,7 @@ import (
 )
 
 // ConvertAddresses - converts to bech32 depending on the RPC version
+// Deprecated: Don't use bech32 anymore
 func ConvertAddresses(from *common.Address, to *common.Address, convertToBech32 bool) (string, string, error) {
 	fromAddr := strings.ToLower(from.String())
 	toAddr := ""
@@ -22,6 +23,7 @@ func ConvertAddresses(from *common.Address, to *common.Address, convertToBech32 
 	return fromAddr, toAddr, nil
 }
 
+// Deprecated: Don't use bech32 anymore
 func base16toBech32(from *common.Address, to *common.Address) (fromAddr string, toAddr string, err error) {
 	if fromAddr, err = internal_common.AddressToBech32(*from); err != nil {
 		return "", "", err

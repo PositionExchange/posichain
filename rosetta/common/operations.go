@@ -3,8 +3,7 @@ package common
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/PositionExchange/posichain/internal/common"
+	ethCommon "github.com/ethereum/go-ethereum/common"
 
 	"github.com/coinbase/rosetta-sdk-go/types"
 
@@ -179,8 +178,8 @@ func (s *DelegateOperationMetadata) UnmarshalFromInterface(data interface{}) err
 		return fmt.Errorf("expected validator address & delegator address & amount be present for DelegateOperationMetadata")
 	}
 
-	if !common.IsBech32Address(T.ValidatorAddress) || !common.IsBech32Address(T.DelegatorAddress) {
-		return fmt.Errorf("expected validator address & delegator address to be bech32 format for DelegateOperationMetadata")
+	if !ethCommon.IsHexAddress(T.ValidatorAddress) || !ethCommon.IsHexAddress(T.DelegatorAddress) {
+		return fmt.Errorf("expected validator address & delegator address to be hex format for DelegateOperationMetadata")
 	}
 
 	*s = T
@@ -201,8 +200,8 @@ func (s *UndelegateOperationMetadata) UnmarshalFromInterface(data interface{}) e
 		return fmt.Errorf("expected validator address & delegator address & amount be present for UndelegateOperationMetadata")
 	}
 
-	if !common.IsBech32Address(T.ValidatorAddress) || !common.IsBech32Address(T.DelegatorAddress) {
-		return fmt.Errorf("expected validator address & delegator address to be bech32 format for UndelegateOperationMetadata")
+	if !ethCommon.IsHexAddress(T.ValidatorAddress) || !ethCommon.IsHexAddress(T.DelegatorAddress) {
+		return fmt.Errorf("expected validator address & delegator address to be hex format for UndelegateOperationMetadata")
 	}
 
 	*s = T
@@ -221,8 +220,8 @@ func (s *CollectRewardsMetadata) UnmarshalFromInterface(data interface{}) error 
 	if T.DelegatorAddress == "" {
 		return fmt.Errorf("expected delegator address be present for CollectRewardsMetadata")
 	}
-	if !common.IsBech32Address(T.DelegatorAddress) {
-		return fmt.Errorf("expected delegator address to be bech32 format for CollectRewardsMetadata")
+	if !ethCommon.IsHexAddress(T.DelegatorAddress) {
+		return fmt.Errorf("expected delegator address to be hex format for CollectRewardsMetadata")
 	}
 	*s = T
 	return nil

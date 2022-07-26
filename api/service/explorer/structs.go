@@ -11,7 +11,6 @@ import (
 
 	core2 "github.com/PositionExchange/posichain/core"
 	"github.com/PositionExchange/posichain/core/types"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/internal/utils"
 	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/common"
@@ -156,14 +155,9 @@ func GetTransaction(tx *types.Transaction, addressBlock *types.Block) (*Transact
 	gasFee = gasFee.Mul(tx.GasPrice(), new(big.Int).SetUint64(tx.GasLimit()))
 	to := ""
 	if msg.To() != nil {
-		if to, err = common2.AddressToBech32(*msg.To()); err != nil {
-			return nil, err
-		}
+		to = msg.To().Hex()
 	}
-	from := ""
-	if from, err = common2.AddressToBech32(msg.From()); err != nil {
-		return nil, err
-	}
+	from := msg.From().Hex()
 
 	return &Transaction{
 		ID:        tx.HashByType().Hex(),
@@ -236,15 +230,10 @@ func GetStakingTransaction(tx *staking.StakingTransaction, addressBlock *types.B
 
 	to := ""
 	if toAddress != nil {
-		if to, err = common2.AddressToBech32(*toAddress); err != nil {
-			return nil, err
-		}
+		to = toAddress.Hex()
 	}
 
-	from := ""
-	if from, err = common2.AddressToBech32(msg.From()); err != nil {
-		return nil, err
-	}
+	from := msg.From().Hex()
 
 	txn := Transaction{
 		ID:        tx.Hash().Hex(),

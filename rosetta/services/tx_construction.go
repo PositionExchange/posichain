@@ -3,10 +3,10 @@ package services
 import (
 	"encoding/json"
 	"fmt"
+	ethCommon "github.com/ethereum/go-ethereum/common"
 	"math/big"
 
 	"github.com/PositionExchange/posichain/crypto/bls"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/numeric"
 	types2 "github.com/PositionExchange/posichain/staking/types"
 	"github.com/coinbase/rosetta-sdk-go/types"
@@ -175,12 +175,7 @@ func constructCreateValidatorTransaction(
 	components *OperationComponents, metadata *ConstructMetadata,
 ) (hmyTypes.PoolTransaction, *types.Error) {
 	createValidatorMsg := components.StakingMessage.(common.CreateValidatorOperationMetadata)
-	validatorAddr, err := common2.Bech32ToAddress(createValidatorMsg.ValidatorAddress)
-	if err != nil {
-		return nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-			"message": errors.WithMessage(err, "convert validator address error").Error(),
-		})
-	}
+	validatorAddr := ethCommon.HexToAddress(createValidatorMsg.ValidatorAddress)
 	var slotPubKeys []bls.SerializedPublicKey
 	for _, slotPubKey := range metadata.Transaction.SlotPubKeys {
 		var pubKey bls.SerializedPublicKey
@@ -242,12 +237,7 @@ func constructEditValidatorTransaction(
 	components *OperationComponents, metadata *ConstructMetadata,
 ) (hmyTypes.PoolTransaction, *types.Error) {
 	editValidatorMsg := components.StakingMessage.(common.EditValidatorOperationMetadata)
-	validatorAddr, err := common2.Bech32ToAddress(editValidatorMsg.ValidatorAddress)
-	if err != nil {
-		return nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-			"message": errors.WithMessage(err, "convert validator address error").Error(),
-		})
-	}
+	validatorAddr := ethCommon.HexToAddress(editValidatorMsg.ValidatorAddress)
 
 	var slotKeyToAdd bls.SerializedPublicKey
 	slotKeyToAddBytes, err := hexutil.Decode(metadata.Transaction.SlotPubKeyToAdd)
@@ -309,18 +299,8 @@ func constructDelegateTransaction(
 	components *OperationComponents, metadata *ConstructMetadata,
 ) (hmyTypes.PoolTransaction, *types.Error) {
 	delegaterMsg := components.StakingMessage.(common.DelegateOperationMetadata)
-	delegatorAddr, err := common2.Bech32ToAddress(delegaterMsg.DelegatorAddress)
-	if err != nil {
-		return nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-			"message": errors.WithMessage(err, "convert delegator address error").Error(),
-		})
-	}
-	validatorAddr, err := common2.Bech32ToAddress(delegaterMsg.ValidatorAddress)
-	if err != nil {
-		return nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-			"message": errors.WithMessage(err, "convert validator address error").Error(),
-		})
-	}
+	delegatorAddr := ethCommon.HexToAddress(delegaterMsg.DelegatorAddress)
+	validatorAddr := ethCommon.HexToAddress(delegaterMsg.ValidatorAddress)
 
 	stakePayloadMaker := func() (types2.Directive, interface{}) {
 		return types2.DirectiveDelegate, types2.Delegate{
@@ -344,18 +324,8 @@ func constructUndelegateTransaction(
 	components *OperationComponents, metadata *ConstructMetadata,
 ) (hmyTypes.PoolTransaction, *types.Error) {
 	undelegaterMsg := components.StakingMessage.(common.UndelegateOperationMetadata)
-	delegatorAddr, err := common2.Bech32ToAddress(undelegaterMsg.DelegatorAddress)
-	if err != nil {
-		return nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-			"message": errors.WithMessage(err, "convert delegator address error").Error(),
-		})
-	}
-	validatorAddr, err := common2.Bech32ToAddress(undelegaterMsg.ValidatorAddress)
-	if err != nil {
-		return nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-			"message": errors.WithMessage(err, "convert validator address error").Error(),
-		})
-	}
+	delegatorAddr := ethCommon.HexToAddress(undelegaterMsg.DelegatorAddress)
+	validatorAddr := ethCommon.HexToAddress(undelegaterMsg.ValidatorAddress)
 
 	stakePayloadMaker := func() (types2.Directive, interface{}) {
 		return types2.DirectiveUndelegate, types2.Undelegate{
@@ -379,12 +349,7 @@ func constructCollectRewardsTransaction(
 	components *OperationComponents, metadata *ConstructMetadata,
 ) (hmyTypes.PoolTransaction, *types.Error) {
 	collectRewardsMsg := components.StakingMessage.(common.CollectRewardsMetadata)
-	delegatorAddr, err := common2.Bech32ToAddress(collectRewardsMsg.DelegatorAddress)
-	if err != nil {
-		return nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-			"message": errors.WithMessage(err, "convert delegator address error").Error(),
-		})
-	}
+	delegatorAddr := ethCommon.HexToAddress(collectRewardsMsg.DelegatorAddress)
 
 	stakePayloadMaker := func() (types2.Directive, interface{}) {
 		return types2.DirectiveCollectRewards, types2.CollectRewards{

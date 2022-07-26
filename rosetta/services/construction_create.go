@@ -5,9 +5,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	ethCommon "github.com/ethereum/go-ethereum/common"
 
 	"github.com/PositionExchange/posichain/crypto/bls"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/numeric"
 
 	"github.com/coinbase/rosetta-sdk-go/types"
@@ -96,12 +96,7 @@ func unpackWrappedTransactionFromString(
 					"message": err,
 				})
 			}
-			validatorAddr, err := common2.Bech32ToAddress(createValidatorMsg.ValidatorAddress)
-			if err != nil {
-				return nil, nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-					"message": err,
-				})
-			}
+			validatorAddr := ethCommon.HexToAddress(createValidatorMsg.ValidatorAddress)
 			stakePayloadMaker := func() (stakingTypes.Directive, interface{}) {
 				return stakingTypes.DirectiveCreateValidator, stakingTypes.CreateValidator{
 					Description: stakingTypes.Description{
@@ -140,12 +135,7 @@ func unpackWrappedTransactionFromString(
 					"message": err,
 				})
 			}
-			validatorAddr, err := common2.Bech32ToAddress(editValidatorMsg.ValidatorAddress)
-			if err != nil {
-				return nil, nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-					"message": err,
-				})
-			}
+			validatorAddr := ethCommon.HexToAddress(editValidatorMsg.ValidatorAddress)
 			stakePayloadMaker := func() (stakingTypes.Directive, interface{}) {
 				return stakingTypes.DirectiveEditValidator, stakingTypes.EditValidator{
 					ValidatorAddress: validatorAddr,
@@ -173,18 +163,8 @@ func unpackWrappedTransactionFromString(
 					"message": err,
 				})
 			}
-			validatorAddr, err := common2.Bech32ToAddress(delegateMsg.ValidatorAddress)
-			if err != nil {
-				return nil, nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-					"message": err,
-				})
-			}
-			delegatorAddr, err := common2.Bech32ToAddress(delegateMsg.DelegatorAddress)
-			if err != nil {
-				return nil, nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-					"message": err,
-				})
-			}
+			validatorAddr := ethCommon.HexToAddress(delegateMsg.ValidatorAddress)
+			delegatorAddr := ethCommon.HexToAddress(delegateMsg.DelegatorAddress)
 			stakePayloadMaker := func() (stakingTypes.Directive, interface{}) {
 				return stakingTypes.DirectiveDelegate, stakingTypes.Delegate{
 					ValidatorAddress: validatorAddr,
@@ -201,18 +181,8 @@ func unpackWrappedTransactionFromString(
 					"message": err,
 				})
 			}
-			validatorAddr, err := common2.Bech32ToAddress(undelegateMsg.ValidatorAddress)
-			if err != nil {
-				return nil, nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-					"message": err,
-				})
-			}
-			delegatorAddr, err := common2.Bech32ToAddress(undelegateMsg.DelegatorAddress)
-			if err != nil {
-				return nil, nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-					"message": err,
-				})
-			}
+			validatorAddr := ethCommon.HexToAddress(undelegateMsg.ValidatorAddress)
+			delegatorAddr := ethCommon.HexToAddress(undelegateMsg.DelegatorAddress)
 			stakePayloadMaker := func() (stakingTypes.Directive, interface{}) {
 				return stakingTypes.DirectiveUndelegate, stakingTypes.Undelegate{
 					ValidatorAddress: validatorAddr,
@@ -229,12 +199,7 @@ func unpackWrappedTransactionFromString(
 					"message": err,
 				})
 			}
-			delegatorAddr, err := common2.Bech32ToAddress(collectRewardsMsg.DelegatorAddress)
-			if err != nil {
-				return nil, nil, common.NewError(common.InvalidTransactionConstructionError, map[string]interface{}{
-					"message": err,
-				})
-			}
+			delegatorAddr := ethCommon.HexToAddress(collectRewardsMsg.DelegatorAddress)
 			stakePayloadMaker := func() (stakingTypes.Directive, interface{}) {
 				return stakingTypes.DirectiveCollectRewards, stakingTypes.CollectRewards{
 					DelegatorAddress: delegatorAddr,
