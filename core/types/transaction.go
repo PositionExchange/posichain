@@ -33,7 +33,6 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 
 	"github.com/PositionExchange/posichain/crypto/hash"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	staking "github.com/PositionExchange/posichain/staking/types"
 )
 
@@ -788,7 +787,7 @@ type BlockTxsCounts map[common.Address]uint64
 func (btc BlockTxsCounts) String() string {
 	ret := "{ "
 	for sender, numTxs := range btc {
-		ret += fmt.Sprintf("%s:%d,", common2.MustAddressToBech32(sender), numTxs)
+		ret += fmt.Sprintf("%s:%d,", sender, numTxs)
 	}
 	ret += " }"
 	return ret

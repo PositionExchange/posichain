@@ -13,7 +13,6 @@ import (
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/eth/rpc"
 	"github.com/PositionExchange/posichain/hmy"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 	"github.com/PositionExchange/posichain/internal/utils"
 	eth "github.com/PositionExchange/posichain/rpc/eth"
@@ -121,7 +120,7 @@ func (s *PublicPoolService) SendRawTransaction(
 		utils.Logger().Info().
 			Str("fullhash", tx.Hash().Hex()).
 			Str("hashByType", tx.HashByType().Hex()).
-			Str("contract", common2.MustAddressToBech32(addr)).
+			Str("contract", addr.Hex()).
 			Msg("Submitted contract creation")
 	} else {
 		utils.Logger().Info().

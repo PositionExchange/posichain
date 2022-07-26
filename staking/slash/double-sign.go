@@ -14,7 +14,6 @@ import (
 	"github.com/PositionExchange/posichain/consensus/votepower"
 	"github.com/PositionExchange/posichain/core/state"
 	"github.com/PositionExchange/posichain/crypto/hash"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/numeric"
 	"github.com/PositionExchange/posichain/staking/effective"
@@ -126,8 +125,8 @@ var (
 // MarshalJSON ..
 func (r Record) MarshalJSON() ([]byte, error) {
 	reporter, offender :=
-		common2.MustAddressToBech32(r.Reporter),
-		common2.MustAddressToBech32(r.Evidence.Offender)
+		r.Reporter.Hex(),
+		r.Evidence.Offender.Hex()
 	return json.Marshal(struct {
 		Evidence         Evidence `json:"evidence"`
 		Beneficiary      string   `json:"beneficiary"`
@@ -487,8 +486,7 @@ func Apply(
 
 		if err != nil {
 			return nil, errors.Errorf(
-				"could not find validator %s",
-				common2.MustAddressToBech32(slash.Evidence.Offender),
+				"could not find validator %s", slash.Evidence.Offender,
 			)
 		}
 

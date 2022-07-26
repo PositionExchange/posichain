@@ -11,7 +11,6 @@ import (
 	"github.com/PositionExchange/posichain/common/denominations"
 	"github.com/PositionExchange/posichain/consensus/votepower"
 	"github.com/PositionExchange/posichain/crypto/hash"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/internal/genesis"
 	"github.com/PositionExchange/posichain/numeric"
 	"github.com/PositionExchange/posichain/staking/effective"
@@ -179,7 +178,7 @@ func (w ValidatorWrapper) MarshalJSON() ([]byte, error) {
 		Delegations Delegations `json:"delegations"`
 	}{
 		w.Validator,
-		common2.MustAddressToBech32(w.Address),
+		w.Address.Hex(),
 		w.Delegations,
 	})
 }

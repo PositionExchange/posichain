@@ -14,7 +14,6 @@ import (
 
 	"github.com/PositionExchange/posichain/common/denominations"
 	"github.com/PositionExchange/posichain/core/vm"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/staking/effective"
 	staking "github.com/PositionExchange/posichain/staking/types"
@@ -96,7 +95,7 @@ func VerifyAndCreateValidatorFromMsg(
 	}
 	if stateDB.IsValidator(msg.ValidatorAddress) {
 		return nil, errors.Wrapf(
-			errValidatorExist, common2.MustAddressToBech32(msg.ValidatorAddress),
+			errValidatorExist, msg.ValidatorAddress.Hex(),
 		)
 	}
 	if err := checkDuplicateFields(

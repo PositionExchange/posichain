@@ -105,21 +105,19 @@ func (s *AccountAPI) getStakingBalance(
 			"message": "invalid sub account",
 		})
 	}
-
+	validatorAddr := internalCommon.HexToAddress(subAccount.Address)
 	switch ty.(string) {
 	case Delegation:
-		validatorAddr := subAccount.Address
 		validators, delegations := s.hmy.GetDelegationsByDelegatorByBlock(addr, block)
 		for index, validator := range validators {
-			if validatorAddr == internalCommon.MustAddressToBech32(validator) {
+			if validatorAddr.Hex() == validator.Hex() {
 				balance = new(big.Int).Add(balance, delegations[index].Amount)
 			}
 		}
 	case UnDelegation:
-		validatorAddr := subAccount.Address
 		validators, delegations := s.hmy.GetDelegationsByDelegatorByBlock(addr, block)
 		for index, validator := range validators {
-			if validatorAddr == internalCommon.MustAddressToBech32(validator) {
+			if validatorAddr.Hex() == validator.Hex() {
 				undelegations := delegations[index].Undelegations
 				for _, undelegate := range undelegations {
 					balance = new(big.Int).Add(balance, undelegate.Amount)

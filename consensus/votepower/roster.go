@@ -11,7 +11,6 @@ import (
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/PositionExchange/posichain/crypto/bls"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/numeric"
 	"github.com/ethereum/go-ethereum/common"
@@ -125,7 +124,7 @@ func (v VoteOnSubcomittee) MarshalJSON() ([]byte, error) {
 		ShardID        uint32      `json:"shard-id"`
 	}{
 		v.PureStakedVote,
-		common2.MustAddressToBech32(v.EarningAccount),
+		v.EarningAccount.Hex(),
 		v.OverallPercent,
 		v.ShardID,
 	})

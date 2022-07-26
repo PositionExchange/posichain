@@ -7,7 +7,6 @@ import (
 	"testing"
 
 	"github.com/PositionExchange/bls/ffi/go/bls"
-	"github.com/PositionExchange/posichain/internal/common"
 	ethCommon "github.com/ethereum/go-ethereum/common"
 )
 
@@ -72,7 +71,7 @@ func testDeployAccounts(t *testing.T, accounts []DeployAccount) {
 	for address, indices := range indicesByAddress {
 		if len(indices) > 1 {
 			t.Errorf("account address %s appears in multiple rows: %v",
-				common.MustAddressToBech32(address), indices)
+				address.Hex(), indices)
 		}
 	}
 	for pubKey, indices := range indicesByKey {

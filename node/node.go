@@ -36,7 +36,6 @@ import (
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/crypto/bls"
 	"github.com/PositionExchange/posichain/internal/chain"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 	"github.com/PositionExchange/posichain/internal/params"
 	"github.com/PositionExchange/posichain/internal/shardchain"
@@ -1315,7 +1314,7 @@ func (node *Node) populateSelfAddresses(epoch *big.Int) {
 			Int64("epoch", epoch.Int64()).
 			Uint32("shard-id", shardID).
 			Str("bls-key", blsStr).
-			Str("address", common2.MustAddressToBech32(*addr)).
+			Str("address", addr.Hex()).
 			Msg("[PopulateSelfAddresses]")
 	}
 }

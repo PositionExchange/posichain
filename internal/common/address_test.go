@@ -127,7 +127,7 @@ func TestAddressHexChecksum(t *testing.T) {
 		{"0x000000000000000000000000000000000000000a", "0x000000000000000000000000000000000000000A"},
 	}
 	for i, test := range tests {
-		output := HexToAddress(test.Input).Bech32()
+		output := HexToAddress(test.Input).Hex()
 		if output != test.Output {
 			t.Errorf("test #%d: failed to match when it should (%s != %s)", i, output, test.Output)
 		}
@@ -137,7 +137,7 @@ func TestAddressHexChecksum(t *testing.T) {
 func BenchmarkAddressBech32(b *testing.B) {
 	testAddr := HexToAddress("0x5aaeb6053f3e94c9b9a09f33669435e7ef1beaed")
 	for n := 0; n < b.N; n++ {
-		testAddr.Bech32()
+		testAddr.Hex()
 	}
 }
 

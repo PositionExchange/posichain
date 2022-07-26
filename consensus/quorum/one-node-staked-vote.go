@@ -17,7 +17,6 @@ import (
 
 	"github.com/PositionExchange/posichain/consensus/votepower"
 	bls_cosi "github.com/PositionExchange/posichain/crypto/bls"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/numeric"
 	"github.com/PositionExchange/posichain/shard"
 )
@@ -288,7 +287,7 @@ func (v *stakedVoteWeight) MarshalJSON() ([]byte, error) {
 		voter := v.roster.Voters[slot]
 		member := u{
 			voter.IsHarmonyNode,
-			common2.MustAddressToBech32(voter.EarningAccount),
+			voter.EarningAccount.Hex(),
 			identity.Hex(),
 			voter.GroupPercent.String(),
 			voter.OverallPercent.String(),

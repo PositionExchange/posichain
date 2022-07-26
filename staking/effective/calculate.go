@@ -8,7 +8,6 @@ import (
 
 	"github.com/PositionExchange/posichain/crypto/bls"
 
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/numeric"
 	"github.com/ethereum/go-ethereum/common"
 )
@@ -40,7 +39,7 @@ func (p SlotPurchase) MarshalJSON() ([]byte, error) {
 		RawStake  numeric.Dec `json:"raw-stake"`
 		EPoSStake numeric.Dec `json:"eposed-stake"`
 	}{
-		common2.MustAddressToBech32(p.Addr),
+		p.Addr.Hex(),
 		p.Key.Hex(),
 		p.RawStake,
 		p.EPoSStake,

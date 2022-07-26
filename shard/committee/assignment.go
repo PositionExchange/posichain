@@ -79,7 +79,7 @@ func (p CandidateOrder) MarshalJSON() ([]byte, error) {
 	}{
 		p.SlotOrder,
 		p.StakePerKey,
-		common2.MustAddressToBech32(p.Validator),
+		p.Validator.Hex(),
 	})
 }
 

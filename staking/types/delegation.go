@@ -7,7 +7,6 @@ import (
 	"sort"
 
 	"github.com/PositionExchange/posichain/crypto/hash"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/ethereum/go-ethereum/common"
 )
 
@@ -49,7 +48,7 @@ func (d Delegation) MarshalJSON() ([]byte, error) {
 		Amount           *big.Int      `json:"amount"`
 		Reward           *big.Int      `json:"reward"`
 		Undelegations    Undelegations `json:"undelegations"`
-	}{common2.MustAddressToBech32(d.DelegatorAddress), d.Amount,
+	}{d.DelegatorAddress.Hex(), d.Amount,
 		d.Reward, d.Undelegations,
 	})
 }

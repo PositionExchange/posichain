@@ -11,7 +11,6 @@ import (
 
 	blockfactory "github.com/PositionExchange/posichain/block/factory"
 	"github.com/PositionExchange/posichain/core/types"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 )
 
 // Test for GetBlockInfoKey
@@ -25,6 +24,6 @@ func TestGetTransaction(t *testing.T) {
 
 	tx, _ := GetTransaction(tx1, block)
 	assert.Equal(t, tx.ID, tx1.HashByType().Hex(), "should be equal tx1.Hash()")
-	assert.Equal(t, tx.To, common2.MustAddressToBech32(common.HexToAddress(tx1.To().Hex())), "should be equal tx1.To()")
+	assert.Equal(t, tx.To, tx1.To().Hex(), "should be equal tx1.To()")
 	assert.Equal(t, tx.Bytes, strconv.Itoa(int(tx1.Size())), "should be equal tx1.Size()")
 }

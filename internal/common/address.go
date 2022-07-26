@@ -61,8 +61,8 @@ func (a Address) Big() *big.Int { return new(big.Int).SetBytes(a[:]) }
 // Hash converts an address to a hash by left-padding it with zeros.
 func (a Address) Hash() Hash { return BytesToHash(a[:]) }
 
-// Bech32 returns an bip0173-compliant string representation of the address.
-func (a Address) Bech32() string {
+// Hex returns an bip0173-compliant string representation of the address.
+func (a Address) Hex() string {
 	unchecksummed := hex.EncodeToString(a[:])
 	sha := sha3.NewLegacyKeccak256()
 	sha.Write([]byte(unchecksummed))
@@ -85,7 +85,7 @@ func (a Address) Bech32() string {
 
 // String implements fmt.Stringer.
 func (a Address) String() string {
-	return a.Bech32()
+	return a.Hex()
 }
 
 // Format implements fmt.Formatter, forcing the byte slice to be formatted as is,

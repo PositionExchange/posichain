@@ -26,7 +26,6 @@ import (
 	"github.com/ethereum/go-ethereum/metrics"
 
 	"github.com/PositionExchange/posichain/core/types"
-	common2 "github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/numeric"
 	"github.com/PositionExchange/posichain/staking"
@@ -840,8 +839,7 @@ func (db *DB) ValidatorWrapper(
 	if err := rlp.DecodeBytes(by, &val); err != nil {
 		return nil, errors.Wrapf(
 			err,
-			"could not decode for %s",
-			common2.MustAddressToBech32(addr),
+			"could not decode for %s", addr,
 		)
 	}
 	// populate cache because the validator is not in it
