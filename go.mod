@@ -68,7 +68,6 @@ require (
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/OpenPeeDeeP/depguard v1.0.1 // indirect
 	github.com/StackExchange/wmi v0.0.0-20180116203802-5d049714c4a6 // indirect
-	github.com/VictoriaMetrics/fastcache v1.5.7 // indirect
 	github.com/aristanetworks/goarista v0.0.0-20190607111240-52c2a7864a08 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bombsimon/wsl/v2 v2.0.0 // indirect

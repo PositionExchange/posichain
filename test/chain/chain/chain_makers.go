@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"math/big"
 
+	"github.com/PositionExchange/posichain/core"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/harmony-one/harmony/core"
 
 	"github.com/PositionExchange/posichain/block"
 	blockfactory "github.com/PositionExchange/posichain/block/factory"

@@ -6,8 +6,8 @@ import (
 	"log"
 	"math/big"
 
+	chain2 "github.com/PositionExchange/posichain/test/chain/chain"
 	"github.com/ethereum/go-ethereum/core/rawdb"
-	chain2 "github.com/harmony-one/harmony/test/chain/chain"
 
 	blockfactory "github.com/PositionExchange/posichain/block/factory"
 	"github.com/PositionExchange/posichain/core"
