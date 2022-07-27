@@ -86,7 +86,8 @@ db-127.0.0.1-*
 coverage.txt
 
 # testdata directory
-harmony_db_*
+posichain_db_*
+posichain_sharddb_*
 explorer_storage_*
 
 # local blskeys for testing
