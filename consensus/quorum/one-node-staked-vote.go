@@ -9,8 +9,6 @@ import (
 
 	"github.com/PositionExchange/posichain/internal/utils"
 
-	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
-
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
@@ -23,15 +21,16 @@ import (
 
 var (
 	twoThird = numeric.NewDec(2).Quo(numeric.NewDec(3))
+
 	// fix testnet temporary
-	fixedThreshold       = numeric.MustNewDecFromStr("0.51")
-	fixedThresholdHeight = uint64(26481647)
+	// fixedThreshold       = numeric.MustNewDecFromStr("0.51")
+	// fixedThresholdHeight = uint64(26481647)
 )
 
 func tryFixedThreshold(height uint64) *numeric.Dec {
-	if nodeconfig.GetDefaultConfig().GetNetworkType() == nodeconfig.Testnet && height >= fixedThresholdHeight {
-		return &fixedThreshold
-	}
+	//if nodeconfig.GetDefaultConfig().GetNetworkType() == nodeconfig.Testnet && height >= fixedThresholdHeight {
+	//	return &fixedThreshold
+	//}
 	return nil
 }
 
