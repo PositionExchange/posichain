@@ -15,8 +15,8 @@ import (
 )
 
 const (
-	LDBDirPrefix      = "harmony_db"
-	LDBShardDirPrefix = "harmony_sharddb"
+	LDBDirPrefix      = "posichain_db"
+	LDBShardDirPrefix = "posichain_sharddb"
 )
 
 // DBFactory is a blockchain database factory.
