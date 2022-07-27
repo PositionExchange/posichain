@@ -17,7 +17,7 @@ import (
 
 const (
 	// ProtoIDCommonPrefix is the common prefix for stream protocol
-	ProtoIDCommonPrefix = "harmony"
+	ProtoIDCommonPrefix = "posichain"
 
 	// ProtoIDFormat is the format of stream protocol ID
 	ProtoIDFormat = "%s/%s/%s/%d/%s"
