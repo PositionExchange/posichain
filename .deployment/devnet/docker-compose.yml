@@ -231,9 +231,43 @@ services:
       - ./nodes/node11/harmony.conf:/app/harmony.conf
     ports:
       - "40011:40000"
+    environment:
+      ENABLE_REMOTE_DEBUG: "false"
     networks:
       blockchain:
         ipv4_address: 172.189.0.19
+
+  node12:
+    <<: *default-node
+    container_name: posichain-node12
+    profiles: [ "external" ]
+    volumes:
+      - node12-data:/app/data
+      - node12-account:/root/.hmy_cli/account-keys
+      - ./nodes/node12/blskeys:/app/blskeys
+      - ./nodes/node12/passphrases:/app/passphrases
+      - ./nodes/node12/harmony.conf:/app/harmony.conf
+    ports:
+      - "40012:40000"
+    networks:
+      blockchain:
+        ipv4_address: 172.189.0.20
+
+  node13:
+    <<: *default-node
+    container_name: posichain-node13
+    profiles: [ "external" ]
+    volumes:
+      - node13-data:/app/data
+      - node13-account:/root/.hmy_cli/account-keys
+      - ./nodes/node13/blskeys:/app/blskeys
+      - ./nodes/node13/passphrases:/app/passphrases
+      - ./nodes/node13/harmony.conf:/app/harmony.conf
+    ports:
+      - "40013:40000"
+    networks:
+      blockchain:
+        ipv4_address: 172.189.0.21
 
 networks:
   blockchain:
@@ -352,3 +386,23 @@ volumes:
     driver_opts:
       <<: *default-driver-opts
       device: '${PWD}/nodes/node11/account'
+  node12-data:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node12/data'
+  node12-account:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node12/account'
+  node13-data:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node13/data'
+  node13-account:
+    <<: *default-volume
+    driver_opts:
+      <<: *default-driver-opts
+      device: '${PWD}/nodes/node13/account'
