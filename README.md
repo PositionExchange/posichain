@@ -16,7 +16,7 @@ https://docs.posichain.org
 
 ## Requirements
 
-### **Go 1.16.3**
+### **Go 1.18**
 ### **GMP and OpenSSL**
 
 On macOS:

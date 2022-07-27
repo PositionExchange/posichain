@@ -1027,6 +1027,7 @@ func New(
 		}
 		if harmonyconfig != nil {
 			txPoolConfig.AccountSlots = harmonyconfig.TxPool.AccountSlots
+			txPoolConfig.GlobalSlots = harmonyconfig.TxPool.GlobalSlots
 			txPoolConfig.Locals = append(txPoolConfig.Locals, localAccounts...)
 		}
 
