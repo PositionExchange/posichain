@@ -61,7 +61,7 @@ services:
       - node1-account:/root/.hmy_cli/account-keys
       - ./nodes/node1/blskeys:/app/blskeys
       - ./nodes/node1/passphrases:/app/passphrases
-      - ./nodes/node1/harmony.conf:/app/harmony.conf
+      - ./nodes/node1/posichain.conf:/app/posichain.conf
     environment:
       ENABLE_REMOTE_DEBUG: "false"
     ports:
@@ -78,7 +78,7 @@ services:
       - node2-account:/root/.hmy_cli/account-keys
       - ./nodes/node2/blskeys:/app/blskeys
       - ./nodes/node2/passphrases:/app/passphrases
-      - ./nodes/node2/harmony.conf:/app/harmony.conf
+      - ./nodes/node2/posichain.conf:/app/posichain.conf
     ports:
       - "40002:40000"
     networks:
@@ -93,7 +93,7 @@ services:
       - node3-account:/root/.hmy_cli/account-keys
       - ./nodes/node3/blskeys:/app/blskeys
       - ./nodes/node3/passphrases:/app/passphrases
-      - ./nodes/node3/harmony.conf:/app/harmony.conf
+      - ./nodes/node3/posichain.conf:/app/posichain.conf
     environment:
       ENABLE_REMOTE_DEBUG: "false"
     ports:
@@ -110,7 +110,7 @@ services:
       - node4-account:/root/.hmy_cli/account-keys
       - ./nodes/node4/blskeys:/app/blskeys
       - ./nodes/node4/passphrases:/app/passphrases
-      - ./nodes/node4/harmony.conf:/app/harmony.conf
+      - ./nodes/node4/posichain.conf:/app/posichain.conf
     ports:
       - "40004:40000"
     networks:
@@ -126,7 +126,7 @@ services:
       - node5-account:/root/.hmy_cli/account-keys
       - ./nodes/node5/blskeys:/app/blskeys
       - ./nodes/node5/passphrases:/app/passphrases
-      - ./nodes/node5/harmony.conf:/app/harmony.conf
+      - ./nodes/node5/posichain.conf:/app/posichain.conf
     ports:
       - "40005:40000"
       - "15005:9500"# Http RPC public
@@ -146,7 +146,7 @@ services:
       - node6-account:/root/.hmy_cli/account-keys
       - ./nodes/node6/blskeys:/app/blskeys
       - ./nodes/node6/passphrases:/app/passphrases
-      - ./nodes/node6/harmony.conf:/app/harmony.conf
+      - ./nodes/node6/posichain.conf:/app/posichain.conf
     ports:
       - "40006:40000"
     networks:
@@ -161,7 +161,7 @@ services:
       - node7-account:/root/.hmy_cli/account-keys
       - ./nodes/node7/blskeys:/app/blskeys
       - ./nodes/node7/passphrases:/app/passphrases
-      - ./nodes/node7/harmony.conf:/app/harmony.conf
+      - ./nodes/node7/posichain.conf:/app/posichain.conf
     ports:
       - "40007:40000"
     networks:
@@ -176,7 +176,7 @@ services:
       - node8-account:/root/.hmy_cli/account-keys
       - ./nodes/node8/blskeys:/app/blskeys
       - ./nodes/node8/passphrases:/app/passphrases
-      - ./nodes/node8/harmony.conf:/app/harmony.conf
+      - ./nodes/node8/posichain.conf:/app/posichain.conf
     ports:
       - "40008:40000"
     networks:
@@ -191,7 +191,7 @@ services:
       - node9-account:/root/.hmy_cli/account-keys
       - ./nodes/node9/blskeys:/app/blskeys
       - ./nodes/node9/passphrases:/app/passphrases
-      - ./nodes/node9/harmony.conf:/app/harmony.conf
+      - ./nodes/node9/posichain.conf:/app/posichain.conf
     ports:
       - "40009:40000"
     networks:
@@ -207,7 +207,7 @@ services:
       - node10-account:/root/.hmy_cli/account-keys
       - ./nodes/node10/blskeys:/app/blskeys
       - ./nodes/node10/passphrases:/app/passphrases
-      - ./nodes/node10/harmony.conf:/app/harmony.conf
+      - ./nodes/node10/posichain.conf:/app/posichain.conf
     ports:
       - "40010:40000"
       - "15010:9500"# Http RPC public
@@ -228,7 +228,7 @@ services:
       - node11-account:/root/.hmy_cli/account-keys
       - ./nodes/node11/blskeys:/app/blskeys
       - ./nodes/node11/passphrases:/app/passphrases
-      - ./nodes/node11/harmony.conf:/app/harmony.conf
+      - ./nodes/node11/posichain.conf:/app/posichain.conf
     ports:
       - "40011:40000"
     environment:
@@ -246,7 +246,7 @@ services:
       - node12-account:/root/.hmy_cli/account-keys
       - ./nodes/node12/blskeys:/app/blskeys
       - ./nodes/node12/passphrases:/app/passphrases
-      - ./nodes/node12/harmony.conf:/app/harmony.conf
+      - ./nodes/node12/posichain.conf:/app/posichain.conf
     ports:
       - "40012:40000"
     networks:
@@ -262,7 +262,7 @@ services:
       - node13-account:/root/.hmy_cli/account-keys
       - ./nodes/node13/blskeys:/app/blskeys
       - ./nodes/node13/passphrases:/app/passphrases
-      - ./nodes/node13/harmony.conf:/app/harmony.conf
+      - ./nodes/node13/posichain.conf:/app/posichain.conf
     ports:
       - "40013:40000"
     networks:

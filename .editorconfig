@@ -12,7 +12,7 @@ insert_final_newline = true
 [*.key]
 insert_final_newline = false
 
-[*.{xml, yaml, yml, json}]
+[*.{xml, yaml, yml, json, conf}]
 indent_style = space
 indent_size = 2
 tab_width = 2
