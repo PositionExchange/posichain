@@ -157,9 +157,9 @@ jobs:
           gpg --detach-sign posichain-amd64
           sha256sum posichain-amd64 >> posichain-amd64.sha256
 
-      - name: Signed macos posichain binary
-        run: |
-          shasum -a 256 posichain-macos.zip >> posichain-macos.zip.sha256
+#      - name: Signed macos posichain binary
+#        run: |
+#          shasum -a 256 posichain-macos.zip >> posichain-macos.zip.sha256
 
       - name: Get tag message
         env:
@@ -231,26 +231,26 @@ jobs:
           asset_path: ./posichain-${{ env.build_version }}-${{ env.build_release }}.x86_64.rpm
           asset_name: posichain-${{ env.build_version }}.x86_64.rpm
           asset_content_type: application/x-rpm
-
-      - name: Upload posichain binary for MacOS
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./posichain-macos.zip
-          asset_name: posichain-macos-${{ env.build_version }}.zip
-          asset_content_type: application/zip
-
-      - name: Upload sha256 signature of posichain for MacOS
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./posichain-macos.zip.sha256
-          asset_name: posichain-macos.zip.sha256
-          asset_content_type: text/plain
+#
+#      - name: Upload posichain binary for MacOS
+#        uses: actions/upload-release-asset@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          upload_url: ${{ steps.create_release.outputs.upload_url }}
+#          asset_path: ./posichain-macos.zip
+#          asset_name: posichain-macos-${{ env.build_version }}.zip
+#          asset_content_type: application/zip
+#
+#      - name: Upload sha256 signature of posichain for MacOS
+#        uses: actions/upload-release-asset@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          upload_url: ${{ steps.create_release.outputs.upload_url }}
+#          asset_path: ./posichain-macos.zip.sha256
+#          asset_name: posichain-macos.zip.sha256
+#          asset_content_type: text/plain
 
       - name: Upload bootnode amd64 binary for Linux
         uses: actions/upload-release-asset@v1
