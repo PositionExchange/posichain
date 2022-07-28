@@ -1,23 +1,23 @@
 #!/bin/sh
 
 after_install() {
-   mkdir -p /home/harmony/.hmy/blskeys
-   mkdir -p /home/harmony/.config/rclone
-   chown -R harmony.harmony /home/harmony
+   mkdir -p /home/posichain/.psc/blskeys
+   mkdir -p /home/posichain/.config/rclone
+   chown -R posichain.posichain /home/posichain
 
-   systemctl enable harmony
-   systemctl start harmony
+   systemctl enable posichain
+   systemctl start posichain
 }
 
 after_upgrade() {
-   systemctl enable harmony
-   systemctl restart harmony
+   systemctl enable posichain
+   systemctl restart posichain
 }
 
 
 # Setup system users and groups
-getent group harmony >/dev/null || addgroup --quiet --system harmony
-getent passwd harmony >/dev/null || adduser --quiet --system --ingroup harmony --gecos "harmony validator account" harmony
+getent group posichain >/dev/null || addgroup --quiet --system posichain
+getent passwd posichain >/dev/null || adduser --quiet --system --ingroup posichain --gecos "posichain validator account" posichain
 
 if [ "${1}" = "configure" -a -z "${2}" ] || \
    [ "${1}" = "abort-remove" ]

@@ -8,8 +8,8 @@ SRC=
 
 # destination of the bucket to host the repo
 declare -A TARGET
-TARGET[rpm.dev]="haochen-harmony-pub/pub/yum"
-TARGET[deb.dev]="haochen-harmony-pub/pub/repo"
+TARGET[rpm.dev]="danny-posichain-pub/pub/yum"
+TARGET[deb.dev]="danny-posichain-pub/pub/repo"
 TARGET[rpm.prod]="pub.posichain.org/release/package/yum"
 TARGET[deb.prod]="pub.posichain.org/release/package/apt"
 
@@ -69,13 +69,13 @@ function publish_rpm() {
 }
 
 function publish_deb() {
-   if aptly repo show harmony-$PROFILE > /dev/null; then
-      aptly repo add harmony-$PROFILE $SRC
-      aptly publish update bionic s3:harmony-$PROFILE:
+   if aptly repo show posichain-$PROFILE > /dev/null; then
+      aptly repo add posichain-$PROFILE $SRC
+      aptly publish update bionic s3:posichain-$PROFILE:
    else
-      aptly repo create -distribution=bionic -component=main harmony-$PROFILE
-      aptly repo add harmony-$PROFILE $SRC
-      aptly publish repo harmony-$PROFILE s3:harmony-$PROFILE:
+      aptly repo create -distribution=bionic -component=main posichain-$PROFILE
+      aptly repo add posichain-$PROFILE $SRC
+      aptly publish repo posichain-$PROFILE s3:posichain-$PROFILE:
    fi
 }
 

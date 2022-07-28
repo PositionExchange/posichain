@@ -1,17 +1,17 @@
 [Unit]
-Description=harmony validator node service
+Description=posichain validator node service
 After=network.target
 
 [Service]
 Type=simple
 Restart=on-failure
 RestartSec=1
-User=harmony
-Group=harmony
+User=posichain
+Group=posichain
 WorkingDirectory=~
-ExecStart=/usr/sbin/harmony -c /etc/harmony/harmony.conf
+ExecStart=/usr/sbin/posichain -c /etc/posichain/posichain.conf
 StandardError=syslog
-SyslogIdentifier=harmony
+SyslogIdentifier=posichain
 StartLimitInterval=0
 LimitNOFILE=65536
 LimitNPROC=65536

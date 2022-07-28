@@ -1,4 +1,4 @@
-[harmony-prod]
+[posichain-prod]
 name=Production Packages - $basearch
 baseurl=http://pub.posichain.org.s3.amazonaws.com/release/package/yum/$basearch/
 enabled=1

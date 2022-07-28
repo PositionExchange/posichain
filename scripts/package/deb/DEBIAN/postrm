@@ -4,16 +4,16 @@ set -e
 
 after_remove() {
    :
-   #rm -rf /data/harmony/latest
-   #rm -rf /data/harmony/.dht*
-   #rm -rf /data/harmony/transactions.rlp
+   #rm -rf /data/posichain/logs
+   #rm -rf /data/posichain/.dht*
+   #rm -rf /data/posichain/transactions.rlp
 }
 
 after_purge() {
-	systemctl disable harmony
-	userdel harmony || true
-	groupdel harmony || true
-	rm -rf /etc/harmony
+	systemctl disable posichain
+	userdel posichain || true
+	groupdel posichain || true
+	rm -rf /etc/posichain
 }
 
 dummy() {

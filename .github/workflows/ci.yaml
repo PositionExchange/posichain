@@ -88,7 +88,7 @@ jobs:
           make deb
           echo %_signature gpg >> $HOME/.rpmmacros && echo "%_gpg_name Posichain (posichain.org)" >> $HOME/.rpmmacros
           make rpm
-          mv ./bin/harmony ./bin/posichain-amd64
+          mv ./bin/posichain ./bin/posichain-amd64
           mv ./bin/bootnode ./bin/bootnode-amd64
           mv $HOME/debbuild/posichain-$build_version-$build_release.deb ./bin/
           mv $HOME/rpmbuild/RPMS/x86_64/posichain-$build_version-$build_release.x86_64.rpm ./bin/
@@ -105,7 +105,7 @@ jobs:
           sudo ln -sf /usr/local/opt/openssl@1.1 /usr/local/opt/openssl
           make
           cd ./bin && mkdir ./lib && mv ./*.dylib ./lib && rm -f ./bootnode
-          gpg --detach-sign harmony
+          gpg --detach-sign posichain
           zip -qr ./posichain-macos.zip ./*
           rm -rf `ls * | egrep -v posichain-macos.zip`
         working-directory: posichain
