@@ -16,7 +16,7 @@ func TestString(t *testing.T) {
 
 func TestCommitteeAccounts(test *testing.T) {
 	testAccounts(test, FoundationalNodeAccounts)
-	testAccounts(test, HarmonyAccounts)
+	testAccounts(test, MainnetOperatedAccounts)
 	testAccounts(test, TestnetOperatedAccounts)
 	testAccounts(test, TestnetFoundationalAccounts)
 }
