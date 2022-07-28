@@ -34,9 +34,9 @@ function build() {
 
 function setup() {
   # Setup blspass file
-  mkdir -p ${ROOT}/.hmy
-  if [[ ! -f "${ROOT}/.hmy/blspass.txt" ]]; then
-    touch "${ROOT}/.hmy/blspass.txt"
+  mkdir -p ${ROOT}/.psc
+  if [[ ! -f "${ROOT}/.psc/blspass.txt" ]]; then
+    touch "${ROOT}/.psc/blspass.txt"
   fi
 
   # Kill nodes if any
@@ -131,7 +131,7 @@ function launch_localnet() {
     esac
 
     # Start the node
-    ${DRYRUN} "${ROOT}/bin/harmony" "${args[@]}" "${extra_args[@]}" 2>&1 | tee -a "${LOG_FILE}" &
+    ${DRYRUN} "${ROOT}/bin/posichain" "${args[@]}" "${extra_args[@]}" 2>&1 | tee -a "${LOG_FILE}" &
   done <"${config}"
 }
 
@@ -153,7 +153,7 @@ USAGE: $ME [OPTIONS] config_file_name [extra args to node]
    -v             verbosity in log (default: $VERBOSE)
    -e             expose WS & HTTP ip (default: $EXPOSEAPIS)
 
-This script will build all the binaries and start harmony and based on the configuration file.
+This script will build all the binaries and start posichain and based on the configuration file.
 
 EXAMPLES:
 

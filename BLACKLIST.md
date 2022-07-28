@@ -4,17 +4,17 @@ The black list is a newline delimited file of wallet addresses. It can also supp
 
 ## Default Location
 
-By default, the harmony binary looks for the file `./.hmy/blaklist.txt`.
+By default, the posichain binary looks for the file `./.psc/blaklist.txt`.
 
 ## Example File
 ```
-one1spshr72utf6rwxseaz339j09ed8p6f8ke370zj
-one1uyshu2jgv8w465yc8kkny36thlt2wvel89tcmg  # This is a comment
-one1r4zyyjqrulf935a479sgqlpa78kz7zlcg2jfen
+0x806171f95C5a74371a19e8a312c9e5Cb4E1D24f6
+0xE1217E2a4861DD5D50983DaD32474Bbfd6A7333F  # This is a comment
+0x1D44424803e7D258D3B5F160807c3dF1ec2F0BF8
 
 ```
 
 ## Details
 
-Each transaction added to the tx-pool has its `to` and `from` address checked against this blacklist. 
+Each transaction added to the tx-pool has its `to` and `from` address checked against this blacklist.
 If there is a hit, the transaction is considered invalid and is dropped from the tx-pool.

@@ -46,8 +46,8 @@ bc_config.json
 # leveldb local storage
 db/
 
-# harmony node keystore
-.hmykey
+# posichain node keystore
+.psckey
 
 # staking keystore
 .stakingkey
@@ -68,7 +68,8 @@ node_modules/
 test/.bnkey
 
 # exported keys
-.hmy/*.key
+.psc/*.key
+.psc/keystore/*.key
 
 # blspass
 blspass.txt
@@ -91,7 +92,7 @@ posichain_sharddb_*
 explorer_storage_*
 
 # local blskeys for testing
-.hmy/blskeys
+.psc/blskeys
 
 # pprof profiles
 profiles/*.pb.gz
