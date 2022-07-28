@@ -1,20 +1,21 @@
 import argparse
+import json
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Create Foundational Keys List from Internal Record."
     )
     parser.add_argument(
-        "-sheet",
-        default="allkeys-sheet.txt",
-        dest="sheet",
+        "-json-file",
+        default="keys.json",
+        dest="json_file",
         help="tab seperate ecdsa and bls keys",
         type=str,
     )
     parser.add_argument(
-        "-foundational",
-        default="allkeys-foundational-go.txt",
-        dest="foundational",
+        "-out",
+        default="accounts-generated-go.txt",
+        dest="out_file",
         help="file compatible with foundational go",
         type=str,
     )
@@ -26,27 +27,31 @@ if __name__ == "__main__":
         type=int,
     )
     args = parser.parse_args()
-    g = open(args.sheet, "r")
-    f = open(args.foundational, "w")
+    g = open(args.json_file, "r")
+    f = open(args.out_file, "w")
+    d = json.load(g)
     index = args.index
-    for myline in g:
-        ecdsa, bls = myline.strip().split("\t")
+    for item in d:
         string = (
-            "{Index:"
+            "{Index: "
             + '"'
             + str(index)
             + '"'
             + ","
             + " "
-            + "Address:"
+            + "ShardID: "
+            + str(item['shard-id'])
+            + ","
+            + " "
+            + "Address: "
             + '"'
-            + ecdsa
+            + item['hex-address']
             + '"'
             + ","
             + " "
-            + "BLSPublicKey:"
+            + "BLSPublicKey: "
             + '"'
-            + bls
+            + item['public-key']
             + '"'
             + "}"
             + ","
