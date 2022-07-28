@@ -19,21 +19,21 @@ function check_result() {
 }
 
 function cleanup() {
-   for pid in `/bin/ps -fu $USER| grep "harmony\|soldier\|commander\|profiler\|beacon\|bootnode" | grep -v "grep" | grep -v "vi" | awk '{print $2}'`;
+   for pid in `/bin/ps -fu $USER| grep "posichain\|soldier\|commander\|profiler\|beacon\|bootnode" | grep -v "grep" | grep -v "vi" | awk '{print $2}'`;
    do
        echo 'Killed process: '$pid
        $DRYRUN kill -9 $pid 2> /dev/null
    done
    # Remove bc_config.json before starting experiment.
    rm -f bc_config.json
-   rm -rf ./db/harmony_*
+   rm -rf ./db/posichain_*
 }
 
 function killnode() {
    local port=$1
 
    if [ -n "port" ]; then
-      pid=$(/bin/ps -fu $USER | grep "harmony" | grep "$port" | awk '{print $2}')
+      pid=$(/bin/ps -fu $USER | grep "posichain" | grep "$port" | awk '{print $2}')
       echo "killing node with port: $port"
       $DRYRUN kill -9 $pid 2> /dev/null
       echo "node with port: $port is killed"
@@ -56,7 +56,7 @@ USAGE: $ME [OPTIONS] config_file_name
    -n             dryrun mode (default: $DRYRUN)
    -S             enable sync test (default: $SYNC)
 
-This script will build all the binaries and start harmony and based on the configuration file.
+This script will build all the binaries and start posichain and based on the configuration file.
 
 EXAMPLES:
 
@@ -122,6 +122,6 @@ HMY_OPT2="-bootnodes ${bn_ma}"
 for i in 0{1..5} # {10..99}
 do
     echo "launching new node $i ..."
-    ($DRYRUN $ROOT/bin/harmony -ip 127.0.0.1 -port 91$i -log_folder $log_folder -is_newnode $DB -account_index $i -min_peers $MIN $HMY_OPT $HMY_OPT2 $HMY_OPT3 -key /tmp/127.0.0.1-91$i.key 2>&1 | tee -a $LOG_FILE ) &
+    ($DRYRUN $ROOT/bin/posichain -ip 127.0.0.1 -port 91$i -log_folder $log_folder -is_newnode $DB -account_index $i -min_peers $MIN $HMY_OPT $HMY_OPT2 $HMY_OPT3 -key /tmp/127.0.0.1-91$i.key 2>&1 | tee -a $LOG_FILE ) &
     sleep 5
 done
