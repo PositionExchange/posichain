@@ -35,7 +35,10 @@ get_version() {
 print_usage() {
    cat <<- ENDEND
 
-usage: ${progname} [OPTIONS] PROCESS [ARGS]
+usage: POSICHAIN_RELEASE=[VERSION] ${progname} [OPTIONS] PROCESS [ARGS]
+
+VERSION is the release tag version in official Github repository. Eg: v1.0.0
+      https://github.com/PositionExchange/posichain/releases
 
 PROCESS can be: validator/posichain, btcrelay, ethrelay
 
@@ -157,7 +160,7 @@ if [ "$#" -lt 1 ]; then
 fi
 
 get_version
-color "37" "Latest Posichain release is: $posichain_rel."
+color "37" "Download Posichain release version: $posichain_rel."
 
 readonly wrapper_dir="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/staging/${posichain_rel}"
 VALIDATOR="posichain"
