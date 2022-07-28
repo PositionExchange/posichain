@@ -11,7 +11,7 @@ RUN cd bls && make -j8 BLS_SWAP_G=1
 
 WORKDIR /workspace/posichain
 COPY . .
-RUN bash ./scripts/go_executable_build.sh -d -S harmony
+RUN bash ./scripts/go_executable_build.sh -d -S posichain
 RUN curl -LO https://download.posichain.org/psc && chmod +x psc
 RUN mv ./psc ./bin/psc
 RUN mv ./bin/libbls384_256.so /usr/local/lib
@@ -28,6 +28,6 @@ RUN mkdir -p data
 RUN mkdir -p logs
 RUN mkdir -p profiles
 RUN chmod +x ./scripts/node_run.sh
-RUN ln -sf /dev/stdout /app/logs/zerolog-harmony.log
+RUN ln -sf /dev/stdout /app/logs/zerolog-posichain.log
 RUN go install github.com/go-delve/delve/cmd/dlv@latest
 CMD ./scripts/node_run.sh

@@ -1215,7 +1215,7 @@ var (
 	}
 	logFileNameFlag = cli.StringFlag{
 		Name:     "log.name",
-		Usage:    "log file name (e.g. harmony.log)",
+		Usage:    "log file name (e.g. posichain.log)",
 		DefValue: defaultConfig.Log.FileName,
 	}
 	logVerbosityFlag = cli.IntFlag{

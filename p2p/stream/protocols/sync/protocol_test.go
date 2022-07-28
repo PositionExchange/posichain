@@ -15,12 +15,12 @@ func TestProtocol_Match(t *testing.T) {
 		targetID string
 		exp      bool
 	}{
-		{"harmony/sync/unitest/0/1.0.1", true},
+		{"posichain/sync/unitest/0/1.0.1", true},
 		{"h123456", false},
-		{"harmony/sync/unitest/0/0.9.9", false},
-		{"harmony/epoch/unitest/0/1.0.1", false},
-		{"harmony/sync/mainnet/0/1.0.1", false},
-		{"harmony/sync/unitest/1/1.0.1", false},
+		{"posichain/sync/unitest/0/0.9.9", false},
+		{"posichain/epoch/unitest/0/1.0.1", false},
+		{"posichain/sync/mainnet/0/1.0.1", false},
+		{"posichain/sync/unitest/1/1.0.1", false},
 	}
 
 	for i, test := range tests {

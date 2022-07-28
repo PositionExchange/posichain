@@ -10,8 +10,8 @@ SRC=
 declare -A TARGET
 TARGET[rpm.dev]="haochen-harmony-pub/pub/yum"
 TARGET[deb.dev]="haochen-harmony-pub/pub/repo"
-TARGET[rpm.prod]="pub.harmony.one/release/package/yum"
-TARGET[deb.prod]="pub.harmony.one/release/package/apt"
+TARGET[rpm.prod]="pub.posichain.org/release/package/yum"
+TARGET[deb.prod]="pub.posichain.org/release/package/apt"
 
 function usage() {
    cat<<-EOT

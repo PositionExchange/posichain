@@ -18,11 +18,11 @@ all: libs
 	bash ./scripts/go_executable_build.sh -S
 
 help:
-	@echo "all - build the harmony binary & bootnode along with the MCL & BLS libs (if necessary)"
+	@echo "all - build the posichain binary & bootnode along with the MCL & BLS libs (if necessary)"
 	@echo "libs - build only the MCL & BLS libs (if necessary) "
-	@echo "exe - build the harmony binary & bootnode"
-	@echo "race - build the harmony binary & bootnode with race condition checks"
-	@echo "trace-pointer - build the harmony binary & bootnode with pointer analysis"
+	@echo "exe - build the posichain binary & bootnode"
+	@echo "race - build the posichain binary & bootnode with race condition checks"
+	@echo "trace-pointer - build the posichain binary & bootnode with pointer analysis"
 	@echo "debug - start a localnet with 2 shards (s0 rpc endpoint = localhost:9599; s1 rpc endpoint = localhost:9598)"
 	@echo "debug-kill - force kill the localnet"
 	@echo "clean - remove node files & logs created by localnet"
@@ -33,13 +33,13 @@ help:
 	@echo "test-rpc-attach - attach onto the rpc testing docker container for inspection"
 	@echo "test-rosetta - run the rosetta tests"
 	@echo "test-rosetta-attach - attach onto the rosetta testing docker container for inspection"
-	@echo "linux_static - static build the harmony binary & bootnode along with the MCL & BLS libs (for linux)"
-	@echo "rpm - build a harmony RPM pacakge"
-	@echo "rpmpub_dev - publish harmony RPM package to development repo"
-	@echo "rpmpub_prod - publish harmony RPM package to production repo"
-	@echo "deb - build a harmony Debian pacakge"
-	@echo "debpub_dev - publish harmony Debian package to development repo"
-	@echo "debpub_prod - publish harmony Debian package to production repo"
+	@echo "linux_static - static build the posichain binary & bootnode along with the MCL & BLS libs (for linux)"
+	@echo "rpm - build a posichain RPM pacakge"
+	@echo "rpmpub_dev - publish posichain RPM package to development repo"
+	@echo "rpmpub_prod - publish posichain RPM package to production repo"
+	@echo "deb - build a posichain Debian pacakge"
+	@echo "debpub_dev - publish posichain Debian package to development repo"
+	@echo "debpub_prod - publish posichain Debian package to production repo"
 
 libs:
 	make -C $(TOP)/mcl -j8

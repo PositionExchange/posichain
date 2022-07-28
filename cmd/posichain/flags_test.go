@@ -1013,11 +1013,11 @@ func TestLogFlags(t *testing.T) {
 		},
 		{
 			args: []string{"--log.dir", "latest_log", "--log.max-size", "10", "--log.rotate-count", "3",
-				"--log.rotate-max-age", "0", "--log.name", "harmony.log", "--log.verb", "5",
+				"--log.rotate-max-age", "0", "--log.name", "posichain.log", "--log.verb", "5",
 				"--log.verbose-prints", "config"},
 			expConfig: harmonyconfig.LogConfig{
 				Folder:       "latest_log",
-				FileName:     "harmony.log",
+				FileName:     "posichain.log",
 				RotateSize:   10,
 				RotateCount:  3,
 				RotateMaxAge: 0,

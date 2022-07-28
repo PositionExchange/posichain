@@ -61,28 +61,28 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "harmony",
-	Short: "harmony is the Harmony node binary file",
-	Long: `harmony is the Harmony node binary file
+	Use:   "posichain",
+	Short: "posichain is the Posichain node binary file",
+	Long: `posichain is the Posichain node binary file
 
 Examples usage:
 
 # start a validator node with default bls folder (default bls key files in ./.hmy/blskeys)
-    ./harmony
+    ./posichain
 
 # start a validator node with customized bls key folder
-    ./harmony --bls.dir [bls_folder]
+    ./posichain --bls.dir [bls_folder]
 
 # start a validator node with open RPC endpoints and customized ports
-    ./harmony --http.ip=0.0.0.0 --http.port=[http_port] --ws.ip=0.0.0.0 --ws.port=[ws_port]
+    ./posichain --http.ip=0.0.0.0 --http.port=[http_port] --ws.ip=0.0.0.0 --ws.port=[ws_port]
 
 # start an explorer node
-    ./harmony --run=explorer --run.shard=[shard_id]
+    ./posichain --run=explorer --run.shard=[shard_id]
 
 # start a harmony internal node on testnet
-    ./harmony --run.legacy --network testnet
+    ./posichain --run.legacy --network testnet
 `,
-	Run: runHarmonyNode,
+	Run: runPosichainNode,
 }
 
 var configFlag = cli.StringFlag{
@@ -125,7 +125,7 @@ func registerRootCmdFlags() error {
 	return cli.RegisterFlags(rootCmd, flags)
 }
 
-func runHarmonyNode(cmd *cobra.Command, args []string) {
+func runPosichainNode(cmd *cobra.Command, args []string) {
 	if cli.GetBoolFlagValue(cmd, versionFlag) {
 		printVersion()
 		os.Exit(0)

@@ -55,7 +55,7 @@ esac
 
 mkdir -p "${DATADIR}/archive"
 
-rclone --config "${CONFIG}" sync -vvv "hmy:pub.harmony.one/${FOLDER}/harmony_db_${SHARD}" "${DATADIR}/archive/harmony_db_${SHARD}" > "${DATADIR}/archive/archive-${SHARD}.log" 2>&1
+rclone --config "${CONFIG}" sync -vvv "hmy:pub.posichain.org/${FOLDER}/harmony_db_${SHARD}" "${DATADIR}/archive/harmony_db_${SHARD}" > "${DATADIR}/archive/archive-${SHARD}.log" 2>&1
 
 [ -d "${DATADIR}/harmony_db_${SHARD}" ] && mv -f "${DATADIR}/harmony_db_${SHARD}" "${DATADIR}/archive/harmony_db_${SHARD}.bak"
 mv -f "${DATADIR}/archive/harmony_db_${SHARD}" "${DATADIR}/harmony_db_${SHARD}"
