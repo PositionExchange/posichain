@@ -1,4 +1,4 @@
-# Contributing To Harmony
+# Contributing To Posichain
 
 ## Coding Guidelines
 
@@ -26,7 +26,7 @@ For exampple, a typical workflow is like the following.
 # assuming you are working on a fix of bug1, and use a local branch called "fixes_of_bug1".
 
 git clone https://github.com/PositionExchange/posichain
-cd harmony
+cd posichain
 
 # create a local branch to keep track of the origin/master
 git branch fixes_of_bug1 origin/master

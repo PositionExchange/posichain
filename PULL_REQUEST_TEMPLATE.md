@@ -35,22 +35,18 @@ After:
 
 4. **How much minimum baking period after the last flag epoch should we allow on Pangaea before promotion onto mainnet?**
 
-5. **What are the planned flag epoch numbers and their ETAs on Pangaea?**
+5. **What are the planned flag epoch numbers and their ETAs on mainnet?**
 
-6. **What are the planned flag epoch numbers and their ETAs on mainnet?**
+6. **What should node operators know about this planned change?**
 
-    Note that this must be enough to cover baking period on Pangaea.
-
-7. **What should node operators know about this planned change?**
-
-8. **Does this PR introduce backward-incompatible changes *NOT* related to on-disk data structure and/or over-the-wire protocol?** (If no, continue to question 11.)
+7. **Does this PR introduce backward-incompatible changes *NOT* related to on-disk data structure and/or over-the-wire protocol?** (If no, continue to question 10.)
 
     **YES|NO**
 
-9. **Does the existing `node.sh` continue to work with this change?**
+8. **Does the existing `node.sh` continue to work with this change?**
 
-10. **What should node operators know about this change?**
+9. **What should node operators know about this change?**
 
-11. **Does this PR introduce significant changes to the operational requirements of the node software, such as >20% increase in CPU, memory, and/or disk usage?**
+10. **Does this PR introduce significant changes to the operational requirements of the node software, such as >20% increase in CPU, memory, and/or disk usage?**
 
 ## TODO
