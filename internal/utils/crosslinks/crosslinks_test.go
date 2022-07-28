@@ -4,8 +4,8 @@ import (
 	"testing"
 	"unsafe"
 
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/internal/utils/crosslinks"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/internal/utils/crosslinks"
 	"github.com/stretchr/testify/require"
 )
 

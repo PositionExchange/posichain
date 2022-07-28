@@ -5,10 +5,10 @@ import (
 	"sync"
 	"time"
 
+	"github.com/PositionExchange/posichain/api/service/legacysync/downloader"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/p2p"
 	"github.com/ethereum/go-ethereum/common/math"
-	"github.com/harmony-one/harmony/api/service/legacysync/downloader"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/p2p"
 	"github.com/pkg/errors"
 )
 

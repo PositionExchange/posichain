@@ -6,13 +6,13 @@ import (
 	"sync"
 	"time"
 
+	"github.com/PositionExchange/posichain/consensus"
+	"github.com/PositionExchange/posichain/core"
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/internal/utils"
+	"github.com/PositionExchange/posichain/p2p"
+	"github.com/PositionExchange/posichain/shard"
 	"github.com/Workiva/go-datastructures/queue"
-	"github.com/harmony-one/harmony/consensus"
-	"github.com/harmony-one/harmony/core"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/internal/utils"
-	"github.com/harmony-one/harmony/p2p"
-	"github.com/harmony-one/harmony/shard"
 	"github.com/pkg/errors"
 )
 
