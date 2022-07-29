@@ -42,7 +42,7 @@ var (
 		"total delegation can not be bigger than max_total_delegation",
 	)
 	errMinSelfDelegationTooSmall = errors.New(
-		"min_self_delegation must be greater than or equal to 10,000 ONE",
+		"min_self_delegation must be greater than or equal to 10,000 POSI",
 	)
 	errInvalidMaxTotalDelegation = errors.New(
 		"max_total_delegation can not be less than min_self_delegation",

@@ -7,8 +7,8 @@ import (
 
 func TestGenerateAccountForNodeInstanceConfig(T *testing.T) {
 	shardNum := 1
-	shardSize := 30
-	shardOperatedNodes := 25
+	shardSize := 21
+	shardOperatedNodes := 16
 	for i := 0; i < shardNum; i++ {
 		fmt.Printf("Shard %d\n", i)
 		for j := 0; j < shardOperatedNodes; j++ {

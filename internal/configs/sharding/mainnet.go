@@ -82,5 +82,5 @@ func (ms mainnetSchedule) IsSkippedEpoch(shardID uint32, epoch *big.Int) bool {
 var mainnetReshardingEpoch = []*big.Int{big.NewInt(0)}
 
 var (
-	mainnetV0 = MustNewInstance(1, 30, 25, 0, numeric.OneDec(), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
+	mainnetV0 = MustNewInstance(1, 21, 16, 0, numeric.OneDec(), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
 )
