@@ -146,7 +146,7 @@ func TestHarmonyFlags(t *testing.T) {
 					IP:         "0.0.0.0",
 					Port:       9900,
 					EnablePush: true,
-					Gateway:    "https://gateway.harmony.one",
+					Gateway:    "https://prometheus.posichain.org",
 				},
 				Sync: defaultMainnetSyncConfig,
 				ShardData: harmonyconfig.ShardDataConfig{
