@@ -138,7 +138,7 @@ var defaultPrometheusConfig = harmonyconfig.PrometheusConfig{
 	IP:         "0.0.0.0",
 	Port:       9900,
 	EnablePush: false,
-	Gateway:    "https://gateway.harmony.one",
+	Gateway:    "https://prometheus.posichain.org",
 }
 
 var (
