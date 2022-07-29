@@ -64,7 +64,7 @@ clean:
 	rm -rf ./tmp_log*
 	rm -rf ./.dht*
 	rm -rf ./db-*
-	rm -rf ./latest
+	rm -rf ./logs
 	rm -f ./*.rlp
 	rm -rf ~/rpmbuild
 	rm -f coverage.txt

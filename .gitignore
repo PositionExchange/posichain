@@ -71,7 +71,6 @@ internal/genesis/*accounts.json
 internal/genesis/*generated-go.txt
 
 # exported keys
-.psc/*.key
 .psc/keystore/*.key
 
 # blspass

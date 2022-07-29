@@ -29,7 +29,7 @@ RUN make linux_static && \
 
 # TODO copy testnet conf
 RUN cp ./rosetta/infra/posichain-mainnet.conf /root/posichain-mainnet.conf && \
-    cp ./.hmy/rosetta_local_fix.csv /root/rosetta_local_fix.csv
+    cp ./.psc/rosetta_local_fix.csv /root/rosetta_local_fix.csv
 
 # Execution
 FROM ubuntu:20.04

@@ -13,7 +13,7 @@ const (
 	firstElectionEpochStr = "Harmony/FirstElectionEpoch/Key/v1"
 )
 
-// keys used to retrieve staking related informatio
+// keys used to retrieve staking related information
 var (
 	IsValidatorKey        = crypto.Keccak256Hash([]byte(isValidatorKeyStr))
 	IsValidator           = crypto.Keccak256Hash([]byte(isValidatorStr))

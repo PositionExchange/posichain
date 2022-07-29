@@ -67,7 +67,7 @@ var rootCmd = &cobra.Command{
 
 Examples usage:
 
-# start a validator node with default bls folder (default bls key files in ./.hmy/blskeys)
+# start a validator node with default bls folder (default bls key files in ./.psc/blskeys)
     ./posichain
 
 # start a validator node with customized bls key folder

@@ -12,7 +12,7 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 )
 
-var testProtoID = sttypes.ProtoID("harmony/sync/unitest/0/1.0.0")
+var testProtoID = sttypes.ProtoID("posichain/sync/unitest/0/1.0.0")
 
 type testStreamManager struct {
 	streams map[sttypes.StreamID]sttypes.Stream
