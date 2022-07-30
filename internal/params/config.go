@@ -68,12 +68,12 @@ var (
 		CrossShardXferPrecompileEpoch: EpochTBD,
 		AllowlistEpoch:                EpochTBD,
 		First2022PeriodEpoch:          big.NewInt(0),
-		First2024PeriodEpoch:          big.NewInt(1397),
-		First2026PeriodEpoch:          big.NewInt(3324),
-		First2028PeriodEpoch:          big.NewInt(5249),
-		First2030PeriodEpoch:          big.NewInt(7176),
-		First2032PeriodEpoch:          big.NewInt(9101),
-		First2034PeriodEpoch:          big.NewInt(11028),
+		First2024PeriodEpoch:          big.NewInt(1370),
+		First2026PeriodEpoch:          big.NewInt(3297),
+		First2028PeriodEpoch:          big.NewInt(5222),
+		First2030PeriodEpoch:          big.NewInt(7150),
+		First2032PeriodEpoch:          big.NewInt(9074),
+		First2034PeriodEpoch:          big.NewInt(11002),
 	}
 
 	// TestnetChainConfig contains the chain parameters to run a node on the harmony test network.
