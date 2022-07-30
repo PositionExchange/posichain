@@ -6,13 +6,13 @@
 [![Github Action](https://github.com/PositionExchange/posichain/actions/workflows/ci.yaml/badge.svg?event=push)](https://github.com/PositionExchange/posichain/actions/workflows/ci.yaml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/PositionExchange/posichain)](https://goreportcard.com/report/github.com/PositionExchange/posichain)
 
-## General Documentation
+## Homepage
 
-https://docs.posichain.org
+[https://posichain.org](https://posichain.org)
 
-## API Guide
+## Developer documents
 
-https://docs.posichain.org
+[https://docs.posichain.org](https://docs.posichain.org)
 
 ## Requirements
 
