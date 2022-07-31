@@ -10,7 +10,7 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 )
 
-const Signature = "https://posichain.org 'Open Consensus for 10B' 2022.06.06 $POSI"
+const Signature = "https://posichain.org 2022.06.06 $POSI"
 
 // DeployAccount is the account used in genesis
 type DeployAccount struct {
