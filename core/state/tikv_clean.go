@@ -5,10 +5,10 @@ import (
 	"sync"
 	"sync/atomic"
 
+	"github.com/PositionExchange/posichain/internal/shardchain/tikv_manage"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/trie"
-	"github.com/harmony-one/harmony/internal/shardchain/tikv_manage"
 )
 
 var secureKeyPrefix = []byte("secure-key-")

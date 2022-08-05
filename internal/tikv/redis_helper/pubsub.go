@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/PositionExchange/posichain/core/types"
+	"github.com/PositionExchange/posichain/internal/utils"
+	stakingTypes "github.com/PositionExchange/posichain/staking/types"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/harmony-one/harmony/core/types"
-	"github.com/harmony-one/harmony/internal/utils"
-	stakingTypes "github.com/harmony-one/harmony/staking/types"
 	"github.com/pkg/errors"
 )
 

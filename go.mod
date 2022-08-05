@@ -4,7 +4,6 @@ go 1.18
 
 require (
 	github.com/PositionExchange/bls v0.0.0-20210728190118-2b7e49894c0f
-	github.com/VictoriaMetrics/fastcache v1.5.7 // indirect
 	github.com/RoaringBitmap/roaring v1.1.0
 	github.com/VictoriaMetrics/fastcache v1.5.7
 	github.com/Workiva/go-datastructures v1.0.50

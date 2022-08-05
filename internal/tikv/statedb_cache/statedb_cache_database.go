@@ -7,10 +7,10 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/PositionExchange/posichain/internal/tikv/common"
 	"github.com/VictoriaMetrics/fastcache"
 	"github.com/ethereum/go-ethereum/ethdb"
 	redis "github.com/go-redis/redis/v8"
-	"github.com/harmony-one/harmony/internal/tikv/common"
 )
 
 const (

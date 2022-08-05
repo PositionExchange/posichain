@@ -3,8 +3,8 @@ package tikv_manage
 import (
 	"sync"
 
+	"github.com/PositionExchange/posichain/internal/tikv/statedb_cache"
 	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/harmony-one/harmony/internal/tikv/statedb_cache"
 )
 
 type TiKvFactory interface {

@@ -5,8 +5,8 @@ import (
 	"context"
 	"sync"
 
+	"github.com/PositionExchange/posichain/internal/tikv/common"
 	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/harmony-one/harmony/internal/tikv/common"
 )
 
 type operate int
