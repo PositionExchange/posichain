@@ -12,6 +12,7 @@ import (
 	blockfactory "github.com/PositionExchange/posichain/block/factory"
 	"github.com/PositionExchange/posichain/core"
 	core_state "github.com/PositionExchange/posichain/core/state"
+	harmonyState "github.com/PositionExchange/posichain/core/state"
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/core/vm"
 	"github.com/PositionExchange/posichain/crypto/hash"
@@ -205,7 +206,7 @@ func playFaucetContract(chain core.BlockChain) {
 
 func main() {
 	genesis := gspec.MustCommit(database)
-	chain, _ := core.NewBlockChain(database, nil, gspec.Config, chain.Engine(), vm.Config{}, nil)
+	chain, _ := core.NewBlockChain(database, harmonyState.NewDatabase(database), nil, gspec.Config, chain.Engine(), vm.Config{}, nil)
 	txpool := core.NewTxPool(core.DefaultTxPoolConfig, chainConfig, chain, types.NewTransactionErrorSink())
 
 	backend := &testWorkerBackend{

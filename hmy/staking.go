@@ -9,6 +9,7 @@ import (
 	"github.com/PositionExchange/posichain/block"
 	"github.com/PositionExchange/posichain/consensus/quorum"
 	"github.com/PositionExchange/posichain/core/rawdb"
+	"github.com/PositionExchange/posichain/core/state"
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/eth/rpc"
 	"github.com/PositionExchange/posichain/internal/chain"
@@ -223,6 +224,35 @@ func (hmy *Harmony) GetElectedValidatorAddresses() []common.Address {
 // GetAllValidatorAddresses returns the up to date validator candidates for next epoch
 func (hmy *Harmony) GetAllValidatorAddresses() []common.Address {
 	return hmy.BlockChain.ValidatorCandidates()
+}
+
+func (hmy *Harmony) GetValidatorsStakeByBlockNumber(
+	block *types.Block,
+) (map[string]*big.Int, error) {
+	if cachedReward, ok := hmy.stakeByBlockNumberCache.Get(block.Hash()); ok {
+		return cachedReward.(map[string]*big.Int), nil
+	}
+	validatorAddresses := hmy.GetAllValidatorAddresses()
+	stakes := make(map[string]*big.Int, len(validatorAddresses))
+	for _, validatorAddress := range validatorAddresses {
+		wrapper, err := hmy.BlockChain.ReadValidatorInformationAtRoot(validatorAddress, block.Root())
+		if err != nil {
+			if errors.Cause(err) != state.ErrAddressNotPresent {
+				return nil, errors.Errorf(
+					"cannot fetch information for validator %s at block %d due to %s",
+					validatorAddress.Hex(),
+					block.Number(),
+					err,
+				)
+			} else {
+				// `validatorAddress` was not a validator back then
+				continue
+			}
+		}
+		stakes[validatorAddress.Hex()] = wrapper.TotalDelegation()
+	}
+	hmy.stakeByBlockNumberCache.Add(block.Hash(), stakes)
+	return stakes, nil
 }
 
 var (

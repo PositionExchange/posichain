@@ -59,6 +59,7 @@ Version = "1.0.4"
   Port = 9500
 
 [Log]
+  Console = false
   FileName = "posichain.log"
   Folder = "./logs"
   RotateSize = 100
