@@ -3,6 +3,7 @@ package services
 import (
 	"context"
 	"encoding/json"
+
 	ethCommon "github.com/ethereum/go-ethereum/common"
 
 	"github.com/PositionExchange/posichain/eth/rpc"
@@ -85,7 +86,7 @@ func (c *CallAPIService) Call(
 func NewCallAPIService(hmy *hmy.Harmony, limiterEnable bool, rateLimit int) server.CallAPIServicer {
 	return &CallAPIService{
 		hmy:                 hmy,
-		publicContractAPI:   rpc2.NewPublicContractAPI(hmy, rpc2.V2),
+		publicContractAPI:   rpc2.NewPublicContractAPI(hmy, rpc2.V2, limiterEnable, rateLimit),
 		publicStakingAPI:    rpc2.NewPublicStakingAPI(hmy, rpc2.V2),
 		publicBlockChainAPI: rpc2.NewPublicBlockchainAPI(hmy, rpc2.V2, limiterEnable, rateLimit),
 	}

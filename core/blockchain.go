@@ -10,7 +10,9 @@ import (
 	"github.com/PositionExchange/posichain/core/state"
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/core/vm"
+	harmonyconfig "github.com/PositionExchange/posichain/internal/configs/harmony"
 	"github.com/PositionExchange/posichain/internal/params"
+	"github.com/PositionExchange/posichain/internal/tikv/redis_helper"
 	"github.com/PositionExchange/posichain/shard"
 	"github.com/PositionExchange/posichain/staking/slash"
 	types2 "github.com/PositionExchange/posichain/staking/types"
@@ -331,4 +333,17 @@ type BlockChain interface {
 		payout reward.Reader,
 		state *state.DB,
 	) (status WriteStatus, err error)
+
+	// ========== Only For Tikv Start ==========
+
+	// return true if is tikv writer master
+	IsTikvWriterMaster() bool
+	// RedisPreempt used for tikv mode, get the redis preempt instance
+	RedisPreempt() *redis_helper.RedisPreempt
+	// SyncFromTiKVWriter used for tikv mode, all reader or follower writer used to sync block from master writer
+	SyncFromTiKVWriter(newBlkNum uint64, logs []*types.Log) error
+	// InitTiKV used for tikv mode, init the tikv mode
+	InitTiKV(conf *harmonyconfig.TiKVConfig)
+
+	// ========== Only For Tikv End ==========
 }

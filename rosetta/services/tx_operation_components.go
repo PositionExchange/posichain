@@ -2,8 +2,9 @@ package services
 
 import (
 	"fmt"
-	ethCommon "github.com/ethereum/go-ethereum/common"
 	"math/big"
+
+	ethCommon "github.com/ethereum/go-ethereum/common"
 
 	"github.com/coinbase/rosetta-sdk-go/types"
 

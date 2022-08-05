@@ -3,8 +3,9 @@ package services
 import (
 	"encoding/json"
 	"fmt"
-	ethCommon "github.com/ethereum/go-ethereum/common"
 	"math/big"
+
+	ethCommon "github.com/ethereum/go-ethereum/common"
 
 	"github.com/PositionExchange/posichain/crypto/bls"
 	"github.com/PositionExchange/posichain/numeric"
