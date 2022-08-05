@@ -3,12 +3,11 @@ package common
 import (
 	"encoding/json"
 	"fmt"
-	ethCommon "github.com/ethereum/go-ethereum/common"
-
-	"github.com/coinbase/rosetta-sdk-go/types"
 
 	rpcV2 "github.com/PositionExchange/posichain/rpc/v2"
 	staking "github.com/PositionExchange/posichain/staking/types"
+	"github.com/coinbase/rosetta-sdk-go/types"
+	ethCommon "github.com/ethereum/go-ethereum/common"
 )
 
 const (

@@ -1,11 +1,12 @@
 package common
 
 import (
-	"github.com/stretchr/testify/assert"
 	"math/big"
 	"reflect"
 	"sort"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 
 	staking "github.com/PositionExchange/posichain/staking/types"
 	"github.com/coinbase/rosetta-sdk-go/types"
