@@ -207,8 +207,8 @@ var (
 	oneAsBigInt             = big.NewInt(denominations.One)
 	minimumDelegation       = new(big.Int).Mul(oneAsBigInt, big.NewInt(oneThousand))
 	minimumDelegationV2     = new(big.Int).Mul(oneAsBigInt, big.NewInt(oneHundred))
-	errDelegationTooSmall   = errors.New("minimum delegation amount for a delegator has to be greater than or equal to 1000 ONE")
-	errDelegationTooSmallV2 = errors.New("minimum delegation amount for a delegator has to be greater than or equal to 100 ONE")
+	errDelegationTooSmall   = errors.New("minimum delegation amount for a delegator has to be greater than or equal to 1000 POSI")
+	errDelegationTooSmallV2 = errors.New("minimum delegation amount for a delegator has to be greater than or equal to 100 POSI")
 )
 
 // VerifyAndDelegateFromMsg verifies the delegate message using the stateDB

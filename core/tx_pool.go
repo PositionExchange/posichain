@@ -755,7 +755,7 @@ func (pool *TxPool) validateTx(tx types.PoolTransaction, local bool) error {
 
 		minGasPrice := new(big.Float).SetInt64(pool.gasPrice.Int64())
 		minGasPrice = minGasPrice.Mul(minGasPrice, new(big.Float).SetFloat64(1e-9)) // Gas-price is in Nano
-		return errors.WithMessagef(ErrUnderpriced, "transaction gas-price is %.18f ONE; minimum gas price is %.18f ONE", gasPrice, minGasPrice)
+		return errors.WithMessagef(ErrUnderpriced, "transaction gas-price is %.18f POSI; minimum gas price is %.18f POSI", gasPrice, minGasPrice)
 	}
 	// Ensure the transaction adheres to nonce ordering
 	if pool.currentState.GetNonce(from) > tx.Nonce() {
@@ -984,7 +984,7 @@ func (pool *TxPool) add(tx types.PoolTransaction, local bool) (replaced bool, er
 				Str("price", tx.GasPrice().String()).
 				Msg("Discarding underpriced transaction")
 			underpricedTxCounter.Inc(1)
-			return false, errors.WithMessagef(ErrUnderpriced, "transaction gas-price is %.18f ONE in full transaction pool", gasPrice)
+			return false, errors.WithMessagef(ErrUnderpriced, "transaction gas-price is %.18f POSI in full transaction pool", gasPrice)
 		}
 		// New transaction is better than our worse ones, make room for it
 		drop := pool.priced.Discard(pool.all.Count()-int(pool.config.GlobalSlots+pool.config.GlobalQueue-1), pool.locals)
@@ -994,7 +994,7 @@ func (pool *TxPool) add(tx types.PoolTransaction, local bool) (replaced bool, er
 			pool.removeTx(tx.Hash(), false)
 			underpricedTxCounter.Inc(1)
 			pool.txErrorSink.Add(tx,
-				errors.WithMessagef(ErrUnderpriced, "transaction gas-price is %.18f ONE in full transaction pool", gasPrice))
+				errors.WithMessagef(ErrUnderpriced, "transaction gas-price is %.18f POSI in full transaction pool", gasPrice))
 			logger.Debug().
 				Str("hash", tx.Hash().Hex()).
 				Str("price", tx.GasPrice().String()).
