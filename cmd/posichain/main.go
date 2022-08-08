@@ -200,12 +200,12 @@ func getHarmonyConfig(cmd *cobra.Command) (harmonyconfig.HarmonyConfig, error) {
 				err := updateConfigFile(configFile)
 				if err != nil {
 					fmt.Printf("Could not update config - %s", err.Error())
-					fmt.Println("Update config manually with `./harmony config update [config_file]`")
+					fmt.Println("Update config manually with `./posichain config update [config_file]`")
 				}
 			}
 
 		} else {
-			fmt.Println("Update saved config with `./harmony config update [config_file]`")
+			fmt.Println("Update saved config with `./posichain config update [config_file]`")
 		}
 	}
 

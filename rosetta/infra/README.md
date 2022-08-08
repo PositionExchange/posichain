@@ -19,7 +19,7 @@ docker run -d -p 9700:9700 -v "$(pwd)/data:/root/data" harmonyone/explorer-node 
 > This command will create the container of the harmony node on shard 0 in the detached mode,
 > binding port 9700 (the rosetta port) on the container to the host and mounting the shared
 > `./data` directory on the host to `/root/data` on the container. Note that the container
-> uses `/root/data` for all data storage (this is where the `harmony_db_*` directories will be stored).
+> uses `/root/data` for all data storage (this is where the `posichain_db_*` directories will be stored).
 
 You can view your container with the following command:
 ```bash
@@ -89,7 +89,7 @@ docker run -d -p 9700:9700 -v "$(pwd)/data:/root/data" harmonyone/explorer-node 
 
 ### Running a node with a rcloned DB
 Note that all node data will be stored in the `/root/data` directory within the container. Therefore, you can rclone
-the `harmony_db_*` directory to some directory (i.e: `./data`) and mount the volume on the docker run.
+the `posichain_db_*` directory to some directory (i.e: `./data`) and mount the volume on the docker run.
 This way, the node will use DB in the volume that is shared between the container and host. For example:
 ```bash
 docker run -d -p 9700:9700 -v "$(pwd)/data:/root/data" harmonyone/explorer-node --run.shard=0
@@ -99,8 +99,8 @@ Note that the directory structure for `/root/data` (== `./data`) should look som
 ```
 .
 ├── explorer_storage_127.0.0.1_9000
-├── harmony_db_0
-├── harmony_db_1
+├── posichain_db_0
+├── posichain_db_1
 ├── logs
 │    ├── node_execution.log
 │    └── zerolog-posichain.log

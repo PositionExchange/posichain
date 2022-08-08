@@ -68,8 +68,8 @@ docker run -it -d ^
 	-p %port_base%:%port_base% -p %port_rest%:%port_rest% -p %port_rpc%:%port_rpc% ^
 	-e NODE_PORT=%port_base% ^
 	-e NODE_ACCOUNT_ID=%account_id% ^
-	--mount type=volume,source=db-%account_id%-%port_base%,destination=/harmony/db ^
-	--mount type=volume,source=log-%account_id%-%port_base%,destination=/harmony/log ^
+	--mount type=volume,source=db-%account_id%-%port_base%,destination=/posichain/db ^
+	--mount type=volume,source=log-%account_id%-%port_base%,destination=/posichain/log ^
 	%DOCKER_IMAGE% >NUL
 
 echo.

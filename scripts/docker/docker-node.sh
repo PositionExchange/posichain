@@ -21,7 +21,7 @@ options:
   -p base_port: base port, default: $port_base
   -n network  : network type
   -z dns_zone : dns zone
-  -d db_dir   : harmony db directory
+  -d db_dir   : posichain db directory
   -X "extra"  : extra parameters to docker 'run' script
 
   -k          : kill running node
@@ -104,10 +104,7 @@ port_wss=$(( $port_base + 800 ))
 echo "Pull latest node image"
 docker pull $DOCKER_IMAGE >/dev/null
 
-mkdir -p ${db_dir}/harmony_db_0
-mkdir -p ${db_dir}/harmony_db_1
-mkdir -p ${db_dir}/harmony_db_2
-mkdir -p ${db_dir}/harmony_db_3
+mkdir -p ${db_dir}/posichain_db_0
 
 docker run -it -d \
   --name harmony-$tag-$port_base \
@@ -116,12 +113,9 @@ docker run -it -d \
   -e NODE_BLSKEY=$BLSKEY \
   -e NODE_BLSPASS=$BLSPASS \
   -e NODE_EXTRA_OPTIONS="$extra" \
-  -v $(realpath ${db_dir}/harmony_db_0):/harmony/harmony_db_0 \
-  -v $(realpath ${db_dir}/harmony_db_1):/harmony/harmony_db_1 \
-  -v $(realpath ${db_dir}/harmony_db_2):/harmony/harmony_db_2 \
-  -v $(realpath ${db_dir}/harmony_db_3):/harmony/harmony_db_3 \
-  -v $(realpath keys):/harmony/.hmy \
-  -v $(realpath logs):/harmony/log \
+  -v $(realpath ${db_dir}/posichain_db_0):/posichain/posichain_db_0 \
+  -v $(realpath keys):/posichain/.psc \
+  -v $(realpath logs):/posichain/log \
   $DOCKER_IMAGE >/dev/null
 
 echo

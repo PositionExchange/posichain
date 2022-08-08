@@ -39,7 +39,7 @@ var dumpDBCmd = &cobra.Command{
 	Use:     "dumpdb srcdb destdb",
 	Short:   "dump a snapshot db.",
 	Long:    "dump a snapshot db.",
-	Example: "harmony dumpdb /srcDir/harmony_db_0 /destDir/harmony_db_0",
+	Example: "posichain dumpdb /srcDir/posichain_db_0 /destDir/posichain_db_0",
 	Args:    cobra.RangeArgs(2, 6),
 	Run: func(cmd *cobra.Command, args []string) {
 		srcDBDir, destDBDir := args[0], args[1]

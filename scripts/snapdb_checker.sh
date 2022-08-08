@@ -43,8 +43,8 @@ The COMMAND are:
 DBDIR is path of db
 
 Ex:
-   ${progname} hash ./harmony_db_0
-   ${progname} check ./harmony_db_0
+   ${progname} hash ./posichain_db_0
+   ${progname} check ./posichain_db_0
 ENDEND
 }
 
