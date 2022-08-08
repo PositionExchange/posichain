@@ -102,11 +102,10 @@ sudo rpm -ivh rclone-v1.52.3-linux-amd64.rpm
 
 ## do rclone
 ```bash
-# validator runs on shard1
+# validator runs on shard0
 sudo -u posichain posichain-rclone.sh /home/posichain 0
-sudo -u posichain posichain-rclone.sh /home/posichain 1
 
-# explorer node
+# explorer node on shard0
 sudo -u posichain posichain-rclone.sh -a /home/posichain 0
 ```
 
