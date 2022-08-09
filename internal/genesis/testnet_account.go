@@ -11,4 +11,7 @@ var TestnetOperatedAccounts = []DeployAccount{
 // TestnetFoundationalAccounts are the accounts for the initial foundational nodes for testnet.
 var TestnetFoundationalAccounts = []DeployAccount{
 	{Index: "0", ShardID: 0, Address: "0x3eb46931E23a6949F8aAEA1d7C36B3b4D5e54da2", BLSPublicKey: "b656eccda0ad6be57e8880221bab2179ac9bd00a142978cd7f1e2a0793afa8f95b4597d96a7f50d7d9a16a723637900c"},
+	{Index: "1", ShardID: 0, Address: "0x774F5B3839F9b7B9C45a19964D9C2Eb3e889EcfC", BLSPublicKey: "3aeb9f38b44a2b324e211fb6915b8dfe53ab29f0b2e74a4be69c9734059cebae3c3b579191bced15c7d4d844e8015607"},
+	{Index: "2", ShardID: 0, Address: "0x571d85cfA7aC763E04F4e2880d0e03df0AF65A8a", BLSPublicKey: "99d8d88d7a95b73bbdd0085f2b40164f2ecec35589c993db99925a4772bb8d76cef71b46bc4cc66164680c321d028680"},
+	{Index: "3", ShardID: 0, Address: "0xfcC3Bf208991C191450801eBD2c98bDb3C75008B", BLSPublicKey: "e7f1305cad51b999161718a9d9f91e723cb9605f7ee8b2c20430ffac80ebc384ad6df35e7fd79fcc3378e42feeb24e80"},
 }

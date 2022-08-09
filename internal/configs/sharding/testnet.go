@@ -20,6 +20,8 @@ const (
 	// This takes about 20s to finish the vdf
 	testnetVdfDifficulty = 10000
 
+	testnetV1Epoch = 68
+
 	// TestNetHTTPPattern is the http pattern for testnet.
 	TestNetHTTPPattern = "https://api.s%d.t.posichain.org"
 	// TestNetWSPattern is the websocket pattern for testnet.
@@ -28,7 +30,8 @@ const (
 
 func (ts testnetSchedule) InstanceForEpoch(epoch *big.Int) Instance {
 	switch {
-	// Add more version here
+	case epoch.Cmp(big.NewInt(testnetV1Epoch)) >= 0:
+		return testnetV1
 	default: // genesis
 		return testnetV0
 	}
@@ -69,6 +72,7 @@ func (ts testnetSchedule) IsSkippedEpoch(shardID uint32, epoch *big.Int) bool {
 	return false
 }
 
-var testnetReshardingEpoch = []*big.Int{big.NewInt(0)}
+var testnetReshardingEpoch = []*big.Int{big.NewInt(0), big.NewInt(testnetV1Epoch)}
 
 var testnetV0 = MustNewInstance(1, 5, 4, 0, numeric.OneDec(), genesis.TestnetOperatedAccounts, genesis.TestnetFoundationalAccounts, emptyAllowlist, testnetReshardingEpoch, TestnetSchedule.BlocksPerEpoch())
+var testnetV1 = MustNewInstance(1, 8, 4, 0, numeric.MustNewDecFromStr("0.7"), genesis.TestnetOperatedAccounts, genesis.TestnetFoundationalAccounts, emptyAllowlist, testnetReshardingEpoch, TestnetSchedule.BlocksPerEpoch())
