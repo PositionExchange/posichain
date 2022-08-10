@@ -74,5 +74,5 @@ func (ls localnetSchedule) IsSkippedEpoch(shardID uint32, epoch *big.Int) bool {
 
 var (
 	localnetReshardingEpoch = []*big.Int{big.NewInt(0)}
-	localnetV0              = MustNewInstance(2, 7, 5, 0, numeric.OneDec(), genesis.LocalHarmonyAccounts, genesis.LocalFnAccounts, emptyAllowlist, localnetReshardingEpoch, LocalnetSchedule.BlocksPerEpoch())
+	localnetV0              = MustNewInstance(2, 9, 6, 0, numeric.MustNewDecFromStr("0.68"), genesis.LocalHarmonyAccountsV2, genesis.LocalFnAccountsV2, emptyAllowlist, localnetReshardingEpoch, LocalnetSchedule.BlocksPerEpoch())
 )

@@ -14,7 +14,8 @@ var DevnetSchedule devnetSchedule
 type devnetSchedule struct{}
 
 const (
-	devnetBlocksPerEpoch = 5
+	// ~15 minutes per epoch (given 2s block time)
+	devnetBlocksPerEpoch = 450
 
 	// This takes about 20s to finish the vdf
 	devnetVdfDifficulty = 10000
