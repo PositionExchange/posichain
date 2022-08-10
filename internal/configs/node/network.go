@@ -90,6 +90,8 @@ func GetDefaultBootNodes(networkType NetworkType) []string {
 		return devnetBootNodes
 	case Stressnet:
 		return stressBootNodes
+	case Localnet:
+		return nil
 	}
 	return nil
 }
@@ -105,6 +107,8 @@ func GetDefaultDNSZone(networkType NetworkType) string {
 		return devnetDNSZone
 	case Stressnet:
 		return stressnetDNSZone
+	case Localnet:
+		return ""
 	}
 	return ""
 }

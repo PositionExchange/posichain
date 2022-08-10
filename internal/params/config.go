@@ -14,6 +14,7 @@ var (
 	TestnetChainID            = big.NewInt(2)
 	DevnetChainID             = big.NewInt(3)
 	StressnetChainID          = big.NewInt(5)
+	LocalnetChainID           = big.NewInt(7)
 	TestChainID               = big.NewInt(99)  // not a real network
 	AllProtocolChangesChainID = big.NewInt(100) // not a real network
 
@@ -22,6 +23,7 @@ var (
 	EthTestnetShard0ChainID            = big.NewInt(910000)
 	EthDevnetShard0ChainID             = big.NewInt(920000)
 	EthStressnetShard0ChainID          = big.NewInt(930000)
+	EthLocalnetShard0ChainID           = big.NewInt(970000)
 	EthTestShard0ChainID               = big.NewInt(980000) // not a real network
 	EthAllProtocolChangesShard0ChainID = big.NewInt(990000) // not a real network
 )
@@ -196,9 +198,9 @@ var (
 
 	// LocalnetChainConfig contains the chain parameters to run for local development.
 	LocalnetChainConfig = &ChainConfig{
-		ChainID:                       TestnetChainID,
-		EthCompatibleChainID:          EthTestnetShard0ChainID,
-		EthCompatibleShard0ChainID:    EthTestnetShard0ChainID,
+		ChainID:                       LocalnetChainID,
+		EthCompatibleChainID:          EthLocalnetShard0ChainID,
+		EthCompatibleShard0ChainID:    EthLocalnetShard0ChainID,
 		EthCompatibleEpoch:            big.NewInt(0),
 		CrossTxEpoch:                  big.NewInt(0),
 		CrossLinkEpoch:                big.NewInt(2),
