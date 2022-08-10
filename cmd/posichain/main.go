@@ -484,12 +484,14 @@ func nodeconfigSetShardSchedule(config harmonyconfig.HarmonyConfig) {
 		shard.Schedule = shardingconfig.MainnetSchedule
 	case nodeconfig.Testnet:
 		shard.Schedule = shardingconfig.TestnetSchedule
+	case nodeconfig.Devnet:
+		shard.Schedule = shardingconfig.DevnetSchedule
+	case nodeconfig.Dockernet:
+		shard.Schedule = shardingconfig.DockernetSchedule
 	case nodeconfig.Localnet:
 		shard.Schedule = shardingconfig.LocalnetSchedule
 	case nodeconfig.Stressnet:
 		shard.Schedule = shardingconfig.StressNetSchedule
-	case nodeconfig.Devnet:
-		shard.Schedule = shardingconfig.DevnetSchedule
 	}
 }
 

@@ -52,6 +52,7 @@ const (
 	Testnet   = "testnet"
 	Devnet    = "devnet"
 	Stressnet = "stressnet"
+	Dockernet = "dockernet"
 	Localnet  = "localnet"
 )
 
@@ -341,6 +342,8 @@ func (t NetworkType) ChainConfig() params.ChainConfig {
 		return *params.TestnetChainConfig
 	case Devnet:
 		return *params.DevnetChainConfig
+	case Dockernet:
+		return *params.DockernetChainConfig
 	case Localnet:
 		return *params.LocalnetChainConfig
 	case Stressnet:

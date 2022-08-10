@@ -17,6 +17,7 @@ const (
 	MainNet NetworkID = iota
 	TestNet
 	DevNet
+	DockerNet
 	LocalNet
 	StressNet
 )

@@ -41,6 +41,8 @@ func getNetworkPrefix(shardID ShardID) (netPre string) {
 		netPre = "psc/testnet"
 	case Devnet:
 		netPre = "psc/devnet"
+	case Dockernet:
+		netPre = "psc/docker"
 	case Localnet:
 		netPre = "psc/local"
 	case Stressnet:

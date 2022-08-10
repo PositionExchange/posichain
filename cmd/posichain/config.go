@@ -96,6 +96,9 @@ func getDefaultDNSSyncConfig(nt nodeconfig.NetworkType) harmonyconfig.DnsSync {
 	case nodeconfig.Devnet:
 		dnsSync.Server = true
 		dnsSync.Client = true
+	case nodeconfig.Dockernet:
+		dnsSync.Server = true
+		dnsSync.Client = true
 	case nodeconfig.Localnet:
 		dnsSync.Server = true
 		dnsSync.Client = false
@@ -122,10 +125,12 @@ func parseNetworkType(nt string) nodeconfig.NetworkType {
 		return nodeconfig.Testnet
 	case "stressnet", "stress", "stn":
 		return nodeconfig.Stressnet
-	case "localnet":
-		return nodeconfig.Localnet
 	case "devnet", "dev":
 		return nodeconfig.Devnet
+	case "dockernet":
+		return nodeconfig.Dockernet
+	case "localnet":
+		return nodeconfig.Localnet
 	default:
 		return ""
 	}
@@ -139,6 +144,8 @@ func getDefaultSyncConfig(nt nodeconfig.NetworkType) harmonyconfig.SyncConfig {
 		return defaultTestNetSyncConfig
 	case nodeconfig.Devnet:
 		return defaultDevNetSyncConfig
+	case nodeconfig.Dockernet:
+		return defaultDockerNetSyncConfig
 	case nodeconfig.Localnet:
 		return defaultLocalNetSyncConfig
 	default:

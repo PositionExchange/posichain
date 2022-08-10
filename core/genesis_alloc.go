@@ -63,6 +63,13 @@ var GenesisAllocDevnet = map[string]GenesisAccount{
 	},
 }
 
+var GenesisAllocDockernet = map[string]GenesisAccount{
+	// PK: 1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc
+	"0xA5241513DA9F4463F1d4874b548dFBAC29D91f34": {
+		Balance: toStorableBalance(GenesisTestFoundationBalance),
+	},
+}
+
 var GenesisAllocLocalnet = map[string]GenesisAccount{
 	// PK: 1f84c95ac16e6a50f08d44c7bde7aff8742212fda6e4321fde48bf83bef266dc
 	"0xA5241513DA9F4463F1d4874b548dFBAC29D91f34": {
@@ -86,6 +93,8 @@ func ResolveGenesisAlloc(netType nodeconfig.NetworkType) map[string]GenesisAccou
 		return GenesisAllocTestnet
 	case nodeconfig.Devnet:
 		return GenesisAllocDevnet
+	case nodeconfig.Dockernet:
+		return GenesisAllocDockernet
 	case nodeconfig.Localnet:
 		return GenesisAllocLocalnet
 	default:

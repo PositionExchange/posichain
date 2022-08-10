@@ -13,6 +13,10 @@ var (
 		"/dnsaddr/bootstrap.d.posichain.org",
 	}
 
+	dockernetBootNodes = []string{
+		"/dnsaddr/bootstrap.k.posichain.org",
+	}
+
 	stressBootNodes = []string{
 		"/dnsaddr/bootstrap.s.posichain.org",
 	}
@@ -22,6 +26,7 @@ const (
 	mainnetDNSZone   = "posichain.org"
 	testnetDNSZone   = "t.posichain.org"
 	devnetDNSZone    = "d.posichain.org"
+	dockernetDNSZone = "k.posichain.org"
 	stressnetDNSZone = "s.posichain.org"
 )
 
@@ -90,6 +95,8 @@ func GetDefaultBootNodes(networkType NetworkType) []string {
 		return devnetBootNodes
 	case Stressnet:
 		return stressBootNodes
+	case Dockernet:
+		return dockernetBootNodes
 	case Localnet:
 		return nil
 	}
@@ -107,6 +114,8 @@ func GetDefaultDNSZone(networkType NetworkType) string {
 		return devnetDNSZone
 	case Stressnet:
 		return stressnetDNSZone
+	case Dockernet:
+		return dockernetDNSZone
 	case Localnet:
 		return ""
 	}

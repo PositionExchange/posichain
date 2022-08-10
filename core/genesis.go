@@ -309,11 +309,14 @@ func GetGenesisSpec(shardID uint32) *Genesis {
 	if shard.Schedule.GetNetworkID() == shardingconfig.MainNet {
 		return NewGenesisSpec(nodeconfig.Mainnet, shardID)
 	}
-	if shard.Schedule.GetNetworkID() == shardingconfig.LocalNet {
-		return NewGenesisSpec(nodeconfig.Localnet, shardID)
-	}
 	if shard.Schedule.GetNetworkID() == shardingconfig.DevNet {
 		return NewGenesisSpec(nodeconfig.Devnet, shardID)
+	}
+	if shard.Schedule.GetNetworkID() == shardingconfig.DockerNet {
+		return NewGenesisSpec(nodeconfig.Dockernet, shardID)
+	}
+	if shard.Schedule.GetNetworkID() == shardingconfig.LocalNet {
+		return NewGenesisSpec(nodeconfig.Localnet, shardID)
 	}
 	return NewGenesisSpec(nodeconfig.Testnet, shardID)
 }

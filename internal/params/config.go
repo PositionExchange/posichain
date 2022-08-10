@@ -14,7 +14,8 @@ var (
 	TestnetChainID            = big.NewInt(2)
 	DevnetChainID             = big.NewInt(3)
 	StressnetChainID          = big.NewInt(5)
-	LocalnetChainID           = big.NewInt(7)
+	DockernetChainID          = big.NewInt(8)
+	LocalnetChainID           = big.NewInt(9)
 	TestChainID               = big.NewInt(99)  // not a real network
 	AllProtocolChangesChainID = big.NewInt(100) // not a real network
 
@@ -23,9 +24,10 @@ var (
 	EthTestnetShard0ChainID            = big.NewInt(910000)
 	EthDevnetShard0ChainID             = big.NewInt(920000)
 	EthStressnetShard0ChainID          = big.NewInt(930000)
-	EthLocalnetShard0ChainID           = big.NewInt(970000)
-	EthTestShard0ChainID               = big.NewInt(980000) // not a real network
-	EthAllProtocolChangesShard0ChainID = big.NewInt(990000) // not a real network
+	EthDockernetShard0ChainID          = big.NewInt(980000)
+	EthLocalnetShard0ChainID           = big.NewInt(990000)
+	EthTestShard0ChainID               = big.NewInt(988800) // not a real network
+	EthAllProtocolChangesShard0ChainID = big.NewInt(999900) // not a real network
 )
 
 // EpochTBD is a large, “not anytime soon” epoch.  It used as a placeholder
@@ -194,6 +196,42 @@ var (
 		SlotsLimitedEpoch:             EpochTBD, // epoch to enable HIP-16
 		CrossShardXferPrecompileEpoch: big.NewInt(1),
 		AllowlistEpoch:                EpochTBD,
+	}
+
+	// DockernetChainConfig is the chain parameters to run a node on the dev network.
+	DockernetChainConfig = &ChainConfig{
+		ChainID:                    DockernetChainID,
+		EthCompatibleChainID:       EthDockernetShard0ChainID,
+		EthCompatibleShard0ChainID: EthDockernetShard0ChainID,
+		EthCompatibleEpoch:         big.NewInt(0),
+		CrossTxEpoch:               big.NewInt(0),
+		CrossLinkEpoch:             big.NewInt(2),
+		AggregatedRewardEpoch:      big.NewInt(3),
+		StakingEpoch:               big.NewInt(2),
+		PreStakingEpoch:            big.NewInt(0),
+		QuickUnlockEpoch:           big.NewInt(0),
+		FiveSecondsEpoch:           big.NewInt(0),
+		TwoSecondsEpoch:            big.NewInt(3),
+		SixtyPercentEpoch:          EpochTBD, // Never enable it for localnet as localnet has no external validator setup
+		RedelegationEpoch:          big.NewInt(0),
+		NoEarlyUnlockEpoch:         big.NewInt(0),
+		VRFEpoch:                   big.NewInt(0),
+		PrevVRFEpoch:               big.NewInt(0),
+		MinDelegation100Epoch:      big.NewInt(0),
+		MinCommissionRateEpoch:     big.NewInt(0),
+		MinCommissionPromoPeriod:   big.NewInt(10),
+		EPoSBound35Epoch:           big.NewInt(0),
+		EIP155Epoch:                big.NewInt(0),
+		S3Epoch:                    big.NewInt(0),
+		DataCopyFixEpoch:           big.NewInt(0),
+		IstanbulEpoch:              big.NewInt(0),
+		ReceiptLogEpoch:            big.NewInt(0),
+		SHA3Epoch:                  big.NewInt(0),
+		HIP6And8Epoch:              EpochTBD, // Never enable it for localnet as localnet has no external validator setup
+		StakingPrecompileEpoch:     big.NewInt(2),
+		ChainIdFixEpoch:            big.NewInt(0),
+		SlotsLimitedEpoch:          EpochTBD, // epoch to enable HIP-16
+		AllowlistEpoch:             EpochTBD,
 	}
 
 	// LocalnetChainConfig contains the chain parameters to run for local development.
@@ -691,6 +729,7 @@ func UpdateEthChainIDByShard(shardID uint32) {
 		TestnetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(TestnetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
 		DevnetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(DevnetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
 		StressnetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(StressnetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
+		DockernetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(DockernetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
 		LocalnetChainConfig.EthCompatibleChainID = big.NewInt(0).Add(LocalnetChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
 		AllProtocolChanges.EthCompatibleChainID = big.NewInt(0).Add(AllProtocolChanges.EthCompatibleChainID, big.NewInt(int64(shardID)))
 		TestChainConfig.EthCompatibleChainID = big.NewInt(0).Add(TestChainConfig.EthCompatibleChainID, big.NewInt(int64(shardID)))
