@@ -100,9 +100,9 @@ explorer_storage_*
 profiles/*.pb.gz
 
 .deployment/testnet
-.deployment/devnet/nodes/*/data/*
-!.deployment/devnet/nodes/*/data/.gitkeep
-.deployment/devnet/nodes/*/account/*
-!.deployment/devnet/nodes/*/account/.gitkeep
-.deployment/devnet/nodes/*/logs/*
-!.deployment/devnet/nodes/*/logs/.gitkeep
+.deployment/dockernet/nodes/*/data/*
+!.deployment/dockernet/nodes/*/data/.gitkeep
+.deployment/dockernet/nodes/*/account/*
+!.deployment/dockernet/nodes/*/account/.gitkeep
+.deployment/dockernet/nodes/*/logs/*
+!.deployment/dockernet/nodes/*/logs/.gitkeep

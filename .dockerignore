@@ -1,4 +1,4 @@
 Dockerfile*
-.deployment/devnet/docker-compose.yml
-.deployment/devnet/nodes/*/data
-!.deployment/devnet/nodes/*/data/.gitkeep
+.deployment/dockernet/docker-compose.yml
+.deployment/dockernet/nodes/*/data
+!.deployment/dockernet/nodes/*/data/.gitkeep
