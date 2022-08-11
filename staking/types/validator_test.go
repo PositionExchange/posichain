@@ -22,7 +22,7 @@ var (
 	blsPubSigPairs = makeBLSPubSigPairs(5)
 	hmyBLSPub      bls.SerializedPublicKey
 
-	hmyBLSPubStr     = "f47b6d2b91eb37a5c0b35520803b86901a086367506e423f1651464191cc95b67b95470b8bc41ea4ad57ead0739fc180"
+	hmyBLSPubStr     = "bad4b445ae3dbb130fc13f42d7f1065e7208fd05444a68a615768f4bedf6beb4ae2f0c4768810fb556cf2ecff49e330a"
 	validatorAddr, _ = common2.Bech32ToAddress("one1pdv9lrdwl0rg5vglh4xtyrv3wjk3wsqket7zxy")
 )
 

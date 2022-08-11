@@ -64,12 +64,12 @@ func TestIsEpochBlock(t *testing.T) {
 		},
 		{
 			shardingconfig.DevnetSchedule,
-			blockNumbered(5),
+			blockNumbered(450),
 			true,
 		},
 		{
 			shardingconfig.DevnetSchedule,
-			blockNumbered(10),
+			blockNumbered(900),
 			true,
 		},
 	}
