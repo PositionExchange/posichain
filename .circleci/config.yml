@@ -2,6 +2,7 @@ version: 2.1
 
 jobs:
   build:
+    resource_class: xlarge
     working_directory: ~/repo
     docker:
       - image: cimg/go:1.18.3
