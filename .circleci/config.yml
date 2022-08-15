@@ -1,5 +1,6 @@
 version: 2.1
-
+orbs:
+  slack: circleci/slack@4.1
 jobs:
   build:
     working_directory: ~/repo
@@ -41,8 +42,12 @@ jobs:
           command: |
             make
             bash ./scripts/travis_go_checker.sh
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
 workflows:
   build_and_test:
     jobs:
-      - build
+      - build:
+          context: Posichain Builder
