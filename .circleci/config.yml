@@ -2,24 +2,16 @@ version: 2.1
 
 jobs:
   build:
-    machine: true
-    resource_class: xlarge
     working_directory: ~/repo
+    docker:
+      - image: cimg/go:1.18.3
+        user: root
     steps:
+      - checkout
       - run:
           name: Install Linux Dependencies
           command: |
-            sudo apt update -y && sudo apt install -y libgmp-dev libssl-dev jq make gcc g++
-      - run:
-          name: Install Golang
-          command: |
-            cd /tmp
-            wget https://go.dev/dl/go1.18.4.linux-amd64.tar.gz
-            sudo rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.4.linux-amd64.tar.gz
-            export GOPATH=/home/circleci/.go_workspace
-            export PATH=$PATH:$GOPATH/bin
-            go version
-      - checkout
+            sudo apt update && sudo apt install -y libgmp-dev libssl-dev jq make gcc g++
       - restore_cache:
           keys:
             - go-mod-v4-{{ checksum "go.sum" }}
