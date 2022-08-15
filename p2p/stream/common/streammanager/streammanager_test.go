@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	defTestWait = 100 * time.Millisecond
+	defTestWait = 300 * time.Millisecond
 )
 
 // When started, discover will be run at bootstrap
