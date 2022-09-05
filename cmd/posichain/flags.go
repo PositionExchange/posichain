@@ -62,6 +62,7 @@ var (
 		legacyKeyFileFlag,
 		p2pDisablePrivateIPScanFlag,
 		maxConnPerIPFlag,
+		maxPeersFlag,
 	}
 
 	httpFlags = []cli.Flag{
@@ -233,6 +234,11 @@ var (
 		cacheTimeFlag,
 		cacheSizeFlag,
 	}
+
+	metricsFlags = []cli.Flag{
+		metricsETHFlag,
+		metricsExpensiveETHFlag,
+	}
 )
 
 var (
@@ -339,6 +345,7 @@ func getRootFlags() []cli.Flag {
 	flags = append(flags, prometheusFlags...)
 	flags = append(flags, syncFlags...)
 	flags = append(flags, shardDataFlags...)
+	flags = append(flags, metricsFlags...)
 
 	return flags
 }
@@ -567,7 +574,12 @@ var (
 	}
 	maxConnPerIPFlag = cli.IntFlag{
 		Name:     "p2p.security.max-conn-per-ip",
-		Usage:    "maximum number of connections allowed per node",
+		Usage:    "maximum number of connections allowed per remote node, 0 means no limit",
+		DefValue: defaultConfig.P2P.MaxConnsPerIP,
+	}
+	maxPeersFlag = cli.IntFlag{
+		Name:     "p2p.security.max-peers",
+		Usage:    "maximum number of peers allowed, 0 means no limit",
 		DefValue: defaultConfig.P2P.MaxConnsPerIP,
 	}
 )
@@ -600,6 +612,10 @@ func applyP2PFlags(cmd *cobra.Command, config *harmonyconfig.HarmonyConfig) {
 
 	if cli.IsFlagChanged(cmd, maxConnPerIPFlag) {
 		config.P2P.MaxConnsPerIP = cli.GetIntFlagValue(cmd, maxConnPerIPFlag)
+	}
+
+	if cli.IsFlagChanged(cmd, maxPeersFlag) {
+		config.P2P.MaxPeers = int64(cli.GetIntFlagValue(cmd, maxPeersFlag))
 	}
 
 	if cli.IsFlagChanged(cmd, p2pDisablePrivateIPScanFlag) {
@@ -1755,6 +1771,22 @@ var (
 		Name:     "sharddata.cache_size",
 		Usage:    "local cache storage size (MB)",
 		DefValue: defaultConfig.ShardData.CacheSize,
+	}
+)
+
+// metrics flags required for the go-eth library
+// https://github.com/ethereum/go-ethereum/blob/master/metrics/metrics.go#L35-L55
+var (
+	metricsETHFlag = cli.BoolFlag{
+		Name:     "metrics", // https://github.com/ethereum/go-ethereum/blob/master/metrics/metrics.go#L30
+		Usage:    "flag required to enable the eth metrics",
+		DefValue: false,
+	}
+
+	metricsExpensiveETHFlag = cli.BoolFlag{
+		Name:     "metrics.expensive", // https://github.com/ethereum/go-ethereum/blob/master/metrics/metrics.go#L33
+		Usage:    "flag required to enable the expensive eth metrics",
+		DefValue: false,
 	}
 )
 

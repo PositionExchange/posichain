@@ -64,6 +64,7 @@ func TestHarmonyFlags(t *testing.T) {
 					DiscConcurrency:      5,
 					MaxConnsPerIP:        5,
 					DisablePrivateIPScan: false,
+					MaxPeers:             defaultConfig.P2P.MaxPeers,
 				},
 				HTTP: harmonyconfig.HttpConfig{
 					Enabled:        true,
@@ -339,6 +340,7 @@ func TestP2PFlags(t *testing.T) {
 				DHTDataStore:         &defDataStore,
 				MaxConnsPerIP:        10,
 				DisablePrivateIPScan: false,
+				MaxPeers:             defaultConfig.P2P.MaxPeers,
 			},
 		},
 		{
@@ -349,6 +351,7 @@ func TestP2PFlags(t *testing.T) {
 				KeyFile:              "./key.file",
 				MaxConnsPerIP:        10,
 				DisablePrivateIPScan: false,
+				MaxPeers:             defaultConfig.P2P.MaxPeers,
 			},
 		},
 		{
@@ -360,6 +363,7 @@ func TestP2PFlags(t *testing.T) {
 				DiscConcurrency:      5,
 				MaxConnsPerIP:        5,
 				DisablePrivateIPScan: false,
+				MaxPeers:             defaultConfig.P2P.MaxPeers,
 			},
 		},
 		{
@@ -371,6 +375,19 @@ func TestP2PFlags(t *testing.T) {
 				DiscConcurrency:      nodeconfig.DefaultP2PConcurrency,
 				MaxConnsPerIP:        nodeconfig.DefaultMaxConnPerIP,
 				DisablePrivateIPScan: true,
+				MaxPeers:             defaultConfig.P2P.MaxPeers,
+			},
+		},
+		{
+			args: []string{"--p2p.security.max-peers", "100"},
+			expConfig: harmonyconfig.P2pConfig{
+				Port:                 nodeconfig.DefaultP2PPort,
+				IP:                   nodeconfig.DefaultPublicListenIP,
+				KeyFile:              "./.hmykey",
+				DiscConcurrency:      nodeconfig.DefaultP2PConcurrency,
+				MaxConnsPerIP:        nodeconfig.DefaultMaxConnPerIP,
+				DisablePrivateIPScan: defaultConfig.P2P.DisablePrivateIPScan,
+				MaxPeers:             100,
 			},
 		},
 	}
