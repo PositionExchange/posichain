@@ -383,7 +383,7 @@ func TestP2PFlags(t *testing.T) {
 			expConfig: harmonyconfig.P2pConfig{
 				Port:                 nodeconfig.DefaultP2PPort,
 				IP:                   nodeconfig.DefaultPublicListenIP,
-				KeyFile:              "./.hmykey",
+				KeyFile:              "./.psckey",
 				DiscConcurrency:      nodeconfig.DefaultP2PConcurrency,
 				MaxConnsPerIP:        nodeconfig.DefaultMaxConnPerIP,
 				DisablePrivateIPScan: defaultConfig.P2P.DisablePrivateIPScan,
