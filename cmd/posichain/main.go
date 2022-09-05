@@ -82,7 +82,7 @@ Examples usage:
 # start an explorer node
     ./posichain --run=explorer --run.shard=[shard_id]
 
-# start a harmony internal node on testnet
+# start a posichain internal node on testnet
     ./posichain --run.legacy --network testnet
 `,
 	Run: runPosichainNode,

@@ -540,7 +540,7 @@ var (
 	}
 	p2pKeyFileFlag = cli.StringFlag{
 		Name:     "p2p.keyfile",
-		Usage:    "the p2p key file of the harmony node",
+		Usage:    "the p2p key file of the posichain node",
 		DefValue: defaultConfig.P2P.KeyFile,
 	}
 	p2pDHTDataStoreFlag = cli.StringFlag{
@@ -551,7 +551,7 @@ var (
 	}
 	legacyKeyFileFlag = cli.StringFlag{
 		Name:       "key",
-		Usage:      "the p2p key file of the harmony node",
+		Usage:      "the p2p key file of the posichain node",
 		DefValue:   defaultConfig.P2P.KeyFile,
 		Deprecated: "use --p2p.keyfile",
 	}
