@@ -1,6 +1,7 @@
 package discovery
 
 import (
+	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/pkg/errors"
 
 	p2ptypes "github.com/PositionExchange/posichain/p2p/types"
@@ -56,6 +57,14 @@ func getBootstrapOption(bootNodes []string) (libp2p_dht.Option, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to parse boot nodes")
 	}
+	peers := make([]string, 0)
+	for _, peer := range resolved {
+		peers = append(peers, peer.String())
+	}
+	utils.Logger().Info().
+		Strs("bootnodes", bootNodes).
+		Strs("peers", peers).
+		Msg("peers were resolved from bootnodes")
 	return libp2p_dht.BootstrapPeers(resolved...), nil
 }
 
