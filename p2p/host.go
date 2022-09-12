@@ -434,22 +434,34 @@ func (host *HostV2) ListenClose(net libp2p_network.Network, addr ma.Multiaddr) {
 
 // called when a connection opened
 func (host *HostV2) Connected(net libp2p_network.Network, conn libp2p_network.Conn) {
-	host.logger.Info().Interface("node", conn.RemotePeer()).Msg("peer connected")
+	host.logger.Info().
+		Interface("node", conn.RemotePeer()).
+		Str("node_multiaddr", conn.RemoteMultiaddr().String()).
+		Msg("peer connected")
 
 	for _, function := range host.onConnections.GetAll() {
 		if err := function(net, conn); err != nil {
-			host.logger.Error().Err(err).Interface("node", conn.RemotePeer()).Msg("failed on peer connected callback")
+			host.logger.Error().Err(err).
+				Interface("node", conn.RemotePeer()).
+				Str("node_multiaddr", conn.RemoteMultiaddr().String()).
+				Msg("failed on peer connected callback")
 		}
 	}
 }
 
 // called when a connection closed
 func (host *HostV2) Disconnected(net libp2p_network.Network, conn libp2p_network.Conn) {
-	host.logger.Info().Interface("node", conn.RemotePeer()).Msg("peer disconnected")
+	host.logger.Info().
+		Interface("node", conn.RemotePeer()).
+		Str("node_multiaddr", conn.RemoteMultiaddr().String()).
+		Msg("peer disconnected")
 
 	for _, function := range host.onDisconnects.GetAll() {
 		if err := function(conn); err != nil {
-			host.logger.Error().Err(err).Interface("node", conn.RemotePeer()).Msg("failed on peer disconnected callback")
+			host.logger.Error().Err(err).
+				Interface("node", conn.RemotePeer()).
+				Str("node_multiaddr", conn.RemoteMultiaddr().String()).
+				Msg("failed on peer disconnected callback")
 		}
 	}
 }

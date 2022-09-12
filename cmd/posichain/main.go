@@ -250,7 +250,7 @@ func setupNodeLog(config harmonyconfig.HarmonyConfig) {
 	if config.Log.Context != nil {
 		ip := config.Log.Context.IP
 		port := config.Log.Context.Port
-		utils.SetLogContext(ip, strconv.Itoa(port))
+		utils.SetLogContext(strconv.Itoa(port), ip)
 	}
 
 	if config.Log.Console != true {
