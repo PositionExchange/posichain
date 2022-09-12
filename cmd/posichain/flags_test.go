@@ -154,7 +154,7 @@ func TestHarmonyFlags(t *testing.T) {
 				ShardData: harmonyconfig.ShardDataConfig{
 					EnableShardData: false,
 					DiskCount:       8,
-					ShardCount:      4,
+					ShardCount:      1,
 					CacheTime:       10,
 					CacheSize:       512,
 				},
