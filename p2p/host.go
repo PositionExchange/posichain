@@ -124,8 +124,10 @@ func NewHost(cfg HostConfig) (Host, error) {
 	} else {
 		// here we're creating the multiaddr that others should use to connect to me
 		extMultiAddr, err = ma.NewMultiaddr(fmt.Sprintf("/ip4/%s/tcp/%s", self.BroadcastIP, self.Port))
-		return nil, errors.Wrapf(err,
-			"cannot create listen multiaddr from broadcastIP %s and port %s", self.BroadcastIP, self.Port)
+		if err != nil {
+			return nil, errors.Wrapf(err,
+				"cannot create listen multiaddr from broadcastIP %s and port %s", self.BroadcastIP, self.Port)
+		}
 	}
 	addressFactory := func(addrs []ma.Multiaddr) []ma.Multiaddr {
 		if extMultiAddr != nil {
