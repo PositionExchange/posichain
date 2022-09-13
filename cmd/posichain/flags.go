@@ -56,6 +56,7 @@ var (
 	p2pFlags = []cli.Flag{
 		p2pPortFlag,
 		p2pIPFlag,
+		p2pBroadcastIPFlag,
 		p2pKeyFileFlag,
 		p2pDHTDataStoreFlag,
 		p2pDiscoveryConcurrencyFlag,
@@ -545,6 +546,11 @@ var (
 		Usage:    "ip to listen for p2p protocols",
 		DefValue: defaultConfig.P2P.IP,
 	}
+	p2pBroadcastIPFlag = cli.StringFlag{
+		Name:     "p2p.broadcast-ip",
+		Usage:    "broadcast ip to listen for p2p protocols if behind NAT",
+		DefValue: defaultConfig.P2P.BroadcastIP,
+	}
 	p2pKeyFileFlag = cli.StringFlag{
 		Name:     "p2p.keyfile",
 		Usage:    "the p2p key file of the posichain node",
@@ -590,6 +596,9 @@ func applyP2PFlags(cmd *cobra.Command, config *harmonyconfig.HarmonyConfig) {
 	}
 	if cli.IsFlagChanged(cmd, p2pIPFlag) {
 		config.P2P.IP = cli.GetStringFlagValue(cmd, p2pIPFlag)
+	}
+	if cli.IsFlagChanged(cmd, p2pBroadcastIPFlag) {
+		config.P2P.BroadcastIP = cli.GetStringFlagValue(cmd, p2pBroadcastIPFlag)
 	}
 	if config.General.IsOffline {
 		config.P2P.IP = nodeconfig.DefaultLocalListenIP

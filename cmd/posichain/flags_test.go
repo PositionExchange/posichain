@@ -28,7 +28,7 @@ func TestHarmonyFlags(t *testing.T) {
 			argStr: "--bootnodes /ip4/100.26.90.187/tcp/9874/p2p/Qmdfjtk6hPoyrH1zVD9PEH4zfWLo38dP2mDvvKXfh3tnEv," +
 				"/ip4/54.213.43.194/tcp/9874/p2p/QmZJJx6AdaoEkGLrYG4JeLCKeCKDjnFz2wfHNHxAqFSGA9,/ip4/13.113.101." +
 				"219/tcp/12019/p2p/QmQayinFSgMMw5cSpDUiD9pQ2WeP6WNmGxpZ6ou3mdVFJX,/ip4/99.81.170.167/tcp/12019/p" +
-				"2p/QmRVbTpEYup8dSaURZfF6ByrMTSKa4UyUzJhSjahFzRqNj --ip 8.8.8.8 --port 9000 --network_type=mainn" +
+				"2p/QmRVbTpEYup8dSaURZfF6ByrMTSKa4UyUzJhSjahFzRqNj --ip 8.8.8.8 --p2p.broadcast-ip 34.5.12.1 --port 9000 --network_type=mainn" +
 				"et --dns_zone=posichain.org --blacklist=./.psc/blacklist.txt --min_peers=6 --max_bls_keys_per_node=" +
 				"10 --broadcast_invalid_tx=true --verbosity=3 --is_archival=false --shard_id=-1 --staking=true -" +
 				"-aws-config-source file:config.json --p2p.disc.concurrency 5 --p2p.security.max-conn-per-ip 5",
@@ -60,6 +60,7 @@ func TestHarmonyFlags(t *testing.T) {
 				P2P: harmonyconfig.P2pConfig{
 					Port:                 9000,
 					IP:                   defaultConfig.P2P.IP,
+					BroadcastIP:          "34.5.12.1",
 					KeyFile:              defaultConfig.P2P.KeyFile,
 					DiscConcurrency:      5,
 					MaxConnsPerIP:        5,
@@ -331,11 +332,26 @@ func TestP2PFlags(t *testing.T) {
 			expConfig: defaultConfig.P2P,
 		},
 		{
+			args: []string{"--p2p.ip", "0.0.0.1", "--p2p.broadcast-ip", "34.61.89.10", "--p2p.port", "9001", "--p2p.keyfile", "./key.file", "--p2p.dht.datastore",
+				defDataStore},
+			expConfig: harmonyconfig.P2pConfig{
+				Port:                 9001,
+				IP:                   "0.0.0.1",
+				BroadcastIP:          "34.61.89.10",
+				KeyFile:              "./key.file",
+				DHTDataStore:         &defDataStore,
+				MaxConnsPerIP:        10,
+				DisablePrivateIPScan: false,
+				MaxPeers:             defaultConfig.P2P.MaxPeers,
+			},
+		},
+		{
 			args: []string{"--p2p.port", "9001", "--p2p.keyfile", "./key.file", "--p2p.dht.datastore",
 				defDataStore},
 			expConfig: harmonyconfig.P2pConfig{
 				Port:                 9001,
 				IP:                   nodeconfig.DefaultPublicListenIP,
+				BroadcastIP:          "",
 				KeyFile:              "./key.file",
 				DHTDataStore:         &defDataStore,
 				MaxConnsPerIP:        10,
@@ -348,6 +364,7 @@ func TestP2PFlags(t *testing.T) {
 			expConfig: harmonyconfig.P2pConfig{
 				Port:                 9001,
 				IP:                   nodeconfig.DefaultPublicListenIP,
+				BroadcastIP:          "",
 				KeyFile:              "./key.file",
 				MaxConnsPerIP:        10,
 				DisablePrivateIPScan: false,
@@ -359,6 +376,7 @@ func TestP2PFlags(t *testing.T) {
 			expConfig: harmonyconfig.P2pConfig{
 				Port:                 9001,
 				IP:                   nodeconfig.DefaultPublicListenIP,
+				BroadcastIP:          "",
 				KeyFile:              "./.psckey",
 				DiscConcurrency:      5,
 				MaxConnsPerIP:        5,
@@ -371,6 +389,7 @@ func TestP2PFlags(t *testing.T) {
 			expConfig: harmonyconfig.P2pConfig{
 				Port:                 nodeconfig.DefaultP2PPort,
 				IP:                   nodeconfig.DefaultPublicListenIP,
+				BroadcastIP:          "",
 				KeyFile:              "./.psckey",
 				DiscConcurrency:      nodeconfig.DefaultP2PConcurrency,
 				MaxConnsPerIP:        nodeconfig.DefaultMaxConnPerIP,
@@ -383,6 +402,7 @@ func TestP2PFlags(t *testing.T) {
 			expConfig: harmonyconfig.P2pConfig{
 				Port:                 nodeconfig.DefaultP2PPort,
 				IP:                   nodeconfig.DefaultPublicListenIP,
+				BroadcastIP:          "",
 				KeyFile:              "./.psckey",
 				DiscConcurrency:      nodeconfig.DefaultP2PConcurrency,
 				MaxConnsPerIP:        nodeconfig.DefaultMaxConnPerIP,
