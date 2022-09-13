@@ -61,6 +61,7 @@ type Host interface {
 // Peer is the object for a p2p peer (node)
 type Peer struct {
 	IP              string         // IP address of the peer
+	BroadcastIP     string         // Public IP address of the pee. This is what the node will tell to peers about how to connect to it.
 	Port            string         // Port number of the peer
 	ConsensusPubKey *bls.PublicKey // Public key of the peer, used for consensus signing
 	Addrs           []ma.Multiaddr // MultiAddress of the peer
@@ -113,7 +114,26 @@ func NewHost(cfg HostConfig) (Host, error) {
 	listenAddr, err := ma.NewMultiaddr(fmt.Sprintf("/ip4/%s/tcp/%s", self.IP, self.Port))
 	if err != nil {
 		return nil, errors.Wrapf(err,
-			"cannot create listen multiaddr from port %#v", self.Port)
+			"cannot create listen multiaddr from ip %s and port %#v", self.IP, self.Port)
+	}
+
+	var extMultiAddr ma.Multiaddr
+	if self.BroadcastIP == "" {
+		utils.Logger().Warn().
+			Msg("External IP not defined, Peers might not be able to resolve this node if behind NAT")
+	} else {
+		// here we're creating the multiaddr that others should use to connect to me
+		extMultiAddr, err = ma.NewMultiaddr(fmt.Sprintf("/ip4/%s/tcp/%d", self.BroadcastIP, self.Port))
+		return nil, errors.Wrapf(err,
+			"cannot create listen multiaddr from broadcastIP %s and port %#v", self.BroadcastIP, self.Port)
+	}
+	addressFactory := func(addrs []ma.Multiaddr) []ma.Multiaddr {
+		if extMultiAddr != nil {
+			// here we're appending the external facing multiaddr we created above to the addressFactory,
+			// so it will be broadcast out when I connect to a bootstrap node.
+			addrs = append(addrs, extMultiAddr)
+		}
+		return addrs
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -123,6 +143,7 @@ func NewHost(cfg HostConfig) (Host, error) {
 		libp2p.EnableNATService(),
 		libp2p.ForceReachabilityPublic(),
 		libp2p.BandwidthReporter(newCounter()),
+		libp2p.AddrsFactory(addressFactory),
 	)
 	if err != nil {
 		cancel()

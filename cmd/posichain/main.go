@@ -396,6 +396,9 @@ func setupNodeAndRun(hc harmonyconfig.HarmonyConfig) {
 		Str("multiaddress",
 			fmt.Sprintf("/ip4/%s/tcp/%d/p2p/%s", hc.P2P.IP, hc.P2P.Port, myHost.GetID().Pretty()),
 		).
+		Str("multiaddress_broadcast",
+			fmt.Sprintf("/ip4/%s/tcp/%d/p2p/%s", hc.P2P.BroadcastIP, hc.P2P.Port, myHost.GetID().Pretty()),
+		).
 		Msg(startMsg)
 
 	nodeconfig.SetPeerID(myHost.GetID())
@@ -590,6 +593,7 @@ func createGlobalConfig(hc harmonyconfig.HarmonyConfig) (*nodeconfig.ConfigType,
 
 	selfPeer := p2p.Peer{
 		IP:              hc.P2P.IP,
+		BroadcastIP:     hc.P2P.BroadcastIP,
 		Port:            strconv.Itoa(hc.P2P.Port),
 		ConsensusPubKey: nodeConfig.ConsensusPriKey[0].Pub.Object,
 	}

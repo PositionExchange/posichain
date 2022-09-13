@@ -49,6 +49,7 @@ type NetworkConfig struct {
 type P2pConfig struct {
 	Port                 int
 	IP                   string
+	BroadcastIP          string
 	KeyFile              string
 	DHTDataStore         *string `toml:",omitempty"`
 	DiscConcurrency      int     // Discovery Concurrency value
