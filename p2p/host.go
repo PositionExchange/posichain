@@ -114,7 +114,7 @@ func NewHost(cfg HostConfig) (Host, error) {
 	listenAddr, err := ma.NewMultiaddr(fmt.Sprintf("/ip4/%s/tcp/%s", self.IP, self.Port))
 	if err != nil {
 		return nil, errors.Wrapf(err,
-			"cannot create listen multiaddr from ip %s and port %#v", self.IP, self.Port)
+			"cannot create listen multiaddr from ip %s and port %s", self.IP, self.Port)
 	}
 
 	var extMultiAddr ma.Multiaddr
@@ -123,9 +123,9 @@ func NewHost(cfg HostConfig) (Host, error) {
 			Msg("External IP not defined, Peers might not be able to resolve this node if behind NAT")
 	} else {
 		// here we're creating the multiaddr that others should use to connect to me
-		extMultiAddr, err = ma.NewMultiaddr(fmt.Sprintf("/ip4/%s/tcp/%d", self.BroadcastIP, self.Port))
+		extMultiAddr, err = ma.NewMultiaddr(fmt.Sprintf("/ip4/%s/tcp/%s", self.BroadcastIP, self.Port))
 		return nil, errors.Wrapf(err,
-			"cannot create listen multiaddr from broadcastIP %s and port %#v", self.BroadcastIP, self.Port)
+			"cannot create listen multiaddr from broadcastIP %s and port %s", self.BroadcastIP, self.Port)
 	}
 	addressFactory := func(addrs []ma.Multiaddr) []ma.Multiaddr {
 		if extMultiAddr != nil {
