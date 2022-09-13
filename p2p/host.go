@@ -120,7 +120,7 @@ func NewHost(cfg HostConfig) (Host, error) {
 	var extMultiAddr ma.Multiaddr
 	if self.BroadcastIP == "" {
 		utils.Logger().Warn().
-			Msg("External IP not defined, Peers might not be able to resolve this node if behind NAT")
+			Msg("BroadcastIP not defined, peers might not be able to resolve this node if behind NAT")
 	} else {
 		// here we're creating the multiaddr that others should use to connect to me
 		extMultiAddr, err = ma.NewMultiaddr(fmt.Sprintf("/ip4/%s/tcp/%s", self.BroadcastIP, self.Port))
