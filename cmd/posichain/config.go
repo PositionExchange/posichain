@@ -136,6 +136,19 @@ func parseNetworkType(nt string) nodeconfig.NetworkType {
 	}
 }
 
+func getDefaultShardDataConfig(nt nodeconfig.NetworkType) harmonyconfig.ShardDataConfig {
+	switch nt {
+	case nodeconfig.Mainnet:
+		return defaultMainnetShardDataConfig
+	case nodeconfig.Testnet:
+		return defaultTestnetShardDataConfig
+	case nodeconfig.Devnet:
+		return defaultDevnetShardDataConfig
+	default:
+		return defaultElseShardDataConfig
+	}
+}
+
 func getDefaultSyncConfig(nt nodeconfig.NetworkType) harmonyconfig.SyncConfig {
 	switch nt {
 	case nodeconfig.Mainnet:

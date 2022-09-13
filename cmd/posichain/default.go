@@ -98,14 +98,8 @@ var defaultConfig = harmonyconfig.HarmonyConfig{
 			Config: true,
 		},
 	},
-	DNSSync: getDefaultDNSSyncConfig(defNetworkType),
-	ShardData: harmonyconfig.ShardDataConfig{
-		EnableShardData: false,
-		DiskCount:       8,
-		ShardCount:      1,
-		CacheTime:       10,
-		CacheSize:       512,
-	},
+	DNSSync:   getDefaultDNSSyncConfig(defNetworkType),
+	ShardData: getDefaultShardDataConfig(defNetworkType),
 }
 
 var defaultSysConfig = harmonyconfig.SysConfig{
@@ -142,6 +136,37 @@ var defaultPrometheusConfig = harmonyconfig.PrometheusConfig{
 	EnablePush: false,
 	Gateway:    "https://prometheus.posichain.org",
 }
+
+var (
+	defaultMainnetShardDataConfig = harmonyconfig.ShardDataConfig{
+		EnableShardData: false,
+		DiskCount:       8,
+		ShardCount:      1,
+		CacheTime:       10,
+		CacheSize:       512,
+	}
+	defaultTestnetShardDataConfig = harmonyconfig.ShardDataConfig{
+		EnableShardData: false,
+		DiskCount:       8,
+		ShardCount:      1,
+		CacheTime:       10,
+		CacheSize:       512,
+	}
+	defaultDevnetShardDataConfig = harmonyconfig.ShardDataConfig{
+		EnableShardData: false,
+		DiskCount:       8,
+		ShardCount:      2,
+		CacheTime:       10,
+		CacheSize:       512,
+	}
+	defaultElseShardDataConfig = harmonyconfig.ShardDataConfig{
+		EnableShardData: false,
+		DiskCount:       8,
+		ShardCount:      4,
+		CacheTime:       10,
+		CacheSize:       512,
+	}
+)
 
 var (
 	defaultMainnetSyncConfig = harmonyconfig.SyncConfig{
@@ -231,7 +256,7 @@ func getDefaultHmyConfigCopy(nt nodeconfig.NetworkType) harmonyconfig.HarmonyCon
 	}
 	config.Sync = getDefaultSyncConfig(nt)
 	config.DNSSync = getDefaultDNSSyncConfig(nt)
-
+	config.ShardData = getDefaultShardDataConfig(nt)
 	return config
 }
 
