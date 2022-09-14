@@ -21,7 +21,7 @@ const (
 	devnetVdfDifficulty = 10000
 
 	// Epoch versions
-	devnetV1Epoch = 3261
+	devnetV1Epoch = 3262
 
 	// DevNetHTTPPattern is the http pattern for devnet.
 	DevNetHTTPPattern = "https://api.s%d.d.posichain.org"
@@ -79,6 +79,6 @@ var devnetReshardingEpoch = []*big.Int{
 }
 
 var (
-	devnetV0 = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.DevnetOperatedAccounts, genesis.DevnetFoundationalAccounts, emptyAllowlist, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
-	devnetV1 = MustNewInstance(2, 6, 4, 0, numeric.OneDec(), genesis.DevnetOperatedAccounts, genesis.DevnetFoundationalAccounts, emptyAllowlist, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
+	devnetV0 = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.DevnetOperatedAccountsV0, genesis.DevnetFoundationalAccounts, emptyAllowlist, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
+	devnetV1 = MustNewInstance(2, 6, 4, 0, numeric.OneDec(), genesis.DevnetOperatedAccountsV1, genesis.DevnetFoundationalAccounts, emptyAllowlist, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
 )
