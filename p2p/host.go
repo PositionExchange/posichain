@@ -133,7 +133,8 @@ func NewHost(cfg HostConfig) (Host, error) {
 		if extMultiAddr != nil {
 			// here we're appending the external facing multiaddr we created above to the addressFactory,
 			// so it will be broadcast out when I connect to a bootstrap node.
-			addrs = append(addrs, extMultiAddr)
+			// TODO append or replace? double check when go mainnet
+			addrs = []ma.Multiaddr{extMultiAddr}
 		}
 		return addrs
 	}
