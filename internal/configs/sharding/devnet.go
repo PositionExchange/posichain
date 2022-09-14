@@ -20,6 +20,9 @@ const (
 	// This takes about 20s to finish the vdf
 	devnetVdfDifficulty = 10000
 
+	// Epoch versions
+	devnetV1Epoch = 3261
+
 	// DevNetHTTPPattern is the http pattern for devnet.
 	DevNetHTTPPattern = "https://api.s%d.d.posichain.org"
 	// DevNetWSPattern is the websocket pattern for devnet.
@@ -28,6 +31,8 @@ const (
 
 func (ts devnetSchedule) InstanceForEpoch(epoch *big.Int) Instance {
 	switch {
+	case epoch.Cmp(big.NewInt(devnetV1Epoch)) >= 0:
+		return devnetV1
 	default: // genesis
 		return devnetV0
 	}
@@ -70,8 +75,10 @@ func (ts devnetSchedule) IsSkippedEpoch(shardID uint32, epoch *big.Int) bool {
 
 var devnetReshardingEpoch = []*big.Int{
 	big.NewInt(0),
+	big.NewInt(devnetV1Epoch),
 }
 
 var (
 	devnetV0 = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.DevnetOperatedAccounts, genesis.DevnetFoundationalAccounts, emptyAllowlist, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
+	devnetV1 = MustNewInstance(2, 6, 4, 0, numeric.OneDec(), genesis.DevnetOperatedAccounts, genesis.DevnetFoundationalAccounts, emptyAllowlist, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
 )
