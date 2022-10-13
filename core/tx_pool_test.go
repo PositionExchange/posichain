@@ -52,7 +52,7 @@ var (
 	testTxPoolConfig TxPoolConfig
 	testBLSPubKey    = "30b2c38b1316da91e068ac3bd8751c0901ef6c02a1d58bc712104918302c6ed03d5894671d0c816dad2b4d303320f202"
 	testBLSPrvKey    = "c6d7603520311f7a4e6aac0b26701fc433b75b38df504cd416ef2b900cd66205"
-	gasPrice         = big.NewInt(100e9)
+	gasPrice         = big.NewInt(5e9)
 	gasLimit         = big.NewInt(int64(params.TxGasValidatorCreation))
 	cost             = big.NewInt(1).Mul(gasPrice, gasLimit)
 	dummyErrorSink   = types.NewTransactionErrorSink()
@@ -130,13 +130,12 @@ func stakingCreateValidatorTransaction(key *ecdsa.PrivateKey) (*staking.StakingT
 			Amount:             tenKOnes,
 		}
 	}
-	gasPrice := big.NewInt(100e9)
 	tx, _ := staking.NewStakingTransaction(0, 1e10, gasPrice, stakePayloadMaker)
 	return staking.Sign(tx, staking.NewEIP155Signer(tx.ChainID()), key)
 }
 
 func transaction(shardID uint32, nonce uint64, gaslimit uint64, key *ecdsa.PrivateKey) types.PoolTransaction {
-	return pricedTransaction(shardID, nonce, gaslimit, big.NewInt(100e9), key)
+	return pricedTransaction(shardID, nonce, gaslimit, gasPrice, key)
 }
 
 func pricedTransaction(shardID uint32, nonce uint64, gaslimit uint64, gasprice *big.Int, key *ecdsa.PrivateKey) types.PoolTransaction {
@@ -708,7 +707,7 @@ func TestTransactionDropping(t *testing.T) {
 	defer pool.Stop()
 
 	account, _ := deriveSender(transaction(0, 0, 0, key))
-	pool.currentState.AddBalance(account, big.NewInt(100_000_000_000_000))
+	pool.currentState.AddBalance(account, big.NewInt(5_000_000_000_000))
 
 	// Add some pending and some queued transactions
 	var (
@@ -747,7 +746,7 @@ func TestTransactionDropping(t *testing.T) {
 		t.Errorf("total transaction mismatch: have %d, want %d", pool.all.Count(), 6)
 	}
 	// Reduce the balance of the account, and check that invalidated transactions are dropped
-	pool.currentState.AddBalance(account, big.NewInt(-75_000e9))
+	pool.currentState.AddBalance(account, big.NewInt(-3_750e9))
 	pool.lockedReset(nil, nil)
 
 	if _, ok := pool.pending[account].txs.items[tx0.Nonce()]; !ok {
@@ -813,7 +812,7 @@ func TestTransactionPostponing(t *testing.T) {
 		keys[i], _ = crypto.GenerateKey()
 		accs[i] = crypto.PubkeyToAddress(keys[i].PublicKey)
 
-		pool.currentState.AddBalance(crypto.PubkeyToAddress(keys[i].PublicKey), big.NewInt(5000100000000000))
+		pool.currentState.AddBalance(crypto.PubkeyToAddress(keys[i].PublicKey), big.NewInt(250100000000000))
 	}
 	// Add a batch consecutive pending transactions for validation
 	txs := types.PoolTransactions{}
