@@ -17,7 +17,6 @@ import (
 	"github.com/PositionExchange/posichain/crypto/hash"
 	"github.com/PositionExchange/posichain/internal/chain"
 	"github.com/PositionExchange/posichain/internal/utils"
-	"github.com/PositionExchange/posichain/multibls"
 	"github.com/PositionExchange/posichain/shard"
 	"github.com/PositionExchange/posichain/shard/committee"
 	"github.com/ethereum/go-ethereum/common"
@@ -299,9 +298,6 @@ func (consensus *Consensus) UpdateConsensusInformation() Mode {
 	// Only happens once, the flip-over to a new Decider policy
 	if isFirstTimeStaking || haventUpdatedDecider {
 		decider := quorum.NewDecider(quorum.SuperMajorityStake, consensus.ShardID)
-		decider.SetMyPublicKeyProvider(func() (multibls.PublicKeys, error) {
-			return consensus.GetPublicKeys(), nil
-		})
 		consensus.Decider = decider
 	}
 
