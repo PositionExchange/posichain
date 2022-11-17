@@ -71,6 +71,7 @@ var (
 		ChainIdFixEpoch:               EpochTBD,
 		CrossShardXferPrecompileEpoch: EpochTBD,
 		AllowlistEpoch:                EpochTBD,
+		TesnetNinetyPercentEpoch:      EpochTBD, // never enabled
 		First2022PeriodEpoch:          big.NewInt(0),
 		First2024PeriodEpoch:          big.NewInt(1370),
 		First2026PeriodEpoch:          big.NewInt(3297),
@@ -115,6 +116,7 @@ var (
 		ChainIdFixEpoch:               EpochTBD,
 		CrossShardXferPrecompileEpoch: EpochTBD,
 		AllowlistEpoch:                EpochTBD,
+		TesnetNinetyPercentEpoch:      EpochTBD,
 		First2022PeriodEpoch:          big.NewInt(0),
 		First2024PeriodEpoch:          big.NewInt(2793),
 		First2026PeriodEpoch:          big.NewInt(6647),
@@ -158,6 +160,7 @@ var (
 		ChainIdFixEpoch:            big.NewInt(0),
 		SlotsLimitedEpoch:          EpochTBD, // epoch to enable HIP-16
 		AllowlistEpoch:             EpochTBD,
+		TesnetNinetyPercentEpoch:	EpochTBD,
 	}
 
 	// StressnetChainConfig contains the chain parameters for the Stress test network.
@@ -196,6 +199,7 @@ var (
 		SlotsLimitedEpoch:             EpochTBD, // epoch to enable HIP-16
 		CrossShardXferPrecompileEpoch: big.NewInt(1),
 		AllowlistEpoch:                EpochTBD,
+		TesnetNinetyPercentEpoch:      EpochTBD,
 	}
 
 	// DockernetChainConfig is the chain parameters to run a node on the dev network.
@@ -232,6 +236,7 @@ var (
 		ChainIdFixEpoch:            big.NewInt(0),
 		SlotsLimitedEpoch:          EpochTBD, // epoch to enable HIP-16
 		AllowlistEpoch:             EpochTBD,
+		TesnetNinetyPercentEpoch:	EpochTBD,
 	}
 
 	// LocalnetChainConfig contains the chain parameters to run for local development.
@@ -269,6 +274,7 @@ var (
 		SlotsLimitedEpoch:             EpochTBD, // epoch to enable HIP-16
 		CrossShardXferPrecompileEpoch: big.NewInt(1),
 		AllowlistEpoch:                EpochTBD,
+		TesnetNinetyPercentEpoch:      EpochTBD,
 	}
 
 	// AllProtocolChanges ...
@@ -308,6 +314,7 @@ var (
 		big.NewInt(0),                      // SlotsLimitedEpoch
 		big.NewInt(1),                      // CrossShardXferPrecompileEpoch
 		big.NewInt(0),                      // AllowlistEpoch
+		big.NewInt(0),                      // TesnetNinetyPercentEpoch
 		big.NewInt(0),
 		big.NewInt(0),
 		big.NewInt(0),
@@ -354,6 +361,7 @@ var (
 		big.NewInt(0),        // SlotsLimitedEpoch
 		big.NewInt(1),        // CrossShardXferPrecompileEpoch
 		big.NewInt(0),        // AllowlistEpoch
+		big.NewInt(0),        // TesnetNinetyPercentEpoch
 		big.NewInt(0),
 		big.NewInt(0),
 		big.NewInt(0),
@@ -366,6 +374,15 @@ var (
 	// TestRules ...
 	TestRules = TestChainConfig.Rules(new(big.Int))
 )
+
+func init() {
+	MainnetChainConfig.mustValid()
+	TestnetChainConfig.mustValid()
+	DevnetChainConfig.mustValid()
+	StressnetChainConfig.mustValid()
+	DockernetChainConfig.mustValid()
+	LocalnetChainConfig.mustValid()
+}
 
 // TrustedCheckpoint represents a set of post-processed trie roots (CHT and
 // BloomTrie) associated with the appropriate section index and head hash. It is
@@ -491,6 +508,10 @@ type ChainConfig struct {
 	// AllowlistEpoch is the first epoch to support allowlist of HIP18
 	AllowlistEpoch *big.Int
 
+	// Testnet only ninety percent epoch to restore internal voting power to 90%
+	// keeps the tesnet stable
+	TesnetNinetyPercentEpoch *big.Int `json:"testnet-ninety-percent-epoch,omitempty"`
+
 	// First2022PeriodEpoch is the first epoch of 2022
 	First2022PeriodEpoch *big.Int `json:"first-2022-epoch,omitempty"`
 
@@ -528,6 +549,22 @@ func (c *ChainConfig) String() string {
 		c.ChainIdFixEpoch,
 		c.CrossShardXferPrecompileEpoch,
 	)
+}
+
+func (c *ChainConfig) mustValid() {
+	require := func(cond bool, err string) {
+		if !cond {
+			panic(err)
+		}
+	}
+	require(c.PreStakingEpoch.Cmp(c.StakingEpoch) < 0,
+		"must satisfy: PreStakingEpoch < StakingEpoch")
+	require(c.StakingPrecompileEpoch.Cmp(c.PreStakingEpoch) >= 0,
+		"must satisfy: StakingPrecompileEpoch >= PreStakingEpoch")
+	require(c.CrossShardXferPrecompileEpoch.Cmp(c.CrossTxEpoch) > 0,
+		"must satisfy: CrossShardXferPrecompileEpoch > CrossTxEpoch")
+	require(c.TesnetNinetyPercentEpoch.Cmp(EpochTBD) >= 0 || c == TestnetChainConfig,
+		"must satisfy: TesnetNinetyPercentEpoch >= EpochTBD for non testnet chains")
 }
 
 // IsEIP155 returns whether epoch is either equal to the EIP155 fork epoch or greater.
@@ -694,6 +731,10 @@ func (c *ChainConfig) IsAllowlistEpoch(epoch *big.Int) bool {
 	return isForked(c.AllowlistEpoch, epoch)
 }
 
+func (c *ChainConfig) IsTestnetNinetyPercent(epoch *big.Int) bool {
+	return isForked(c.TesnetNinetyPercentEpoch, epoch) && c == TestnetChainConfig
+}
+
 func (c *ChainConfig) Is2022PeriodEpoch(epoch *big.Int) bool {
 	return isForked(c.First2022PeriodEpoch, epoch)
 }
@@ -772,22 +813,18 @@ func isForked(s, epoch *big.Int) bool {
 type Rules struct {
 	ChainID    *big.Int
 	EthChainID *big.Int
-	IsCrossLink, IsEIP155, IsS3, IsReceiptLog, IsIstanbul, IsVRF, IsPrevVRF, IsSHA3,
-	IsStakingPrecompile, IsCrossShardXferPrecompile, IsChainIdFix bool
+	// gas
+	IsS3,
+	// precompiles
+	IsIstanbul, IsVRF, IsPrevVRF, IsSHA3,
+	IsStakingPrecompile, IsCrossShardXferPrecompile,
+	// eip-155 chain id fix
+	IsChainIdFix bool
 }
 
 // Rules ensures c's ChainID is not nil.
+// The Rules object is only used by The EVM
 func (c *ChainConfig) Rules(epoch *big.Int) Rules {
-	if c.IsStakingPrecompile(epoch) {
-		if !c.IsPreStaking(epoch) {
-			panic("cannot have staking precompile epoch if not prestaking epoch")
-		}
-	}
-	if c.IsCrossShardXferPrecompile(epoch) {
-		if !c.AcceptsCrossTx(epoch) {
-			panic("cannot have cross shard xfer precompile epoch if not accepting cross tx")
-		}
-	}
 	chainID := c.ChainID
 	if chainID == nil {
 		chainID = new(big.Int)
@@ -799,16 +836,13 @@ func (c *ChainConfig) Rules(epoch *big.Int) Rules {
 	return Rules{
 		ChainID:                    new(big.Int).Set(chainID),
 		EthChainID:                 new(big.Int).Set(ethChainID),
-		IsCrossLink:                c.IsCrossLink(epoch),
-		IsEIP155:                   c.IsEIP155(epoch),
 		IsS3:                       c.IsS3(epoch),
-		IsReceiptLog:               c.IsReceiptLog(epoch),
 		IsIstanbul:                 c.IsIstanbul(epoch),
 		IsVRF:                      c.IsVRF(epoch),
 		IsPrevVRF:                  c.IsPrevVRF(epoch),
 		IsSHA3:                     c.IsSHA3(epoch),
 		IsStakingPrecompile:        c.IsStakingPrecompile(epoch),
-		IsChainIdFix:               c.IsChainIdFix(epoch),
 		IsCrossShardXferPrecompile: c.IsCrossShardXferPrecompile(epoch),
+		IsChainIdFix:               c.IsChainIdFix(epoch),
 	}
 }
