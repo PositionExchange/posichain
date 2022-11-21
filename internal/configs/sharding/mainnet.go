@@ -17,6 +17,7 @@ const (
 	// Epoch versions
 	mainnetV1Epoch = 2
 	mainnetV2Epoch = 105
+	mainnetV3Epoch = 308 // Around November 26, 2022, 08:31 AM (Saturday)
 
 	// MainNetHTTPPattern is the http pattern for mainnet.
 	MainNetHTTPPattern = "https://api.s%d.posichain.org"
@@ -36,6 +37,8 @@ type mainnetSchedule struct{}
 
 func (ms mainnetSchedule) InstanceForEpoch(epoch *big.Int) Instance {
 	switch {
+	case epoch.Cmp(big.NewInt(mainnetV3Epoch)) >= 0:
+		return mainnetV3
 	case epoch.Cmp(big.NewInt(mainnetV2Epoch)) >= 0:
 		return mainnetV2
 	case epoch.Cmp(big.NewInt(mainnetV1Epoch)) >= 0:
@@ -91,10 +94,12 @@ var mainnetReshardingEpoch = []*big.Int{
 	big.NewInt(0),
 	big.NewInt(mainnetV1Epoch),
 	big.NewInt(mainnetV2Epoch),
+	big.NewInt(mainnetV3Epoch),
 }
 
 var (
 	mainnetV0 = MustNewInstance(1, 21, 16, 0, numeric.OneDec(), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
 	mainnetV1 = MustNewInstance(1, 21, 16, 0, numeric.MustNewDecFromStr("0.7"), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
 	mainnetV2 = MustNewInstance(1, 41, 16, 0, numeric.MustNewDecFromStr("0.7"), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
+	mainnetV3 = MustNewInstance(1, 61, 16, 0, numeric.MustNewDecFromStr("0.7"), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
 )
