@@ -1,10 +1,10 @@
 package consensus
 
 import (
-	"github.com/PositionExchange/posichain/internal/common"
 	"time"
 
 	"github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/internal/common"
 	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 
 	"github.com/PositionExchange/posichain/consensus/signature"

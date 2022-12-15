@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/PositionExchange/posichain/internal/chain"
 	"io/ioutil"
 	"math/big"
 	"math/rand"
@@ -17,6 +16,7 @@ import (
 	"time"
 
 	"github.com/PositionExchange/posichain/api/service/crosslink_sending"
+	"github.com/PositionExchange/posichain/internal/chain"
 	"github.com/PositionExchange/posichain/internal/shardchain/tikv_manage"
 	"github.com/PositionExchange/posichain/internal/tikv/redis_helper"
 	"github.com/PositionExchange/posichain/internal/tikv/statedb_cache"

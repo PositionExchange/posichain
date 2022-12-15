@@ -2,15 +2,15 @@ package node
 
 import (
 	"errors"
-	"github.com/PositionExchange/posichain/core"
-	"github.com/PositionExchange/posichain/internal/chain"
-	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 	"sync"
 	"testing"
 
 	"github.com/PositionExchange/posichain/consensus"
 	"github.com/PositionExchange/posichain/consensus/quorum"
+	"github.com/PositionExchange/posichain/core"
 	"github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/internal/chain"
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 	"github.com/PositionExchange/posichain/internal/shardchain"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/multibls"

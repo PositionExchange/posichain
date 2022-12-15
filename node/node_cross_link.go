@@ -1,10 +1,10 @@
 package node
 
 import (
-	"github.com/PositionExchange/posichain/core"
 	"math/big"
 
 	ffi_bls "github.com/PositionExchange/bls/ffi/go/bls"
+	"github.com/PositionExchange/posichain/core"
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/shard"
@@ -168,4 +168,21 @@ func (node *Node) ProcessCrossLinkMessage(msgPayload []byte) {
 		utils.Logger().Debug().
 			Msgf("[ProcessingCrossLink] Add pending crosslinks,  total pending: %d", Len)
 	}
+}
+
+// VerifyCrossLink verifies the header is valid
+func (node *Node) VerifyCrossLink(cl types.CrossLink) error {
+	if node.Blockchain().ShardID() != shard.BeaconChainShardID {
+		return errors.New("[VerifyCrossLink] Shard chains should not verify cross links")
+	}
+	instance := shard.Schedule.InstanceForEpoch(node.Blockchain().CurrentHeader().Epoch())
+	if cl.ShardID() >= instance.NumShards() {
+		return errors.New("[VerifyCrossLink] ShardID should less than NumShards")
+	}
+	engine := node.Blockchain().Engine()
+
+	if err := engine.VerifyCrossLink(node.Blockchain(), cl); err != nil {
+		return errors.Wrap(err, "[VerifyCrossLink]")
+	}
+	return nil
 }
