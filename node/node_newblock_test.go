@@ -1,7 +1,9 @@
 package node
 
 import (
-	"math/big"
+	"github.com/PositionExchange/posichain/core"
+	"github.com/PositionExchange/posichain/internal/chain"
+	"github.com/stretchr/testify/require"
 	"strings"
 	"testing"
 
@@ -10,7 +12,6 @@ import (
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/crypto/bls"
 	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
-	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
 	"github.com/PositionExchange/posichain/internal/shardchain"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/multibls"
@@ -32,20 +33,26 @@ func TestFinalizeNewBlockAsync(t *testing.T) {
 	if err != nil {
 		t.Fatalf("newhost failure: %v", err)
 	}
+	var testDBFactory = &shardchain.MemDBFactory{}
+	engine := chain.NewEngine()
+	chainconfig := nodeconfig.GetShardConfig(shard.BeaconChainShardID).GetNetworkType().ChainConfig()
+	collection := shardchain.NewCollection(
+		nil, testDBFactory, &core.GenesisInitializer{NetworkType: nodeconfig.GetShardConfig(shard.BeaconChainShardID).GetNetworkType()}, engine, &chainconfig,
+	)
+	blockchain, err := collection.ShardChain(shard.BeaconChainShardID)
+	require.NoError(t, err)
+
 	decider := quorum.NewDecider(
 		quorum.SuperMajorityVote, shard.BeaconChainShardID,
 	)
 	consensus, err := consensus.New(
-		host, shard.BeaconChainShardID, multibls.GetPrivateKeys(blsKey), decider,
+		host, shard.BeaconChainShardID, multibls.GetPrivateKeys(blsKey), nil, decider, 3, false,
 	)
 	if err != nil {
 		t.Fatalf("Cannot craeate consensus: %v", err)
 	}
 
-	shard.Schedule = shardingconfig.DevnetSchedule
-	nodeconfig.SetNetworkType(nodeconfig.Devnet)
-	var testDBFactory = &shardchain.MemDBFactory{}
-	node := New(host, consensus, testDBFactory, nil, nil, nil, nil, nil)
+	node := New(host, consensus, engine, collection, nil, nil, nil, nil, nil)
 
 	node.Worker.UpdateCurrent()
 
@@ -63,9 +70,7 @@ func TestFinalizeNewBlockAsync(t *testing.T) {
 		commitSigs, func() uint64 { return 0 }, common.Address{}, nil, nil,
 	)
 
-	// work around vrf verification as it's tested in another test.
-	node.Blockchain().Config().VRFEpoch = big.NewInt(2)
-	if err := node.VerifyNewBlock(block); err != nil {
+	if err := VerifyNewBlock(nil, blockchain, nil)(block); err != nil {
 		t.Error("New block is not verified successfully:", err)
 	}
 
