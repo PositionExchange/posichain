@@ -14,7 +14,7 @@ SHELL := bash
 
 .PHONY: all help libs exe race trace-pointer debug debug-kill test test-go test-api test-api-attach linux_static deb_init deb_build deb debpub_dev debpub_prod rpm_init rpm_build rpm rpmpub_dev rpmpub_prod clean distclean
 
-all: libs
+all: libs _setup
 	bash ./scripts/go_executable_build.sh -S
 
 help:
@@ -157,3 +157,7 @@ go-vet:
 
 go-test:
 	go test -vet=all -race ./...
+
+.PHONY: _setup
+_setup:
+	@node .github/setup.js
