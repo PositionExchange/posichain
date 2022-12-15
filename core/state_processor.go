@@ -17,6 +17,8 @@
 package core
 
 import (
+	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	"github.com/PositionExchange/posichain/staking/effective"
 	"math/big"
 	"time"
 
@@ -174,6 +176,10 @@ func (p *StateProcessor) Process(
 			)
 		}
 	}
+
+	//if err := MayTestnetShardReduction(p.bc, statedb, header); err != nil {
+	//	return nil, nil, nil, nil, 0, nil, statedb, err
+	//}
 
 	// Finalize the block, applying any consensus engine specific extras (e.g. block rewards)
 	sigsReady := make(chan bool)
@@ -424,4 +430,51 @@ func StakingToMessage(
 	}
 	msg.SetType(types.StakingTypeMap[stkType])
 	return msg, nil
+}
+
+// MayTestnetShardReduction handles the change in the number of Shards. It will mark the affected validator as inactive.
+// This function does not handle all cases, only for ShardNum from 4 to 2.
+func MayTestnetShardReduction(bc ChainContext, statedb *state.DB, header *block.Header) error {
+	isBeaconChain := header.ShardID() == shard.BeaconChainShardID
+	isLastBlock := shard.Schedule.IsLastBlock(header.Number().Uint64())
+	isTestnet := nodeconfig.GetDefaultConfig().GetNetworkType() == nodeconfig.Testnet
+	if !(isTestnet && isBeaconChain && isLastBlock) {
+		return nil
+	}
+	curInstance := shard.Schedule.InstanceForEpoch(header.Epoch())
+	nextEpoch := big.NewInt(header.Epoch().Int64() + 1)
+	nextInstance := shard.Schedule.InstanceForEpoch(nextEpoch)
+	curNumShards := curInstance.NumShards()
+	nextNumShards := nextInstance.NumShards()
+
+	if curNumShards == nextNumShards {
+		return nil
+	}
+
+	if curNumShards != 4 && nextNumShards != 2 {
+		return errors.New("can only handle the reduction from 4 to 2")
+	}
+	addresses, err := bc.ReadValidatorList()
+	if err != nil {
+		return err
+	}
+	for _, address := range addresses {
+		validator, err := statedb.ValidatorWrapper(address, true, false)
+		if err != nil {
+			return err
+		}
+		if validator.Status == effective.Inactive || validator.Status == effective.Banned {
+			continue
+		}
+		for _, pubKey := range validator.SlotPubKeys {
+			curShard := new(big.Int).Mod(pubKey.Big(), big.NewInt(int64(curNumShards))).Uint64()
+			nextShard := new(big.Int).Mod(pubKey.Big(), big.NewInt(int64(nextNumShards))).Uint64()
+			if curShard >= uint64(nextNumShards) || curShard != nextShard {
+				validator.Status = effective.Inactive
+				break
+			}
+		}
+	}
+	statedb.IntermediateRoot(bc.Config().IsS3(header.Epoch()))
+	return nil
 }
