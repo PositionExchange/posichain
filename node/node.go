@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/PositionExchange/posichain/consensus/engine"
 	"io/ioutil"
 	"math/big"
 	"os"
@@ -43,7 +44,6 @@ import (
 	"github.com/PositionExchange/posichain/core/rawdb"
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/crypto/bls"
-	"github.com/PositionExchange/posichain/internal/chain"
 	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 	"github.com/PositionExchange/posichain/internal/params"
 	"github.com/PositionExchange/posichain/internal/shardchain"
@@ -986,7 +986,8 @@ func (node *Node) GetSyncID() [SyncIDLength]byte {
 func New(
 	host p2p.Host,
 	consensusObj *consensus.Consensus,
-	chainDBFactory shardchain.DBFactory,
+	engine engine.Engine,
+	collection *shardchain.CollectionImpl,
 	blacklist map[common.Address]struct{},
 	allowedTxs map[common.Address]core.AllowedTxData,
 	localAccounts []common.Address,
@@ -1014,12 +1015,6 @@ func New(
 	networkType := node.NodeConfig.GetNetworkType()
 	chainConfig := networkType.ChainConfig()
 	node.chainConfig = chainConfig
-
-	engine := chain.NewEngine()
-
-	collection := shardchain.NewCollection(
-		harmonyconfig, chainDBFactory, &core.GenesisInitializer{NetworkType: node.NodeConfig.GetNetworkType()}, engine, &chainConfig,
-	)
 
 	for shardID, archival := range isArchival {
 		if archival {

@@ -1,6 +1,7 @@
 package consensus
 
 import (
+	"github.com/PositionExchange/posichain/internal/common"
 	"time"
 
 	"github.com/PositionExchange/posichain/crypto/bls"
@@ -156,7 +157,13 @@ func (consensus *Consensus) onPrepare(recvMsg *FBFTMessage) {
 		}
 	}
 	if !sign.VerifyHash(signerPubKey, blockHash) {
-		consensus.getLogger().Error().Msg("[OnPrepare] Received invalid BLS signature")
+		consensus.getLogger().
+			Error().
+			Msgf(
+				"[OnPrepare] Received invalid BLS signature: hash %s, key %s",
+				common.BytesToHash(blockHash).Hex(),
+				signerPubKey.SerializeToHexStr(),
+			)
 		return
 	}
 
