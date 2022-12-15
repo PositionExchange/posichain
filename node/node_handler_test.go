@@ -1,18 +1,18 @@
 package node
 
 import (
-	"github.com/PositionExchange/posichain/core"
-	"github.com/PositionExchange/posichain/internal/chain"
-	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
-	"github.com/PositionExchange/posichain/internal/shardchain"
 	"math/big"
 	"testing"
 
 	"github.com/PositionExchange/posichain/consensus"
 	"github.com/PositionExchange/posichain/consensus/quorum"
+	"github.com/PositionExchange/posichain/core"
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/crypto/bls"
+	"github.com/PositionExchange/posichain/internal/chain"
 	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
+	"github.com/PositionExchange/posichain/internal/shardchain"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/multibls"
 	"github.com/PositionExchange/posichain/p2p"

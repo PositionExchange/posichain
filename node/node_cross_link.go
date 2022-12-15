@@ -1,10 +1,10 @@
 package node
 
 import (
-	"github.com/PositionExchange/posichain/core"
 	"math/big"
 
 	ffi_bls "github.com/PositionExchange/bls/ffi/go/bls"
+	"github.com/PositionExchange/posichain/core"
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/shard"

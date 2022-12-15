@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/PositionExchange/posichain/consensus/engine"
 	"io/ioutil"
 	"math/big"
 	"os"
@@ -13,6 +12,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/PositionExchange/posichain/consensus/engine"
 	harmonyconfig "github.com/PositionExchange/posichain/internal/configs/harmony"
 	"github.com/PositionExchange/posichain/internal/shardchain/tikv_manage"
 	"github.com/PositionExchange/posichain/internal/tikv"
