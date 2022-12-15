@@ -3,6 +3,7 @@ package node
 import (
 	"github.com/PositionExchange/posichain/core"
 	"github.com/PositionExchange/posichain/internal/chain"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
 	"github.com/PositionExchange/posichain/internal/shardchain"
 	"math/big"
 	"testing"
@@ -12,7 +13,6 @@ import (
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/crypto/bls"
 	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
-	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
 	"github.com/PositionExchange/posichain/internal/utils"
 	"github.com/PositionExchange/posichain/multibls"
 	"github.com/PositionExchange/posichain/p2p"
@@ -33,6 +33,8 @@ func TestAddNewBlock(t *testing.T) {
 	if err != nil {
 		t.Fatalf("newhost failure: %v", err)
 	}
+	nodeconfig.SetNetworkType(nodeconfig.Devnet)
+	shard.Schedule = shardingconfig.DevnetSchedule
 	engine := chain.NewEngine()
 	chainconfig := nodeconfig.GetShardConfig(shard.BeaconChainShardID).GetNetworkType().ChainConfig()
 	collection := shardchain.NewCollection(
@@ -47,8 +49,6 @@ func TestAddNewBlock(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Cannot craeate consensus: %v", err)
 	}
-	shard.Schedule = shardingconfig.DevnetSchedule
-	nodeconfig.SetNetworkType(nodeconfig.Devnet)
 	node := New(host, consensus, engine, collection, nil, nil, nil, nil, nil)
 
 	txs := make(map[common.Address]types.Transactions)
@@ -87,9 +87,10 @@ func TestVerifyNewBlock(t *testing.T) {
 		t.Fatalf("newhost failure: %v", err)
 	}
 	engine := chain.NewEngine()
-	chainconfig := nodeconfig.GetShardConfig(shard.BeaconChainShardID).GetNetworkType().ChainConfig()
+	nodeConfig := nodeconfig.GetShardConfig(shard.BeaconChainShardID)
+	chainconfig := nodeConfig.GetNetworkType().ChainConfig()
 	collection := shardchain.NewCollection(
-		nil, testDBFactory, &core.GenesisInitializer{NetworkType: nodeconfig.GetShardConfig(shard.BeaconChainShardID).GetNetworkType()}, engine, &chainconfig,
+		nil, testDBFactory, &core.GenesisInitializer{NetworkType: nodeConfig.GetNetworkType()}, engine, &chainconfig,
 	)
 	decider := quorum.NewDecider(
 		quorum.SuperMajorityVote, shard.BeaconChainShardID,

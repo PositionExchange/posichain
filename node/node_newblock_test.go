@@ -3,7 +3,9 @@ package node
 import (
 	"github.com/PositionExchange/posichain/core"
 	"github.com/PositionExchange/posichain/internal/chain"
+	shardingconfig "github.com/PositionExchange/posichain/internal/configs/sharding"
 	"github.com/stretchr/testify/require"
+	"math/big"
 	"strings"
 	"testing"
 
@@ -33,11 +35,13 @@ func TestFinalizeNewBlockAsync(t *testing.T) {
 	if err != nil {
 		t.Fatalf("newhost failure: %v", err)
 	}
-	var testDBFactory = &shardchain.MemDBFactory{}
+	nodeconfig.SetNetworkType(nodeconfig.Devnet)
+	shard.Schedule = shardingconfig.DevnetSchedule
 	engine := chain.NewEngine()
-	chainconfig := nodeconfig.GetShardConfig(shard.BeaconChainShardID).GetNetworkType().ChainConfig()
+	nodeConfig := nodeconfig.GetShardConfig(shard.BeaconChainShardID)
+	chainconfig := nodeConfig.GetNetworkType().ChainConfig()
 	collection := shardchain.NewCollection(
-		nil, testDBFactory, &core.GenesisInitializer{NetworkType: nodeconfig.GetShardConfig(shard.BeaconChainShardID).GetNetworkType()}, engine, &chainconfig,
+		nil, testDBFactory, &core.GenesisInitializer{NetworkType: nodeConfig.GetNetworkType()}, engine, &chainconfig,
 	)
 	blockchain, err := collection.ShardChain(shard.BeaconChainShardID)
 	require.NoError(t, err)
@@ -70,7 +74,9 @@ func TestFinalizeNewBlockAsync(t *testing.T) {
 		commitSigs, func() uint64 { return 0 }, common.Address{}, nil, nil,
 	)
 
-	if err := VerifyNewBlock(nil, blockchain, nil)(block); err != nil {
+	// work around vrf verification as it's tested in another test.
+	node.Blockchain().Config().VRFEpoch = big.NewInt(2)
+	if err := VerifyNewBlock(nodeConfig, blockchain, nil)(block); err != nil {
 		t.Error("New block is not verified successfully:", err)
 	}
 

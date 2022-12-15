@@ -44,7 +44,6 @@ import (
 	"github.com/PositionExchange/posichain/core/rawdb"
 	"github.com/PositionExchange/posichain/core/types"
 	"github.com/PositionExchange/posichain/crypto/bls"
-	"github.com/PositionExchange/posichain/internal/chain"
 	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 	"github.com/PositionExchange/posichain/internal/params"
 	"github.com/PositionExchange/posichain/internal/shardchain"
