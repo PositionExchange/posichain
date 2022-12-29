@@ -1015,12 +1015,6 @@ func New(
 	networkType := node.NodeConfig.GetNetworkType()
 	chainConfig := networkType.ChainConfig()
 	node.chainConfig = chainConfig
-
-	for shardID, archival := range isArchival {
-		if archival {
-			collection.DisableCache(shardID)
-		}
-	}
 	node.shardChains = collection
 	node.IsInSync = abool.NewBool(false)
 
