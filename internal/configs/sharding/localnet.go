@@ -13,6 +13,9 @@ import (
 // configuration schedule.
 var LocalnetSchedule localnetSchedule
 
+// privatekey: 0x1111111111111111111111111111111111111111111111111111111111111111
+var feeCollectorLocalnet = mustAddress("0x19E7E376E7C213B7E7e7e46cc70A5dD086DAff2A")
+
 type localnetSchedule struct{}
 
 const (
@@ -74,5 +77,5 @@ func (ls localnetSchedule) IsSkippedEpoch(shardID uint32, epoch *big.Int) bool {
 
 var (
 	localnetReshardingEpoch = []*big.Int{big.NewInt(0)}
-	localnetV0              = MustNewInstance(2, 9, 6, 0, numeric.MustNewDecFromStr("0.68"), genesis.LocalHarmonyAccountsV2, genesis.LocalFnAccountsV2, emptyAllowlist, localnetReshardingEpoch, LocalnetSchedule.BlocksPerEpoch())
+	localnetV0              = MustNewInstance(2, 9, 6, 0, numeric.MustNewDecFromStr("0.68"), genesis.LocalHarmonyAccountsV2, genesis.LocalFnAccountsV2, emptyAllowlist, feeCollectorLocalnet, localnetReshardingEpoch, LocalnetSchedule.BlocksPerEpoch())
 )

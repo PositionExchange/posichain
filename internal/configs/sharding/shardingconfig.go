@@ -10,6 +10,7 @@ import (
 	"github.com/PositionExchange/posichain/numeric"
 
 	"github.com/PositionExchange/posichain/internal/genesis"
+	ethCommon "github.com/ethereum/go-ethereum/common"
 )
 
 // Schedule returns the sharding configuration instance for the given
@@ -81,6 +82,9 @@ type Instance interface {
 
 	// ExternalAllowlistLimit returns the maximum number of external leader keys on each shard(HIP18)
 	ExternalAllowlistLimit() int
+
+	// FeeCollector returns a address to receive txn fees
+	FeeCollector() ethCommon.Address
 }
 
 // genShardingStructure return sharding structure, given shard number and its patterns.

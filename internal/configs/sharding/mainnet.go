@@ -3,9 +3,10 @@ package shardingconfig
 import (
 	"math/big"
 
-	"github.com/PositionExchange/posichain/numeric"
-
+	"github.com/PositionExchange/posichain/internal/common"
 	"github.com/PositionExchange/posichain/internal/genesis"
+	"github.com/PositionExchange/posichain/numeric"
+	ethCommon "github.com/ethereum/go-ethereum/common"
 )
 
 const (
@@ -28,7 +29,19 @@ const (
 var (
 	// map of epochs skipped due to staking launch on mainnet
 	skippedEpochs = map[uint32][]*big.Int{}
+
+	emptyAddress = ethCommon.Address{}
+	// TODO: set a valid address
+	feeCollector ethCommon.Address // = mustAddress("0xXXX")
 )
+
+func mustAddress(addrStr string) ethCommon.Address {
+	addr, err := common.ParseAddr(addrStr)
+	if err != nil {
+		panic("invalid address")
+	}
+	return addr
+}
 
 // MainnetSchedule is the mainnet sharding configuration schedule.
 var MainnetSchedule mainnetSchedule
@@ -98,8 +111,8 @@ var mainnetReshardingEpoch = []*big.Int{
 }
 
 var (
-	mainnetV0 = MustNewInstance(1, 21, 16, 0, numeric.OneDec(), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
-	mainnetV1 = MustNewInstance(1, 21, 16, 0, numeric.MustNewDecFromStr("0.7"), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
-	mainnetV2 = MustNewInstance(1, 41, 16, 0, numeric.MustNewDecFromStr("0.7"), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
-	mainnetV3 = MustNewInstance(1, 61, 16, 0, numeric.MustNewDecFromStr("0.7"), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
+	mainnetV0 = MustNewInstance(1, 21, 16, 0, numeric.OneDec(), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, emptyAddress, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
+	mainnetV1 = MustNewInstance(1, 21, 16, 0, numeric.MustNewDecFromStr("0.7"), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, emptyAddress, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
+	mainnetV2 = MustNewInstance(1, 41, 16, 0, numeric.MustNewDecFromStr("0.7"), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, emptyAddress, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
+	mainnetV3 = MustNewInstance(1, 61, 16, 0, numeric.MustNewDecFromStr("0.7"), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, emptyAddress, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
 )

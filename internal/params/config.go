@@ -71,7 +71,7 @@ var (
 		ChainIdFixEpoch:               EpochTBD,
 		CrossShardXferPrecompileEpoch: EpochTBD,
 		AllowlistEpoch:                EpochTBD,
-		TesnetNinetyPercentEpoch:      EpochTBD, // never enabled
+		FeeCollectEpoch:               EpochTBD,
 		First2022PeriodEpoch:          big.NewInt(0),
 		First2024PeriodEpoch:          big.NewInt(1370),
 		First2026PeriodEpoch:          big.NewInt(3297),
@@ -116,7 +116,7 @@ var (
 		ChainIdFixEpoch:               EpochTBD,
 		CrossShardXferPrecompileEpoch: EpochTBD,
 		AllowlistEpoch:                EpochTBD,
-		TesnetNinetyPercentEpoch:      EpochTBD,
+		FeeCollectEpoch:               EpochTBD,
 		First2022PeriodEpoch:          big.NewInt(0),
 		First2024PeriodEpoch:          big.NewInt(2793),
 		First2026PeriodEpoch:          big.NewInt(6647),
@@ -161,7 +161,7 @@ var (
 		SlotsLimitedEpoch:             EpochTBD, // epoch to enable HIP-16
 		CrossShardXferPrecompileEpoch: EpochTBD,
 		AllowlistEpoch:                EpochTBD,
-		TesnetNinetyPercentEpoch:      EpochTBD,
+		FeeCollectEpoch:               EpochTBD,
 	}
 
 	// StressnetChainConfig contains the chain parameters for the Stress test network.
@@ -200,7 +200,7 @@ var (
 		SlotsLimitedEpoch:             EpochTBD, // epoch to enable HIP-16
 		CrossShardXferPrecompileEpoch: big.NewInt(1),
 		AllowlistEpoch:                EpochTBD,
-		TesnetNinetyPercentEpoch:      EpochTBD,
+		FeeCollectEpoch:               big.NewInt(574),
 	}
 
 	// DockernetChainConfig is the chain parameters to run a node on the dev network.
@@ -238,7 +238,7 @@ var (
 		SlotsLimitedEpoch:             EpochTBD, // epoch to enable HIP-16
 		CrossShardXferPrecompileEpoch: EpochTBD,
 		AllowlistEpoch:                EpochTBD,
-		TesnetNinetyPercentEpoch:      EpochTBD,
+		FeeCollectEpoch:               EpochTBD,
 	}
 
 	// LocalnetChainConfig contains the chain parameters to run for local development.
@@ -276,7 +276,7 @@ var (
 		SlotsLimitedEpoch:             EpochTBD, // epoch to enable HIP-16
 		CrossShardXferPrecompileEpoch: big.NewInt(1),
 		AllowlistEpoch:                EpochTBD,
-		TesnetNinetyPercentEpoch:      EpochTBD,
+		FeeCollectEpoch:               big.NewInt(5),
 	}
 
 	// AllProtocolChanges ...
@@ -316,7 +316,7 @@ var (
 		big.NewInt(0),                      // SlotsLimitedEpoch
 		big.NewInt(1),                      // CrossShardXferPrecompileEpoch
 		big.NewInt(0),                      // AllowlistEpoch
-		big.NewInt(0),                      // TesnetNinetyPercentEpoch
+		big.NewInt(0),                      // FeeCollectEpoch
 		big.NewInt(0),
 		big.NewInt(0),
 		big.NewInt(0),
@@ -363,7 +363,7 @@ var (
 		big.NewInt(0),        // SlotsLimitedEpoch
 		big.NewInt(1),        // CrossShardXferPrecompileEpoch
 		big.NewInt(0),        // AllowlistEpoch
-		big.NewInt(0),        // TesnetNinetyPercentEpoch
+		big.NewInt(0),        // FeeCollectEpoch
 		big.NewInt(0),
 		big.NewInt(0),
 		big.NewInt(0),
@@ -510,9 +510,12 @@ type ChainConfig struct {
 	// AllowlistEpoch is the first epoch to support allowlist of HIP18
 	AllowlistEpoch *big.Int
 
-	// Testnet only ninety percent epoch to restore internal voting power to 90%
-	// keeps the tesnet stable
-	TesnetNinetyPercentEpoch *big.Int `json:"testnet-ninety-percent-epoch,omitempty"`
+	// FeeCollectEpoch is the first epoch that enables txn fees to be collected into the community-managed account.
+	// It should >= StakingEpoch.
+	// Before StakingEpoch, txn fees are paid to miner/leader.
+	// Then before FeeCollectEpoch, txn fees are burned.
+	// After FeeCollectEpoch, txn fees paid to FeeCollector account.
+	FeeCollectEpoch *big.Int
 
 	// First2022PeriodEpoch is the first epoch of 2022
 	First2022PeriodEpoch *big.Int `json:"first-2022-epoch,omitempty"`
@@ -553,20 +556,21 @@ func (c *ChainConfig) String() string {
 	)
 }
 
+// check if ChainConfig is valid, it will panic if config is invalid. it should only be called in init()
 func (c *ChainConfig) mustValid() {
 	require := func(cond bool, err string) {
 		if !cond {
 			panic(err)
 		}
 	}
+	require(c.FeeCollectEpoch.Cmp(c.StakingEpoch) >= 0,
+		"must satisfy: FeeCollectEpoch >= StakingEpoch")
 	require(c.PreStakingEpoch.Cmp(c.StakingEpoch) < 0,
 		"must satisfy: PreStakingEpoch < StakingEpoch")
 	require(c.StakingPrecompileEpoch.Cmp(c.PreStakingEpoch) >= 0,
 		"must satisfy: StakingPrecompileEpoch >= PreStakingEpoch")
 	require(c.CrossShardXferPrecompileEpoch.Cmp(c.CrossTxEpoch) > 0,
 		"must satisfy: CrossShardXferPrecompileEpoch > CrossTxEpoch")
-	require(c.TesnetNinetyPercentEpoch.Cmp(EpochTBD) >= 0 || c == TestnetChainConfig,
-		"must satisfy: TesnetNinetyPercentEpoch >= EpochTBD for non testnet chains")
 }
 
 // IsEIP155 returns whether epoch is either equal to the EIP155 fork epoch or greater.
@@ -733,8 +737,9 @@ func (c *ChainConfig) IsAllowlistEpoch(epoch *big.Int) bool {
 	return isForked(c.AllowlistEpoch, epoch)
 }
 
-func (c *ChainConfig) IsTestnetNinetyPercent(epoch *big.Int) bool {
-	return isForked(c.TesnetNinetyPercentEpoch, epoch) && c == TestnetChainConfig
+// IsFeeCollectEpoch determines whether Txn Fees will be collected into the community-managed account.
+func (c *ChainConfig) IsFeeCollectEpoch(epoch *big.Int) bool {
+	return isForked(c.FeeCollectEpoch, epoch)
 }
 
 func (c *ChainConfig) Is2022PeriodEpoch(epoch *big.Int) bool {

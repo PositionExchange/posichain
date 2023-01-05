@@ -6,6 +6,7 @@ import (
 	"github.com/PositionExchange/posichain/crypto/bls"
 	"github.com/PositionExchange/posichain/internal/genesis"
 	"github.com/PositionExchange/posichain/numeric"
+	ethCommon "github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
 )
 
@@ -34,6 +35,7 @@ type instance struct {
 	blocksPerEpoch                  uint64
 	slotsLimit                      int // HIP-16: The absolute number of maximum effective slots per shard limit for each validator. 0 means no limit.
 	allowlist                       Allowlist
+	feeCollector                    ethCommon.Address
 }
 
 // NewInstance creates and validates a new sharding configuration based
@@ -43,6 +45,7 @@ func NewInstance(
 	hmyAccounts []genesis.DeployAccount,
 	fnAccounts []genesis.DeployAccount,
 	allowlist Allowlist,
+	feeCollector ethCommon.Address,
 	reshardingEpoch []*big.Int, blocksE uint64,
 ) (Instance, error) {
 	if numShards < 1 {
@@ -90,6 +93,7 @@ func NewInstance(
 		reshardingEpoch:                 reshardingEpoch,
 		blocksPerEpoch:                  blocksE,
 		slotsLimit:                      slotsLimit,
+		feeCollector:                    feeCollector,
 	}, nil
 }
 
@@ -103,12 +107,13 @@ func MustNewInstance(
 	hmyAccounts []genesis.DeployAccount,
 	fnAccounts []genesis.DeployAccount,
 	allowlist Allowlist,
+	feeCollector ethCommon.Address,
 	reshardingEpoch []*big.Int, blocksPerEpoch uint64,
 ) Instance {
 	slotsLimit := int(float32(numNodesPerShard-numHarmonyOperatedNodesPerShard) * slotsLimitPercent)
 	sc, err := NewInstance(
 		numShards, numNodesPerShard, numHarmonyOperatedNodesPerShard, slotsLimit, harmonyVotePercent,
-		hmyAccounts, fnAccounts, allowlist, reshardingEpoch, blocksPerEpoch,
+		hmyAccounts, fnAccounts, allowlist, feeCollector, reshardingEpoch, blocksPerEpoch,
 	)
 	if err != nil {
 		panic(err)
@@ -129,6 +134,11 @@ func (sc instance) NumShards() uint32 {
 // SlotsLimit returns the max slots per shard limit for each validator
 func (sc instance) SlotsLimit() int {
 	return sc.slotsLimit
+}
+
+// FeeCollector returns a address to receive txn fees
+func (sc instance) FeeCollector() ethCommon.Address {
+	return sc.feeCollector
 }
 
 // HarmonyVotePercent returns total percentage of voting power harmony nodes possess.
