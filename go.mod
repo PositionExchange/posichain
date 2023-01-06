@@ -8,7 +8,7 @@ require (
 	github.com/VictoriaMetrics/fastcache v1.5.7
 	github.com/Workiva/go-datastructures v1.0.50
 	github.com/allegro/bigcache v1.2.1
-	github.com/aws/aws-sdk-go v1.30.1
+	github.com/aws/aws-sdk-go v1.33.0
 	github.com/beevik/ntp v0.3.0
 	github.com/btcsuite/btcutil v1.0.3-0.20201208143702-a53e38424cce
 	github.com/cespare/cp v1.1.1
@@ -51,7 +51,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.6.1
 	github.com/stretchr/testify v1.7.0
-	github.com/syndtr/goleveldb v1.0.1-0.20200815110645-5c35d600f0ca
+	github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
 	github.com/tikv/client-go/v2 v2.0.1
 	github.com/whyrusleeping/timecache v0.0.0-20160911033111-cfcb2f1abfee
 	go.uber.org/ratelimit v0.1.0
@@ -106,7 +106,7 @@ require (
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/gofrs/flock v0.0.0-20190320160742-5135e617513b // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/golang/snappy v0.0.2-0.20190904063534-ff6b7dc882cf // indirect
+	github.com/golang/snappy v0.0.4 // indirect
 	github.com/golangci/check v0.0.0-20180506172741-cfe4005ccda2 // indirect
 	github.com/golangci/dupl v0.0.0-20180902072040-3e9179ac440a // indirect
 	github.com/golangci/errcheck v0.0.0-20181223084120-ef45e06d44b6 // indirect

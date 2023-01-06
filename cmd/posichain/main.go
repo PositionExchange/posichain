@@ -99,6 +99,7 @@ var configFlag = cli.StringFlag{
 func init() {
 	rand.Seed(time.Now().UnixNano())
 	cli.SetParseErrorHandle(func(err error) {
+		fmt.Fprint(os.Stderr, errors.WithMessage(err, "cli parse error"))
 		os.Exit(128) // 128 - invalid command line arguments
 	})
 	configCmd.AddCommand(dumpConfigCmd)
@@ -136,12 +137,12 @@ func runPosichainNode(cmd *cobra.Command, args []string) {
 	}
 
 	if err := prepareRootCmd(cmd); err != nil {
-		fmt.Fprint(os.Stderr, err)
+		fmt.Fprint(os.Stderr, errors.WithMessage(err, "prepare root cmd error"))
 		os.Exit(128)
 	}
 	cfg, err := getHarmonyConfig(cmd)
 	if err != nil {
-		fmt.Fprint(os.Stderr, err)
+		fmt.Fprint(os.Stderr, errors.WithMessage(err, "get config error"))
 		os.Exit(128)
 	}
 
@@ -687,7 +688,18 @@ func setupConsensusAndNode(hc harmonyconfig.HarmonyConfig, nodeConfig *nodeconfi
 		}
 	}
 
-	blockchain, err := collection.ShardChain(nodeConfig.ShardID)
+	var blockchain core.BlockChain
+
+	// We are not beacon chain, make sure beacon already initialized.
+	if nodeConfig.ShardID != shard.BeaconChainShardID {
+		_, err = collection.ShardChain(shard.BeaconChainShardID)
+		if err != nil {
+			_, _ = fmt.Fprintf(os.Stderr, "Error :%v \n", err)
+			os.Exit(1)
+		}
+	}
+
+	blockchain, err = collection.ShardChain(nodeConfig.ShardID)
 	if err != nil {
 		_, _ = fmt.Fprintf(os.Stderr, "Error :%v \n", err)
 		os.Exit(1)
@@ -721,8 +733,6 @@ func setupConsensusAndNode(hc harmonyconfig.HarmonyConfig, nodeConfig *nodeconfi
 		selfPort := hc.P2P.Port
 		currentNode.SyncingPeerProvider = node.NewLocalSyncingPeerProvider(
 			6000, uint16(selfPort), epochConfig.NumShards(), uint32(epochConfig.NumNodesPerShard()))
-	} else if hc.DNSSync.LegacySyncing {
-		currentNode.SyncingPeerProvider = node.NewLegacySyncingPeerProvider(currentNode)
 	} else {
 		currentNode.SyncingPeerProvider = node.NewDNSSyncingPeerProvider(hc.DNSSync.Zone, strconv.Itoa(hc.DNSSync.Port))
 	}
