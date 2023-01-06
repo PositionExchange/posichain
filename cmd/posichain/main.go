@@ -687,7 +687,18 @@ func setupConsensusAndNode(hc harmonyconfig.HarmonyConfig, nodeConfig *nodeconfi
 		}
 	}
 
-	blockchain, err := collection.ShardChain(nodeConfig.ShardID)
+	var blockchain core.BlockChain
+
+	// We are not beacon chain, make sure beacon already initialized.
+	if nodeConfig.ShardID != shard.BeaconChainShardID {
+		_, err = collection.ShardChain(shard.BeaconChainShardID)
+		if err != nil {
+			_, _ = fmt.Fprintf(os.Stderr, "Error :%v \n", err)
+			os.Exit(1)
+		}
+	}
+
+	blockchain, err = collection.ShardChain(nodeConfig.ShardID)
 	if err != nil {
 		_, _ = fmt.Fprintf(os.Stderr, "Error :%v \n", err)
 		os.Exit(1)
@@ -721,8 +732,6 @@ func setupConsensusAndNode(hc harmonyconfig.HarmonyConfig, nodeConfig *nodeconfi
 		selfPort := hc.P2P.Port
 		currentNode.SyncingPeerProvider = node.NewLocalSyncingPeerProvider(
 			6000, uint16(selfPort), epochConfig.NumShards(), uint32(epochConfig.NumNodesPerShard()))
-	} else if hc.DNSSync.LegacySyncing {
-		currentNode.SyncingPeerProvider = node.NewLegacySyncingPeerProvider(currentNode)
 	} else {
 		currentNode.SyncingPeerProvider = node.NewDNSSyncingPeerProvider(hc.DNSSync.Zone, strconv.Itoa(hc.DNSSync.Port))
 	}

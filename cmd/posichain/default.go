@@ -5,7 +5,7 @@ import (
 	nodeconfig "github.com/PositionExchange/posichain/internal/configs/node"
 )
 
-const tomlConfigVersion = "2.5.7"
+const tomlConfigVersion = "2.5.8"
 
 const (
 	defNetworkType = nodeconfig.Mainnet
