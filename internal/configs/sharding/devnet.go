@@ -22,6 +22,7 @@ const (
 
 	// Epoch versions
 	devnetV1Epoch = 3262
+	devnetV2Epoch = 14236 // Around January 7, 2023, 01:38:22 AM (Saturday)
 
 	// DevNetHTTPPattern is the http pattern for devnet.
 	DevNetHTTPPattern = "https://api.s%d.d.posichain.org"
@@ -29,8 +30,12 @@ const (
 	DevNetWSPattern = "wss://ws.s%d.d.posichain.org"
 )
 
+var devnetFeeCollector = mustAddress("0x0000000000000000000000000000000000000000")
+
 func (ts devnetSchedule) InstanceForEpoch(epoch *big.Int) Instance {
 	switch {
+	case epoch.Cmp(big.NewInt(devnetV2Epoch)) >= 0:
+		return devnetV2
 	case epoch.Cmp(big.NewInt(devnetV1Epoch)) >= 0:
 		return devnetV1
 	default: // genesis
@@ -76,9 +81,11 @@ func (ts devnetSchedule) IsSkippedEpoch(shardID uint32, epoch *big.Int) bool {
 var devnetReshardingEpoch = []*big.Int{
 	big.NewInt(0),
 	big.NewInt(devnetV1Epoch),
+	big.NewInt(devnetV2Epoch),
 }
 
 var (
 	devnetV0 = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.DevnetOperatedAccountsV0, genesis.DevnetFoundationalAccounts, emptyAllowlist, emptyAddress, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
 	devnetV1 = MustNewInstance(2, 10, 4, 0, numeric.MustNewDecFromStr("0.7"), genesis.DevnetOperatedAccountsV1, genesis.DevnetFoundationalAccounts, emptyAllowlist, emptyAddress, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
+	devnetV2 = MustNewInstance(2, 10, 4, 0, numeric.MustNewDecFromStr("0.7"), genesis.DevnetOperatedAccountsV1, genesis.DevnetFoundationalAccounts, emptyAllowlist, devnetFeeCollector, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
 )

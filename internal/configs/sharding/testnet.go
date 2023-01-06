@@ -22,6 +22,7 @@ const (
 
 	// Epoch versions
 	testnetV1Epoch = 68
+	testnetV2Epoch = 850 // Around January 9, 2023, 01:38:22 AM (Monday)
 
 	// TestNetHTTPPattern is the http pattern for testnet.
 	TestNetHTTPPattern = "https://api.s%d.t.posichain.org"
@@ -29,8 +30,12 @@ const (
 	TestNetWSPattern = "wss://ws.s%d.t.posichain.org"
 )
 
+var testnetFeeCollector = mustAddress("0x0000000000000000000000000000000000000000")
+
 func (ts testnetSchedule) InstanceForEpoch(epoch *big.Int) Instance {
 	switch {
+	case epoch.Cmp(big.NewInt(testnetV2Epoch)) >= 0:
+		return testnetV2
 	case epoch.Cmp(big.NewInt(testnetV1Epoch)) >= 0:
 		return testnetV1
 	default: // genesis
@@ -76,9 +81,11 @@ func (ts testnetSchedule) IsSkippedEpoch(shardID uint32, epoch *big.Int) bool {
 var testnetReshardingEpoch = []*big.Int{
 	big.NewInt(0),
 	big.NewInt(testnetV1Epoch),
+	big.NewInt(testnetV2Epoch),
 }
 
 var (
 	testnetV0 = MustNewInstance(1, 5, 4, 0, numeric.OneDec(), genesis.TestnetOperatedAccounts, genesis.TestnetFoundationalAccounts, emptyAllowlist, emptyAddress, testnetReshardingEpoch, TestnetSchedule.BlocksPerEpoch())
 	testnetV1 = MustNewInstance(1, 15, 4, 0, numeric.MustNewDecFromStr("0.7"), genesis.TestnetOperatedAccounts, genesis.TestnetFoundationalAccounts, emptyAllowlist, emptyAddress, testnetReshardingEpoch, TestnetSchedule.BlocksPerEpoch())
+	testnetV2 = MustNewInstance(1, 15, 4, 0, numeric.MustNewDecFromStr("0.7"), genesis.TestnetOperatedAccounts, genesis.TestnetFoundationalAccounts, emptyAllowlist, testnetFeeCollector, testnetReshardingEpoch, TestnetSchedule.BlocksPerEpoch())
 )
