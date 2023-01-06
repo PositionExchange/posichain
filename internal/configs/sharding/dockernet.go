@@ -21,6 +21,7 @@ const (
 
 	// Epoch versions
 	dockernetV1Epoch = 110
+	dockernetV2Epoch = 3105
 
 	// DockerNetHTTPPattern is the http pattern for devnet.
 	DockerNetHTTPPattern = "https://api.s%d.k.posichain.org"
@@ -28,8 +29,12 @@ const (
 	DockerNetWSPattern = "wss://ws.s%d.k.posichain.org"
 )
 
+var dockernetFeeCollector = mustAddress("0x0000000000000000000000000000000000000000")
+
 func (ds dockernetSchedule) InstanceForEpoch(epoch *big.Int) Instance {
 	switch {
+	case epoch.Cmp(big.NewInt(dockernetV2Epoch)) >= 0:
+		return dockernetV2
 	case epoch.Cmp(big.NewInt(dockernetV1Epoch)) >= 0:
 		return dockernetV1
 	default: // genesis
@@ -76,7 +81,9 @@ var (
 	dockernetReshardingEpoch = []*big.Int{
 		big.NewInt(0),
 		big.NewInt(dockernetV1Epoch),
+		big.NewInt(dockernetV2Epoch),
 	}
 	dockernetV0 = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.DockernetOperatedAccounts, genesis.DockernetFoundationalAccounts, emptyAllowlist, emptyAddress, dockernetReshardingEpoch, DockernetSchedule.BlocksPerEpoch())
 	dockernetV1 = MustNewInstance(2, 8, 2, 0, numeric.MustNewDecFromStr("0.7"), genesis.DockernetOperatedAccounts, genesis.DockernetFoundationalAccounts, emptyAllowlist, emptyAddress, dockernetReshardingEpoch, DockernetSchedule.BlocksPerEpoch())
+	dockernetV2 = MustNewInstance(2, 8, 2, 0, numeric.MustNewDecFromStr("0.7"), genesis.DockernetOperatedAccounts, genesis.DockernetFoundationalAccounts, emptyAllowlist, dockernetFeeCollector, dockernetReshardingEpoch, DockernetSchedule.BlocksPerEpoch())
 )

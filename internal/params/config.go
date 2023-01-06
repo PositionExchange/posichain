@@ -116,7 +116,7 @@ var (
 		ChainIdFixEpoch:               EpochTBD,
 		CrossShardXferPrecompileEpoch: EpochTBD,
 		AllowlistEpoch:                EpochTBD,
-		FeeCollectEpoch:               EpochTBD,
+		FeeCollectEpoch:               big.NewInt(850),
 		First2022PeriodEpoch:          big.NewInt(0),
 		First2024PeriodEpoch:          big.NewInt(2793),
 		First2026PeriodEpoch:          big.NewInt(6647),
@@ -161,7 +161,7 @@ var (
 		SlotsLimitedEpoch:             EpochTBD, // epoch to enable HIP-16
 		CrossShardXferPrecompileEpoch: EpochTBD,
 		AllowlistEpoch:                EpochTBD,
-		FeeCollectEpoch:               EpochTBD,
+		FeeCollectEpoch:               big.NewInt(14236),
 	}
 
 	// StressnetChainConfig contains the chain parameters for the Stress test network.
@@ -238,7 +238,7 @@ var (
 		SlotsLimitedEpoch:             EpochTBD, // epoch to enable HIP-16
 		CrossShardXferPrecompileEpoch: EpochTBD,
 		AllowlistEpoch:                EpochTBD,
-		FeeCollectEpoch:               EpochTBD,
+		FeeCollectEpoch:               big.NewInt(3105),
 	}
 
 	// LocalnetChainConfig contains the chain parameters to run for local development.
