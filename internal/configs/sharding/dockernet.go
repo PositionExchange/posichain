@@ -77,6 +77,6 @@ var (
 		big.NewInt(0),
 		big.NewInt(dockernetV1Epoch),
 	}
-	dockernetV0 = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.DockernetOperatedAccounts, genesis.DockernetFoundationalAccounts, emptyAllowlist, dockernetReshardingEpoch, DockernetSchedule.BlocksPerEpoch())
-	dockernetV1 = MustNewInstance(2, 8, 2, 0, numeric.MustNewDecFromStr("0.7"), genesis.DockernetOperatedAccounts, genesis.DockernetFoundationalAccounts, emptyAllowlist, dockernetReshardingEpoch, DockernetSchedule.BlocksPerEpoch())
+	dockernetV0 = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.DockernetOperatedAccounts, genesis.DockernetFoundationalAccounts, emptyAllowlist, emptyAddress, dockernetReshardingEpoch, DockernetSchedule.BlocksPerEpoch())
+	dockernetV1 = MustNewInstance(2, 8, 2, 0, numeric.MustNewDecFromStr("0.7"), genesis.DockernetOperatedAccounts, genesis.DockernetFoundationalAccounts, emptyAllowlist, emptyAddress, dockernetReshardingEpoch, DockernetSchedule.BlocksPerEpoch())
 )

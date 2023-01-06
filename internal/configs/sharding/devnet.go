@@ -79,6 +79,6 @@ var devnetReshardingEpoch = []*big.Int{
 }
 
 var (
-	devnetV0 = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.DevnetOperatedAccountsV0, genesis.DevnetFoundationalAccounts, emptyAllowlist, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
-	devnetV1 = MustNewInstance(2, 10, 4, 0, numeric.MustNewDecFromStr("0.7"), genesis.DevnetOperatedAccountsV1, genesis.DevnetFoundationalAccounts, emptyAllowlist, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
+	devnetV0 = MustNewInstance(2, 4, 2, 0, numeric.OneDec(), genesis.DevnetOperatedAccountsV0, genesis.DevnetFoundationalAccounts, emptyAllowlist, emptyAddress, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
+	devnetV1 = MustNewInstance(2, 10, 4, 0, numeric.MustNewDecFromStr("0.7"), genesis.DevnetOperatedAccountsV1, genesis.DevnetFoundationalAccounts, emptyAllowlist, emptyAddress, devnetReshardingEpoch, DevnetSchedule.BlocksPerEpoch())
 )

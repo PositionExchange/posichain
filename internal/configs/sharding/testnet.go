@@ -79,6 +79,6 @@ var testnetReshardingEpoch = []*big.Int{
 }
 
 var (
-	testnetV0 = MustNewInstance(1, 5, 4, 0, numeric.OneDec(), genesis.TestnetOperatedAccounts, genesis.TestnetFoundationalAccounts, emptyAllowlist, testnetReshardingEpoch, TestnetSchedule.BlocksPerEpoch())
-	testnetV1 = MustNewInstance(1, 15, 4, 0, numeric.MustNewDecFromStr("0.7"), genesis.TestnetOperatedAccounts, genesis.TestnetFoundationalAccounts, emptyAllowlist, testnetReshardingEpoch, TestnetSchedule.BlocksPerEpoch())
+	testnetV0 = MustNewInstance(1, 5, 4, 0, numeric.OneDec(), genesis.TestnetOperatedAccounts, genesis.TestnetFoundationalAccounts, emptyAllowlist, emptyAddress, testnetReshardingEpoch, TestnetSchedule.BlocksPerEpoch())
+	testnetV1 = MustNewInstance(1, 15, 4, 0, numeric.MustNewDecFromStr("0.7"), genesis.TestnetOperatedAccounts, genesis.TestnetFoundationalAccounts, emptyAllowlist, emptyAddress, testnetReshardingEpoch, TestnetSchedule.BlocksPerEpoch())
 )
