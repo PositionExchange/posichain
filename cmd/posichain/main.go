@@ -99,6 +99,7 @@ var configFlag = cli.StringFlag{
 func init() {
 	rand.Seed(time.Now().UnixNano())
 	cli.SetParseErrorHandle(func(err error) {
+		fmt.Fprint(os.Stderr, errors.WithMessage(err, "cli parse error"))
 		os.Exit(128) // 128 - invalid command line arguments
 	})
 	configCmd.AddCommand(dumpConfigCmd)
@@ -136,12 +137,12 @@ func runPosichainNode(cmd *cobra.Command, args []string) {
 	}
 
 	if err := prepareRootCmd(cmd); err != nil {
-		fmt.Fprint(os.Stderr, err)
+		fmt.Fprint(os.Stderr, errors.WithMessage(err, "prepare root cmd error"))
 		os.Exit(128)
 	}
 	cfg, err := getHarmonyConfig(cmd)
 	if err != nil {
-		fmt.Fprint(os.Stderr, err)
+		fmt.Fprint(os.Stderr, errors.WithMessage(err, "get config error"))
 		os.Exit(128)
 	}
 
