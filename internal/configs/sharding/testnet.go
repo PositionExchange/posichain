@@ -22,7 +22,7 @@ const (
 
 	// Epoch versions
 	testnetV1Epoch = 68
-	testnetV2Epoch = 850 // Around January 9, 2023, 01:38:22 AM (Monday)
+	testnetV2Epoch = 860 // Around January 10, 2023, 04:42:03 AM (Tuesday)
 
 	// TestNetHTTPPattern is the http pattern for testnet.
 	TestNetHTTPPattern = "https://api.s%d.t.posichain.org"

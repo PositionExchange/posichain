@@ -116,7 +116,7 @@ var (
 		ChainIdFixEpoch:               EpochTBD,
 		CrossShardXferPrecompileEpoch: EpochTBD,
 		AllowlistEpoch:                EpochTBD,
-		FeeCollectEpoch:               big.NewInt(850),
+		FeeCollectEpoch:               big.NewInt(860),
 		First2022PeriodEpoch:          big.NewInt(0),
 		First2024PeriodEpoch:          big.NewInt(2793),
 		First2026PeriodEpoch:          big.NewInt(6647),
