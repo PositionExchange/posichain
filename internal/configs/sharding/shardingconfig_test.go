@@ -51,6 +51,18 @@ func TestMainnetInstanceForEpoch(t *testing.T) {
 			big.NewInt(309),
 			mainnetV3,
 		},
+		{
+			big.NewInt(441),
+			mainnetV3,
+		},
+		{
+			big.NewInt(442),
+			mainnetV4,
+		},
+		{
+			big.NewInt(443),
+			mainnetV4,
+		},
 	}
 
 	for _, test := range tests {

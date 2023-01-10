@@ -18,7 +18,8 @@ const (
 	// Epoch versions
 	mainnetV1Epoch = 2
 	mainnetV2Epoch = 105
-	mainnetV3Epoch = 308 // Around November 26, 2022, 08:31 AM (Saturday)
+	mainnetV3Epoch = 308 // Around November 26, 2022, 08:31 UTC+0 (Saturday)
+	mainnetV4Epoch = 442 // Around January 15, 2023, 23:58:50 UTC+0 (Sunday)
 
 	// MainNetHTTPPattern is the http pattern for mainnet.
 	MainNetHTTPPattern = "https://api.s%d.posichain.org"
@@ -31,8 +32,8 @@ var (
 	skippedEpochs = map[uint32][]*big.Int{}
 
 	emptyAddress = ethCommon.Address{}
-	// TODO: set a valid address
-	feeCollector ethCommon.Address // = mustAddress("0xXXX")
+
+	mainnetFeeCollector = mustAddress("0x0000000000000000000000000000000000000000")
 )
 
 func mustAddress(addrStr string) ethCommon.Address {
@@ -50,6 +51,8 @@ type mainnetSchedule struct{}
 
 func (ms mainnetSchedule) InstanceForEpoch(epoch *big.Int) Instance {
 	switch {
+	case epoch.Cmp(big.NewInt(mainnetV4Epoch)) >= 0:
+		return mainnetV4
 	case epoch.Cmp(big.NewInt(mainnetV3Epoch)) >= 0:
 		return mainnetV3
 	case epoch.Cmp(big.NewInt(mainnetV2Epoch)) >= 0:
@@ -108,6 +111,7 @@ var mainnetReshardingEpoch = []*big.Int{
 	big.NewInt(mainnetV1Epoch),
 	big.NewInt(mainnetV2Epoch),
 	big.NewInt(mainnetV3Epoch),
+	big.NewInt(mainnetV4Epoch),
 }
 
 var (
@@ -115,4 +119,5 @@ var (
 	mainnetV1 = MustNewInstance(1, 21, 16, 0, numeric.MustNewDecFromStr("0.7"), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, emptyAddress, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
 	mainnetV2 = MustNewInstance(1, 41, 16, 0, numeric.MustNewDecFromStr("0.7"), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, emptyAddress, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
 	mainnetV3 = MustNewInstance(1, 61, 16, 0, numeric.MustNewDecFromStr("0.7"), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, emptyAddress, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
+	mainnetV4 = MustNewInstance(1, 61, 16, 0, numeric.MustNewDecFromStr("0.7"), genesis.MainnetOperatedAccounts, genesis.FoundationalNodeAccounts, emptyAllowlist, mainnetFeeCollector, mainnetReshardingEpoch, MainnetSchedule.BlocksPerEpoch())
 )
