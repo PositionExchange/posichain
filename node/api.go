@@ -82,7 +82,7 @@ func (node *Node) StopRPC() error {
 // StartRosetta start rosetta service
 func (node *Node) StartRosetta() error {
 	harmony := hmy.New(node, node.TxPool, node.CxPool, node.Consensus.ShardID)
-	return rosetta.StartServers(harmony, node.NodeConfig.RosettaServer, node.NodeConfig.RPCServer.RateLimiterEnabled, node.NodeConfig.RPCServer.RequestsPerSecond)
+	return rosetta.StartServers(harmony, node.NodeConfig.RosettaServer, node.NodeConfig.RPCServer.RateLimiterEnabled, node.NodeConfig.RPCServer.RequestsPerSecond, node.NodeConfig.RPCServer.EvmCallTimeout)
 }
 
 // StopRosetta stops rosetta service

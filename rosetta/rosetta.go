@@ -24,7 +24,7 @@ var listener net.Listener
 
 // StartServers starts the rosetta http server
 // TODO (dm): optimize rosetta to use single flight & use extra caching type DB to avoid re-processing data
-func StartServers(hmy *hmy.Harmony, config nodeconfig.RosettaServerConfig, limiterEnable bool, rateLimit int) error {
+func StartServers(hmy *hmy.Harmony, config nodeconfig.RosettaServerConfig, limiterEnable bool, rateLimit int, evmCallTimeout time.Duration) error {
 	if !config.HTTPEnabled {
 		utils.Logger().Info().Msg("Rosetta http server disabled...")
 		return nil
@@ -43,7 +43,7 @@ func StartServers(hmy *hmy.Harmony, config nodeconfig.RosettaServerConfig, limit
 		return err
 	}
 
-	router := recoverMiddleware(server.CorsMiddleware(loggerMiddleware(getRouter(serverAsserter, hmy, limiterEnable, rateLimit))))
+	router := recoverMiddleware(server.CorsMiddleware(loggerMiddleware(getRouter(serverAsserter, hmy, limiterEnable, rateLimit, evmCallTimeout))))
 	utils.Logger().Info().
 		Int("port", config.HTTPPort).
 		Str("ip", config.HTTPIp).
@@ -77,14 +77,14 @@ func newHTTPServer(handler http.Handler) *http.Server {
 	}
 }
 
-func getRouter(asserter *asserter.Asserter, hmy *hmy.Harmony, limiterEnable bool, rateLimit int) http.Handler {
+func getRouter(asserter *asserter.Asserter, hmy *hmy.Harmony, limiterEnable bool, rateLimit int, evmCallTimeout time.Duration) http.Handler {
 	return server.NewRouter(
 		server.NewAccountAPIController(services.NewAccountAPI(hmy), asserter),
 		server.NewBlockAPIController(services.NewBlockAPI(hmy), asserter),
 		server.NewMempoolAPIController(services.NewMempoolAPI(hmy), asserter),
 		server.NewNetworkAPIController(services.NewNetworkAPI(hmy), asserter),
-		server.NewConstructionAPIController(services.NewConstructionAPI(hmy), asserter),
-		server.NewCallAPIController(services.NewCallAPIService(hmy, limiterEnable, rateLimit), asserter),
+		server.NewConstructionAPIController(services.NewConstructionAPI(hmy, evmCallTimeout), asserter),
+		server.NewCallAPIController(services.NewCallAPIService(hmy, limiterEnable, rateLimit, evmCallTimeout), asserter),
 		server.NewEventsAPIController(services.NewEventAPI(hmy), asserter),
 		server.NewSearchAPIController(services.NewSearchAPI(hmy), asserter),
 	)

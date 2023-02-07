@@ -8,6 +8,7 @@ import (
 	"math/big"
 	"strings"
 	"sync"
+	"time"
 
 	bls_core "github.com/PositionExchange/bls/ffi/go/bls"
 	"github.com/PositionExchange/posichain/crypto/bls"
@@ -118,6 +119,8 @@ type RPCServerConfig struct {
 
 	RateLimiterEnabled bool
 	RequestsPerSecond  int
+
+	EvmCallTimeout time.Duration
 }
 
 // RosettaServerConfig is the config for the rosetta server

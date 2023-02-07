@@ -329,6 +329,11 @@ func setupNodeAndRun(hc harmonyconfig.HarmonyConfig) {
 		utils.Logger().Warn().Err(err).Msg("Check Local Time Accuracy Error")
 	}
 
+	evmCallTimeoutMs := hc.RPCOpt.EvmCallTimeoutMs
+	if evmCallTimeoutMs <= 0 {
+		evmCallTimeoutMs = 5000
+	}
+	evmCallTimeout := time.Duration(evmCallTimeoutMs) * time.Millisecond
 	// Parse RPC config
 	nodeConfig.RPCServer = nodeconfig.RPCServerConfig{
 		HTTPEnabled:        hc.HTTP.Enabled,
@@ -346,6 +351,7 @@ func setupNodeAndRun(hc harmonyconfig.HarmonyConfig) {
 		RpcFilterFile:      hc.RPCOpt.RpcFilterFile,
 		RateLimiterEnabled: hc.RPCOpt.RateLimterEnabled,
 		RequestsPerSecond:  hc.RPCOpt.RequestsPerSecond,
+		EvmCallTimeout:     evmCallTimeout,
 	}
 
 	// Parse rosetta config
