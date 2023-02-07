@@ -191,6 +191,7 @@ type RpcOptConfig struct {
 	RpcFilterFile      string // Define filters to enable/disable RPC exposure
 	RateLimterEnabled  bool   // Enable Rate limiter for RPC
 	RequestsPerSecond  int    // for RPC rate limiter
+	EvmCallTimeoutMs   int64  // EVM call timeout in milliseconds
 }
 
 type DevnetConfig struct {

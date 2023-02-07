@@ -28,7 +28,8 @@ const (
 const (
 	// APIVersion used for DApp's, bumped after RPC refactor (7/2020)
 	APIVersion = "1.1"
-	// CallTimeout is the timeout given to all contract calls
+	// Deprecated: CallTimeout is the timeout given to all contract calls
+	// Use RpcOptConfig instead
 	CallTimeout = 5 * time.Second
 	// LogTag is the tag found in the log for all RPC logs
 	LogTag = "[RPC]"
@@ -158,8 +159,8 @@ func getAPIs(hmy *hmy.Harmony, config nodeconfig.RPCServerConfig) []rpc.API {
 		NewPublicHarmonyAPI(hmy, V2),
 		NewPublicBlockchainAPI(hmy, V1, config.RateLimiterEnabled, config.RequestsPerSecond),
 		NewPublicBlockchainAPI(hmy, V2, config.RateLimiterEnabled, config.RequestsPerSecond),
-		NewPublicContractAPI(hmy, V1, config.RateLimiterEnabled, config.RequestsPerSecond),
-		NewPublicContractAPI(hmy, V2, config.RateLimiterEnabled, config.RequestsPerSecond),
+		NewPublicContractAPI(hmy, V1, config.RateLimiterEnabled, config.RequestsPerSecond, config.EvmCallTimeout),
+		NewPublicContractAPI(hmy, V2, config.RateLimiterEnabled, config.RequestsPerSecond, config.EvmCallTimeout),
 		NewPublicTransactionAPI(hmy, V1),
 		NewPublicTransactionAPI(hmy, V2),
 		NewPublicPoolAPI(hmy, V1, config.RateLimiterEnabled, config.RequestsPerSecond),
@@ -185,7 +186,7 @@ func getAPIs(hmy *hmy.Harmony, config nodeconfig.RPCServerConfig) []rpc.API {
 		publicAPIs = append(publicAPIs,
 			NewPublicHarmonyAPI(hmy, Eth),
 			NewPublicBlockchainAPI(hmy, Eth, config.RateLimiterEnabled, config.RequestsPerSecond),
-			NewPublicContractAPI(hmy, Eth, config.RateLimiterEnabled, config.RequestsPerSecond),
+			NewPublicContractAPI(hmy, Eth, config.RateLimiterEnabled, config.RequestsPerSecond, config.EvmCallTimeout),
 			NewPublicTransactionAPI(hmy, Eth),
 			NewPublicPoolAPI(hmy, Eth, config.RateLimiterEnabled, config.RequestsPerSecond),
 			eth.NewPublicEthService(hmy, "eth"),

@@ -3,6 +3,7 @@ package services
 import (
 	"context"
 	"encoding/json"
+	"time"
 
 	ethCommon "github.com/ethereum/go-ethereum/common"
 
@@ -83,10 +84,10 @@ func (c *CallAPIService) Call(
 
 }
 
-func NewCallAPIService(hmy *hmy.Harmony, limiterEnable bool, rateLimit int) server.CallAPIServicer {
+func NewCallAPIService(hmy *hmy.Harmony, limiterEnable bool, rateLimit int, evmCallTimeout time.Duration) server.CallAPIServicer {
 	return &CallAPIService{
 		hmy:                 hmy,
-		publicContractAPI:   rpc2.NewPublicContractAPI(hmy, rpc2.V2, limiterEnable, rateLimit),
+		publicContractAPI:   rpc2.NewPublicContractAPI(hmy, rpc2.V2, limiterEnable, rateLimit, evmCallTimeout),
 		publicStakingAPI:    rpc2.NewPublicStakingAPI(hmy, rpc2.V2),
 		publicBlockChainAPI: rpc2.NewPublicBlockchainAPI(hmy, rpc2.V2, limiterEnable, rateLimit),
 	}
