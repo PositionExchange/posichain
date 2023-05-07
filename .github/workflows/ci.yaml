@@ -8,7 +8,7 @@ on:
 jobs:
   check:
     name: Per-check for current tag
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     continue-on-error: false
     outputs:
       tag_annotated: ${{ steps.check-tag-annotated.outputs.tag_annotated }}
