@@ -120,7 +120,7 @@ jobs:
   release-page:
     name: Sign binary and create and publish release page
     needs: [check, build]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     if: needs.check.outputs.tag_annotated == 'true'
 
     steps:
