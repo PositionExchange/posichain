@@ -151,7 +151,7 @@ const (
 	CreateBySelfdestructGas uint64 = 25000
 
 	// MaxCodeSize ...
-	MaxCodeSize = 24576 // Maximum bytecode to permit for a contract
+	MaxCodeSize = 34576 // Maximum bytecode to permit for a contract
 
 	// Precompiled contract gas prices
 
